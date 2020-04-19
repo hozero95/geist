@@ -13,4 +13,10 @@ public class TestController {
 		log.info("테스트 중입니다.");
 		return "test";
 	}
+	
+	@GetMapping("/test2")
+	public String test2() {
+		log.info("pull 테스트 중입니다.");
+		return "test2";
+	}
 }
