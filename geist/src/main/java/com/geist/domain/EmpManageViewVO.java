@@ -8,7 +8,7 @@ import lombok.Data;
  */
 
 @Data
-public class EmpViewTableVO {
+public class EmpManageViewVO {
 	private Long emp_no;
 	private String emp_name;
 	private String emp_position;
