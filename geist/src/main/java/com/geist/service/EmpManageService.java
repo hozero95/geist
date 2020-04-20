@@ -3,7 +3,7 @@ package com.geist.service;
 import java.util.List;
 
 import com.geist.domain.Criteria;
-import com.geist.domain.EmpViewTableVO;
+import com.geist.domain.EmpManageViewVO;
 
 /* *
  * 사원 관리 페이지
@@ -11,5 +11,5 @@ import com.geist.domain.EmpViewTableVO;
  */
 
 public interface EmpManageService {
-	public List<EmpViewTableVO> getList(Criteria cri);
+	public List<EmpManageViewVO> getList(Criteria cri);
 }

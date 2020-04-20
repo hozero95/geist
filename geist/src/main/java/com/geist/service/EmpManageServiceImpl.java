@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.geist.domain.Criteria;
-import com.geist.domain.EmpViewTableVO;
+import com.geist.domain.EmpManageViewVO;
 import com.geist.mapper.EmpManageMapper;
 
 import lombok.Setter;
@@ -24,7 +24,7 @@ public class EmpManageServiceImpl implements EmpManageService {
 	private EmpManageMapper mapper;
 	
 	@Override
-	public List<EmpViewTableVO> getList(Criteria cri) {
+	public List<EmpManageViewVO> getList(Criteria cri) {
 		return mapper.getListWithPaging(cri);
 	}
 }

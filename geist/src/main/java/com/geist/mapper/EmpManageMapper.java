@@ -3,7 +3,7 @@ package com.geist.mapper;
 import java.util.List;
 
 import com.geist.domain.Criteria;
-import com.geist.domain.EmpViewTableVO;
+import com.geist.domain.EmpManageViewVO;
 
 /* *
  * 사원 관리 페이지
@@ -11,7 +11,7 @@ import com.geist.domain.EmpViewTableVO;
  */
 
 public interface EmpManageMapper {
-	public List<EmpViewTableVO> getList();
+	public List<EmpManageViewVO> getList();
 	
-	public List<EmpViewTableVO> getListWithPaging(Criteria cri);
+	public List<EmpManageViewVO> getListWithPaging(Criteria cri);
 }

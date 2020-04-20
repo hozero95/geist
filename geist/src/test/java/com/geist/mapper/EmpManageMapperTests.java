@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.geist.domain.Criteria;
-import com.geist.domain.EmpViewTableVO;
+import com.geist.domain.EmpManageViewVO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -28,8 +28,8 @@ public class EmpManageMapperTests {
 	
 //	@Test
 	public void getListTest() {
-		List<EmpViewTableVO> empViewTable = mapper.getList();
-		for(EmpViewTableVO table : empViewTable) {
+		List<EmpManageViewVO> empViewTable = mapper.getList();
+		for(EmpManageViewVO table : empViewTable) {
 			log.info(table);
 		}
 	}
@@ -37,7 +37,7 @@ public class EmpManageMapperTests {
 	@Test
 	public void pagingTest() {
 		Criteria cri = new Criteria();
-		List<EmpViewTableVO> list = mapper.getListWithPaging(cri);
+		List<EmpManageViewVO> list = mapper.getListWithPaging(cri);
 		list.forEach(table -> log.info(table));
 	}
 }
