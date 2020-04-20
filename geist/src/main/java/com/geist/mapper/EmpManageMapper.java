@@ -11,7 +11,5 @@ import com.geist.domain.EmpManageViewVO;
  */
 
 public interface EmpManageMapper {
-	public List<EmpManageViewVO> getList();
-	
 	public List<EmpManageViewVO> getListWithPaging(Criteria cri);
 }
