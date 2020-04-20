@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	사원관리 페이지
+	담당 : 김호영
+ -->
+
+<mapper namespace="com.geist.mapper.EmpManageMapper">
+	<select id="getList" resultType="com.geist.domain.EmpViewTableVO">
+		<![CDATA[
+			SELECT
+				emp_no, emp_name, emp_position, emp_date, dept_no
+			FROM
+				employee
+			WHERE
+				emp_no > 0
+		]]>
+	</select>
+	
+	<select id="getListWithPaging" resultType="com.geist.domain.EmpViewTableVO">
+		<![CDATA[
+			SELECT
+				emp_no, emp_name, emp_position, emp_date, dept_no
+			FROM
+			(
+				SELECT /*+ INDEX_ASC(employee pk_employee) */
+					rownum rn, emp_no, emp_name, emp_position, emp_date, dept_no
+				FROM
+					employee
+				WHERE
+					rownum <= #{pageNum} * #{amount}
+			)
+			WHERE
+				rn > (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
+</mapper>
