@@ -6,20 +6,9 @@
 <!-- 
 	사원관리 페이지
 	담당 : 김호영
- -->
+-->
 
 <mapper namespace="com.geist.mapper.EmpManageMapper">
-	<select id="getList" resultType="com.geist.domain.EmpManageViewVO">
-		<![CDATA[
-			SELECT
-				emp_no, emp_name, emp_position, emp_date, dept_no
-			FROM
-				employee
-			WHERE
-				emp_no > 0
-		]]>
-	</select>
-	
 	<select id="getListWithPaging" resultType="com.geist.domain.EmpManageViewVO">
 		<![CDATA[
 			SELECT

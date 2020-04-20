@@ -8,28 +8,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.geist.domain.Criteria;
-import com.geist.domain.EmpManageViewVO;
+import com.geist.domain.AttendanceViewVO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 /* *
- * 사원 관리 페이지
+ * 출결 페이지
  * 담당 : 김호영
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class EmpManageMapperTests {
+public class AttendanceMapperTests {
 	@Setter(onMethod_ = @Autowired)
-	private EmpManageMapper mapper;
+	private AttendanceMapper mapper;
 	
 	@Test
 	public void pagingTest() {
-		Criteria cri = new Criteria();
-		List<EmpManageViewVO> list = mapper.getListWithPaging(cri);
+		int emp_no = 2;
+		List<AttendanceViewVO> list = mapper.getList(emp_no);
 		list.forEach(table -> log.info(table));
 	}
 }
