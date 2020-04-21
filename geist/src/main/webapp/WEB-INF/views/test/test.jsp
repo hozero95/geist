@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<!--
+	테스트 페이지
+	담당 : 김호영
+-->
+
 <!DOCTYPE html>
 <html>
 <head>
