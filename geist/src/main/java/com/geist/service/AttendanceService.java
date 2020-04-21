@@ -11,4 +11,6 @@ import com.geist.domain.AttendanceViewVO;
 
 public interface AttendanceService {
 	public List<AttendanceViewVO> getList(int emp_no);
+	
+	public int attendanceOn(AttendanceViewVO vo);
 }

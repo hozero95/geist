@@ -1,7 +1,5 @@
 package com.geist.domain;
 
-import java.util.Date;
-
 import lombok.Data;
 
 /* *
@@ -11,8 +9,9 @@ import lombok.Data;
 
 @Data
 public class AttendanceViewVO {
-	private Date cal_date;
-	private Date att_on;
-	private Date att_off;
+	private Long emp_no;
+	private String cal_date;
+	private String att_on;
+	private String att_off;
 	private Long att_status;
 }

@@ -26,4 +26,12 @@ public class AttendanceServiceImpl implements AttendanceService {
 	public List<AttendanceViewVO> getList(int emp_no) {
 		return mapper.getList(emp_no);
 	}
+
+	@Override
+	public int attendanceOn(AttendanceViewVO vo) {
+		if(mapper.checkOn(vo) > 0) {
+			return 0;
+		}
+		return mapper.attendanceOn(vo);
+	}
 }

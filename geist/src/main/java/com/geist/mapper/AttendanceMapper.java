@@ -11,4 +11,8 @@ import com.geist.domain.AttendanceViewVO;
 
 public interface AttendanceMapper {
 	public List<AttendanceViewVO> getList(int emp_no);
+	
+	public int attendanceOn(AttendanceViewVO vo);
+	
+	public int checkOn(AttendanceViewVO vo);
 }

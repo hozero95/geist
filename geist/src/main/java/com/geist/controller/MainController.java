@@ -16,11 +16,11 @@ public class MainController {
 	@RequestMapping("/")
 	public String main() {
 		log.info("메인 페이지 이동");
-		return "main";
+		return "/test/main";
 	}
 	
 	@RequestMapping("/attendance")
 	public String attendance() {
-		return "attendance";
+		return "/test/attendance";
 	}
 }
