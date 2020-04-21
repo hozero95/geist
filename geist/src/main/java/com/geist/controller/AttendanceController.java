@@ -22,14 +22,14 @@ import lombok.extern.log4j.Log4j;
  */
 
 @RestController
-@RequestMapping("/attendance")
+@RequestMapping("/attendance/*")
 @AllArgsConstructor
 @Log4j
 public class AttendanceController {
 	private AttendanceService service;
 	
-	@GetMapping(value = "/{emp_no}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<List<AttendanceViewVO>> getList(@PathVariable("emp_no") int emp_no){
+	@GetMapping(value = "/{emp_no}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<List<AttendanceViewVO>> getList(@PathVariable("emp_no") int emp_no) {
 		return new ResponseEntity<List<AttendanceViewVO>>(service.getList(emp_no), HttpStatus.OK);
 	}
 }
