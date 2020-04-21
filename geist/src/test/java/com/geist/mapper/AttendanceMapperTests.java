@@ -25,10 +25,18 @@ public class AttendanceMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private AttendanceMapper mapper;
 	
-	@Test
-	public void pagingTest() {
+//	@Test
+	public void getListTest() {
 		int emp_no = 2;
 		List<AttendanceViewVO> list = mapper.getList(emp_no);
 		list.forEach(table -> log.info(table));
+	}
+	
+	@Test
+	public void attendanceOnTest() {
+		AttendanceViewVO vo = new AttendanceViewVO();
+		vo.setEmp_no(2L);
+		int result = mapper.attendanceOn(vo);
+		log.info(result);
 	}
 }
