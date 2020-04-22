@@ -2,7 +2,7 @@ package com.geist.empManage.mapper;
 
 import java.util.List;
 
-import com.geist.empManage.domain.EmpManageViewVO;
+import com.geist.empManage.domain.EmpManageVO;
 import com.geist.main.domain.Criteria;
 
 /* *
@@ -11,5 +11,7 @@ import com.geist.main.domain.Criteria;
  */
 
 public interface EmpManageMapper {
-	public List<EmpManageViewVO> getListWithPaging(Criteria cri);
+	public List<EmpManageVO> getListWithPaging(Criteria cri);
+	
+	public int getCount(Criteria cri);
 }

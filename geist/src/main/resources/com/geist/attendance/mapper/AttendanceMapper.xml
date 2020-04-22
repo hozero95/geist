@@ -9,7 +9,7 @@
 -->
  
 <mapper namespace="com.geist.attendance.mapper.AttendanceMapper">
-	<select id="getList" resultType="com.geist.attendance.domain.AttendanceViewVO">
+	<select id="getList" resultType="com.geist.attendance.domain.AttendanceVO">
 		<![CDATA[
 			SELECT
 				cal_date, att_on, att_off, att_status
@@ -27,11 +27,6 @@
 		]]>
 	</select>
 	
-	<insert id="attendanceOn">
-		INSERT INTO attendance(emp_no, cal_date, att_on, att_status)
-		VALUES(#{emp_no}, to_date(to_char(sysdate, 'YYYY-MM-DD')), sysdate, 1)
-	</insert>
-	
 	<select id="checkOn" resultType="int">
 		<![CDATA[
 			SELECT
@@ -47,4 +42,31 @@
 			)
 		]]>
 	</select>
+	
+	<select id="checkOff" resultType="int">
+		<![CDATA[
+			SELECT
+				count(*)
+			FROM
+			(
+				SELECT
+					emp_no
+				FROM
+					attendance
+				WHERE
+					emp_no = #{emp_no} AND cal_date = to_date(to_char(sysdate, 'YYYY-MM-DD')) AND att_off IS NULL
+			)
+		]]>
+	</select>
+	
+	<insert id="attendanceOn">
+		INSERT INTO attendance(emp_no, cal_date, att_on, att_status)
+		VALUES(#{emp_no}, to_date(to_char(sysdate, 'YYYY-MM-DD')), sysdate, 1)
+	</insert>
+	
+	<update id="attendanceOff">
+		UPDATE attendance
+		SET att_off = sysdate, att_status = 2
+		WHERE emp_no = #{emp_no} AND cal_date = to_date(to_char(sysdate, 'YYYY-MM-DD')) AND att_off IS NULL
+	</update>
 </mapper>

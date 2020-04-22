@@ -8,7 +8,7 @@ import lombok.Data;
  */
 
 @Data
-public class AttendanceViewVO {
+public class AttendanceVO {
 	private Long emp_no;
 	private String cal_date;
 	private String att_on;
