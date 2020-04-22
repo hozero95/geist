@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.geist.domain.AttendanceViewVO;
+import com.geist.attendance.domain.AttendanceViewVO;
+import com.geist.attendance.mapper.AttendanceMapper;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;

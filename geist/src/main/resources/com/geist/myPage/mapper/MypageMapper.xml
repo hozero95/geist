@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	마이페이지
+	담당 : 김현선
+	
+	조회 : 사원번호, 생년월일, 아이디, 개인 연락처, 사내 연락처, 주소
+	수정 : 사원번호, 생년월일, 아이디, 비밀번호, 비밀번호 확인, 개인 연락처, 사내 연락처, 주소
+	
+	emp_no, emp_birth, emp_id, emp_pw, emp_phone, emp_tel, emp_address	
+ -->
+
+<mapper namespace="com.geist.myPage.mapper.MypageMapper">
+
+	<select id="read" resultType="com.geist.myPage.domain.MypageVO">
+		SELECT 
+			emp_no, emp_birth, emp_id, emp_phone, emp_tel, emp_address
+		FROM
+			employee
+		WHERE
+			emp_no = #{emp_no}
+	</select>
+	
+	<update id="update">
+		UPDATE 
+			employee 
+		SET 
+			emp_pw = #{emp_pw}, emp_phone = #{emp_phone}, emp_tel = #{emp_tel}, emp_address = #{emp_address}
+		WHERE
+			emp_no = #{emp_no}
+	</update>
+
+</mapper>
