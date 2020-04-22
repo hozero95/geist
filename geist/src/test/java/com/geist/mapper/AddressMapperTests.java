@@ -26,7 +26,7 @@ public class AddressMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private AddressMapper mapper;
 	
-	@Test
+//	@Test
 	public void getList() {
 		List<AddressViewVO> addressView = mapper.getList();
 //		for(AddressViewVO view : addressView) {
@@ -35,7 +35,7 @@ public class AddressMapperTests {
 		addressView.forEach(list -> log.info(list));
 	}
 	
-//	@Test
+	@Test
 	public void paging() {
 		Criteria cri = new Criteria();
 		List<AddressViewVO> list = mapper.getListWithPaging(cri);
