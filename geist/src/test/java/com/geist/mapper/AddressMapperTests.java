@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.geist.domain.AddressViewVO;
-import com.geist.domain.Criteria;
+import com.geist.address.domain.AddressViewVO;
+import com.geist.address.mapper.AddressMapper;
+import com.geist.main.domain.Criteria;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
