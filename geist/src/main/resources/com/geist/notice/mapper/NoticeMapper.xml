@@ -10,17 +10,31 @@
 			private String noti_title;//제목
 			private String noti_content;//내용
 			private Date noti_date;//날짜
+			
+			DB에 noti_seq 생성되야 noticeWrite 정상작동 가능
 	-->
 			
 <mapper namespace = "com.geist.notice.mapper.NoticeMapper">
 
 	<select id = "noticeList" resultType = "com.geist.notice.domain.NoticeVO">
 	<![CDATA[
-		select noti_title, noti_date from notice where noti_no > 0 order by noti_no desc
+		select noti_title, noti_date
+		from(
+		select /*+INDEX_DESC(notice pk_notice) */
+			rownum rn, noti_title, noti_date
+		from
+			notice
+		where rownum <= #{pageNum} * #{amount})
+		where rn > (#{pageNum} -1) * #{amount} 
 		]]>
 	</select>
 	
 	<select id = "noticeRead" resultType = "com.geist.notice.domain.NoticeVO">
 		select noti_title, noti_content, noti_date from notice where noti_no = #{noti_no}
 	</select>
+	
+	<insert id = "noticeWrite">
+		insert into notice(noti_no, noti_title, noti_content) values (noti_seq.nextval, #{noti_title}, #{noti_content})
+	</insert>
+	
 </mapper>
