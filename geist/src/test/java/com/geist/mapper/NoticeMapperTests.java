@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.geist.main.domain.Criteria;
 import com.geist.notice.domain.NoticeVO;
 import com.geist.notice.mapper.NoticeMapper;
 
@@ -29,7 +30,8 @@ public class NoticeMapperTests {
 	
 	@Test
 	public void noticeList() {
-		List<NoticeVO> notice = mapper.noticeList();
+		Criteria cri = new Criteria();
+		List<NoticeVO> notice = mapper.noticeList(cri);
 		notice.forEach(list -> log.info(list));
 	}
 	
@@ -39,4 +41,5 @@ public class NoticeMapperTests {
 		mapper.noticeRead(noti_no);
 		log.info(noti_no);
 	}
+	
 }
