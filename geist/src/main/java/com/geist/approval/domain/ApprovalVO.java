@@ -26,7 +26,7 @@ import java.util.Date;
  
  */
 
-public class PayVO {
+public class ApprovalVO {
 
 	//approval(결재) 
 	private Long app_no;
@@ -40,5 +40,7 @@ public class PayVO {
 	
 	//app_agree(결제 승인) 
 	private Long agr_status;
-	
+
+	//문서 작성자
+	private String emp_name;
 }

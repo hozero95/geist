@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	결재 페이지
+	담당 : 김현선
+ -->
+
+<mapper namespace="com.geist.approval.mapper.ApprovalMapper">
+	<select id="getList" resultType="com.geist.approval.domain.ApprovalVO">
+	<![CDATA[
+		SELECT 
+			a.app_date, a.app_title, e.emp_name, a.app_status
+		FROM 
+			approval a, employee e, app_request arq
+		WHERE 
+			e.emp_no = arq.emp_no   
+			and arq.app_no = a.app_no  
+			and arq.emp_no = #{emp_no} 
+	]]>
+	</select>
+	
+	<select id="getListWithPaging" resultType="com.geist.approval.domain.ApprovalVO">
+		<![CDATA[
+			SELECT
+				app_date, app_title, emp_name, app_status
+			FROM
+			(
+				SELECT /*+ INDEX_ASC(app_request pk_app_request) */
+					rownum rn, a.app_date, a.app_title, e.emp_name, a.app_status
+				FROM
+					approval a, employee e, app_request arq
+				WHERE
+					e.emp_no = arq.emp_no   
+					and arq.app_no = a.app_no  
+					and arq.emp_no = #{emp_no}
+					and rownum <= #{cri.pageNum} * #{cri.amount}
+			)
+			WHERE
+				rn > (#{cri.pageNum}-1) * #{cri.amount}
+		]]>
+	</select>
+</mapper>
