@@ -1,8 +1,6 @@
 package com.geist.empManage.service;
 
-import java.util.List;
-
-import com.geist.empManage.domain.EmpManageViewVO;
+import com.geist.empManage.domain.EmpManagePageDTO;
 import com.geist.main.domain.Criteria;
 
 /* *
@@ -11,5 +9,7 @@ import com.geist.main.domain.Criteria;
  */
 
 public interface EmpManageService {
-	public List<EmpManageViewVO> getList(Criteria cri);
+	public EmpManagePageDTO getList(Criteria cri);
+	
+	public EmpManagePageDTO searchList(Criteria cri);
 }

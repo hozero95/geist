@@ -9,21 +9,51 @@
 -->
 
 <mapper namespace="com.geist.empManage.mapper.EmpManageMapper">
-	<select id="getListWithPaging" resultType="com.geist.empManage.domain.EmpManageViewVO">
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND ">
+			<choose>
+				<when test="type == 'N'.toString()">
+					emp_name like '%'||#{keyword}||'%'
+				</when>
+				<when test="type == 'P'.toString()">
+					emp_position like '%'||#{keyword}||'%'
+				</when>
+				<when test="type == 'D'.toString()">
+					dept_name like '%'||#{keyword}||'%'
+				</when>
+			</choose>
+		</trim>
+	</sql>
+
+	<select id="getListWithPaging" resultType="com.geist.empManage.domain.EmpManageVO">
 		<![CDATA[
 			SELECT
-				emp_no, emp_name, emp_position, emp_date, dept_no
+				emp_no, emp_name, emp_position, emp_date, dept_name
 			FROM
 			(
-				SELECT /*+ INDEX_ASC(employee pk_employee) */
-					rownum rn, emp_no, emp_name, emp_position, emp_date, dept_no
+				SELECT /*+ ORDERED USE_NL(emp, dept) */
+					rownum rn, emp_no, emp_name, emp_position, to_char(emp_date, 'YYYY-MM-DD') emp_date, dept_name
 				FROM
-					employee
+					employee emp, department dept
 				WHERE
-					rownum <= #{pageNum} * #{amount}
+		]]>
+		<include refid="criteria"></include>
+		<![CDATA[
+					rownum <= #{pageNum} * #{amount} AND emp.dept_no = dept.dept_no
+				ORDER BY emp_no asc
 			)
 			WHERE
 				rn > (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="getCount" resultType="int">
+		<![CDATA[
+			SELECT count(emp_no) FROM employee WHERE
+		]]>
+		<include refid="criteria"></include>
+		<![CDATA[
+			emp_no > 0
 		]]>
 	</select>
 </mapper>

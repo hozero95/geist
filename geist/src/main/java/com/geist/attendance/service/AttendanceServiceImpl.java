@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.geist.attendance.domain.AttendanceViewVO;
+import com.geist.attendance.domain.AttendanceVO;
 import com.geist.attendance.mapper.AttendanceMapper;
 
 import lombok.Setter;
@@ -23,15 +23,27 @@ public class AttendanceServiceImpl implements AttendanceService {
 	private AttendanceMapper mapper;
 	
 	@Override
-	public List<AttendanceViewVO> getList(int emp_no) {
+	public List<AttendanceVO> getList(int emp_no) {
 		return mapper.getList(emp_no);
+	}
+	
+	@Override
+	public int checkOn(int emp_no) {
+		return mapper.checkOn(emp_no);
 	}
 
 	@Override
-	public int attendanceOn(AttendanceViewVO vo) {
-		if(mapper.checkOn(vo) > 0) {
-			return 0;
-		}
+	public int checkOff(int emp_no) {
+		return mapper.checkOff(emp_no);
+	}
+
+	@Override
+	public int attendanceOn(AttendanceVO vo) {
 		return mapper.attendanceOn(vo);
+	}
+
+	@Override
+	public int attendanceOff(AttendanceVO vo) {
+		return mapper.attendanceOff(vo);
 	}
 }

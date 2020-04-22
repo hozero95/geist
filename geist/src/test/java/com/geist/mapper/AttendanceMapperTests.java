@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.geist.attendance.domain.AttendanceViewVO;
+import com.geist.attendance.domain.AttendanceVO;
 import com.geist.attendance.mapper.AttendanceMapper;
 
 import lombok.Setter;
@@ -29,13 +29,13 @@ public class AttendanceMapperTests {
 //	@Test
 	public void getListTest() {
 		int emp_no = 2;
-		List<AttendanceViewVO> list = mapper.getList(emp_no);
+		List<AttendanceVO> list = mapper.getList(emp_no);
 		list.forEach(table -> log.info(table));
 	}
 	
 	@Test
 	public void attendanceOnTest() {
-		AttendanceViewVO vo = new AttendanceViewVO();
+		AttendanceVO vo = new AttendanceVO();
 		vo.setEmp_no(2L);
 		int result = mapper.attendanceOn(vo);
 		log.info(result);

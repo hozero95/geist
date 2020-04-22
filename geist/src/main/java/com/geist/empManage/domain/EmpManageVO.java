@@ -1,7 +1,5 @@
 package com.geist.empManage.domain;
 
-import java.util.Date;
-
 import lombok.Data;
 
 /* *
@@ -10,10 +8,10 @@ import lombok.Data;
  */
 
 @Data
-public class EmpManageViewVO {
+public class EmpManageVO {
 	private Long emp_no;
 	private String emp_name;
 	private String emp_position;
-	private Date emp_date;
-	private Long dept_no;
+	private String emp_date;
+	private String dept_name;
 }

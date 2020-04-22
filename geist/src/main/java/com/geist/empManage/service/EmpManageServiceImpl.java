@@ -1,11 +1,9 @@
 package com.geist.empManage.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.geist.empManage.domain.EmpManageViewVO;
+import com.geist.empManage.domain.EmpManagePageDTO;
 import com.geist.empManage.mapper.EmpManageMapper;
 import com.geist.main.domain.Criteria;
 
@@ -24,7 +22,12 @@ public class EmpManageServiceImpl implements EmpManageService {
 	private EmpManageMapper mapper;
 	
 	@Override
-	public List<EmpManageViewVO> getList(Criteria cri) {
-		return mapper.getListWithPaging(cri);
+	public EmpManagePageDTO getList(Criteria cri) {
+		return new EmpManagePageDTO(mapper.getCount(cri), mapper.getListWithPaging(cri));
+	}
+
+	@Override
+	public EmpManagePageDTO searchList(Criteria cri) {
+		return new EmpManagePageDTO(mapper.getCount(cri), mapper.getListWithPaging(cri), cri);
 	}
 }

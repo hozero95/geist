@@ -2,7 +2,7 @@ package com.geist.attendance.mapper;
 
 import java.util.List;
 
-import com.geist.attendance.domain.AttendanceViewVO;
+import com.geist.attendance.domain.AttendanceVO;
 
 /* *
  * 출결 페이지
@@ -10,9 +10,13 @@ import com.geist.attendance.domain.AttendanceViewVO;
  */
 
 public interface AttendanceMapper {
-	public List<AttendanceViewVO> getList(int emp_no);
+	public List<AttendanceVO> getList(int emp_no);
 	
-	public int attendanceOn(AttendanceViewVO vo);
+	public int checkOn(int emp_no);
 	
-	public int checkOn(AttendanceViewVO vo);
+	public int checkOff(int emp_no);
+	
+	public int attendanceOn(AttendanceVO vo);
+	
+	public int attendanceOff(AttendanceVO vo);
 }

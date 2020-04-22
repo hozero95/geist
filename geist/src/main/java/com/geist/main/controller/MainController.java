@@ -21,6 +21,13 @@ public class MainController {
 	
 	@RequestMapping("/attendance")
 	public String attendance() {
+		log.info("출결 페이지 이동");
 		return "/test/attendance";
+	}
+	
+	@RequestMapping("/empManage")
+	public String empManage() {
+		log.info("사원 관리 페이지 이동");
+		return "/test/empManage";
 	}
 }

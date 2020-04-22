@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.geist.empManage.domain.EmpManageViewVO;
+import com.geist.empManage.domain.EmpManageVO;
 import com.geist.empManage.mapper.EmpManageMapper;
 import com.geist.main.domain.Criteria;
 
@@ -27,10 +27,21 @@ public class EmpManageMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private EmpManageMapper mapper;
 	
-	@Test
+//	@Test
 	public void pagingTest() {
 		Criteria cri = new Criteria();
-		List<EmpManageViewVO> list = mapper.getListWithPaging(cri);
+		List<EmpManageVO> list = mapper.getListWithPaging(cri);
 		list.forEach(table -> log.info(table));
+	}
+	
+	@Test
+	public void searchTest() {
+		Criteria cri = new Criteria();
+		cri.setType("N");
+		cri.setKeyword("테스트");
+		List<EmpManageVO> list = mapper.getListWithPaging(cri);
+		list.forEach(table -> log.info(table));
+		int count = mapper.getCount(cri);
+		log.info(count);
 	}
 }

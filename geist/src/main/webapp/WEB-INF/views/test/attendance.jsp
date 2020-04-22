@@ -1,19 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<!--
+	출결 페이지
+	담당 : 김호영
+-->
 
 <!DOCTYPE html>
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>출결 페이지</title>
 </head>
 <body>
 	<button type="button" class="att_on">출근</button>
-	<button type="button" class="att_off">퇴근</button>
-	<br>
+	<button type="button" class="att_off">퇴근</button><br>
+	
 	<table border="1">
 		<thead>
 			<tr>
@@ -43,6 +46,19 @@
 			});
 		}
 		
+		function check(param, callback, error){
+			var emp_no = param.emp_no;
+			$.getJSON("/attendance/" + emp_no + "/check.json", function(data){
+				if(callback){
+					callback(data);
+				}
+			}).fail(function(xhr, status, err){
+				if(error){
+					error();
+				}
+			});
+		}
+		
 		function attendanceOn(param, callback, error){
 			$.ajax({
 				type : 'post',
@@ -62,9 +78,30 @@
 			});
 		}
 		
+		function attendanceOff(param, callback, error){
+			$.ajax({
+				type : 'put',
+				url : '/attendance/off',
+				data : JSON.stringify(param),
+				contentType : "application/json; charset=utf-8",
+				success : function(result, status, xhr){
+					if(callback){
+						callback(result);
+					}
+				},
+				error : function(xhr, status, err){
+					if(error){
+						error(err);
+					}
+				}
+			});
+		}
+		
 		return {
 			getList : getList,
-			attendanceOn : attendanceOn
+			check : check,
+			attendanceOn : attendanceOn,
+			attendanceOff : attendanceOff
 		};
 	})();
 	
@@ -74,7 +111,25 @@
 		var att_on = $(".att_on");
 		var att_off = $(".att_off");
 		
+		showCheck(emp_no);
 		showList(emp_no);
+		
+		function showCheck(emp_no){
+			attendanceService.check({
+				emp_no : emp_no
+			}, function(data){
+				if(data.checkOn == 1){
+					att_on.prop("disabled", true);
+				}else{
+					att_on.prop("disabled", false);
+				}
+				if(data.checkOff == 1){
+					att_off.prop("disabled", false);
+				}else{
+					att_off.prop("disabled", true);
+				}
+			});
+		}
 		
 		function showList(emp_no){
 			attendanceService.getList({
@@ -85,12 +140,23 @@
 					return;
 				}
 				for(var i = 0, len = data.length || 0; i < len; i++){
-					str += "<tr>"
+					var status = "";
+					switch(data[i].att_status){
+					case 1:
+						status = "출근";
+						break;
+					case 2:
+						status = "퇴근";
+						break;
+					default:
+						status = "알 수 없음";
+					}
+					str += "<tr>";
 					str += "<td>" + data[i].cal_date + "</td>";
 					str += "<td>" + data[i].att_on + "</td>";
 					str += "<td>" + data[i].att_off + "</td>";
-					str += "<td>" + data[i].att_status + "</td>";
-					str += "</tr>"
+					str += "<td>" + status + "</td>";
+					str += "</tr>";
 				}
 				tbody.html(str);
 			});
@@ -101,6 +167,17 @@
 				emp_no : emp_no
 			}, function(result){
 				alert(result);
+				showCheck(emp_no);
+				showList(emp_no);
+			});
+		});
+		
+		att_off.on("click", function(e){
+			attendanceService.attendanceOff({
+				emp_no : emp_no
+			}, function(result){
+				alert(result);
+				showCheck(emp_no);
 				showList(emp_no);
 			});
 		});
