@@ -2,6 +2,10 @@ package com.geist.approval.domain;
 
 import java.util.Date;
 
+import com.geist.address.domain.AddressViewVO;
+
+import lombok.Data;
+
 /* *
  * 결재 페이지
  * 담당 : 김현선
@@ -25,14 +29,14 @@ import java.util.Date;
  - app_no, emp_no, agr_status
  
  */
-
+@Data
 public class ApprovalVO {
 
 	//approval(결재) 
 	private Long app_no;
 	private Long app_class;
 	private String app_title;
-	private Date app_date;
+	private String app_date;
 	private Long app_status;
 	
 	//app_request(결제 요청(생성))
@@ -43,4 +47,7 @@ public class ApprovalVO {
 
 	//문서 작성자
 	private String emp_name;
+	
+	//테이블 정보
+	private String table;
 }

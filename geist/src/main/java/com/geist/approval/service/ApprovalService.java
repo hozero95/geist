@@ -1,4 +1,4 @@
-package com.geist.approval.mapper;
+package com.geist.approval.service;
 
 import java.util.List;
 
@@ -12,13 +12,10 @@ import com.geist.main.domain.Criteria;
  * 담당 : 김현선
  */
 
-public interface ApprovalMapper {
+public interface ApprovalService {
 	
-	// 결재 조회
-	public List<ApprovalVO> getList(
-			@Param("table") String table, 
-			@Param("emp_no") Long emp_no);	
-	
+	public List<ApprovalVO> getList(String table, Long emp_no);
+
 	public List<ApprovalVO> getListWithPaging(
 			@Param("cri") Criteria cri, 
 			@Param("table") String table, 
@@ -43,6 +40,4 @@ public interface ApprovalMapper {
 			@Param("agr_status") Long agr_status, 
 			@Param("app_no") Long app_no, 
 			@Param("emp_no") Long emp_no);
-	
-
 }
