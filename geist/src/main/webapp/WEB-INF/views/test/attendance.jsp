@@ -14,8 +14,8 @@
 <title>출결 페이지</title>
 </head>
 <body>
-	<button type="button" class="att_on">출근</button>
-	<button type="button" class="att_off">퇴근</button><br>
+	<button type="button" class="att_onBtn">출근</button>
+	<button type="button" class="att_offBtn">퇴근</button><br>
 	
 	<table border="1">
 		<thead>
@@ -29,7 +29,9 @@
 		<tbody class="table-body">
 		
 		</tbody>
-	</table>
+	</table><br>
+	
+	<button type="button" class="mainBtn">메인으로 돌아가기</button>
 
 <script type="text/javascript">
 	var attendanceService = (function(){
@@ -108,8 +110,9 @@
 	$(document).ready(function(){
 		var emp_no = 2; // 나중에 현재 로그인 중인 사용자로 변경해야함
 		var tbody = $(".table-body");
-		var att_on = $(".att_on");
-		var att_off = $(".att_off");
+		var att_on = $(".att_onBtn");
+		var att_off = $(".att_offBtn");
+		var main = $(".mainBtn");
 		
 		showCheck(emp_no);
 		showList(emp_no);
@@ -180,6 +183,10 @@
 				showCheck(emp_no);
 				showList(emp_no);
 			});
+		});
+		
+		main.on("click", function(){
+			location.href = "/main";
 		});
 	});
 </script>

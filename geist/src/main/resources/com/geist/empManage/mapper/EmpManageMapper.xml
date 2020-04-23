@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 
-	사원관리 페이지
+	사원 관리 페이지
 	담당 : 김호영
 -->
 
@@ -40,7 +40,6 @@
 		<include refid="criteria"></include>
 		<![CDATA[
 					rownum <= #{pageNum} * #{amount} AND emp.dept_no = dept.dept_no
-				ORDER BY emp_no asc
 			)
 			WHERE
 				rn > (#{pageNum} - 1) * #{amount}
@@ -49,11 +48,34 @@
 	
 	<select id="getCount" resultType="int">
 		<![CDATA[
-			SELECT count(emp_no) FROM employee WHERE
+			SELECT count(emp_no) FROM employee emp, department dept WHERE
 		]]>
 		<include refid="criteria"></include>
 		<![CDATA[
-			emp_no > 0
+			emp.dept_no = dept.dept_no
 		]]>
 	</select>
+	
+	<select id="getDetail" resultType="com.geist.empManage.domain.EmpManageVO">
+		<![CDATA[
+			SELECT
+				emp_no, emp_id, emp_name, to_char(emp_birth, 'YYYY-MM-DD') emp_birth, emp_phone, emp_tel, emp_email, emp_address, emp_position, emp_sal, to_char(emp_date, 'YYYY-MM-DD') emp_date, dept_name
+			FROM
+				employee emp, department dept
+			WHERE
+				emp.dept_no = dept.dept_no AND emp_no = #{emp_no}
+		]]>
+	</select>
+	
+	<update id="modifyEmp">
+		<![CDATA[
+			UPDATE employee
+			SET emp_position = #{emp_position}, emp_sal = #{emp_sal}, dept_no = (
+				SELECT dept_no
+				FROM department
+				WHERE dept_name = #{dept_name}
+			)
+			WHERE emp_no = #{emp_no}
+		]]>
+	</update>
 </mapper>

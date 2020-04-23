@@ -14,4 +14,8 @@ public interface EmpManageMapper {
 	public List<EmpManageVO> getListWithPaging(Criteria cri);
 	
 	public int getCount(Criteria cri);
+	
+	public EmpManageVO getDetail(Long emp_no);
+	
+	public int modifyEmp(EmpManageVO vo);
 }

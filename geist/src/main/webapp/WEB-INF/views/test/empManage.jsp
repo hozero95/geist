@@ -14,7 +14,7 @@
 <title>사원 관리 페이지</title>
 </head>
 <body>
-	<button type="button" class="request">가입 승인 페이지</button><br>
+	<button type="button" class="joinRequestBtn">가입 승인 페이지</button><br>
 	
 	<form id="searchForm" action="/empManage" method="get">
 		<select name="type">
@@ -35,6 +35,7 @@
 				<th>직급</th>
 				<th>입사일</th>
 				<th>부서</th>
+				<th>조회</th>
 			</tr>
 		</thead>
 		<tbody class="table-body">
@@ -44,7 +45,9 @@
 	
 	<div class="table-page">
 	
-	</div>
+	</div><br>
+	
+	<button type="button" class="mainBtn">메인으로 돌아가기</button>
 
 <script type="text/javascript">
 	var empManageService = (function(){
@@ -76,18 +79,33 @@
 			});
 		}
 		
+		function detailView(param, callback, error){
+			var emp_no = param.emp_no;
+			$.getJSON("/empManage/detailView/" + emp_no + ".json", function(data){
+				if(callback){
+					callback(data);
+				}
+			}).fail(function(xhr, status, err){
+				if(error){
+					error();
+				}
+			});
+		}
+		
 		return{
 			getList : getList,
-			searchList : searchList
+			searchList : searchList,
+			detailView : detailView
 		};
 	})();
 	
 	$(document).ready(function(){
-		var request = $(".request");
+		var joinRequest = $(".joinRequestBtn");
 		var searchForm = $("#searchForm");
 		var search = $(".search");
 		var tbody = $(".table-body");
 		var tpage = $(".table-page");
+		var main = $(".mainBtn");
 		var pageNum = 1;
 		
 		showList(1);
@@ -112,15 +130,24 @@
 					str += "<td>" + list[i].emp_position + "</td>";
 					str += "<td>" + list[i].emp_date + "</td>";
 					str += "<td>" + list[i].dept_name + "</td>";
+					str += "<td><button type='button' class='detailBtn'>조회</button></td>";
 					str += "</tr>";
 				}
+				
 				tbody.html(str);
 				showListPage(count);
+				
+				$(".detailBtn").on("click", function(){
+					var tr = $(this).parent().parent();
+					var td = tr.children();
+					var emp_no = td.eq(0).text();
+					
+					var popWindow = window.open("/empManage/detailView?emp_no=" + emp_no, "사원 상세 보기", "width=500, height=600");
+				});
 			});
 		}
 		
 		function showSearchList(page, type, keyword){
-			console.log(type + " " + keyword);
 			empManageService.searchList({
 				page : page || 1,
 				type : type,
@@ -133,6 +160,7 @@
 				}
 				var str = "";
 				if(list == null || list.length == 0){
+					alert("검색 결과가 없습니다.");
 					return;
 				}
 				for(var i = 0, len = list.length || 0; i < len; i++){
@@ -167,7 +195,7 @@
 			
 			var str = "<ul>";
 			if(prev){
-				str += "<li><a href='" + (startNum - 1) + "'>Prev</a></li>"
+				str += "<li><a href='" + (startNum - 1) + "'>Prev</a></li>";
 			}
 			for(var i = startNum; i <= endNum; i++){
 				var linkStart = pageNum != i ? "<a href='" + i + "'>" : "";
@@ -206,6 +234,14 @@
 			
 			e.preventDefault();
 			showSearchList(1, type, keyword);
+		});
+		
+		joinRequest.on("click", function(){
+			location.href = "/joinRequest";
+		});
+		
+		main.on("click", function(){
+			location.href = "/main";
 		});
 	});
 </script>

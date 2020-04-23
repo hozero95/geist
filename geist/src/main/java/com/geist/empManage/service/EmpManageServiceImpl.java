@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.geist.empManage.domain.EmpManagePageDTO;
+import com.geist.empManage.domain.EmpManageVO;
 import com.geist.empManage.mapper.EmpManageMapper;
 import com.geist.main.domain.Criteria;
 
@@ -29,5 +30,15 @@ public class EmpManageServiceImpl implements EmpManageService {
 	@Override
 	public EmpManagePageDTO searchList(Criteria cri) {
 		return new EmpManagePageDTO(mapper.getCount(cri), mapper.getListWithPaging(cri), cri);
+	}
+
+	@Override
+	public EmpManageVO detailView(Long emp_no) {
+		return mapper.getDetail(emp_no);
+	}
+
+	@Override
+	public int modifyEmp(EmpManageVO vo) {
+		return mapper.modifyEmp(vo);
 	}
 }
