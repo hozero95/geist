@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	가입 승인 페이지
+	담당 : 김호영
+-->
+
+<mapper namespace="com.geist.joinRequest.mapper.JoinRequestMapper">
+	<select id="getListWithPaging" resultType="com.geist.joinRequest.domain.JoinRequestVO">
+		<![CDATA[
+			SELECT
+				req_id, req_name, req_birth, req_phone, req_address
+			FROM
+			(
+				SELECT
+					rownum rn, req_id, req_name, to_char(req_birth, 'YYYY-MM-DD') req_birth, req_phone, req_address
+				FROM
+					request
+				WHERE
+					rownum <= #{pageNum} * #{amount}
+			)
+			WHERE
+				rn > (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="getCount" resultType="int">
+		<![CDATA[
+			SELECT count(req_id) FROM request
+		]]>
+	</select>
+</mapper>

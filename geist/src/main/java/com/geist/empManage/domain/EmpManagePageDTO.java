@@ -8,6 +8,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 
+/* *
+ * 사원 관리 페이지
+ * 담당 : 김호영
+ */
+
 @Data
 @AllArgsConstructor
 @Getter

@@ -13,7 +13,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 public class MainController {
-	@RequestMapping("/")
+	@RequestMapping({"/", "main"})
 	public String main() {
 		log.info("메인 페이지 이동");
 		return "/test/main";
@@ -29,5 +29,11 @@ public class MainController {
 	public String empManage() {
 		log.info("사원 관리 페이지 이동");
 		return "/test/empManage";
+	}
+	
+	@RequestMapping("/joinRequest")
+	public String joinRequest() {
+		log.info("가입 승인 페이지 이동");
+		return "/test/joinRequest";
 	}
 }
