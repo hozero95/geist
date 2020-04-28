@@ -20,9 +20,10 @@ public interface NoticeMapper {
 	
 	//작성
 	public void noticeWrite(NoticeVO vo);
+	
 	//수정
+	public int noticeUpdate(NoticeVO vo);
 	
 	//삭제
-	
-	
+	public void noticeDelete(int noti_no);
 }

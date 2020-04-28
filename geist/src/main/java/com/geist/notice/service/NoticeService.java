@@ -16,4 +16,13 @@ public interface NoticeService {
 	
 	//조회
 	public NoticeVO noticeRead(int noti_no);
+	
+	//작성
+	public void noticeWrite(NoticeVO vo);
+	
+	//수정
+	public int noticeUpdate(NoticeVO vo);
+	
+	//삭제
+	public void noticeDelete(int noti_no);
 }

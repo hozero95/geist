@@ -34,7 +34,15 @@
 	</select>
 	
 	<insert id = "noticeWrite">
-		insert into notice(noti_no, noti_title, noti_content) values (noti_seq.nextval, #{noti_title}, #{noti_content})
+		insert into notice(noti_no, noti_title, noti_content, noti_date) values (#{noti_no}, #{noti_title}, #{noti_content}, sysdate)
 	</insert>
+	
+	<update id = "noticeUpdate">
+		update notice set noti_title = #{noti_title}, noti_content = #{noti_content}, noti_date = sysdate where noti_no = #{noti_no} 
+	</update>
+	
+	<delete id = "noticeDelete">
+		delete from notice where noti_no = #{noti_no}
+	</delete>
 	
 </mapper>
