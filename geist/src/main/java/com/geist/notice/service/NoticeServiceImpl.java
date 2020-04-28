@@ -22,16 +22,41 @@ public class NoticeServiceImpl implements NoticeService {
 	@Setter(onMethod_ = @Autowired)
 	private NoticeMapper mapper;
 	
+	//목록
 	@Override
 	public List<NoticeVO> noticeList(Criteria cri) {
 		// TODO Auto-generated method stub
 		return mapper.noticeList(cri);
 	}
-
+	//조회
 	@Override
 	public NoticeVO noticeRead(int noti_no) {
 		// TODO Auto-generated method stub
 		return mapper.noticeRead(noti_no);
+	}
+
+	//작성
+	@Override
+	public void noticeWrite(NoticeVO vo) {
+		// TODO Auto-generated method stub
+		log.info("NoticeService noticeWrite()");
+		mapper.noticeWrite(vo);
+	}
+	
+	//수정
+	@Override
+	public int noticeUpdate(NoticeVO vo) {
+		// TODO Auto-generated method stub
+		log.info("NoticeService noticeUpdate()");
+		return mapper.noticeUpdate(vo);
+		}
+	
+	//삭제
+	@Override
+	public void noticeDelete(int noti_no) {
+		// TODO Auto-generated method stub
+		log.info("NoticeService noticeDelete()");
+		mapper.noticeDelete(noti_no);
 	}
 
 }
