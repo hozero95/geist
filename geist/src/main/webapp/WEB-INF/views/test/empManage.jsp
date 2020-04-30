@@ -143,6 +143,8 @@
 					var emp_no = td.eq(0).text();
 					
 					var popWindow = window.open("/empManage/detailView?emp_no=" + emp_no, "사원 상세 보기", "width=500, height=600");
+					
+					showList(pageNum);
 				});
 			});
 		}

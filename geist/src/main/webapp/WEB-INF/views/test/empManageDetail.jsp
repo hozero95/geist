@@ -66,9 +66,27 @@
 			});
 		}
 		
+		function deleteEmp(emp_no, callback, error){
+			$.ajax({
+				type : 'delete',
+				url : '/empManage/detailView/delete/' + emp_no,
+				success : function(deleteResult, status, xhr){
+					if(callback){
+						callback(deleteResult);
+					}
+				},
+				error : function(xhr, status, err){
+					if(error){
+						error(err);
+					}
+				}
+			});
+		}
+		
 		return{
 			detailView : detailView,
-			modifyEmp : modifyEmp
+			modifyEmp : modifyEmp,
+			deleteEmp : deleteEmp
 		};
 	})();
 
@@ -128,6 +146,15 @@
 				emp_sal : emp_sal,
 				dept_name : dept_name
 			}, function(result){
+				alert(result);
+				self.close();
+			});
+		});
+		
+		deleteBtn.on("click", function(e){
+			var emp_no = $("input[name='emp_no']").val();
+			
+			empManageDetailService.deleteEmp(emp_no, function(result){
 				alert(result);
 				self.close();
 			});

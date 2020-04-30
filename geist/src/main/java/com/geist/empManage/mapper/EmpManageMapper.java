@@ -18,4 +18,6 @@ public interface EmpManageMapper {
 	public EmpManageVO getDetail(Long emp_no);
 	
 	public int modifyEmp(EmpManageVO vo);
+	
+	public int deleteEmp(Long emp_no);
 }

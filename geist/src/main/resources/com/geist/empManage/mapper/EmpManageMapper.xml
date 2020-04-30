@@ -78,4 +78,8 @@
 			WHERE emp_no = #{emp_no}
 		]]>
 	</update>
+	
+	<delete id="deleteEmp">
+		delete from employee where emp_no = #{emp_no}
+	</delete>
 </mapper>
