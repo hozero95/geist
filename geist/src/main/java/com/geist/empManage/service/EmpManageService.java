@@ -17,4 +17,6 @@ public interface EmpManageService {
 	public EmpManageVO detailView(Long emp_no);
 	
 	public int modifyEmp(EmpManageVO vo);
+	
+	public int deleteEmp(Long emp_no);
 }

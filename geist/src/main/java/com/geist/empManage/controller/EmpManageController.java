@@ -3,6 +3,7 @@ package com.geist.empManage.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,5 +56,10 @@ public class EmpManageController {
 	public ResponseEntity<String> modifyEmp(@RequestBody EmpManageVO vo){
 		int modifyCount = service.modifyEmp(vo);
 		return modifyCount == 1 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@DeleteMapping(value = "/detailView/delete/{emp_no}", produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> deleteEmp(@PathVariable("emp_no") Long emp_no){
+		return service.deleteEmp(emp_no) == 1 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

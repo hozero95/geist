@@ -41,4 +41,9 @@ public class EmpManageServiceImpl implements EmpManageService {
 	public int modifyEmp(EmpManageVO vo) {
 		return mapper.modifyEmp(vo);
 	}
+
+	@Override
+	public int deleteEmp(Long emp_no) {
+		return mapper.deleteEmp(emp_no);
+	}
 }
