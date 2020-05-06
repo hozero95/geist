@@ -60,7 +60,7 @@ public class NoticeController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	//수정 Post
+	//수정 Put
 	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH},
 													value = "/noticeUpdate/{noti_no}",
 													consumes = "application/json",

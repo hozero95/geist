@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<!-- 프로젝트 페이지
+			담당 : 홍예진
+
+ create table project(
+proj_no number(10) not null,
+proj_name varchar2(20) not null,
+proj_agency varchar2(20) not null,
+proj_start date,
+proj_end date,
+constraint pk_project primary key(proj_no)
+);
+
+create table proj_management(
+proj_no number(10) not null,
+dept_no number(10) not null,
+constraint pk_proj_management primary key(proj_no, dept_no),
+constraint fk_proj_management_proj_no foreign key(proj_no) references project(proj_no),
+constraint fk_proj_management_dept_no foreign key(dept_no) references department(dept_no)
+);
+
+			 -->
+			 
+<mapper namespace = "com.geist.project.mapper.ProjectMapper">
+
+<select id = "projectList" resultType = "com.geist.project.domain.ProjectVO">
+<![CDATA[
+		select proj_name, proj_agency, proj_start, proj_end
+		from(
+		select /*+INDEX_DESC(project pk_project) */
+			rownum rn, p.proj_name, p.proj_agency, p.proj_start, p.proj_end
+		from
+			project p, proj_management m
+		where m.dept_no = #{dept_no} and rownum <= #{pageNum} * #{amount})
+		where rn > (#{pageNum} -1) * #{amount}
+		]]>
+</select>
+
+<select id = "projectRead" resultType = "com.geist.project.domain.ProjectVO">
+		select proj_name, proj_agency, proj_start, proj_end from project where proj_no = #{proj_no}
+</select>
+
+<insert id = "projectWrite">
+	insert into project(proj_no, proj_name, proj_agency, proj_start, proj_end)
+	values (#{proj_no}, #{proj_name}, #{proj_agency}, #{proj_start}, #{proj_end})
+</insert>
+
+<insert id = "projectMWrite">
+	insert into proj_management(proj_no, dept_no) values (#{proj_no}, #{dept_no})
+</insert>
+
+<update id = "projectUpdate">
+	update project set proj_name = #{proj_name}, proj_agency = #{proj_agency}, proj_start = #{proj_start}, proj_end = #{proj_end} where proj_no = #{proj_no}
+</update>
+
+<delete id = "projectDelete">
+	delete from project where proj_no = #{proj_no}
+</delete>
+
+</mapper>
+			 
