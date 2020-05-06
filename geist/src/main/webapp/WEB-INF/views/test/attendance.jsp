@@ -50,7 +50,7 @@
 		
 		function check(param, callback, error){
 			var emp_no = param.emp_no;
-			$.getJSON("/attendance/" + emp_no + "/check.json", function(data){
+			$.getJSON("/attendance/check/" + emp_no + ".json", function(data){
 				if(callback){
 					callback(data);
 				}
