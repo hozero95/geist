@@ -27,41 +27,7 @@ public class ApprovalMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private ApprovalMapper mapper;
 	
-	@Test
-	public void getList() {
-		Long targetNo = 106L;
-		Long targetNo2 = 101L;	//부장의 사원번호, app_agree 테이블용
-		String tableName = "app_request";
-		String tableName2 = "app_agree";
-		
-//		List<ApprovalVO> list = mapper.getList(targetNo);
-		List<ApprovalVO> list = mapper.getList(tableName, targetNo);
-		list.forEach(table -> log.info(table));
-	}
-	
-//	@Test
-	public void paging() {
-		Long targetNo = 106L;
-		Long targetNo2 = 101L;	//부장의 사원번호, app_agree 테이블용 
-		String tableName = "app_request";
-		String tableName2 = "app_agree";
-		
-		Criteria cri = new Criteria();
-		List<ApprovalVO> list = mapper.getListWithPaging(cri, tableName2, targetNo2);
-		list.forEach(table -> log.info(table));
-	}
-	
-//	@Test
-	public void getListDetail() {
-		Long appNo = 100L;
-		Long empNo = 106L;
-		String tableName = "app_request";
-		String tableName2 = "app_agree";
-		
-		List<ApprovalVO> list = mapper.getListDetail(tableName, appNo, empNo);
-		list.forEach(table -> log.info(table));
-	}
-	
+
 //	@Test
 	public void create() {
 		ApprovalVO vo = new ApprovalVO();
@@ -70,7 +36,7 @@ public class ApprovalMapperTests {
 		vo.setApp_title("주간업무 보고서");
 		vo.setApp_date("2020/05/15");
 		
-		mapper.create(vo);
+		mapper.appCreate(vo);
 	}
 	
 //	@Test
@@ -78,17 +44,52 @@ public class ApprovalMapperTests {
 		Long appNo = 117L;
 		Long empNo = 105L;
 		
-		mapper.appRequest(appNo, empNo);
+		//mapper.appRequest(appNo, empNo);
 	}
 	
 //	@Test
 	public void agree() {
-		Long status = 2L;
-		Long appNo = 105L;
+		Long status = 1L;
+		Long appNo = 106L;
 		Long empNo = 101L;
 		
-		mapper.agree(status, appNo, empNo);
+		//mapper.agree(status, appNo, empNo);
 	}
+	
+//	@Test
+	public void finalState() {
+		Long appNo = 100L;
+		
+		mapper.finalState(appNo);
+	}
+	
+	
+//	@Test
+	public void reqList() {
+		Long targetNo = 106L;
+		
+		List<ApprovalVO> list = mapper.reqList(targetNo);
+		list.forEach(table -> log.info(table));
+	}
+	
+//	@Test
+	public void reqListWithPaging() {
+		Long targetNo = 106L;
+		
+		Criteria cri = new Criteria();
+		List<ApprovalVO> list = mapper.reqListWithPaging(cri, targetNo);
+		list.forEach(table -> log.info(table));
+	}
+	
+//	@Test
+	public void reqListDetail() {
+		Long appNo = 100L;
+		Long empNo = 106L;
+		
+		List<ApprovalVO> list = mapper.reqListDetail(appNo, empNo);
+		list.forEach(table -> log.info(table));
+	}
+	
 }
 
 

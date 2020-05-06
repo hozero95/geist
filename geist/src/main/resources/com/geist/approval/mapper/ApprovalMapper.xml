@@ -9,69 +9,38 @@
  -->
 
 <mapper namespace="com.geist.approval.mapper.ApprovalMapper">
-	<select id="getList" resultType="com.geist.approval.domain.ApprovalVO">
-		SELECT 
-			a.app_date, a.app_title, e.emp_name, a.app_status
-		FROM 
-			approval a, employee e, ${table} tb
-		WHERE 
-			e.emp_no = tb.emp_no   
-			and tb.app_no = a.app_no  
-			and tb.emp_no = #{emp_no} 
-	</select>
+	<insert id="appCreate">
+		INSERT INTO approval 
+		VALUES (#{app_no}, #{app_class}, #{app_title}, #{app_date}, 1)
+	</insert>
 	
-	<select id="getListWithPaging" resultType="com.geist.approval.domain.ApprovalVO">
-		<![CDATA[
-			SELECT
-				app_date, app_title, emp_name, app_status
-			FROM
-			(
-				SELECT /*+ INDEX_ASC(${table} pk_${table}) */
-					rownum rn, a.app_date, a.app_title, e.emp_name, a.app_status
-				FROM
-					approval a, employee e, ${table} tb
-				WHERE
-					e.emp_no = tb.emp_no   
-					and tb.app_no = a.app_no  
-					and tb.emp_no = #{emp_no}
-					and rownum <= #{cri.pageNum} * #{cri.amount}
-			)
-			WHERE
-				rn > (#{cri.pageNum}-1) * #{cri.amount}
-		]]>
-	</select>
-	
-	<select id="getListDetail" resultType="com.geist.approval.domain.ApprovalVO">
+	<insert id="appReqCreate" >
+		INSERT INTO 
+			app_request (app_no, emp_no) (
 			SELECT 
-				a.app_no, a.app_class, a.app_title, a.app_date, a.app_status
+				a.app_no, e.emp_no 
 			FROM 
-				approval a, employee e, ${table} tb
+				approval a, employee e 
 			WHERE 
-				e.emp_no = tb.emp_no 
-				and tb.app_no = a.app_no
-				and tb.emp_no = #{emp_no}
-				and tb.app_no = #{app_no}
-	</select>
-	
-	<insert id="create">
-			INSERT INTO approval 
-			VALUES (seq_approval.nextval, #{app_class}, #{app_title}, #{app_date}, 1)
+				a.app_no = #{vo.app_no}
+				and e.emp_no = #{emp_no}
+			)
 	</insert>
 	
-	<insert id="appRequest">
-			INSERT INTO 
-				app_request (app_no, emp_no) (
-				SELECT 
-					a.app_no, e.emp_no 
-				FROM 
-					approval a, employee e 
-				WHERE 
-					a.app_no = #{app_no}
-					and e.emp_no = #{emp_no}
-				)
+	<insert id="appAgrCreate">
+		INSERT INTO
+			app_agree (app_no, emp_no, agr_status) (
+			SELECT 
+				a.app_no, e.emp_no, a.app_status 
+			FROM 
+				approval a, employee e 
+			WHERE 
+				a.app_no = #{vo.app_no} 
+				and e.emp_no = #{agr.emp_no}
+			)	
 	</insert>
 	
-	<update id="agree">
+	<update id="appAgree">
 		UPDATE 
 			app_agree 
 		SET 
@@ -81,5 +50,103 @@
 			and app_no = #{app_no}
 	</update>
 	
+	<update id="finalState">
+		UPDATE approval SET app_status = 2 WHERE app_no = (
+			SELECT DISTINCT app_no FROM app_agree 
+			WHERE
+			(SELECT count(*) FROM app_agree WHERE agr_status in (2) and app_no = #{app_no})
+			= (select count(*) FROM app_agree WHERE app_no = #{app_no})
+			and app_no = #{app_no}
+		)
+	</update>
+	
+	
+	<select id="reqList" resultType="com.geist.approval.domain.ApprovalVO">
+		SELECT 
+			a.app_date, a.app_title, e.emp_name, a.app_status
+		FROM 
+			approval a, employee e, app_request arq
+		WHERE 
+			e.emp_no = arq.emp_no   
+			and arq.app_no = a.app_no  
+			and arq.emp_no = #{emp_no} 
+	</select>
+	
+	<select id="reqListWithPaging" resultType="com.geist.approval.domain.ApprovalVO">
+		<![CDATA[
+			SELECT
+				app_date, app_title, emp_name, app_status
+			FROM
+			(
+				SELECT /*+ INDEX_ASC(app_request pk_app_request) */
+					rownum rn, a.app_date, a.app_title, e.emp_name, a.app_status
+				FROM
+					approval a, employee e, app_request arq
+				WHERE
+					e.emp_no = arq.emp_no   
+					and arq.app_no = a.app_no  
+					and arq.emp_no = #{emp_no}
+					and rownum <= #{cri.pageNum} * #{cri.amount}
+			)
+			WHERE
+				rn > (#{cri.pageNum}-1) * #{cri.amount}
+		]]>
+	</select>
+	
+	<select id="reqListDetail" resultType="com.geist.approval.domain.ApprovalVO">
+			SELECT 
+				a.app_no, a.app_class, a.app_title, a.app_date, a.app_status
+			FROM 
+				approval a, employee e, app_request arq
+			WHERE 
+				e.emp_no = arq.emp_no 
+				and arq.app_no = a.app_no
+				and arq.emp_no = #{emp_no}
+				and arq.app_no = #{app_no}
+	</select>
+	
+	<select id="agreeList" resultType="com.geist.approval.domain.ApprovalVO">
+		SELECT 
+			a.app_date, a.app_title, e.emp_name, a.app_status
+		FROM 
+			approval a, employee e, app_agree agr
+		WHERE 
+			e.emp_no = arq.emp_no   
+			and agr.app_no = a.app_no  
+			and agr.emp_no = #{emp_no} 
+	</select>
+	
+	<select id="agreeListWithPaging" resultType="com.geist.approval.domain.ApprovalVO">
+		<![CDATA[
+			SELECT
+				app_date, app_title, emp_name, app_status
+			FROM
+			(
+				SELECT /*+ INDEX_ASC(app_agree pk_app_agree) */
+					rownum rn, a.app_date, a.app_title, e.emp_name, a.app_status
+				FROM
+					approval a, employee e, app_agree agr
+				WHERE
+					e.emp_no = agr.emp_no   
+					and agr.app_no = a.app_no  
+					and agr.emp_no = #{emp_no}
+					and rownum <= #{cri.pageNum} * #{cri.amount}
+			)
+			WHERE
+				rn > (#{cri.pageNum}-1) * #{cri.amount}
+		]]>
+	</select>
+	
+	<select id="agreeListDetail" resultType="com.geist.approval.domain.ApprovalVO">
+			SELECT 
+				a.app_no, a.app_class, a.app_title, a.app_date, a.app_status
+			FROM 
+				approval a, employee e, app_agree agr
+			WHERE 
+				e.emp_no = agr.emp_no 
+				and agr.app_no = a.app_no
+				and agr.emp_no = #{emp_no}
+				and agr.app_no = #{app_no}
+	</select>
 	
 </mapper>
