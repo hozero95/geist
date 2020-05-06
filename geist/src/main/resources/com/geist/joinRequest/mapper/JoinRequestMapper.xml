@@ -12,11 +12,11 @@
 	<select id="getListWithPaging" resultType="com.geist.joinRequest.domain.JoinRequestVO">
 		<![CDATA[
 			SELECT
-				req_id, req_name, req_birth, req_phone, req_address
+				req_id, req_name, req_birth, req_phone, req_email, req_address
 			FROM
 			(
-				SELECT
-					rownum rn, req_id, req_name, to_char(req_birth, 'YYYY-MM-DD') req_birth, req_phone, req_address
+				SELECT /*+ INDEX_DESC(request pk_request) */
+					rownum rn, req_id, req_name, to_char(req_birth, 'YYYY-MM-DD') req_birth, req_phone, req_email, req_address
 				FROM
 					request
 				WHERE
@@ -32,4 +32,57 @@
 			SELECT count(req_id) FROM request
 		]]>
 	</select>
+	
+	<select id="getDetail" resultType="com.geist.joinRequest.domain.JoinRequestVO">
+		<![CDATA[
+			SELECT
+				req_id, req_name, to_char(req_birth, 'YYYY-MM-DD') req_birth, req_phone, req_email, req_address
+			FROM
+				request
+			WHERE
+				req_id = #{req_id}
+		]]>
+	</select>
+	
+	<select id="getAllDetail" resultType="com.geist.joinRequest.domain.JoinRequestVO">
+		<![CDATA[
+			SELECT
+				req_id, req_pw, req_name, to_char(req_birth, 'YYYY-MM-DD') req_birth, req_phone, req_email, req_address
+			FROM
+				request
+			WHERE
+				req_id = #{req_id}
+		]]>
+	</select>
+	
+	<select id="getDeptNo" resultType="Long">
+		SELECT
+			dept_no
+		FROM
+			department
+		WHERE
+			dept_name = #{dept_name}
+	</select>
+	
+	<insert id="insertEmp">
+		INSERT INTO employee(emp_no, emp_id, emp_pw, emp_name, emp_birth, emp_phone, emp_email, emp_address, emp_position, emp_sal, emp_date, dept_no)
+		VALUES(
+			seq_emp_no.nextval,
+			#{vo.req_id},
+			#{vo.req_pw},
+			#{vo.req_name},
+			to_date(#{vo.req_birth}),
+			#{vo.req_phone},
+			#{vo.req_email},
+			#{vo.req_address},
+			#{emp_position},
+			#{emp_sal},
+			sysdate,
+			#{dept_no}
+		)
+	</insert>
+	
+	<delete id="deleteRequest">
+		delete from request where req_id = #{req_id}
+	</delete>
 </mapper>

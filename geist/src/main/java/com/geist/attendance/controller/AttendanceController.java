@@ -37,7 +37,7 @@ public class AttendanceController {
 		return new ResponseEntity<List<AttendanceVO>>(service.getList(emp_no), HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/{emp_no}/check", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	@GetMapping(value = "/check/{emp_no}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<AttendanceCheckVO> check(@PathVariable("emp_no") int emp_no) {
 		AttendanceCheckVO checkVo = new AttendanceCheckVO();
 		checkVo.setCheckOn(service.checkOn(emp_no));

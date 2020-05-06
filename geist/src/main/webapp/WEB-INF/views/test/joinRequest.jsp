@@ -19,9 +19,11 @@
 			<tr>
 				<th>아이디</th>
 				<th>이름</th>
-				<th>생일</th>
+				<th>생년월일</th>
 				<th>연락처</th>
+				<th>이메일</th>
 				<th>주소</th>
+				<th>조회</th>
 			</tr>
 		</thead>
 		<tbody class="table-body">
@@ -84,11 +86,24 @@
 					str += "<td>" + list[i].req_name + "</td>";
 					str += "<td>" + list[i].req_birth + "</td>";
 					str += "<td>" + list[i].req_phone + "</td>";
+					str += "<td>" + list[i].req_email + "</td>";
 					str += "<td>" + list[i].req_address + "</td>";
+					str += "<td><button type='button' class='detailBtn'>조회</button></td>";
 					str += "</tr>";
 				}
+				
 				tbody.html(str);
 				showListPage(count);
+				
+				$(".detailBtn").on("click", function(){
+					var tr = $(this).parent().parent();
+					var td = tr.children();
+					var req_id = td.eq(0).text();
+					
+					var popWindow = window.open("/joinRequest/detailView?req_id=" + req_id, "가입 승인 상세 보기", "width=500, height=600");
+					
+					location.reload();
+				});
 			});
 		}
 		

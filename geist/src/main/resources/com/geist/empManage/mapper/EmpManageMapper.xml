@@ -31,7 +31,7 @@
 				emp_no, emp_name, emp_position, emp_date, dept_name
 			FROM
 			(
-				SELECT /*+ ORDERED USE_NL(emp, dept) */
+				SELECT /*+ INDEX_DESC(employee pk_employee) */
 					rownum rn, emp_no, emp_name, emp_position, to_char(emp_date, 'YYYY-MM-DD') emp_date, dept_name
 				FROM
 					employee emp, department dept

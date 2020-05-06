@@ -1,42 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<!--
-	사원 상세 조회 페이지
+<!-- 
+	가입 승인 상세 조회 페이지
 	담당 : 김호영
--->
+ -->
 
 <!DOCTYPE html>
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>사원 상세 조회</title>
+<title>가입 승인 상세 조회</title>
 </head>
 <body>
 	<div id="btnForm">
-		사원 번호 : <input type="text" name="emp_no" value="${emp_no}" readonly><br>
-		아이디 : <input type="text" name="emp_id" readonly><br>
-		이름 : <input type="text" name="emp_name" readonly><br>
-		생년월일 : <input type="text" name="emp_birth" readonly><br>
-		개인 연락처 : <input type="text" name="emp_phone" readonly><br>
-		사내 연락처 : <input type="text" name="emp_tel" readonly><br>
-		이메일 : <input type="text" name="emp_email" readonly><br>
-		주소 : <input type="text" name="emp_address" readonly><br>
+		아이디 : <input type="text" name="req_id" value="${req_id}" readonly><br>
+		이름 : <input type="text" name="req_name" readonly><br>
+		생년월일 : <input type="text" name="req_birth" readonly><br>
+		개인 연락처 : <input type="text" name="req_phone" readonly><br>
+		이메일 : <input type="text" name="req_email" readonly><br>
+		주소 : <input type="text" name="req_address" readonly><br>
+		<hr>
 		직급 : <input type="text" name="emp_position"><br>
 		연봉 : <input type="text" name="emp_sal"><br>
-		입사일 : <input type="text" name="emp_date" readonly><br>
 		부서 : <input type="text" name="dept_name"><br>
 		<br>
-		<button type="button" class="modifyBtn">수정</button>
-		<button type="button" class="deleteBtn">삭제</button>
+		<button type="button" class="insertBtn">가입 승인</button>
+		<button type="button" class="deleteBtn">가입 거절</button>
 	</div>
-	
+
 <script type="text/javascript">
-	var empManageDetailService = (function(){
+	var joinRequestDetailService = (function(){
 		function detailView(param, callback, error){
-			var emp_no = param.emp_no;
-			$.getJSON("/empManage/detailView/" + emp_no + ".json", function(data){
+			var req_id = param.req_id;
+			$.getJSON("/joinRequest/detailView/" + req_id + ".json", function(data){
 				if(callback){
 					callback(data);
 				}
@@ -47,10 +45,10 @@
 			});
 		}
 		
-		function modifyEmp(param, callback, error){
+		function insertEmp(param, callback, error){
 			$.ajax({
-				type : 'put',
-				url : '/empManage/detailView',
+				type : 'post',
+				url : '/joinRequest/detailView',
 				data : JSON.stringify(param),
 				contentType : "application/json; charset=utf-8",
 				success : function(result, status, xhr){
@@ -66,10 +64,10 @@
 			});
 		}
 		
-		function deleteEmp(emp_no, callback, error){
+		function deleteRequest(req_id, callback, error){
 			$.ajax({
 				type : 'delete',
-				url : '/empManage/detailView/' + emp_no,
+				url : '/joinRequest/detailView/' + req_id,
 				success : function(deleteResult, status, xhr){
 					if(callback){
 						callback(deleteResult);
@@ -85,38 +83,32 @@
 		
 		return{
 			detailView : detailView,
-			modifyEmp : modifyEmp,
-			deleteEmp : deleteEmp
-		};
+			insertEmp : insertEmp,
+			deleteRequest : deleteRequest
+		}
 	})();
-
+	
 	$(document).ready(function(){
 		var btnForm = $("#btnForm");
-		var modifyBtn = $(".modifyBtn");
+		var insertBtn = $(".insertBtn");
 		var deleteBtn = $(".deleteBtn");
 		
-		detailView($("input[name='emp_no']").val());
+		detailView($("input[name='req_id']").val());
 		
-		function detailView(emp_no){
-			empManageDetailService.detailView({
-				emp_no : emp_no
+		function detailView(req_id){
+			joinRequestDetailService.detailView({
+				req_id : req_id
 			}, function(data){
-				$("input[name='emp_no']").val(data.emp_no);
-				$("input[name='emp_id']").val(data.emp_id);
-				$("input[name='emp_name']").val(data.emp_name);
-				$("input[name='emp_birth']").val(data.emp_birth);
-				$("input[name='emp_phone']").val(data.emp_phone);
-				$("input[name='emp_tel']").val(data.emp_tel);
-				$("input[name='emp_email']").val(data.emp_email);
-				$("input[name='emp_address']").val(data.emp_address);
-				$("input[name='emp_position']").val(data.emp_position);
-				$("input[name='emp_sal']").val(data.emp_sal);
-				$("input[name='emp_date']").val(data.emp_date);
-				$("input[name='dept_name']").val(data.dept_name);
+				$("input[name='req_id']").val(data.req_id);
+				$("input[name='req_name']").val(data.req_name);
+				$("input[name='req_birth']").val(data.req_birth);
+				$("input[name='req_phone']").val(data.req_phone);
+				$("input[name='req_email']").val(data.req_email);
+				$("input[name='req_address']").val(data.req_address);
 			});
 		}
 		
-		modifyBtn.on("click", function(e){
+		insertBtn.on("click", function(e){
 			if(!btnForm.find("input[name='emp_position']").val()){
 				alert("직급을 작성하세요.");
 				return false;
@@ -130,7 +122,7 @@
 				return false;
 			}
 			
-			var emp_no = $("input[name='emp_no']").val();
+			var req_id = $("input[name='req_id']").val();
 			var emp_position = $("input[name='emp_position']").val();
 			var emp_sal = $("input[name='emp_sal']").val();
 			var dept_name = $("input[name='dept_name']").val();
@@ -140,21 +132,22 @@
 				return false;
 			}
 			
-			empManageDetailService.modifyEmp({
-				emp_no : emp_no,
+			joinRequestDetailService.insertEmp({
+				req_id : req_id,
 				emp_position : emp_position,
 				emp_sal : emp_sal,
 				dept_name : dept_name
 			}, function(result){
-				alert(result);
-				self.close();
+				joinRequestDetailService.deleteRequest(req_id, function(result2){
+					alert(result2);
+					self.close();
+				});
 			});
 		});
 		
 		deleteBtn.on("click", function(e){
-			var emp_no = $("input[name='emp_no']").val();
-			
-			empManageDetailService.deleteEmp(emp_no, function(result){
+			var req_id = $("input[name='req_id']").val();
+			joinRequestDetailService.deleteRequest(req_id, function(result){
 				alert(result);
 				self.close();
 			});

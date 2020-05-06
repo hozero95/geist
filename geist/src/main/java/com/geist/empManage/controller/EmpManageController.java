@@ -52,13 +52,13 @@ public class EmpManageController {
 		return new ResponseEntity<EmpManageVO>(service.detailView(emp_no), HttpStatus.OK);
 	}
 	
-	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH}, value = "/detailView/modify", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
+	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH}, value = "/detailView", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> modifyEmp(@RequestBody EmpManageVO vo){
 		int modifyCount = service.modifyEmp(vo);
 		return modifyCount == 1 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@DeleteMapping(value = "/detailView/delete/{emp_no}", produces = {MediaType.TEXT_PLAIN_VALUE})
+	@DeleteMapping(value = "/detailView/{emp_no}", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> deleteEmp(@PathVariable("emp_no") Long emp_no){
 		return service.deleteEmp(emp_no) == 1 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
