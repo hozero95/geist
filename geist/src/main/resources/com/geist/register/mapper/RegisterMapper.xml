@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	가입 승인 페이지
+	담당 : 김호영
+-->
+
+<mapper namespace="com.geist.register.mapper.RegisterMapper">
+	<select id="checkId" resultType="int">
+		<![CDATA[
+			SELECT
+				count(*)
+			FROM (
+				SELECT
+					e.emp_id emp_id, r.req_id req_id
+				FROM
+					employee e full join request r
+				ON
+					e.emp_id = r.req_id
+			)
+			WHERE
+				emp_id = #{req_id} or req_id = #{req_id}
+		]]>
+	</select>
+	
+	<insert id="joinRequest">
+		INSERT INTO request
+		VALUES (
+			#{req_id},
+			#{req_pw},
+			#{req_name},
+			to_date(#{req_birth}),
+			#{req_phone},
+			#{req_email},
+			#{req_address}
+		)
+	</insert>
+</mapper>
