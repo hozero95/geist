@@ -13,7 +13,19 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 public class MainController {
-	@RequestMapping({"/", "main"})
+	@RequestMapping({"/", "/login"})
+	public String login() {
+		log.info("로그인 페이지 이동");
+		return "/test/login";
+	}
+	
+	@RequestMapping("/register")
+	public String register() {
+		log.info("회원가입 페이지 이동");
+		return "/test/register";
+	}
+	
+	@RequestMapping("/main")
 	public String main() {
 		log.info("메인 페이지 이동");
 		return "/test/main";
