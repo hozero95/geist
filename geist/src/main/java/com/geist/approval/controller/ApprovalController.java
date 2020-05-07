@@ -8,11 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.geist.approval.domain.ApprovalAgrVO;
 import com.geist.approval.domain.ApprovalVO;
+import com.geist.approval.domain.ApprovalWholeDTO;
 import com.geist.approval.service.ApprovalService;
 import com.geist.main.domain.Criteria;
 
@@ -33,13 +34,13 @@ public class ApprovalController {
 	
 	// 결재 작성
 	@PostMapping(value = "/request/new", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
-	public String create(ApprovalVO vo, Long emp_no, ApprovalAgrVO agrVo) {
+	public ResponseEntity<String> create(@RequestBody ApprovalWholeDTO vo) {
 		service.appCreate(vo);
-		service.appReqCreate(vo, emp_no);
-		service.appAgrCreate(vo, agrVo);
-		
-		return "redirect:/request/{emp_no}";
-	}
+		service.appReqCreate(vo);
+//		service.appAgrCreate(vo);
+			
+		return new ResponseEntity<>("success", HttpStatus.OK);
+	}	
 
 	// 결재 조회
 	@GetMapping(value = "/request/{empNo}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})

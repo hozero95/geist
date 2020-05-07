@@ -11,7 +11,7 @@
 <mapper namespace="com.geist.approval.mapper.ApprovalMapper">
 	<insert id="appCreate">
 		INSERT INTO approval 
-		VALUES (#{app_no}, #{app_class}, #{app_title}, #{app_date}, 1)
+		VALUES (#{app_no}, #{app_class}, #{app_title}, sysdate, 1)
 	</insert>
 	
 	<insert id="appReqCreate" >
@@ -22,7 +22,7 @@
 			FROM 
 				approval a, employee e 
 			WHERE 
-				a.app_no = #{vo.app_no}
+				a.app_no = #{app_no}
 				and e.emp_no = #{emp_no}
 			)
 	</insert>
@@ -35,8 +35,8 @@
 			FROM 
 				approval a, employee e 
 			WHERE 
-				a.app_no = #{vo.app_no} 
-				and e.emp_no = #{agr.emp_no}
+				a.app_no = #{app_no} 
+				and e.emp_no = #{emp_no}
 			)	
 	</insert>
 	

@@ -19,14 +19,10 @@ public interface ApprovalMapper {
 	public int appCreate(ApprovalVO vo);
 		
 	// 결재요청
-	public List<ApprovalReqVO> appReqCreate(
-			ApprovalVO vo, 
-			@Param("emp_no") Long emp_no);
+	public int appReqCreate(ApprovalReqVO reqVo);
 		
 	// 결재승인
-	public List<ApprovalAgrVO> appAgrCreate(
-			ApprovalVO vo, 
-			ApprovalAgrVO agrVo);
+	public int appAgrCreate(ApprovalAgrVO agrVo);
 		
 	// 최종 상태
 	public void finalState(Long app_no);

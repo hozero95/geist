@@ -1,5 +1,7 @@
 package com.geist.approval.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.geist.approval.domain.ApprovalAgrVO;
 import com.geist.approval.domain.ApprovalReqVO;
 import com.geist.approval.domain.ApprovalVO;
+import com.geist.approval.domain.ApprovalWholeDTO;
 import com.geist.approval.mapper.ApprovalMapper;
 import com.geist.main.domain.Criteria;
 
@@ -26,18 +29,38 @@ public class ApprovalServiceImpl implements ApprovalService {
 	private ApprovalMapper mapper;
 	
 	@Override
-	public int appCreate(ApprovalVO vo) {
-		return mapper.appCreate(vo);
+	public int appCreate(ApprovalWholeDTO vo) {
+		ApprovalVO avo = new ApprovalVO();
+		
+		long time = System.currentTimeMillis();
+		SimpleDateFormat dayTime = new SimpleDateFormat("yyMMddhhmmss");
+		Long appNo = Long.parseLong(dayTime.format(new Date(time)));
+		
+		vo.setApp_no(appNo);
+	
+		avo.setApp_no(vo.getApp_no());
+		avo.setApp_class(vo.getApp_class());
+		avo.setApp_title(vo.getApp_title());
+		
+		return mapper.appCreate(avo);
 	}
 
 	@Override
-	public List<ApprovalReqVO> appReqCreate(ApprovalVO vo, Long emp_no) {
-		return mapper.appReqCreate(vo, emp_no);
+	public int appReqCreate(ApprovalWholeDTO vo) {
+		ApprovalReqVO reqVo = new ApprovalReqVO();
+		
+		log.info("vo.getApp_no() = " + vo.getApp_no());
+		reqVo.setApp_no(vo.getApp_no());
+		reqVo.setEmp_no(vo.getEmp_no());
+		
+		return mapper.appReqCreate(reqVo);
 	}
 
 	@Override
-	public List<ApprovalAgrVO> appAgrCreate(ApprovalVO vo, ApprovalAgrVO agrVo) {
-		return mapper.appAgrCreate(vo, agrVo);
+	public int appAgrCreate(ApprovalWholeDTO vo) {
+		ApprovalAgrVO agrVo = new ApprovalAgrVO();
+		
+		return mapper.appAgrCreate(agrVo);
 	}
 
 	@Override

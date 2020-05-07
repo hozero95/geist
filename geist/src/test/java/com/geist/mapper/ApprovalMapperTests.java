@@ -1,5 +1,7 @@
 package com.geist.mapper;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -27,33 +29,56 @@ public class ApprovalMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private ApprovalMapper mapper;
 	
+	@Test
+	public void date() {
+//		Date date = new Date();
+//		System.out.println(date);
+		
+		long time = System.currentTimeMillis(); 
+
+		SimpleDateFormat dayTime = new SimpleDateFormat("yyMMddhhmmss");
+		Long str = Long.parseLong(dayTime.format(new Date(time)));
+
+		System.out.println("dayTime = " + str);
+	}
 
 //	@Test
 	public void create() {
 		ApprovalVO vo = new ApprovalVO();
 		
-		vo.setApp_class(1L);
+//		vo.setApp_no(2005071061L);
+//		vo.setApp_class(1L);
 		vo.setApp_title("주간업무 보고서");
-		vo.setApp_date("2020/05/15");
+//		vo.setApp_date("sysdate");
 		
-		mapper.appCreate(vo);
+//		mapper.appCreate(vo);
 	}
 	
 //	@Test
 	public void request() {
-		Long appNo = 117L;
-		Long empNo = 105L;
+//		Long appNo = 117L;
+//		Long empNo = 105L;
 		
-		//mapper.appRequest(appNo, empNo);
+		ApprovalVO vo = new ApprovalVO();
+		
+		vo.setApp_no(2005071061L);
+		Long empNo = 106L;
+		
+//		mapper.appReqCreate(vo, empNo);
 	}
 	
 //	@Test
-	public void agree() {
-		Long status = 1L;
-		Long appNo = 106L;
-		Long empNo = 101L;
+	public void agreeReq() {
+//		Long status = 1L;
+//		Long appNo = 106L;
+//		Long empNo = 101L;
 		
-		//mapper.agree(status, appNo, empNo);
+		ApprovalVO vo = new ApprovalVO();
+
+		vo.setApp_no(2005071061L);
+		Long manager_no = 101L;		
+	
+//		mapper.appAgrCreate(vo, manager_no);
 	}
 	
 //	@Test
