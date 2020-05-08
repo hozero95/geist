@@ -59,7 +59,7 @@
                                                             <td>기획팀</td>
                                                             <td>사원</td>
                                                             <td>
-                                                                <button type="button" class="btn btn-sm dt-button" onclick="showPopup();">조회</button>                                                         
+                                                                <button type="button" class="btn btn-sm dt-button" style="text-align: center;" onclick="showPopup();">조회</button>                                                         
                                                             </td>
                                                         </tr>
                                                         <tr role="row" class="even">
@@ -68,7 +68,7 @@
                                                             <td>제작팀</td>
                                                             <td>사원</td>                                                            
                                                             <td>
-                                                                <button type="button" class="btn btn-sm dt-button" onclick="showPopup();">조회</button>                                                         
+                                                                <button type="button" class="btn btn-sm dt-button" style="text-align: center;" onclick="showPopup();">조회</button>                                                         
                                                             </td>                                                      
                                                         </tr>
                                                     </tbody>

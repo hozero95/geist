@@ -30,14 +30,13 @@
                             <article>
                                 <div class="container" role="main">
                                     <div class="rounded">
-                                        <div class="board-title">제목입니다.</div>
+                                        <div class="board-title">${#.NOTI_TITLE}</div>
                                         <div class="board-info-box">
-                                            <span class="board-author">조회수</span>
-                                            <span class="board-date">2020/4/10</span>
-                                            <span class="board-date">20:00</span>
+                                            <span class="board-author">${#.NOTI_NO}</span>
+                                            <span class="board-date">${#.NOTI_DATE}</span>
                                         </div>
                                         <hr>
-                                        <div class="board-content">내용입니다 </div>
+                                        <div class="board-content">${#.NOTI_CONTENT}</div>
                                     </div>
                                     <hr>
                                     <div class="pt-2" style="float: right;">
@@ -58,7 +57,7 @@
     <script>
         $(document).on('click', '#btnUpdate', function(e){
         	e.preventDefault();
-        	location.href="index.jsp?contentPage=page/document-page-write.jsp";
+        	location.href="index.jsp?contentPage=page/document-page-modify.jsp";
         });
 
         $(document).on('click', '#btnList', function(e){
@@ -69,7 +68,7 @@
         	var returnValue = confirm('작성글을 삭제하시겠습니까?')
 			if(returnValue=true){
 				alert("작성글이 정상적으로 삭제되었습니다.")
-				self.location.href ="#" //삭제메소드 불러오기
+				self.location.href ="${path}/#/.do" //삭제메소드 불러오기
 			}else{ 
 				alert("취소되었습니다.") };
 

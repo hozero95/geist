@@ -69,17 +69,21 @@
                 serverSide: false,
                 searching: true,
                 ajax : {
-                    "url":"#",
-                    "type":"POST",
-                    "dataSrc": function (d) {
-                        	   var data = d.data;
-                        	   return data;
+                    "url":"#.json",
+                    //"type":"POST",
+                    "dataSrc": ''
                     }
                 },
                 columns : [
-                    {data: "번호"},
-                    {data: "제목"},
-                    {data: "작성날짜"}
+                    {"data": "NOTI_NO"},
+                    {"data": "NOTI_TITLE"
+                    "render": function(data, type, row , meta){
+                    	if(type == 'display'){
+                    		data = '<a href=index.jsp?contentPage="'+row.NOTI_TITLE+'">'+data+'</a>';
+                    	}
+                    	return data;
+                    }	},
+                    {"data": "NOTI_DATE"}
                 ],
                 dom: 'Bfrtip',
                 buttons: [
@@ -92,6 +96,8 @@
                     }
                 ]
                 
+                
+            
             });
             $('div').removeClass('form-inline');
             $('div.app-page-title').css('margin','0px 0px 0px');

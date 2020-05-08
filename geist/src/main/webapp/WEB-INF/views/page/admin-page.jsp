@@ -52,8 +52,7 @@
                                                                 <th class="sorting_asc" tabindex="0" aria-controls="foo-table" rowspan="1" colspan="1"
                                                                 aria-sort="ascending" aria-label="조회: activate to sort column descending"
                                                                 style="width: 100px;">조회</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="foo-table" rowspan="1" colspan="1"
-                                                                aria-label="삭제: activate to sort column ascending" style="width: 100px;">삭제</th>
+                                                           
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -64,9 +63,6 @@
                                                             <td>Geist</td>
                                                             <td>
                                                                 <button type="button" class="btn btn-sm dt-button" id="btnRetrieve" onclick="showPopup();">조회</button>                                                         
-                                                            </td>
-                                                            <td>
-                                                                <button type="button" class="btn btn-sm dt-button" id="Admin-btnDelete">삭제</button>
                                                             </td>
                                                         </tr>
                                                         <tr role="row" class="even">

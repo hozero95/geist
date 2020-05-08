@@ -169,16 +169,6 @@ $("#approve-btnSave").click(function () {
     } else {
       $("#My-company-ph-error").hide();
     }
-
-    var postcode = $("#My-postcode").val();
-    var addr3 = $("#My-addr-etc").val();
-    if (postcode.length < 1 || addr3.length < 1) {
-      $("#My-addr-error").show();
-      $("#My-addr-etc").focus();
-      return false;
-    } else {
-      $("#My-addr-error").hide();
-    }
   });
 });
 // input#input-number : 한글 입력 불가능

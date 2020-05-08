@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Geist</title>
-<link href="/resources/css/main.css" rel="stylesheet" />
+<link href="../css/main.css" rel="stylesheet" />
 <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
 <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" ></script>
 
@@ -31,60 +31,61 @@
                             </div>
                             <!-- Write -->
                             <article>
+                                <c:forEach var="#" item="${list}">
                                 <div class="container" role="main">
                                     <h4 class="m-0 p-2">정보조회</h4>
                                     <div class="rounded">
                                         <div class="board-info-box">
-                                            <h1 class="m-0">000사원</h1>
-                                            <h6 class="m-0 pt-3 pb-4">Geist회사 > 기획팀</h6>
+                                            <h1 class="m-0">${#.EMP_NAME} &nbsp; ${#.EMP_POSITION}</h1>
+                                            <h6 class="m-0 pt-3 pb-4">Geist회사 > ${#.DEPT_NO}</h6>
                                         </div>
 
                                         <table class="type09">
                                             <thead>
                                                 <th scope="row">아이디</th>
-                                                <td>123456</td>
+                                                <td>${#.EMP_ID}</td>
                                             </thead>
                                             <tbody>
                                             <tr>
                                                 <th scope="row">사원번호</th>
-                                                <td>내용이 들어갑니다.</td>
+                                                <td>${#.EMP_NO}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">직책</th>
-                                                <td>내용이 들어갑니다.</td>
+                                                <td>${#.EMP_POSITION}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">급여</th>
-                                                <td>내용이 들어갑니다.</td>
-                                            </tr>
+                                                <td>${#.EMP_SAL}</td>
+                                           	</tr>
                                             <tr>
                                                 <th scope="row">입사일</th>
-                                                <td>내용이 들어갑니다.</td>
+                                                <td>${#.EMP_DATE}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">사내연락처</th>
-                                                <td>내용이 들어갑니다.</td>
+                                                <td>${#.EMP_TEL}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">개인연락처</th>
-                                                <td>내용이 들어갑니다.</td>
+                                                <td>${#.EMP_PHONE}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">생년월일</th>
-                                                <td>내용이 들어갑니다.</td>
+                                                <td>${#.EMP_BIRTH}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">주소</th>
-                                                <td>내용이 들어갑니다.</td>
+                                                <td>${#.EMP_ADDRESS}</td>
                                             </tr>
                                             </tbody>
+                                            </c:forEach>
                                         </table>
                                         <div class="pt-2" style="float: right;">
                                             <button type="button" class="btn btn-sm dt-button" id="My-btnUpdate" >수정</button>
+                                            <button type="button" class="btn btn-sm dt-button" id="My-btndelete" >삭제</button>
                                         </div>
                                     </div>
-
-                                    
                                 </div>
                             </article>
 
@@ -101,6 +102,14 @@
     		e.preventDefault();
         	location.href="admin-Mypage-page-write.jsp";
 	    });
+    	$(document).on('click', '#My-btndelete', function(e){
+        	var returnValue = confirm('회원정보를 삭제하시겠습니까?')
+			if(returnValue=true){
+				alert("해당 회원정보가 정상적으로 삭제되었습니다.")
+				self.location.href ="${path}/#/.do" //삭제메소드 불러오기
+			}else{ 
+				alert("취소되었습니다.") };
+        });
     });
     </script>
 </body>
