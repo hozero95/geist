@@ -20,7 +20,7 @@ public interface ApprovalService {
 	public int appReqCreate(ApprovalWholeDTO vo);
 	
 	// 결재승인
-	public int appAgrCreate(ApprovalWholeDTO vo);
+	public void appAgrCreate(ApprovalWholeDTO vo);
 	
 	// 결재 조회
 	public List<ApprovalVO> reqList(Long emp_no);

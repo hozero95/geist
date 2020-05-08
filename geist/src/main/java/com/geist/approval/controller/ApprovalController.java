@@ -38,8 +38,6 @@ public class ApprovalController {
 		service.appCreate(vo);
 		service.appReqCreate(vo);
 		service.appAgrCreate(vo);
-		
-		// khs2 브랜치 생성후 커밋 테스트 
 			
 		return new ResponseEntity<>("success", HttpStatus.OK);
 	}	
