@@ -38,6 +38,8 @@ public class ApprovalController {
 		service.appCreate(vo);
 		service.appReqCreate(vo);
 		service.appAgrCreate(vo);
+		
+		// 커밋 테스트
 			
 		return new ResponseEntity<>("success", HttpStatus.OK);
 	}	
