@@ -22,7 +22,7 @@ public interface ApprovalMapper {
 	public int appReqCreate(ApprovalReqVO reqVo);
 		
 	// 결재승인
-	public int appAgrCreate(ApprovalAgrVO agrVo);
+	public void appAgrCreate(ApprovalAgrVO agrVo);
 		
 	// 최종 상태
 	public void finalState(Long app_no);
