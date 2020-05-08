@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	로그인 페이지
+	담당 : 김호영
+-->
+
+<mapper namespace="com.geist.login.mapper.LoginMapper">
+	<select id="login" resultType="com.geist.login.domain.LoginVO">
+		SELECT
+			emp_no
+		FROM
+			employee
+		WHERE
+			emp_id = #{emp_id} AND emp_pw = #{emp_pw}
+	</select>
+	
+	<select id="idSearch" resultType="com.geist.login.domain.LoginVO">
+		SELECT
+			emp_id
+		FROM
+			employee
+		WHERE
+			emp_phone = #{emp_phone} AND emp_email = #{emp_email}
+	</select>
+	
+	<select id="pwSearch" resultType="com.geist.login.domain.LoginVO">
+		SELECT
+			emp_pw
+		FROM
+			employee
+		WHERE
+			emp_id = #{emp_id} AND emp_phone = #{emp_phone} AND emp_email = #{emp_email}
+	</select>
+</mapper>

@@ -14,6 +14,11 @@
 <title>출결 페이지</title>
 </head>
 <body>
+	<h1>사원번호 : ${member.emp_no}</h1>
+	<input type="hidden" name="login_no" value="${member.emp_no}">
+	<button type="button" class="logoutBtn">로그아웃</button>
+	<hr>
+	
 	<button type="button" class="att_onBtn">출근</button>
 	<button type="button" class="att_offBtn">퇴근</button><br>
 	
@@ -108,7 +113,7 @@
 	})();
 	
 	$(document).ready(function(){
-		var emp_no = 2; // 나중에 현재 로그인 중인 사용자로 변경해야함
+		var emp_no = $("input[name='login_no']").val();
 		var tbody = $(".table-body");
 		var att_on = $(".att_onBtn");
 		var att_off = $(".att_offBtn");

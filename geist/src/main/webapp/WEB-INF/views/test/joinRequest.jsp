@@ -14,6 +14,11 @@
 <title>가입 승인 페이지</title>
 </head>
 <body>
+	<h1>사원번호 : ${member.emp_no}</h1>
+	<input type="hidden" name="login_no" value="${member.emp_no}">
+	<button type="button" class="logoutBtn">로그아웃</button>
+	<hr>
+	
 	<table border="1">
 		<thead>
 			<tr>

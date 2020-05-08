@@ -1,5 +1,7 @@
 package com.geist.main.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,10 +21,28 @@ public class MainController {
 		return "/test/login";
 	}
 	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/login";
+	}
+	
 	@RequestMapping("/register")
 	public String register() {
 		log.info("회원가입 페이지 이동");
 		return "/test/register";
+	}
+	
+	@RequestMapping("/idSearch")
+	public String idSearch() {
+		log.info("아이디 찾기 페이지 이동");
+		return "/test/idSearch";
+	}
+	
+	@RequestMapping("/pwSearch")
+	public String pwSearch() {
+		log.info("비밀번호 찾기 페이지 이동");
+		return "/test/pwSearch";
 	}
 	
 	@RequestMapping("/main")
