@@ -37,7 +37,7 @@ public class ApprovalController {
 	public ResponseEntity<String> create(@RequestBody ApprovalWholeDTO vo) {
 		service.appCreate(vo);
 		service.appReqCreate(vo);
-//		service.appAgrCreate(vo);
+		service.appAgrCreate(vo);
 			
 		return new ResponseEntity<>("success", HttpStatus.OK);
 	}	

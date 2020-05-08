@@ -1,6 +1,7 @@
 package com.geist.mapper;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.geist.approval.domain.ApprovalAgrVO;
+import com.geist.approval.domain.ApprovalReqVO;
 import com.geist.approval.domain.ApprovalVO;
+import com.geist.approval.domain.ApprovalWholeDTO;
 import com.geist.approval.mapper.ApprovalMapper;
 import com.geist.main.domain.Criteria;
 
@@ -29,56 +33,52 @@ public class ApprovalMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private ApprovalMapper mapper;
 	
-	@Test
+//	@Test
 	public void date() {
-//		Date date = new Date();
-//		System.out.println(date);
-		
 		long time = System.currentTimeMillis(); 
-
 		SimpleDateFormat dayTime = new SimpleDateFormat("yyMMddhhmmss");
-		Long str = Long.parseLong(dayTime.format(new Date(time)));
+		Long appNo = Long.parseLong(dayTime.format(new Date(time)));
 
-		System.out.println("dayTime = " + str);
+		System.out.println("dayTime = " + appNo);
 	}
 
 //	@Test
 	public void create() {
-		ApprovalVO vo = new ApprovalVO();
+		ApprovalVO avo = new ApprovalVO();
 		
-//		vo.setApp_no(2005071061L);
-//		vo.setApp_class(1L);
-		vo.setApp_title("주간업무 보고서");
-//		vo.setApp_date("sysdate");
+		avo.setApp_no(2005071061L);
+		avo.setApp_class(1L);
+		avo.setApp_title("주간업무 보고서");
 		
-//		mapper.appCreate(vo);
+		mapper.appCreate(avo);
 	}
 	
 //	@Test
 	public void request() {
-//		Long appNo = 117L;
-//		Long empNo = 105L;
+		ApprovalReqVO reqVo = new ApprovalReqVO();
 		
-		ApprovalVO vo = new ApprovalVO();
+		reqVo.setApp_no(2005071061L);
+		reqVo.setEmp_no(106L);
 		
-		vo.setApp_no(2005071061L);
-		Long empNo = 106L;
-		
-//		mapper.appReqCreate(vo, empNo);
+		mapper.appReqCreate(reqVo);
 	}
 	
-//	@Test
+	@Test
 	public void agreeReq() {
-//		Long status = 1L;
-//		Long appNo = 106L;
-//		Long empNo = 101L;
+		ApprovalWholeDTO dto = new ApprovalWholeDTO();		
+		ApprovalAgrVO agrVo = new ApprovalAgrVO();
+		List<ApprovalAgrVO> list = dto.getManager_no();
 		
-		ApprovalVO vo = new ApprovalVO();
+		for(int i = 0; i < list.size(); i++) {
+			log.info(list.get(i).getClass().getName());
+		
+//			agrVo.setEmp_no(Long.parseLong(list.get(i)));
+		}
 
-		vo.setApp_no(2005071061L);
-		Long manager_no = 101L;		
-	
-//		mapper.appAgrCreate(vo, manager_no);
+//		agrVo.setApp_no(2005071061L);
+//		agrVo.setEmp_no(101L);
+//	
+//		mapper.appAgrCreate(agrVo);
 	}
 	
 //	@Test

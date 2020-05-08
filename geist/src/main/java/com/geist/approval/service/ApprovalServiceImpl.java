@@ -50,6 +50,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 		ApprovalReqVO reqVo = new ApprovalReqVO();
 		
 		log.info("vo.getApp_no() = " + vo.getApp_no());
+		
 		reqVo.setApp_no(vo.getApp_no());
 		reqVo.setEmp_no(vo.getEmp_no());
 		
@@ -57,9 +58,18 @@ public class ApprovalServiceImpl implements ApprovalService {
 	}
 
 	@Override
-	public int appAgrCreate(ApprovalWholeDTO vo) {
+	public int appAgrCreate(ApprovalWholeDTO vo) {	
 		ApprovalAgrVO agrVo = new ApprovalAgrVO();
+		List<ApprovalAgrVO> list = vo.getManager_no();
 		
+		for(int i = 0; i < list.size(); i++) {
+			agrVo.setApp_no(vo.getApp_no());
+			agrVo.setEmp_no(list.get(i).getEmp_no());
+			log.info(list.size());
+//			log.info("vo.getApp_no() === " + vo.getApp_no());
+//			log.info("list.get(i) === " + list.get(i).getEmp_no());
+			
+		}
 		return mapper.appAgrCreate(agrVo);
 	}
 
