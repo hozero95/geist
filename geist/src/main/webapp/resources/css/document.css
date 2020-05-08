@@ -1,0 +1,164 @@
+
+  
+.btn-row {
+  width : 100px;
+  height : 70px;
+  position: relative;
+  left : 87%;
+  margin-bottom : 50px;
+}
+
+.btn-write {
+  width : 100%;
+  height : 100%;
+  color : white;
+  font-size : 25px;
+  text-align: center;
+  background-color : #2ac1bc;
+  border-radius: 5px;
+  border : none;
+}
+
+
+
+.task-doc {
+    width: 70%;
+    border-collapse: collapse;
+    height : 300px;
+    font-size : 18px;
+    text-align: center;
+}
+
+.task-doc td, .task-doc tr {
+  border : solid 1px lightgray;
+  padding : 5px;
+}
+
+.container-fluid {
+    margin-bottom : 3%;
+}
+
+.document {
+  position : relative;
+  border : solid 1px lightgray;
+  margin-bottom : 2%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+
+.info {
+  display:flex; 
+  align-items: center;
+  justify-content:center;
+  margin-bottom : 50px;
+}
+
+.sign {
+  width : 19%;
+  height : 80px;
+  margin-left : 20px;
+  margin-bottom : 220px;
+}
+
+.sign td, .sign tr {
+  border : solid 1px lightgray;
+  padding-left : 5px;
+  text-align: center;
+}
+
+/* -------------------------- */
+
+.ps-box {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 45px;
+  border: solid 1px #A9A9A9;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+.mm {
+  display: block;
+}
+
+.dd, .mm, .yy {
+  display: table-cell;
+  table-layout: fixed;
+  width: 140px;
+  vertical-align: middle;
+}
+.mm + .dd, .yy + .mm {
+  padding-left: 10px;
+}
+
+.sel {
+  width: 100%;
+  height: 29px;
+  line-height: 18px;
+  color: #000;
+  border: none;
+  border-radius: 0;
+}
+
+.int {
+  border : none;
+}
+
+#date-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin : 50px auto;
+}
+
+#year, #mm, #dd {
+  display: table-cell;
+  width: 100%;
+  height: 100%;
+}
+
+.date-start {
+  margin-left : 20px;
+}
+
+.date-to {
+  display : block;
+  font-size: 30px;
+  margin : 0 20px;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top : 30px;
+  margin-bottom : 70px;
+}
+
+#reason {
+  width : 81%;
+  height : 45px;
+  margin-left : 20px;
+}
+
+.report-area {
+  width : 91%;
+  height : 300px;
+  border: solid 1px #dadada;
+  margin : 30px auto;
+
+}
+
+#report {
+  width : 100%;
+  height : 100%;
+  border : none;
+  padding : 10px;
+}
+
+label {
+
+  display: block;
+  text-align: center;
+}
