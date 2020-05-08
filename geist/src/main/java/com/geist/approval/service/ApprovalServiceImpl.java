@@ -1,11 +1,16 @@
 package com.geist.approval.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.geist.approval.domain.ApprovalAgrVO;
+import com.geist.approval.domain.ApprovalReqVO;
 import com.geist.approval.domain.ApprovalVO;
+import com.geist.approval.domain.ApprovalWholeDTO;
 import com.geist.approval.mapper.ApprovalMapper;
 import com.geist.main.domain.Criteria;
 
@@ -22,36 +27,80 @@ import lombok.extern.log4j.Log4j;
 public class ApprovalServiceImpl implements ApprovalService {
 	@Setter(onMethod_ = @Autowired)
 	private ApprovalMapper mapper;
-
-
+	
 	@Override
-	public List<ApprovalVO> getList(String table, Long emp_no) {
-		return mapper.getList(table, emp_no);		
-	}
-
-	@Override
-	public List<ApprovalVO> getListWithPaging(Criteria cri, String table, Long emp_no) {
-		return null;
-	}
-
-	@Override
-	public List<ApprovalVO> getListDetail(String table, Long app_no, Long emp_no) {
-		return null;
-	}
-
-	@Override
-	public int create(ApprovalVO vo) {
-		return 0;
-	}
-
-	@Override
-	public void appRequest(Long app_no, Long emp_no) {
+	public int appCreate(ApprovalWholeDTO vo) {
+		ApprovalVO avo = new ApprovalVO();
 		
+		long time = System.currentTimeMillis();
+		SimpleDateFormat dayTime = new SimpleDateFormat("yyMMddhhmmss");
+		Long appNo = Long.parseLong(dayTime.format(new Date(time)));
+		
+		vo.setApp_no(appNo);
+	
+		avo.setApp_no(vo.getApp_no());
+		avo.setApp_class(vo.getApp_class());
+		avo.setApp_title(vo.getApp_title());
+		
+		return mapper.appCreate(avo);
 	}
 
 	@Override
-	public void agree(Long agr_status, Long app_no, Long emp_no) {
+	public int appReqCreate(ApprovalWholeDTO vo) {
+		ApprovalReqVO reqVo = new ApprovalReqVO();
 		
+		log.info("vo.getApp_no() = " + vo.getApp_no());
+		
+		reqVo.setApp_no(vo.getApp_no());
+		reqVo.setEmp_no(vo.getEmp_no());
+		
+		return mapper.appReqCreate(reqVo);
+	}
+
+	@Override
+	public int appAgrCreate(ApprovalWholeDTO vo) {	
+		ApprovalAgrVO agrVo = new ApprovalAgrVO();
+		List<ApprovalAgrVO> list = vo.getManager_no();
+		
+		for(int i = 0; i < list.size(); i++) {
+			agrVo.setApp_no(vo.getApp_no());
+			agrVo.setEmp_no(list.get(i).getEmp_no());
+			log.info(list.size());
+//			log.info("vo.getApp_no() === " + vo.getApp_no());
+//			log.info("list.get(i) === " + list.get(i).getEmp_no());
+			
+		}
+		return mapper.appAgrCreate(agrVo);
+	}
+
+	@Override
+	public List<ApprovalVO> reqList(Long emp_no) {
+		return mapper.reqList(emp_no);		
+	}
+
+	@Override
+	public List<ApprovalVO> reqListWithPaging(Criteria cri, Long emp_no) {
+		return mapper.reqListWithPaging(cri, emp_no);	
+	}
+
+	@Override
+	public List<ApprovalVO> reqListDetail(Long app_no, Long emp_no) {
+		return mapper.reqListDetail(app_no, emp_no);	
+	}
+
+	@Override
+	public List<ApprovalVO> agreeList(Long emp_no) {
+		return mapper.agreeList(emp_no);		
+	}
+
+	@Override
+	public List<ApprovalVO> agreeListWithPaging(Criteria cri, Long emp_no) {
+		return mapper.agreeListWithPaging(cri, emp_no);	
+	}
+
+	@Override
+	public List<ApprovalVO> agreeListDetail(Long app_no, Long emp_no) {
+		return mapper.agreeListDetail(app_no, emp_no);	
 	}
 
 }
