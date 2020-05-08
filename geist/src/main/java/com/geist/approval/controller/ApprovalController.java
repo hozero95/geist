@@ -39,7 +39,7 @@ public class ApprovalController {
 		service.appReqCreate(vo);
 		service.appAgrCreate(vo);
 		
-		// 커밋 테스트
+		// khs2 브랜치 생성후 커밋 테스트 
 			
 		return new ResponseEntity<>("success", HttpStatus.OK);
 	}	
