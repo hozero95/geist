@@ -2,6 +2,7 @@ package com.geist.approval.service;
 
 import java.util.List;
 
+import com.geist.approval.domain.ApprovalAgrVO;
 import com.geist.approval.domain.ApprovalVO;
 import com.geist.approval.domain.ApprovalWholeDTO;
 import com.geist.main.domain.Criteria;
@@ -12,15 +13,20 @@ import com.geist.main.domain.Criteria;
  */
 
 public interface ApprovalService {
-	
-	// 결재 작성(생성)
+	// 결재문서 생성 insert
 	public int appCreate(ApprovalWholeDTO vo);
 	
-	// 결재요청
+	// 결재요청자 insert
 	public int appReqCreate(ApprovalWholeDTO vo);
 	
-	// 결재승인
+	// 결재승인자들 insert
 	public void appAgrCreate(ApprovalWholeDTO vo);
+	
+	// 결재 승인, 반려
+	public void appAgree(ApprovalAgrVO agrVo);
+	
+	// 최종 상태 update
+	public void finalState(Long app_no);
 	
 	// 결재 조회
 	public List<ApprovalVO> reqList(Long emp_no);
