@@ -1,0 +1,104 @@
+body {
+    background-color: #F5F6F7;
+}
+.wrap {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    font-size: 15px;
+    font-family: sans-serif;
+}
+
+.header {
+    position: relative;
+    margin-top: 5%;
+    text-align: center;
+    padding-bottom : 50px;
+}
+
+.logo {
+    color: #2ac1bc;
+    font-size: 80px;
+    font-weight: 900; 
+    letter-spacing: 5px;
+}
+
+.conteiner {
+    padding-bottom: 20px;
+}
+.login-area {
+    position: relative;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.ps_box {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 58px;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+.id-area {
+    width: 300px;
+    height: 50px;
+    border: solid 2px #dadada;
+    margin: 0 auto;
+}
+
+#id, #pwd {
+    border: none;
+    position: relative;
+    width : 290px;
+    height : 48px;
+    padding-left: 10px;
+}
+
+.pwd-area {
+    width : 300px;
+    height : 50px;
+    border : solid 2px #dadada;
+    margin : 0 auto;
+}
+
+.btn-login {
+    width: 300px;
+    height: 60px;
+    background-color: #2ac1bc;
+    font-size: 20px;
+    font-weight: 700;
+    border: none;
+    margin: 0 auto;
+    display: block;
+    color: #ffff;
+    line-height: 63px;
+}
+
+.find-info {
+    font-size: 14px;
+    color: #8e8e8e;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #e4e4e5;
+}
+
+.find-info > a {
+    color: #8e8e8e;
+}
+
+.footer {
+    position: absolute;
+    left : 17%;
+    bottom : 0px;
+    text-align: center;
+    color: #8e8e8e;
+    padding: 80% 20% 0% 20%;
+}
+
+.msg {
+  color: red;
+  text-align: center;
+  font-weight: bolder;
+}

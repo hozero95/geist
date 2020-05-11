@@ -1,0 +1,173 @@
+.wrap {
+  max-width: 500px;
+  margin: 0 auto;
+  font-size: 14px;
+  font-family: sans-serif;
+  color: #707070;
+}
+
+.header {
+  text-align: center;
+  color: #2ac1bc;
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: 5px;
+}
+
+.ps-box {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 58px;
+  border: solid 1px #dadada;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+
+#id,
+#pwd1,
+#pwd2,
+#name,
+#phone,
+#email {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  line-height: 29px;
+  border: none;
+  background: #fff;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.bir-mm {
+  display: block;
+}
+
+.bir-dd,
+.bir-mm,
+.bir-yy {
+  display: table-cell;
+  table-layout: fixed;
+  width: 165px;
+  vertical-align: middle;
+}
+.bir-mm + .bir-dd,
+.bir-yy + .bir-mm {
+  padding-left: 10px;
+}
+
+.sel {
+  width: 100%;
+  height: 29px;
+  line-height: 18px;
+  color: #000;
+  border: none;
+  border-radius: 0;
+}
+
+#birth {
+  display: table;
+  width: 100%;
+}
+
+#year,
+#mm,
+#dd {
+  display: table-cell;
+  width: 100%;
+  height: 100%;
+}
+
+.int {
+  display: block;
+  position: relative;
+  line-height: 29px;
+  border: none;
+  background: #fff;
+  box-sizing: border-box;
+  z-index: 10;
+  padding-left: 10px;
+}
+
+#addr-row {
+  display: table;
+}
+#postcode,
+#addr1 {
+  width: 169px;
+  height: 58px;
+  margin-right: 10px;
+  display: table-cell;
+  table-layout: fixed;
+  vertical-align: middle;
+  font-size: 15px;
+  padding-left: 10px;
+}
+
+#pst-btn {
+  width: 112px;
+  height: 63px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 900;
+  color: #fff;
+  background-color: #2ac1bc;
+  border: none;
+}
+
+#addr2 {
+  margin-right: 10px;
+}
+
+#addr2,
+#addr-etc {
+  font-size: 15px;
+  width: 230px;
+  display: inline-block;
+  height: 58px;
+  display: table-cell;
+  table-layout: fixed;
+  vertical-align: middle;
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+.btn-area {
+  margin: 30px 0 9px;
+}
+
+.btn-join {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 21px 0 17px;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+  background-color: #2ac1bc;
+}
+
+.footer {
+  position: relative;
+  text-align: center;
+  color: #8e8e8e;
+}
+
+.msg {
+  color: red;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.msgOk {
+  color: green;
+  text-align: center;
+  font-weight: bolder;
+}
