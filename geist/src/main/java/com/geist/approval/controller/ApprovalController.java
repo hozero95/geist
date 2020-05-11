@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.geist.approval.domain.ApprovalAgrVO;
 import com.geist.approval.domain.ApprovalVO;
 import com.geist.approval.domain.ApprovalWholeDTO;
 import com.geist.approval.service.ApprovalService;
@@ -39,6 +40,15 @@ public class ApprovalController {
 		service.appReqCreate(vo);
 		service.appAgrCreate(vo);
 			
+		return new ResponseEntity<>("success", HttpStatus.OK);
+	}	
+	
+	// 결재 승인, 반려
+	@PostMapping(value = "/request/agree", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> agree(@RequestBody ApprovalAgrVO agrVo) {
+		service.appAgree(agrVo);
+		service.finalState(agrVo.getApp_no());
+		
 		return new ResponseEntity<>("success", HttpStatus.OK);
 	}	
 

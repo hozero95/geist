@@ -15,16 +15,20 @@ import com.geist.main.domain.Criteria;
  */
 
 public interface ApprovalMapper {
-	// 결재 작성(생성)
+	// 결재문서 생성 insert
 	public int appCreate(ApprovalVO vo);
 		
-	// 결재요청
+	// 결재요청자 insert
 	public int appReqCreate(ApprovalReqVO reqVo);
 		
-	// 결재승인
+	// 결재승인자들 insert
 	public void appAgrCreate(ApprovalAgrVO agrVo);
+//	public void appAgrCreate(ApprovalAgrVO agrVo, Long requester);
+	
+	// 결재 승인, 반려
+	public void appAgree(ApprovalAgrVO agrVo);
 		
-	// 최종 상태
+	// 최종 상태 update
 	public void finalState(Long app_no);
 
 	

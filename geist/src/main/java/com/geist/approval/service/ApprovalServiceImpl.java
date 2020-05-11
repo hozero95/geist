@@ -61,18 +61,33 @@ public class ApprovalServiceImpl implements ApprovalService {
 	public void appAgrCreate(ApprovalWholeDTO vo) {	
 		ApprovalAgrVO agrVo = new ApprovalAgrVO();
 		List<ApprovalAgrVO> list = vo.getManager_no();
+		Long requester = vo.getEmp_no();
 		
 		for(int i = 0; i < list.size(); i++) {
 			agrVo.setApp_no(vo.getApp_no());
 			agrVo.setEmp_no(list.get(i).getEmp_no());
 			
 			log.info("list.size() === " + list.size());
+			log.info("vo.getEmp_no() === " + vo.getEmp_no());
 			log.info("vo.getApp_no() === " + vo.getApp_no());
+			log.info("agrVo.getApp_no() === " + agrVo.getApp_no());
 			log.info("list.get(i) === " + list.get(i).getEmp_no());
 			
 			mapper.appAgrCreate(agrVo);
+//			mapper.appAgrCreate(agrVo, requester);
 		}
 	}
+	
+	@Override
+	public void appAgree(ApprovalAgrVO agrVo) {
+		mapper.appAgree(agrVo);
+	}
+	
+	@Override
+	public void finalState(Long app_no) {
+		mapper.finalState(app_no);
+	}
+
 
 	@Override
 	public List<ApprovalVO> reqList(Long emp_no) {

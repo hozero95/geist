@@ -23,6 +23,6 @@ public class ApprovalVO {
 	
 	
 	//문서 작성자
-	//private String emp_name;
+	private String emp_name;
 	
 }
