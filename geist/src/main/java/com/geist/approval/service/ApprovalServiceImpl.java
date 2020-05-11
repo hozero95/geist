@@ -49,7 +49,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 	public int appReqCreate(ApprovalWholeDTO vo) {
 		ApprovalReqVO reqVo = new ApprovalReqVO();
 		
-		log.info("vo.getApp_no() = " + vo.getApp_no());
+//		log.info("vo.getApp_no() = " + vo.getApp_no());
 		
 		reqVo.setApp_no(vo.getApp_no());
 		reqVo.setEmp_no(vo.getEmp_no());
@@ -61,20 +61,18 @@ public class ApprovalServiceImpl implements ApprovalService {
 	public void appAgrCreate(ApprovalWholeDTO vo) {	
 		ApprovalAgrVO agrVo = new ApprovalAgrVO();
 		List<ApprovalAgrVO> list = vo.getManager_no();
-		Long requester = vo.getEmp_no();
 		
 		for(int i = 0; i < list.size(); i++) {
 			agrVo.setApp_no(vo.getApp_no());
-			agrVo.setEmp_no(list.get(i).getEmp_no());
+			agrVo.setEmp_position(list.get(i).getEmp_position());
 			
 			log.info("list.size() === " + list.size());
 			log.info("vo.getEmp_no() === " + vo.getEmp_no());
 			log.info("vo.getApp_no() === " + vo.getApp_no());
 			log.info("agrVo.getApp_no() === " + agrVo.getApp_no());
-			log.info("list.get(i) === " + list.get(i).getEmp_no());
+			log.info("list.get(i).getEmp_position() === " + list.get(i).getEmp_position());
 			
-			mapper.appAgrCreate(agrVo);
-//			mapper.appAgrCreate(agrVo, requester);
+			mapper.appAgrCreate(agrVo, vo.getEmp_no());
 		}
 	}
 	

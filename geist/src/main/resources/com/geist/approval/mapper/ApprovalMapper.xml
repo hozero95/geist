@@ -35,11 +35,13 @@
 		    FROM 
 		        approval a, employee e 
 		    WHERE 
-		        a.app_no = #{app_no}
+		        a.app_no = #{agrVo.app_no}
 		        and e.emp_no = (
-		            SELECT emp_no FROM employee WHERE dept_no = (
-		                SELECT dept_no FROM employee WHERE emp_no = 106
-		            ) AND emp_position LIKE '%#{emp_no}%'
+		            SELECT emp_no FROM employee 
+		            WHERE dept_no = (
+		                SELECT dept_no FROM employee WHERE emp_no = #{emp_no}
+		            ) 
+		            AND emp_position LIKE '%'||#{agrVo.emp_position}||'%'
 		        )
 		    )
 	</insert>
