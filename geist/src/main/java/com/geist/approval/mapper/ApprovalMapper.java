@@ -22,10 +22,9 @@ public interface ApprovalMapper {
 	public int appReqCreate(ApprovalReqVO reqVo);
 		
 	// 결재승인자들 insert
-	public void appAgrCreate(ApprovalAgrVO agrVo);
-//	public void appAgrCreate(ApprovalAgrVO agrVo, Long requester);
+	public void appAgrCreate(@Param("agrVo") ApprovalAgrVO agrVo, @Param("emp_no") Long emp_no);
 	
-	// 결재 승인, 반려
+	// 결재 승인, 반려 update
 	public void appAgree(ApprovalAgrVO agrVo);
 		
 	// 최종 상태 update
