@@ -28,13 +28,12 @@
                             </div>
                             <!-- Write -->
                             <article>
-                            <c:forEach var="#" item="${list}">
                                 <div class="container" role="main">
                                     <h4 class="m-0 p-2">정보조회</h4>
                                     <div class="rounded">
                                         <div class="board-info-box">
-                                            <h1 class="m-0">${#.EMP_NAME} &nbsp; ${#.EMP_POSITION}</h1>
-                                            <h6 class="m-0 pt-3 pb-4">Geist회사 > ${#.DEPT_NO}</h6>
+                                            <h1 class="m-0">${#.emp_name} &nbsp; ${#.emp_position}</h1>
+                                            <h6 class="m-0 pt-3 pb-4">Geist회사 > ${#.dept_no}</h6>
                                         </div>
 
                                         <table class="type09">
@@ -42,7 +41,7 @@
                                                 <th scope="row">아이디</th>
                                                 <td>${#.EMP_ID}</td>
                                             </thead>
-                                            <tbody>
+                                            <tbody class="table-body">
                                             <tr>
                                                 <th scope="row">사원번호</th>
                                                 <td>${#.EMP_NO}</td>
@@ -76,7 +75,6 @@
                                                 <td>${#.EMP_ADDRESS}</td>
                                             </tr>
                                             </tbody>
-                                            </c:forEach>
                                         </table>
                                         <div class="pt-2" style="float: right;">
                                             <button type="button" class="btn btn-sm dt-button" id="My-btnUpdate" >수정</button>
@@ -94,7 +92,9 @@
         </div>
     </div>
     
+    
     <script>
+    
     $( document ).ready( function() {
     	$(document).on('click', '#My-btnUpdate', function(e){
     		e.preventDefault();
@@ -103,5 +103,7 @@
 	    });
     });
     </script>
+
+
 </body>
 </html>
