@@ -10,7 +10,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 public class TestAddressController {
-	@RequestMapping("/address")
+	@RequestMapping("/addressTest")
 	public String address() {
 		log.info("주소록 페이지 이동");
 		return "/test/address";
