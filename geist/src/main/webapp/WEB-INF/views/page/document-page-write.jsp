@@ -66,8 +66,7 @@
                             <!-- Write -->
                             <article>
                                 <div class="container" role="main" style="padding: 0px 100px 0px 100px;">
-                                    <form name="form" id="form" role="form" method="post"
-                                        action="${path}/#/.do">
+                                    <form name="form" id="form" role="form">
                                         <div class="mb-3">
                                             <label for="title">제목</label>
                                             <input type="text" class="form-control" name="title" id="NOTI_TITLE"
@@ -104,8 +103,15 @@
     <script type="text/javascript" src="/resources/js/main.js"></script>
     <script type="text/javascript" src="/resources/js/register.js"></script>
     <script type="text/javascript" src="/resources/js/My-register.js"></script>
-    
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+
 	<script>
+	
+	$(document).on('click', '#btnList', function(e){
+    	e.preventDefault();
+    	location.href="/noticeList/{page}";
+    });
+	
 	$(document).ready(function(){
         //ID가 wrtie_process를 클릭할떄
         $("#btnSave").click(function(){
@@ -127,10 +133,10 @@
                     return;
                 }
             }
-            //비동기 요청
+            
              $.ajax({
-                type : "post", //POST로
-                url : "board_wrtie", //URL 지정
+                type : "GET",
+                url : "/noticeWrite", //URL 지정
                 data : json, //전달값은 JSON
                 success : function(data) { //성공시
                     //받아온 데이터를 스위치문사용
@@ -138,11 +144,11 @@
                     switch (Number(data)) {
                     case -1:
                         alert("로그인 후 이용해주세요.");
-                        window.location.href = "로그인창jsp";
+                        window.location.href = "/page/login";
                         break;
                     case 0:
                         alert("정상적으로 등록이 되었습니다.");
-                        window.location.href = "index.jsp?contentPage=page/document-page.jsp";
+                        window.location.href = "/notice";
                         break;
 
                     default:
