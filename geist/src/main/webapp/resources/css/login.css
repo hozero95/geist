@@ -1,12 +1,10 @@
-body {
-    background-color: #F5F6F7;
-}
 .wrap {
     width: 100%;
     height: 100%;
     margin: 0 auto;
     font-size: 15px;
     font-family: sans-serif;
+    background-color: #F5F6F7;
 }
 
 .header {
@@ -88,17 +86,8 @@ body {
     color: #8e8e8e;
 }
 
-.footer {
-    position: absolute;
-    left : 17%;
-    bottom : 0px;
-    text-align: center;
-    color: #8e8e8e;
-    padding: 80% 20% 0% 20%;
-}
-
 .msg {
-  color: red;
-  text-align: center;
-  font-weight: bolder;
+    color: red;
+    margin : 3px;
+    font-size : 14px;
 }
