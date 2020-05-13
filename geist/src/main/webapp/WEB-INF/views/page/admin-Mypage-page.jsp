@@ -31,28 +31,27 @@
                             </div>
                             <!-- Write -->
                             <article>
-                                <c:forEach var="#" item="${list}">
                                 <div class="container" role="main">
                                     <h4 class="m-0 p-2">정보조회</h4>
                                     <div class="rounded">
                                         <div class="board-info-box">
-                                            <h1 class="m-0">${#.EMP_NAME} &nbsp; ${#.EMP_POSITION}</h1>
-                                            <h6 class="m-0 pt-3 pb-4">Geist회사 > ${#.DEPT_NO}</h6>
+                                            <h1 class="m-0">${#.emp_name} &nbsp; ${#.emp_position}</h1>
+                                            <h6 class="m-0 pt-3 pb-4">Geist회사 > ${#.dept_no}</h6>
                                         </div>
 
                                         <table class="type09">
                                             <thead>
                                                 <th scope="row">아이디</th>
-                                                <td>${#.EMP_ID}</td>
+                                                <td>${#.emp_id}</td>
                                             </thead>
                                             <tbody>
                                             <tr>
                                                 <th scope="row">사원번호</th>
-                                                <td>${#.EMP_NO}</td>
+                                                <td>${#.emp_no}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">직책</th>
-                                                <td>${#.EMP_POSITION}</td>
+                                                <td>${#.emp_position}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">급여</th>
@@ -64,26 +63,24 @@
                                             </tr>
                                             <tr>
                                                 <th scope="row">사내연락처</th>
-                                                <td>${#.EMP_TEL}</td>
+                                                <td>${#.emp_tel}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">개인연락처</th>
-                                                <td>${#.EMP_PHONE}</td>
+                                                <td>${#.emp_phone}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">생년월일</th>
-                                                <td>${#.EMP_BIRTH}</td>
+                                                <td>${#.emp_birth}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">주소</th>
-                                                <td>${#.EMP_ADDRESS}</td>
+                                                <td>${#.emp_address}</td>
                                             </tr>
                                             </tbody>
-                                            </c:forEach>
                                         </table>
                                         <div class="pt-2" style="float: right;">
                                             <button type="button" class="btn btn-sm dt-button" id="My-btnUpdate" >수정</button>
-                                            <button type="button" class="btn btn-sm dt-button" id="My-btndelete" >삭제</button>
                                         </div>
                                     </div>
                                 </div>
@@ -97,19 +94,38 @@
     </div>
     
     <script>
+    var MypageService = (function(){
+		function login(param, callback, error){
+			$.ajax({
+				type : 'Get',
+				url : '/mypage',
+				data : JSON.stringify(param),
+				contentType : "application/json; charset=utf-8",
+				success : function(result, status, xhr){
+					if(callback){
+						callback(result);
+					}
+				},
+				error : function(xhr, status, err){
+					if(error){
+						error(err);
+					}
+				}
+			});
+		}
+		
+		return{
+			login : login
+		}
+	})();
+    
     $( document ).ready( function() {
-    	$(document).on('click', '#My-btnUpdate', function(e){
-    		e.preventDefault();
-        	location.href="admin-Mypage-page-write.jsp";
-	    });
-    	$(document).on('click', '#My-btndelete', function(e){
-        	var returnValue = confirm('회원정보를 삭제하시겠습니까?')
-			if(returnValue=true){
-				alert("해당 회원정보가 정상적으로 삭제되었습니다.")
-				self.location.href ="${path}/#/.do" //삭제메소드 불러오기
-			}else{ 
-				alert("취소되었습니다.") };
-        });
+    	var MybtnUpdate = $(".My-btnUpdate");
+    	
+    	MybtnUpdate.on("click", function(){
+			location.href = "/mypage/{emp_no}";
+		});
+    	
     });
     </script>
 </body>
