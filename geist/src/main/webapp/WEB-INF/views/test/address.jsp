@@ -1,27 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-<!--
-	사원 관리 페이지
-	담당 : 김호영
--->
-
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>사원 관리 페이지</title>
+<title>주소록 페이지</title>
 </head>
 <body>
-	<h1>사원번호 : ${member.emp_no}</h1>
-	<input type="hidden" name="login_no" value="${member.emp_no}">
-	<button type="button" class="logoutBtn">로그아웃</button>
-	<hr>
-	
-	<button type="button" class="joinRequestBtn">가입 승인 페이지</button><br>
-	
-	<form id="searchForm" action="/empManage" method="get">
+
+
+	<form id="searchForm" action="/address" method="get">
+		<input type="text" name="keyword" value="">
+		<button class="search">Search</button>
+	</form><br>
+
+	<!-- 
+	<form id="searchForm" action="/address" method="get">
 		<select name="type">
 			<option value="">--</option>
 			<option value="N">이름</option>
@@ -31,37 +27,58 @@
 		<input type="text" name="keyword" value="">
 		<button class="search">Search</button>
 	</form><br>
-	
+	-->
 	<table border="1">
 		<thead>
 			<tr>
-				<th>사원 번호</th>
 				<th>이름</th>
+				<th>이메일</th>
+				<th>개인연락처</th>
+				<th>사내연락처</th>
 				<th>직급</th>
-				<th>입사일</th>
-				<th>부서</th>
-				<th>조회</th>
+				<th>부서번호</th>
 			</tr>
 		</thead>
 		<tbody class="table-body">
-		
+
 		</tbody>
 	</table>
-	
-	<div class="table-page">
-	
-	</div><br>
-	
+
+	<div class="table-page"></div>
+	<br>
+
 	<button type="button" class="mainBtn">메인으로 돌아가기</button>
 
-<script type="text/javascript">
-	var empManageService = (function(){
+	<script type="text/javascript">
+	var addressService = (function(){
 		function getList(param, callback, error){
 			var page = param.page;
-			$.getJSON("/empManage/" + page + ".json", function(data){
+			console.log("param.page === " + param.page);
+			$.getJSON("/address/" + page + ".json", function(data){
 				if(callback){
 					console.log("data.count === " + data.count)
+					console.log("data.page === " + data.page)
 					callback(data.count, data.list);
+				}
+			}).fail(function(xhr, status, err){
+				console.log("getList error !!!!!!!!!!")
+				if(error){
+					error();
+				}
+			});
+		}
+		
+		function searchTypeList(param, callback, error){
+			var page = param.page;
+			var type = param.type;
+			var keyword = param.keyword;
+			console.log("param.page === " + param.page);
+			console.log("param.keyword === " + param.keyword);
+			$.getJSON("/address/" + page + "/" + type + "/" + keyword + ".json", function(data){
+				if(callback){
+					console.log("data.count === " + data.count);
+					console.log("data.keyword === " + data.keyword);
+					callback(data.count, data.list, data.type, data.keyword);
 				}
 			}).fail(function(xhr, status, err){
 				if(error){
@@ -72,11 +89,14 @@
 		
 		function searchList(param, callback, error){
 			var page = param.page;
-			var type = param.type;
 			var keyword = param.keyword;
-			$.getJSON("/empManage/" + page + "/" + type + "/" + keyword + ".json", function(data){
+			console.log("param.page === " + param.page);
+			console.log("param.keyword === " + param.keyword);
+			$.getJSON("/address/" + page + "/" + keyword + ".json", function(data){
 				if(callback){
-					callback(data.count, data.list, data.type, data.keyword);
+					console.log("data.count === " + data.count);
+					console.log("data.keyword === " + data.keyword);
+					callback(data.count, data.list, data.keyword);
 				}
 			}).fail(function(xhr, status, err){
 				if(error){
@@ -84,29 +104,17 @@
 				}
 			});
 		}
-		
-		function detailView(param, callback, error){
-			var emp_no = param.emp_no;
-			$.getJSON("/empManage/detailView/" + emp_no + ".json", function(data){
-				if(callback){
-					callback(data);
-				}
-			}).fail(function(xhr, status, err){
-				if(error){
-					error();
-				}
-			});
-		}
-		
-		return{
+			
+		//리턴하여 사용할 함수 등록
+		return {
 			getList : getList,
-			searchList : searchList,
-			detailView : detailView
-		};
+			searchTypeList : searchTypeList,
+			searchList : searchList
+		}		
 	})();
 	
-	$(document).ready(function(){
-		var joinRequest = $(".joinRequestBtn");
+    //json으로 넘어온 데이터 사용
+	$(document).ready(function() {
 		var searchForm = $("#searchForm");
 		var search = $(".search");
 		var tbody = $(".table-body");
@@ -117,7 +125,7 @@
 		showList(1);
 		
 		function showList(page){
-			empManageService.getList({
+			addressService.getList({
 				page : page || 1
 			}, function(count, list){
 				if(page == -1){
@@ -130,37 +138,28 @@
 					return;
 				}
 				for(var i = 0, len = list.length || 0; i < len; i++){
+					console.log("list === " + list);
 					str += "<tr>";
-					str += "<td>" + list[i].emp_no + "</td>";
 					str += "<td>" + list[i].emp_name + "</td>";
+					str += "<td>" + list[i].emp_email + "</td>";
+					str += "<td>" + list[i].emp_phone + "</td>";
+					str += "<td>" + list[i].emp_tel + "</td>";
 					str += "<td>" + list[i].emp_position + "</td>";
-					str += "<td>" + list[i].emp_date + "</td>";
-					str += "<td>" + list[i].dept_name + "</td>";
-					str += "<td><button type='button' class='detailBtn'>조회</button></td>";
+					str += "<td>" + list[i].dept_no + "</td>";
 					str += "</tr>";
 				}
 				
 				tbody.html(str);
 				showListPage(count);
-				
-				$(".detailBtn").on("click", function(){
-					var tr = $(this).parent().parent();
-					var td = tr.children();
-					var emp_no = td.eq(0).text();
-					
-					var popWindow = window.open("/empManage/detailView?emp_no=" + emp_no, "사원 상세 보기", "width=500, height=600");
-					
-					location.reload();
-				});
 			});
 		}
 		
-		function showSearchList(page, type, keyword){
-			empManageService.searchList({
+		function showSearchTypeList(page, type, keyword){
+			addressService.searchTypeList({
 				page : page || 1,
 				type : type,
 				keyword : keyword
-			}, function(count, list, type, keyword){
+			},function(count, list, type, keyword){
 				if(page == -1){
 					pageNum = Math.ceil(count / 10.0);
 					showList(pageNum);
@@ -173,15 +172,48 @@
 				}
 				for(var i = 0, len = list.length || 0; i < len; i++){
 					str += "<tr>";
-					str += "<td>" + list[i].emp_no + "</td>";
 					str += "<td>" + list[i].emp_name + "</td>";
+					str += "<td>" + list[i].emp_email + "</td>";
+					str += "<td>" + list[i].emp_phone + "</td>";
+					str += "<td>" + list[i].emp_tel + "</td>";
 					str += "<td>" + list[i].emp_position + "</td>";
-					str += "<td>" + list[i].emp_date + "</td>";
-					str += "<td>" + list[i].dept_name + "</td>";
+					str += "<td>" + list[i].dept_no + "</td>";
 					str += "</tr>";
 				}
 				
 				$("select[name='type']").find("option[value='" + type + "']").attr("selected", true);
+				$("input[name='keyword']").val(keyword);
+				tbody.html(str);
+				showListPage(count);
+			});
+		}
+		
+		function showSearchList(page, keyword){
+			addressService.searchList({
+				page : page || 1,
+				keyword : keyword
+			},function(count, list, keyword){
+				if(page == -1){
+					pageNum = Math.ceil(count / 10.0);
+					showList(pageNum);
+					return;
+				}
+				var str = "";
+				if(list == null || list.length == 0){
+					alert("검색 결과가 없습니다.");
+					return;
+				}
+				for(var i = 0, len = list.length || 0; i < len; i++){
+					str += "<tr>";
+					str += "<td>" + list[i].emp_name + "</td>";
+					str += "<td>" + list[i].emp_email + "</td>";
+					str += "<td>" + list[i].emp_phone + "</td>";
+					str += "<td>" + list[i].emp_tel + "</td>";
+					str += "<td>" + list[i].emp_position + "</td>";
+					str += "<td>" + list[i].dept_no + "</td>";
+					str += "</tr>";
+				}
+				
 				$("input[name='keyword']").val(keyword);
 				tbody.html(str);
 				showListPage(count);
@@ -218,6 +250,26 @@
 			tpage.html(str);
 		}
 		
+		search.on("click", function(e){	//엔터로 변경해야 함
+			/*
+			if(!searchForm.find("option:selected").val()){
+				alert("검색 종류를 선택하세요.");
+				return false;
+			}
+		*/
+			if(!searchForm.find("input[name='keyword']").val()){
+				alert("키워드를 입력하세요.");
+				return false;
+			}
+			
+			//var type = $("select[name='type'] option:selected").val();
+			var keyword = $("input[name='keyword']").val();
+			
+			e.preventDefault();
+			//showSearchTypeList(1, type, keyword);
+			showSearchList(1, keyword);
+		});
+		
 		tpage.on("click", "li a", function(e){
 			e.preventDefault();
 			
@@ -227,31 +279,11 @@
 			showList(pageNum);
 		});
 		
-		search.on("click", function(e){
-			if(!searchForm.find("option:selected").val()){
-				alert("검색 종류를 선택하세요.");
-				return false;
-			}
-			if(!searchForm.find("input[name='keyword']").val()){
-				alert("키워드를 입력하세요.");
-				return false;
-			}
-			
-			var type = $("select[name='type'] option:selected").val();
-			var keyword = $("input[name='keyword']").val();
-			
-			e.preventDefault();
-			showSearchList(1, type, keyword);
-		});
-		
-		joinRequest.on("click", function(){
-			location.href = "/joinRequest";
-		});
-		
 		main.on("click", function(){
 			location.href = "/main";
 		});
 	});
-</script>
+    
+    </script>
 </body>
 </html>

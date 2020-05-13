@@ -8,7 +8,7 @@ import lombok.Data;
  */
 
 @Data
-public class AddressViewVO {
+public class AddressVO {
 	private String emp_name;		//이름
 	private String emp_email;		//이메일
 	private String emp_phone;		//개인 연락처
