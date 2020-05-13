@@ -12,7 +12,7 @@ import lombok.Data;
  */
 
 @Data
-public class MypageVO {
+public class MypageDTO {
 
 	private Long emp_no;
 	private Date emp_birth;
