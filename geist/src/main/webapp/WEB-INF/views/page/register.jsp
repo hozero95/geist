@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  <script type="text/JavaScript" src="/resources/css/register.js"></script>
+  <script type="text/JavaScript" src="/resources/js/register.js"></script>
   <link rel="stylesheet" href="/resources/css/register.css" />
   <title>Geist</title>
 </head>
@@ -16,7 +16,7 @@
     <div class="header">
       <h1>GEIST</h1>
     </div>
-    <form id="join-form" method="post" action="#">
+    <form id="join-form">
       <div class="container">
         <div id="id-row">
           <h3>
@@ -25,7 +25,7 @@
           <span class="ps-box">
             <input type="text" id="id" class="int" name="id" maxlength="20" />
           </span>
-          <span class="msg" id="id-error">아이디는 반드시 입력하세요</span>
+          <span class="msg" id="id-error">아이디는 반드시 입력하세요.</span>
         </div>
         <div id="pwd-row">
           <h3>
@@ -122,19 +122,10 @@
         </div>
       </div>
       <div class="btn-area">
-        <input type="submit" id="btn-join" class="btn-join" value="가 입 요 청" />
+        <input type="button" id="btn-join" class="btn-join" value="가 입 요 청" />
       </div>
     </form>
-    <div class="footer">
-      <div class="container-fluid">
-        <div class="d-flex justify-content-end small">
-          <div>
-            회사소개&emsp;|&emsp;제휴제안&emsp;|&emsp;이용약관&emsp;|&emsp;개인정보처리방침&emsp;
-            <br />Geist ™ 2020.mental.warr
-          </div>
-        </div>
-      </div>
-    </div>
+    
   </div>
   
 <script type="text/javascript">
@@ -182,7 +173,6 @@
 		var registerForm = $("#join-form");
 		var registerBtn = $("#btn-join");
 		var inputId = $("#id");
-		var idCheck = true;
 		
 		inputId.blur(function() {
 			var req_id = $("input[name='id']").val();
@@ -190,26 +180,40 @@
 			registerService.checkId({
 				req_id : req_id
 			}, function(data) {
-				if(data) {
-					idCheck = false;
+					
+				if(data) { // 사용가능한 아이디 일때
 					$("#id-error").text('사용가능한 아이디 입니다.').addClass("msgOk").show();
-				} else {
+
+				} else { // 사용중인 아이디 일때
 					$("#id-error").text('이미 사용 중인 아이디 입니다.').show();
+					return false;
 				}
-				$("id-error").hide().removeClass("msgOk");
+				
+				$("#id-error").removeClass("msgOk").text("아이디는 반드시 입력하세요.").hide();
 			})
-		});
+			
+			
+		});		
 		
 		registerBtn.on("click", function() {
 			var req_id = $("input[name='id']").val();
-			var req_pw = $("input[name='name']").val();
+			var req_pw = $("input[name='pwd2']").val();
+		 	var req_name = $("input[name='name']").val();
 			var req_email = $("input[name='email']").val();
-			var req_birth = $("input[name='year']").val();
-			req_birth += $("select").val();
-			req_birth += $("input[name='day']").val();
+			
+			var req_year = $("input[name='year']").val();
+			var req_month = $("select").val();
+			var req_day = $("input[name='day']").val();
+			
+			if($("input[name='day']").val().length == 1) {
+				var day = '0';
+				req_day = day.concat($("input[name='day']").val());
+			}
+			
+			var req_birth = req_year.concat("-", req_month, "-", req_day);
+			
 			var req_phone = $("input[name='phone']").val();
-			var req_address = $("input[name='postcode']").val();
-			req_address += $("input[name='addr1']").val();
+			var req_address = $("input[name='addr1']").val();
 			req_address += $("input[name='addr2']").val();
 			req_address += $("input[name='addr-etc']").val();
 			
@@ -223,7 +227,7 @@
 				req_address : req_address
 			}, function(result) {
 				alert(result);
-				location.ref = "/login";
+				location.href = "/login";
 			});
 		});
 	});

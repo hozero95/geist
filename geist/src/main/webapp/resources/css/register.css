@@ -1,9 +1,13 @@
+body {
+	  background-color: #F5F6F7;
+}
 .wrap {
   max-width: 500px;
   margin: 0 auto;
   font-size: 14px;
   font-family: sans-serif;
   color: #707070;
+
 }
 
 .header {
