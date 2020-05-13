@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.geist.myPage.domain.MypageVO;
+import com.geist.myPage.domain.MypageDTO;
 import com.geist.myPage.mapper.MypageMapper;
 
 import lombok.Setter;
@@ -26,21 +26,21 @@ public class MypageMapperTests {
 //	@Test
 	public void read() {
 		Long targetEmpNo = 101L;
-		MypageVO vo = mapper.read(targetEmpNo);
+		MypageDTO dto = mapper.read(targetEmpNo);
 		
-		log.info(vo);
+		log.info(dto);
 	}
 	
 //	@Test
 	public void update() {
 		Long targetEmpNo = 101L;
-		MypageVO vo = mapper.read(targetEmpNo);
-		vo.setEmp_pw("aaa83");
-		vo.setEmp_phone("010-0000-0002");
-		vo.setEmp_tel("02-321-1002");
-		vo.setEmp_address("부천시 원미구");
+		MypageDTO dto = mapper.read(targetEmpNo);
+		dto.setEmp_pw("aaa83");
+		dto.setEmp_phone("010-0000-0002");
+		dto.setEmp_tel("02-321-1002");
+		dto.setEmp_address("부천시 원미구");
 		
-		int count = mapper.update(vo);
+		int count = mapper.update(dto);
 		log.info("업데이트 :  " + count);
 	}
 }
