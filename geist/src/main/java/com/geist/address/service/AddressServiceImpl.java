@@ -1,11 +1,9 @@
 package com.geist.address.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.geist.address.domain.AddressViewVO;
+import com.geist.address.domain.AddressDTO;
 import com.geist.address.mapper.AddressMapper;
 import com.geist.main.domain.Criteria;
 
@@ -24,7 +22,13 @@ public class AddressServiceImpl implements AddressService {
 	private AddressMapper mapper;
 	
 	@Override
-	public List<AddressViewVO> getList(Criteria cri) {
-		return mapper.getListWithPaging(cri);
+	public AddressDTO getList(Criteria cri) {
+		return new AddressDTO(mapper.getCount(cri), mapper.getListWithPaging(cri));
+	}
+	
+	// 주소록에 검색 조건을 선택X, 이름검색이 default
+	@Override
+	public AddressDTO searchList(Criteria cri) {
+		return new AddressDTO(mapper.getCount(cri), mapper.getListWithPaging(cri), cri);
 	}
 }

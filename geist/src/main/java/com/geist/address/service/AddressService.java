@@ -1,8 +1,6 @@
 package com.geist.address.service;
 
-import java.util.List;
-
-import com.geist.address.domain.AddressViewVO;
+import com.geist.address.domain.AddressDTO;
 import com.geist.main.domain.Criteria;
 
 /* *
@@ -11,5 +9,9 @@ import com.geist.main.domain.Criteria;
  */
 
 public interface AddressService {
-	public List<AddressViewVO> getList(Criteria cri);
+	public AddressDTO getList(Criteria cri);
+	
+	// 주소록에 검색 조건을 선택X, 이름검색이 default
+	public AddressDTO searchList(Criteria cri);
+	
 }

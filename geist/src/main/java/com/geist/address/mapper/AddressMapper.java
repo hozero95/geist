@@ -2,7 +2,7 @@ package com.geist.address.mapper;
 
 import java.util.List;
 
-import com.geist.address.domain.AddressViewVO;
+import com.geist.address.domain.AddressVO;
 import com.geist.main.domain.Criteria;
 
 /* *
@@ -10,8 +10,10 @@ import com.geist.main.domain.Criteria;
  * 담당 : 김현선
  */
 
-public interface AddressMapper {
-	public List<AddressViewVO> getList();
+public interface AddressMapper {		
+	public int getCount(Criteria cri);
 	
-	public List<AddressViewVO> getListWithPaging(Criteria cri);
+	public List<AddressVO> getListWithPaging(Criteria cri);
+	
+	
 }

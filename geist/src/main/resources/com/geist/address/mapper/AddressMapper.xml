@@ -6,28 +6,30 @@
 <!-- 
 	주소록 조회 페이지
 	담당 : 김현선
-	
-	private String emp_name;		//이름
-	private String emp_email;		//이메일
-	private String emp_phone;		//개인 연락처
-	private String emp_tel;			//사내 연락처
-	private String emp_position;	//직책
-	private String dept_no;			//부서명
  -->
 
-<mapper namespace="com.geist.address.mapper.AddressMapper">
-	<select id="getList" resultType="com.geist.address.domain.AddressViewVO">
-		<![CDATA[
-			SELECT
-				emp_name, emp_email, emp_phone, emp_tel, emp_position, dept_no
-			FROM
-				employee
-			WHERE
-				emp_no > 0
-		]]>
-	</select>
+<mapper namespace="com.geist.address.mapper.AddressMapper">	
+	<sql id="criteria">	
+		<trim prefix="AND (" suffix=")">
+			<choose>
+				<when test="keyword != null">
+					emp_name like '%'||#{keyword}||'%'
+				</when>
+			</choose>
+		</trim>	
+	</sql>
 	
-	<select id="getListWithPaging" resultType="com.geist.address.domain.AddressViewVO">
+	<sql id="criteriaKeyword">	
+		<trim prefix="WHERE (" suffix=")">
+			<choose>
+				<when test="keyword != null">
+					emp_name like '%'||#{keyword}||'%'
+				</when>
+			</choose>
+		</trim>	
+	</sql>
+	
+	<select id="getListWithPaging" resultType="com.geist.address.domain.AddressVO">
 		<![CDATA[
 			SELECT
 				emp_name, emp_email, emp_phone, emp_tel, emp_position, dept_no
@@ -38,10 +40,21 @@
 				FROM
 					employee
 				WHERE
-					rownum <= #{pageNum} * #{amount}
+					rownum <= #{pageNum} * #{amount} 
+				]]>
+		<include refid="criteria"></include>
+		<![CDATA[						
 			)
 			WHERE
 				rn > (#{pageNum} - 1) * #{amount}
 		]]>
 	</select>
+	
+	<select id="getCount" resultType="int">
+		<![CDATA[
+		SELECT count(emp_no) FROM employee
+		]]>
+		<include refid="criteriaKeyword"></include>
+	</select>
+		
 </mapper>

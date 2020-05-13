@@ -94,5 +94,6 @@
             $('div.app-page-title').css('padding','50px 0px 30px 0px');
         });
     </script>
+    
 </body>
 </html>

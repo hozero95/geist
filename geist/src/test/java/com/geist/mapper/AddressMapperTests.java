@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.geist.address.domain.AddressViewVO;
+import com.geist.address.domain.AddressVO;
 import com.geist.address.mapper.AddressMapper;
 import com.geist.main.domain.Criteria;
 
@@ -29,17 +29,17 @@ public class AddressMapperTests {
 	
 //	@Test
 	public void getList() {
-		List<AddressViewVO> addressView = mapper.getList();
+//		List<AddressVO> addressView = mapper.getList();
 //		for(AddressViewVO view : addressView) {
 //			log.info(view);
 //		}
-		addressView.forEach(list -> log.info(list));
+//		addressView.forEach(list -> log.info(list));
 	}
 	
 	@Test
 	public void paging() {
 		Criteria cri = new Criteria();
-		List<AddressViewVO> list = mapper.getListWithPaging(cri);
+		List<AddressVO> list = mapper.getListWithPaging(cri);
 		list.forEach(table -> log.info(table));
 	}
 }

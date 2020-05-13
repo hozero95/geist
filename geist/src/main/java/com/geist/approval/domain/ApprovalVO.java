@@ -2,7 +2,7 @@ package com.geist.approval.domain;
 
 import java.util.Date;
 
-import com.geist.address.domain.AddressViewVO;
+import com.geist.address.domain.AddressVO;
 
 import lombok.Data;
 
