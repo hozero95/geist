@@ -83,7 +83,7 @@
                                         <input type="hidden" id="noti_no" name="board_seq" value="${noti_no}"/> <!-- 게시글 번호 -->
                                     </form>
                                     <div class="pt-2" style="float: right;">
-                                        <button type="button" class="btn btn-sm dt-button" id="btnSave" >저장</button>
+                                        <button type="button" class="btn btn-sm dt-button" id="btnSave" onclick="javascript:updateNotice();">저장</button>
                                         <button type="button" class="btn btn-sm dt-button" id="btnList" onclick="javascript:goNoticeList();" >목록</button>
                                     </div>
                                 </div>
@@ -116,7 +116,7 @@
     	/** 게시판 - 상세 조회  */
     	function getNoticeModify(boardSeq){
     		
-    		var boardSeq = $("#board_seq").val();
+    		var noti_no = $("#noti_no").val();
     		
     		if(boardSeq != ""){
     			
@@ -214,17 +214,6 @@
     		}
     	}
     	
-    </script>
-    <script>
-        $(document).on('click', '#btnSave', function(e){
-            e.preventDefault();
-            $("#form").submit();
-        });
-
-        $(document).on('click', '#btnList', function(e){
-        	e.preventDefault();
-        	location.href="index.jsp?contentPage=page/document-page.jsp";
-        });
     </script>
 </body>
 </html>
