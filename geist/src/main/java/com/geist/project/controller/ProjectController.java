@@ -34,27 +34,25 @@ public class ProjectController {
 
 		private ProjectService service;
 		
-		@GetMapping(value = "/projectList/{dept_no}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-		public ResponseEntity<List<ProjectVO>> projectList(@PathVariable("page") int page, @PathVariable("dept_no") int dept_no){
+		//프로젝트의 목록을 보여주는 부분
+		@GetMapping(value = "/projectList/{dept_no}/{page}",
+				produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+		public ResponseEntity<List<ProjectVO>> projectList(@PathVariable("page") int page,
+				@PathVariable("dept_no") int dept_no){
 			ProjectCriVO vo = new ProjectCriVO(page, 10);
 			return new ResponseEntity<List<ProjectVO>>(service.projectList(vo), HttpStatus.OK);
 		}
 		
-		@PostMapping(value = "/projectWrite", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
+		//프로젝트를 작성하는 부분
+		@PostMapping(value = "/projectWrite", consumes = "application/json",
+				produces = {MediaType.TEXT_PLAIN_VALUE})
 		public ResponseEntity<String> projectWrite(@RequestBody ProjectVO vo){
 			
+			//로그를 찍는 부분
 			log.info("projectWrite Controller");
 			
+			//작성시 projectWrite를 통해 내용을 저장하고 projectMWrite를 통해 부서 번호를 할당한다
 			service.projectWrite(vo);
-			
-			return new ResponseEntity<>(HttpStatus.OK);
-		}
-		
-		@PostMapping(value = "/projectMWrite", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
-		public ResponseEntity<String> projectMWrite(@RequestBody ProjectVO vo){
-			
-			log.info("projectMWrite Controller");
-			
 			service.projectMWrite(vo);
 			
 			return new ResponseEntity<>(HttpStatus.OK);

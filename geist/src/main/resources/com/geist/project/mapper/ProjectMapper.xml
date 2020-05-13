@@ -45,7 +45,7 @@ constraint fk_proj_management_dept_no foreign key(dept_no) references department
 
 <insert id = "projectWrite">
 	insert into project(proj_no, proj_name, proj_agency, proj_start, proj_end)
-	values (#{proj_no}, #{proj_name}, #{proj_agency}, #{proj_start}, #{proj_end})
+	values (project_seq.nextval, #{proj_name}, #{proj_agency}, #{proj_start}, #{proj_end})
 </insert>
 
 <insert id = "projectMWrite">
