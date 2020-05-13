@@ -125,7 +125,7 @@
 							<div class="buttoncard" onclick="ChangeMpage(8)">
 								<div class="card-header"
 									style="height: 5px; background-color: #2ac1bc;"></div>
-								<span> <a href="#"><img src="/resources/img/main_ui/book.png"></a>
+								<span> <a href="address"><img src="/resources/img/main_ui/book.png"></a>
 									<h5>주소록</h5>
 								</span>
 							</div>

@@ -34,11 +34,11 @@ function ChangeMpage(value){
     }
     else if(value == "8") // nav 버튼 클릭시 주소록 화면이동
     {
-        location.href="index.jsp?contentPage=./page/address-page.jsp";
+    	location.href="address";
     }
     else if(value == "9") // nav 버튼 클릭시 마이페이지 화면이동
     {
-        location.href="index.jsp?contentPage=./page/Mypage-page.jsp";
+    	location.href="myPage";
     }
     else if(value == "10") // nav 버튼 클릭시 관리자 회원조회 화면이동
     {
