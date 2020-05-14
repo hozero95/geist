@@ -67,7 +67,7 @@
                                     <div id="foo-table_wrapper" class="">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <table id="foo-table" class="table table-bordered dataTable" role="grid"
+                                                <table id="Notice-table" class="table table-bordered dataTable" role="grid"
                                                     aria-describedby="foo-table_info">
                                                     <thead>
                                                         <tr role="row">
@@ -103,9 +103,9 @@
     <script type="text/javascript" src="/resources/js/My-register.js"></script>
 
     <!--js-->
-    <script>
+    <script>	
     	$(document).ready(function() {
-            $('#foo-table').DataTable( {
+			$('#Notice-table').DataTable( {
                 "info" :  false,
                 lengthChange: false,
                 pageLength: 5,
@@ -115,21 +115,17 @@
                 serverSide: false,
                 searching: true,
                 ajax : {
-                    "url":"#.json",
-                    //"type":"POST",
-                    "dataSrc": ''
+                    "url":"notice/noticeList/1",
+                    "type":"GET",
+                    "dataSrc": function (d) {
+                        	   var data = d.data;
+                        	   return data;
                     }
                 },
-                columns : [
-                    {"data": "NOTI_NO"},
-                    {"data": "NOTI_TITLE"
-                    "render": function(data, type, row , meta){
-                    	if(type == 'display'){
-                    		data = '<a href="/'+row.NOTI_TITLE+'">'+data+'</a>';
-                    	}
-                    	return data;
-                    }	},
-                    {"data": "NOTI_DATE"}
+                columns: [
+                    {"data": "noti_no"},
+                    {"data": "noti_title"}, 
+                    {"data": "noti_date"}
                 ],
                 dom: 'Bfrtip',
                 buttons: [
@@ -137,20 +133,17 @@
                         text: '글쓰기',
                         action: function ( e, dt, node, config ) {
                         	e.preventDefault();
-            	        	location.href="/document-page-write";
+            	        	location.href="/noticeWrite";
                         }
                     }
                 ]
-                
-                
-            
             });
+    		
             $('div').removeClass('form-inline');
             $('div.app-page-title').css('margin','0px 0px 0px');
             $('div.app-page-title').css('padding','50px 0px 30px 0px');
             
         });
-
     </script>
 </body>
 </html>
