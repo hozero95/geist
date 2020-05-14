@@ -1,6 +1,6 @@
 package com.geist.myPage.service;
 
-import com.geist.myPage.domain.MypageVO;
+import com.geist.myPage.domain.MypageDTO;
 
 /* *
  * 마이페이지
@@ -9,7 +9,7 @@ import com.geist.myPage.domain.MypageVO;
 
 public interface MypageService {
 
-	public MypageVO get(Long emp_no);
+	public MypageDTO get(Long emp_no);
 	
-	public int modify(MypageVO user);
+	public int modify(MypageDTO user);
 }

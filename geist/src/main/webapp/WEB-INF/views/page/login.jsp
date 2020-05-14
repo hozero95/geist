@@ -68,7 +68,7 @@
             return {
                 login : login
             }
-        });
+        })();
         
         
         $(function() {
@@ -109,7 +109,7 @@
                     emp_pw : emp_pw
                 }, function(result) {
                     if(result == 'success') {
-                        location.href = "/index";
+                        location.href = "/main";
                     } else {
                         alert("로그인 정보가 일치하지 않습니다.");
                     }
