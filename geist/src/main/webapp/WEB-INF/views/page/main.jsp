@@ -111,7 +111,7 @@
 							<div class="buttoncard" onclick="ChangeMpage(4)">
 								<div class="card-header"
 									style="height: 5px; background-color: #2ac1bc;"></div>
-								<span> <a href="#" id="Project-nav"><img src="/resources/img/main_ui/ink.png"></a>
+								<span> <a href="approvalRequest" id="Project-nav"><img src="/resources/img/main_ui/ink.png"></a>
 									<h5>전자결재</h5>
 								</span>
 							</div>

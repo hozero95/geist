@@ -34,7 +34,7 @@ public class MypageController {
 	}
 	
 	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH},
-			value = "/{emp_no}", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
+			value = "/edit/{emp_no}", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
 	/* consumes = "application/json"
 		: client가 보내는 content-type이 'consumes'에서 명시한 media-type과 동일해야 한다
 	 */

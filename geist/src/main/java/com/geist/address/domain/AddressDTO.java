@@ -13,7 +13,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class AddressDTO {
-	private String type;
 	private String keyword;
 	private int count;
 	private List<AddressVO> list;
@@ -26,7 +25,6 @@ public class AddressDTO {
 	public AddressDTO(int count, List<AddressVO> list, Criteria cri) {
 		this.count = count;
 		this.list = list;
-		this.type = cri.getType();
 		this.keyword = cri.getKeyword();
 	}
 }
