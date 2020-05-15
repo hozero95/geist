@@ -122,6 +122,7 @@
     <script type="text/javascript" src="/resources/js/main.js"></script>
     <script type="text/javascript" src="/resources/js/register.js"></script>
     <script type="text/javascript" src="/resources/js/My-register.js"></script>
+    <script type="text/javascript" src="/resources/js/approvalRequest.js"></script>
     
     <!--js-->
     <script>
