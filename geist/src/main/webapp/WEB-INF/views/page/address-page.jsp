@@ -111,6 +111,7 @@
                                                         </tr>
                                                     </tbody>
                                                 </table>
+                                                <div class="table-page"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -134,10 +135,12 @@
     
     <script>
     	$(document).ready(function() {
+    		/*
         	$("#foo-table").DataTable({
                 "info" :  false,
                 lengthChange: false,
         	});
+    		*/
             $('div').removeClass('form-inline');
             $('div.app-page-title').css('margin','0px 0px 0px');
             $('div.app-page-title').css('padding','50px 0px 30px 0px');
