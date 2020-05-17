@@ -101,15 +101,10 @@ public class ApprovalServiceImpl implements ApprovalService {
 	public ApprovalAgrDTO agreeListWithPaging(Criteria cri, Long emp_no) {
 		return new ApprovalAgrDTO(mapper.getCount(emp_no), mapper.agreeListWithPaging(cri, emp_no));	
 	}
-
-//	@Override
-//	public List<ApprovalVO> agreeListDetail(Long app_no, Long emp_no) {
-//		return mapper.agreeListDetail(app_no, emp_no);	
-//	}
 	
 	@Override
-	public ApprovalVO agreeListDetail(Long app_no, Long emp_no) {
-		return mapper.agreeListDetail(app_no, emp_no);	
+	public ApprovalAgrDTO agreeDetail(Long app_no, Long emp_no) {
+		return mapper.agreeDetail(app_no, emp_no);	
 	}
 
 }

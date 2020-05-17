@@ -105,6 +105,22 @@ public class MainController {
 		return "/page/approval-admit";
 	}
 	
+	@RequestMapping("/approvalAdmit/detail/1")
+	public String approvalAdmitClass1() {
+		log.info("주간업무 보고서 페이지 이동");
+		return "/page/re-weekly-doc";
+	}
+	@RequestMapping("/approvalAdmit/detail/2")
+	public String approvalAdmitClass2() {
+		log.info("휴가 페이지 이동");
+		return "/page/re-leave-doc";
+	}
+	@RequestMapping("/approvalAdmit/detail/3")
+	public String approvalAdmitClass3() {
+		log.info("사직 신청서 페이지 이동");
+		return "/page/re-resignation-doc";
+	}
+	
 	@RequestMapping("/address")
 	public String address() {
 		log.info("주소록 페이지 이동");

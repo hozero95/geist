@@ -90,7 +90,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="table-body">
-                                                <!-- 
+                                                <!-- -->
                                                     <tr role="row" class="odd">
                                                         <td class="sorting_1">2020/04/13</td>
                                                         <td><a href="./page/re-weekly-doc.jsp" >주간업무 보고서</a></td>
@@ -157,7 +157,7 @@
                                                         <td>이연수 </td>
                                                         <td>승인 </td>
                                                     </tr>
-                                                     -->
+                                                     
                                                 </tbody>
                                             </table>
                                             <div class="table-page"></div>
@@ -182,19 +182,14 @@
     <script type="text/javascript" src="/resources/js/main.js"></script>
     <script type="text/javascript" src="/resources/js/register.js"></script>
     <script type="text/javascript" src="/resources/js/My-register.js"></script>
+    
+    <script type="text/javascript" src="/resources/js/approvalAdmit.js"></script>
+    <!-- 
 	<script type="text/javascript" src="/resources/js/approvalAdmit.js"></script>
-
+ -->
     <!--js-->
     <script>
 		$(document).ready(function() {
-	        $("#foo-table").DataTable({
-            // 표시 건수기능 숨기기
-            lengthChange: false,
-            // 검색 기능 숨기기
-            searching: false,
-            // 정보 표시 숨기기
-            info: false,
-        	});
 	            
 	        $('div').removeClass('form-inline');
 	        

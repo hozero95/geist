@@ -46,7 +46,7 @@
 		    )
 	</insert>
 	
-	<update id="appAgree">
+	<update id="appAdmit">
 		UPDATE 
 			app_agree 
 		SET 
@@ -145,7 +145,36 @@
 		]]>
 	</select>
 	
-	<select id="agreeListDetail" resultType="com.geist.approval.domain.ApprovalVO">
+	<resultMap id="agreeDetailResult" type="com.geist.approval.domain.ApprovalAgrDTO">
+		<result property="app_no" column="app_no" />
+		<result property="dept_name" column="dept_name" />
+		<result property="emp_position" column="emp_position" />
+		<result property="emp_name" column="emp_name" />
+		<result property="app_title" column="app_title" />
+		<result property="app_date" column="app_date" />
+	</resultMap>
+	
+	<select id="agreeDetail" resultType="com.geist.approval.domain.ApprovalAgrDTO">
+		<![CDATA[
+			SELECT 
+				dept_name, emp_position, emp_name, app_title, app_date
+			FROM (
+			    SELECT 
+			        d.dept_name, e.emp_position, e.emp_name, a.app_title, to_char(app_date, 'YYYY-MM-DD') app_date
+			    FROM 
+			        approval a, employee e, app_request arq, app_agree agr, department d
+			    WHERE 
+			        e.emp_no = arq.emp_no 
+			        and e.dept_no = d.dept_no
+			        and agr.app_no = arq.app_no   
+			        and agr.app_no = a.app_no  
+			        and agr.app_no = #{app_no}
+			        and agr.emp_no = #{emp_no} 
+			)
+		]]>
+	</select>
+	
+	<select id="agreeListDetail_before" resultType="com.geist.approval.domain.ApprovalVO">
 			SELECT 
 				a.app_no, a.app_class, a.app_title, a.app_date, a.app_status
 			FROM 
