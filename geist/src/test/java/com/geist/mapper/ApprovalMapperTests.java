@@ -65,15 +65,15 @@ public class ApprovalMapperTests {
 	
 	@Test
 	public void agreeReq() {
-		ApprovalWholeDTO dto = new ApprovalWholeDTO();		
+//		ApprovalWholeDTO dto = new ApprovalWholeDTO();		
 		ApprovalAgrVO agrVo = new ApprovalAgrVO();
-		List<ApprovalAgrVO> list = dto.getManager_no();
+//		List<ApprovalAgrVO> list = dto.getManager_no();
 		
-		for(int i = 0; i < list.size(); i++) {
-			log.info(list.get(i).getClass().getName());
+//		for(int i = 0; i < list.size(); i++) {
+//			log.info(list.get(i).getClass().getName());
 		
 //			agrVo.setEmp_no(Long.parseLong(list.get(i)));
-		}
+//		}
 
 //		agrVo.setApp_no(2005071061L);
 //		agrVo.setEmp_no(101L);
@@ -93,8 +93,8 @@ public class ApprovalMapperTests {
 	public void reqList() {
 		Long targetNo = 106L;
 		
-		List<ApprovalVO> list = mapper.reqList(targetNo);
-		list.forEach(table -> log.info(table));
+//		List<ApprovalVO> list = mapper.reqList(targetNo);
+//		list.forEach(table -> log.info(table));
 	}
 	
 //	@Test
@@ -102,8 +102,8 @@ public class ApprovalMapperTests {
 		Long targetNo = 106L;
 		
 		Criteria cri = new Criteria();
-		List<ApprovalVO> list = mapper.reqListWithPaging(cri, targetNo);
-		list.forEach(table -> log.info(table));
+//		List<ApprovalVO> list = mapper.reqListWithPaging(cri, targetNo);
+//		list.forEach(table -> log.info(table));
 	}
 	
 //	@Test

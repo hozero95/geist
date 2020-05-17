@@ -25,17 +25,16 @@ public interface ApprovalMapper {
 	public void appAgrCreate(@Param("agrVo") ApprovalAgrVO agrVo, @Param("emp_no") Long emp_no);
 	
 	// 결재 승인, 반려 update
-	public void appAgree(ApprovalAgrVO agrVo);
+	public void appAdmit(ApprovalAgrVO agrVo);
 		
 	// 최종 상태 update
 	public void finalState(Long app_no);
 
 	
 	// 결재 조회
-	public List<ApprovalVO> reqList(Long emp_no);	
 	
 	// 결재 조회 페이징
-	public List<ApprovalVO> reqListWithPaging(
+	public List<ApprovalReqVO> reqListWithPaging(
 			@Param("cri") Criteria cri, 
 			@Param("emp_no") Long emp_no);
 	
@@ -45,16 +44,17 @@ public interface ApprovalMapper {
 			@Param("emp_no") Long emp_no);
 	
 	// 결재 승인 조회
-	public List<ApprovalVO> agreeList(Long emp_no);	
 	
 	// 결재 승인 페이징
-	public List<ApprovalVO> agreeListWithPaging(
+	public List<ApprovalAgrVO> agreeListWithPaging(
 			@Param("cri") Criteria cri, 
 			@Param("emp_no") Long emp_no);
 	
 	// 결재 상세 조회
-	public List<ApprovalVO> agreeListDetail(
+	public ApprovalVO agreeListDetail(
 			@Param("app_no") Long app_no, 
 			@Param("emp_no") Long emp_no);
+
+	public int getCount(Long emp_no);
 
 }

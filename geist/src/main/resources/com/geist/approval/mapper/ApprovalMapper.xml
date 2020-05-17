@@ -81,11 +81,11 @@
 	<select id="reqListWithPaging" resultType="com.geist.approval.domain.ApprovalVO">
 		<![CDATA[
 			SELECT
-				app_date, app_title, emp_name, app_status
+				app_no, app_date, app_title, emp_name, app_status
 			FROM
 			(
 				SELECT /*+ INDEX_ASC(app_request pk_app_request) */
-					rownum rn, a.app_date, a.app_title, e.emp_name, a.app_status
+					rownum rn, arq.app_no, to_char(app_date, 'YYYY-MM-DD') app_date, a.app_title, e.emp_name, a.app_status
 				FROM
 					approval a, employee e, app_request arq
 				WHERE
@@ -126,11 +126,11 @@
 	<select id="agreeListWithPaging" resultType="com.geist.approval.domain.ApprovalVO">
 		<![CDATA[
 			SELECT
-				app_date, app_title, emp_name, app_status
+				app_no, app_class, app_date, app_title, emp_name, app_status
 			FROM
 			(
 				SELECT /*+ INDEX_ASC(app_agree pk_app_agree) */
-					rownum rn, a.app_date, a.app_title, e.emp_name, a.app_status
+					rownum rn, arq.app_no, a.app_class, to_char(app_date, 'YYYY-MM-DD') app_date, a.app_title, e.emp_name, a.app_status
 				FROM
 					approval a, employee e, app_request arq, app_agree agr
 				WHERE
@@ -158,4 +158,14 @@
 				and agr.app_no = #{app_no}
 	</select>
 	
+	<select id="getCount" resultType="int">
+		SELECT 
+			count(*) 
+		FROM 
+			approval a, employee e, app_request arq
+ 		WHERE
+ 			e.emp_no = arq.emp_no 
+ 			and arq.app_no = a.app_no 
+ 			and arq.emp_no = #{emp_no}		
+	</select>
 </mapper>
