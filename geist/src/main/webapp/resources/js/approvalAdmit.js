@@ -4,18 +4,15 @@
  */
 
 console.log("approvalAdmit.js")
+console.log("2")
 
 var approvalAdmitService = (function(){
 	function getList(param, callback, error){
 		var page = param.page;
 		var emp_no = param.emp_no;
-		console.log("approvalSearchService.getList() page === " + page);
-		console.log("approvalSearchService.getList() emp_no === " + emp_no);
 		
 		$.getJSON("/approvalAdmit/" + page + "/" + emp_no + ".json", function(data){
 			if(callback){
-				console.log("data.count === " + data.count)
-				console.log("data.page === " + data.page)
 				callback(data.count, data.list);
 			}
 		}).fail(function(xhr, status, err){
@@ -64,6 +61,7 @@ $(document).ready(function() {
 			page : page || 1,
 			emp_no : emp_no
 		}, function(count, list){			
+			console.log(list)
 			if (page == -1) {
 				pageNum = Math.ceil(count / 10.0);
 				showList(pageNum);
@@ -147,16 +145,13 @@ $(document).ready(function() {
 		
 		var app_no = $(this).children().eq(0).val();
 		var app_class = $(this).children().eq(1).val();
-		console.log("app_no === " + app_no);
-		console.log("app_class === " + app_class);
 				
 		if(app_class === "1"){			
-			location.href = "/approvalAdmit/detail/1?app_no=" + app_no + "&emp_no=" + emp_no;
+			location.href = "/approval/detail/1?app_no=" + app_no + "&emp_no=" + emp_no;
 		}else if(app_class === "2"){
-			location.href = "/approvalAdmit/detail/2?app_no=" + app_no + "&emp_no=" + emp_no;
+			location.href = "/approval/detail/2?app_no=" + app_no + "&emp_no=" + emp_no;
 		}else if(app_class === "3"){
-			location.href = "/approvalAdmit/detail/3?app_no=" + app_no + "&emp_no=" + emp_no;
+			location.href = "/approval/detail/3?app_no=" + app_no + "&emp_no=" + emp_no;
 		}
 	});
-	
 });

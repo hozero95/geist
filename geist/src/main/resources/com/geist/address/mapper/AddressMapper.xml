@@ -35,7 +35,7 @@
 				emp_name, emp_email, emp_phone, emp_tel, emp_position, dept_no
 			FROM
 			(
-				SELECT /*+ INDEX_ASC(employee pk_employee) */
+				SELECT /*+ INDEX_DESC(employee pk_employee) */
 					rownum rn, emp_name, emp_email, emp_phone, emp_tel, emp_position, dept_no
 				FROM
 					employee
@@ -47,6 +47,7 @@
 			)
 			WHERE
 				rn > (#{pageNum} - 1) * #{amount}
+			ORDER BY emp_name ASC
 		]]>
 	</select>
 	

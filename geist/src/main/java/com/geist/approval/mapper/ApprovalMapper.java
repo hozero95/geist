@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.geist.approval.domain.ApprovalAgrDTO;
 import com.geist.approval.domain.ApprovalAgrVO;
+import com.geist.approval.domain.ApprovalReqDTO;
 import com.geist.approval.domain.ApprovalReqVO;
 import com.geist.approval.domain.ApprovalVO;
 import com.geist.main.domain.Criteria;
@@ -16,46 +17,43 @@ import com.geist.main.domain.Criteria;
  */
 
 public interface ApprovalMapper {
-	// 결재문서 생성 insert
+	// 결재 문서 생성 insert
 	public int appCreate(ApprovalVO vo);
 		
-	// 결재요청자 insert
+	// 결재 요청자 insert
 	public int appReqCreate(ApprovalReqVO reqVo);
 		
-	// 결재승인자들 insert
+	// 결재 승인자들 insert
 	public void appAgrCreate(@Param("agrVo") ApprovalAgrVO agrVo, @Param("emp_no") Long emp_no);
-	
-	// 결재 승인, 반려 update
-	public void appAdmit(ApprovalAgrVO agrVo);
-		
-	// 최종 상태 update
-	public void finalState(Long app_no);
 
 	
-	// 결재 조회
 	
-	// 결재 조회 페이징
+	// 결재 요청 조회
 	public List<ApprovalReqVO> reqListWithPaging(
 			@Param("cri") Criteria cri, 
-			@Param("emp_no") Long emp_no);
-	
-	// 결재 상세 조회
-	public List<ApprovalVO> reqListDetail(
+			@Param("emp_no") Long emp_no);	
+	// 결재 요청 상세 조회
+	public ApprovalReqDTO reqDetail(
 			@Param("app_no") Long app_no, 
 			@Param("emp_no") Long emp_no);
+	
 	
 	// 결재 승인 조회
-	
-	// 결재 승인 페이징
-	public List<ApprovalAgrVO> agreeListWithPaging(
+	public List<ApprovalAgrVO> admitListWithPaging(
 			@Param("cri") Criteria cri, 
-			@Param("emp_no") Long emp_no);
-	
-	// 결재 상세 조회
-	public ApprovalAgrDTO agreeDetail(
+			@Param("emp_no") Long emp_no);	
+	// 결재 승인 상세 조회
+	public ApprovalAgrDTO admitDetail(
 			@Param("app_no") Long app_no, 
 			@Param("emp_no") Long emp_no);
 
-	public int getCount(Long emp_no);
+	
+	
+	// 결재 승인 or 반려
+	public void appAdmit(ApprovalAgrVO agrVo);
+			
+	// 최종 승인 상태 update
+	public void finalState(Long app_no);
 
+	public int getCount(Long emp_no);
 }

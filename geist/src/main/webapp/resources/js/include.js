@@ -51,15 +51,15 @@ function ChangeMpage(value){
     }
     else if(value == "12") // nav 버튼 클릭시 프로젝트 주간업무보고서 화면이동
     {
-        location.href="index.jsp?contentPage=./page/weekly-doc.jsp";
+        location.href="approvalRequest/detail/1";
     }
     else if(value == "13") // nav 버튼 클릭시 프로젝트 휴가서 화면이동
     {
-        location.href="index.jsp?contentPage=./page/leave-doc.jsp";
+        location.href="approvalRequest/detail/2";
     }
     else if(value == "14") // nav 버튼 클릭시 프로젝트 사직서 화면이동
     {
-        location.href="index.jsp?contentPage=./page/resignation-doc.jsp";
+        location.href="approvalRequest/detail/3";
     }
     else if(value == "15") // 
     {

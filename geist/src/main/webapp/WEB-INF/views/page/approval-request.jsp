@@ -10,6 +10,7 @@
 	<!-- main Css-->
     <link href="/resources/css/document.css" rel="stylesheet" />
     <link href="/resources/css/main.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Data table-->
     <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" ></script>
     <!-- Bootstrap -->
@@ -82,21 +83,21 @@
                                                     <tr role="row" class="odd">
                                                         <td class="sorting_1">
                                                             <a href="javascript:void(0);" onclick="ChangeMpage(12)">
-                                                                <img class="img-doc" src="../img/ui2/document.png" style="width:19px"> 주간업무 보고서
+                                                                <img class="img-doc" src="/resources/img/ui2/document.png" style="width:19px"> 주간업무 보고서
                                                             </a>
                                                         </td>
                                                     </tr>
                                                     <tr role="row" class="even">
                                                         <td class="sorting_1">
                                                             <a href="javascript:void(0);" onclick="ChangeMpage(13)">
-                                                                <img class="img-doc" src="../img/ui2/document.png" style="width:19px"> 휴가 신청서
+                                                                <img class="img-doc" src="/resources/img/ui2/document.png" style="width:19px"> 휴가 신청서
                                                             </a>
                                                         </td>
                                                     </tr>
                                                     <tr role="row" class="odd">
                                                         <td class="sorting_1">
                                                             <a href="javascript:void(0);" onclick="ChangeMpage(14)">
-                                                                <img class="img-doc" src="../img/ui2/document.png" style="width:19px"> 사직 신청서
+                                                                <img class="img-doc" src="/resources/img/ui2/document.png" style="width:19px"> 사직 신청서
                                                             </a>
                                                         </td>
                                                     </tr>
@@ -122,11 +123,11 @@
     <script type="text/javascript" src="/resources/js/main.js"></script>
     <script type="text/javascript" src="/resources/js/register.js"></script>
     <script type="text/javascript" src="/resources/js/My-register.js"></script>
-    <script type="text/javascript" src="/resources/js/approvalRequest.js"></script>
     
     <!--js-->
     <script>
 	    $(document).ready(function() {
+	    	/*
 	        $("#foo-table").DataTable({
 	        // 표시 건수기능 숨기기
 	        lengthChange: false,
@@ -135,6 +136,7 @@
 	        // 정보 표시 숨기기
 	        info: false,
 	    	});
+	    	*/
 	        
 		    $('div').removeClass('form-inline');
 		    $('div.app-page-title').css('margin', '0px 0px 0px');

@@ -137,6 +137,6 @@
             </div>
         </div>
     </div>
-<script type="text/javascript" src="/resources/js/resignation-doc.js"></script>
+<script type="text/javascript" src="/resources/js/approvalAdmitDetail.js"></script>
 </body>
 </html>

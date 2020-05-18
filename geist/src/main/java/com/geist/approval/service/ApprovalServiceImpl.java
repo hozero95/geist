@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.geist.approval.domain.ApprovalAgrDTO;
 import com.geist.approval.domain.ApprovalAgrVO;
+import com.geist.approval.domain.ApprovalReqDTO;
 import com.geist.approval.domain.ApprovalReqVO;
 import com.geist.approval.domain.ApprovalVO;
 import com.geist.approval.domain.ApprovalWholeDTO;
@@ -29,8 +30,10 @@ public class ApprovalServiceImpl implements ApprovalService {
 	@Setter(onMethod_ = @Autowired)
 	private ApprovalMapper mapper;
 	
+	// 결재 문서 생성 insert
 	@Override
 	public int appCreate(ApprovalWholeDTO dto) {
+		log.info("결재 문서 생성 메서드 실행");
 		ApprovalVO avo = new ApprovalVO();
 		
 		long time = System.currentTimeMillis();
@@ -46,8 +49,10 @@ public class ApprovalServiceImpl implements ApprovalService {
 		return mapper.appCreate(avo);
 	}
 
+	// 결재 요청자 insert
 	@Override
 	public int appReqCreate(ApprovalWholeDTO dto) {
+		log.info("결재 요청 메서드 실행");
 		ApprovalReqVO reqVo = new ApprovalReqVO();
 		
 //		log.info("vo.getApp_no() = " + vo.getApp_no());
@@ -58,8 +63,10 @@ public class ApprovalServiceImpl implements ApprovalService {
 		return mapper.appReqCreate(reqVo);
 	}
 
+	// 결재승인자들 insert
 	@Override
 	public void appAgrCreate(ApprovalWholeDTO dto) {	
+		log.info("결재 승인 요청 메서드 실행");
 		ApprovalAgrVO agrVo = new ApprovalAgrVO();
 		List<ApprovalAgrVO> list = dto.getManager_no();
 		
@@ -77,34 +84,38 @@ public class ApprovalServiceImpl implements ApprovalService {
 		}
 	}
 	
+	// 결재 문서 승인 or 반려
 	@Override
 	public void appAdmit(ApprovalAgrVO agrVo) {
 		mapper.appAdmit(agrVo);
 	}
 	
+	// 최종 승인 상태 update
 	@Override
 	public void finalState(Long app_no) {
 		mapper.finalState(app_no);
 	}
 
+	// 결재 조회
 	@Override
-	public ApprovalWholeDTO reqListWithPaging(Criteria cri, Long emp_no) {
-		return new ApprovalWholeDTO(mapper.getCount(emp_no), mapper.reqListWithPaging(cri, emp_no), cri);
+	public ApprovalReqDTO reqListWithPaging(Criteria cri, Long emp_no) {
+		return new ApprovalReqDTO(mapper.getCount(emp_no), mapper.reqListWithPaging(cri, emp_no));
 	}
 
 	@Override
-	public List<ApprovalVO> reqListDetail(Long app_no, Long emp_no) {
-		return mapper.reqListDetail(app_no, emp_no);	
+	public ApprovalReqDTO reqDetail(Long app_no, Long emp_no) {
+		return mapper.reqDetail(app_no, emp_no);	
 	}
 
+	// 결재 승인 조회
 	@Override
-	public ApprovalAgrDTO agreeListWithPaging(Criteria cri, Long emp_no) {
-		return new ApprovalAgrDTO(mapper.getCount(emp_no), mapper.agreeListWithPaging(cri, emp_no));	
+	public ApprovalAgrDTO admitListWithPaging(Criteria cri, Long emp_no) {
+		return new ApprovalAgrDTO(mapper.getCount(emp_no), mapper.admitListWithPaging(cri, emp_no));	
 	}
 	
 	@Override
-	public ApprovalAgrDTO agreeDetail(Long app_no, Long emp_no) {
-		return mapper.agreeDetail(app_no, emp_no);	
+	public ApprovalAgrDTO admitDetail(Long app_no, Long emp_no) {
+		return mapper.admitDetail(app_no, emp_no);	
 	}
 
 }
