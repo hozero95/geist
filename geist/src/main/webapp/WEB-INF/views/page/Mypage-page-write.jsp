@@ -7,17 +7,15 @@
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Geist</title>
+	<!-- address API -->
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<!-- main Css-->
     <link href="/resources/css/document.css" rel="stylesheet" />
     <link href="/resources/css/main.css" rel="stylesheet" />
-    <!-- Data table-->
-    <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" ></script>
     <!-- Bootstrap -->
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Data button-->
-    <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
     
 </head>
 
@@ -37,6 +35,7 @@
 			admin_nav="admin-nav.jsp";
 		}
 	%>
+	<input type="hidden" name="login_no" value="${member.emp_no}" />
 	
 	<div id="header">
 		<jsp:include page="topnav.jsp" />
@@ -67,16 +66,11 @@
                                 <div class="container" role="main">
                                     <h4 class="m-0 p-2">정보조회</h4>
                                     <div class="rounded">
-                                        <div class="board-info-box">
-                                            <h1 class="m-0">000사원</h1>
-                                            <h6 class="m-0 pt-3 pb-4">Geist회사 > 기획팀</h6>
-                                        </div>
-                                        <form name="form" id="form" role="form" method="post"
-                                        action="#">
-                                            <table class="type09">
+                                        <div class="board-info-box" name="emp_name"></div>
+                                        <form id="mypage-form">
+                                        <table class="type09">
                                                 <thead>
-                                                    <th scope="row">아이디</th>
-                                                    <td>123456</td>
+                                                    
                                                 </thead>
                                                 <tbody>
                                                 <tr>
@@ -89,30 +83,15 @@
                                                 <tr>
                                                     <th scope="row">새 비밀번호 재입력</th>
                                                     <td>
-                                                        <input type="password" id="My-pwd2" class="form-control" maxlength="20" placeholder="새 비밀번호를 재입력해주세요" />
-                                                        <span class="text-danger" id="My-pwd-error2">비밀번호를 반드시 입력해주세요.</span>
+                                                        <input type="password" id="My-pwd-new" class="form-control" maxlength="20" placeholder="새 비밀번호를 재입력해주세요" />
+                                                        <span class="text-danger" id="My-pwd-new-error">비밀번호가 일치하지 않습니다.</span>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <th scope="row">사원번호</th>
-                                                    <td>12345</td>
-                                                </tr>
-                                                <tr>
-	                                                <th scope="row">직책</th>
-	                                                <td>내용이 들어갑니다.</td>
-                                            	</tr>
-                                            	<tr>
-	                                                <th scope="row">급여</th>
-	                                                <td>내용이 들어갑니다.</td>
-                                            	</tr>
-                                            	<tr>
-                                                	<th scope="row">입사일</th>
-                                                	<td>내용이 들어갑니다.</td>
-                                            	</tr>                                                
+                                                                                               
                                                 <tr>
                                                     <th scope="row">사내연락처</th>
                                                     <td>
-                                                        <input type="text" id="My-phone2" class="form-control" oninput="noKorean(this);"
+                                                        <input type="text" id="My-company-phone" class="form-control" oninput="noKorean(this);"
               onkeyup="inputPhoneNumber(this);" maxlength="13"  placeholder="사내연락처를 입력해주세요" class="form-control" />
                                                         <span class="text-danger" id="My-company-ph-error">사내연락처를 반드시 입력해주세요.</span>
                                                     </td>
@@ -125,10 +104,7 @@
                                                         <span class="text-danger" id="My-phone-error">개인연락처를 반드시 입력해주세요.</span>
                                                     </td>
                                                 </tr>                                       
-                                                <tr>
-                                                    <th scope="row">생년월일</th>
-                                                    <td>내용이 들어갑니다.</td>
-                                                </tr>
+                                                
                                                 <tr>
                                                     <th scope="row">주소</th>
                                                     <td>
@@ -140,7 +116,7 @@
                                                                 <input type="text" id="My-addr1" placeholder="주소" class="form-control"/>
                                                             </div>
                                                             <div class="col-md-4">
-                                                                <input type="button" id="pst-btn" onclick="execDaumPostcode()" value="우편번호 찾기" class="dt-button form-control"
+                                                                <input type="button" id="My-pst-btn" onclick="execDaumPostcode()" value="우편번호 찾기" class="dt-button form-control"
                                                                 style="margin:0px 5px 5px 5px"/>
                                                             </div>
                                                         </div>
@@ -159,12 +135,10 @@
                                             </table>
                                             <div class="pt-2" style="float: right;">
                                                 <button type="button" class="btn btn-sm dt-button" id="My-btnSave" >저장</button>
-                                                <button type="button" class="btn btn-sm dt-button" id="My-btnList" >목록</button>
+                                                <button type="button" class="btn btn-sm dt-button" id="My-btnList" onclick="location.replace('/myPage');" >목록</button>
                                             </div>
                                         </form>
                                     </div>
-
-                                    
                                 </div>
                             </article>
 
@@ -184,19 +158,7 @@
     <script type="text/javascript" src="/resources/js/main.js"></script>
     <script type="text/javascript" src="/resources/js/register.js"></script>
     <script type="text/javascript" src="/resources/js/My-register.js"></script>
+    <script type="text/javascript" src="/resources/js/Mypage-page-write.js"></script>
     
-    <script>
-    	$(document).ready(function() {
-	    	$(document).on('click', '#My-btnSave', function(e){
-	            e.preventDefault();
-	            $("#form").submit();
-	        });
-	
-	        $(document).on('click', '#My-btnList', function(e){
-	        	e.preventDefault();
-	        	location.href="index.jsp?contentPage=page/Mypage-page.jsp";
-	        });
-    	});
-    </script>
 </body>
 </html>

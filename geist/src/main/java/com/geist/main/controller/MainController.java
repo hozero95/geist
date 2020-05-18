@@ -75,6 +75,12 @@ public class MainController {
 		return "/page/Mypage-page";
 	}
 	
+	@RequestMapping("/myPage/detail")
+	public String myPagedetail() {
+		log.info("마이페이지 수정 이동");
+		return "/page/Mypage-page-write";
+	}
+	
 	@RequestMapping("/notice")
 	public String notice() {
 		log.info("공지사항 페이지 이동");
