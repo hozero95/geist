@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Geist</title>
 <link href="/resources/css/document.css" rel="stylesheet" />
 <link href="/resources/css/main.css" rel="stylesheet" />
@@ -38,19 +39,19 @@
                                         <table class="task-doc">
                                             <tr>
                                                 <td><span class="table-text">부서</span></td>
-                                                <td><span class="table-text">총무팀</span></td>
+                                                <td><span class="dept-name">총무팀</span></td>
                                             </tr>
                                             <tr>
                                                 <td><span class="table-text">직급</span></td>
-                                                <td><span class="table-text">과장</span></td>
+                                                <td><span class="emp-position">과장</span></td>
                                             </tr>
                                             <tr>
                                                 <td><span class="table-text">작성자명</span></td>
-                                                <td><span class="table-text">김호영</span></td>
+                                                <td><span class="emp-name">김호영</span></td>
                                             </tr>
                                             <tr>
                                                 <td><span class="table-text">기안일</span></td>
-                                                <td><span class="table-text">2020-04-09</span></td>
+                                                <td><span class="app-date">2020-04-09</span></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2">
@@ -103,6 +104,6 @@
             </div>
         </div>
     </div>
- 
+ <script type="text/javascript" src="/resources/js/weekly-doc.js"></script>
 </body>
 </html>

@@ -36,5 +36,5 @@ public interface ApprovalService {
 	// 결재 승인 조회
 	public ApprovalAgrDTO agreeListWithPaging(Criteria cri, Long emp_no);
 //	public List<ApprovalVO> agreeListDetail(Long app_no, Long emp_no);
-	public ApprovalVO agreeListDetail(Long app_no, Long emp_no);
+	public ApprovalAgrDTO agreeDetail(Long app_no, Long emp_no);
 }

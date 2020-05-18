@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.geist.approval.domain.ApprovalAgrDTO;
@@ -40,11 +41,6 @@ public class AppAdmitController {
 		Criteria cri = new Criteria(page, 10);
 		return new ResponseEntity<ApprovalAgrDTO>(service.agreeListWithPaging(cri, emp_no), HttpStatus.OK);
 	}
-
-	@GetMapping(value = "/detail/{appNo}/{empNo}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity <ApprovalVO> agreeListDetail(@PathVariable("appNo") Long app_no, @PathVariable("empNo") Long emp_no) {
-		return new ResponseEntity<ApprovalVO>(service.agreeListDetail(app_no, emp_no), HttpStatus.OK);
-	}
 	
 	// 결재 승인, 반려
 	@PostMapping(value = "/admit", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
@@ -54,4 +50,10 @@ public class AppAdmitController {
 		
 		return new ResponseEntity<>("success", HttpStatus.OK);
 	}	
+
+	@GetMapping(value = "/detailView/{appNo}/{empNo}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity <ApprovalAgrDTO> detailView(@PathVariable("appNo") Long app_no, @PathVariable("empNo") Long emp_no) {
+		return new ResponseEntity<ApprovalAgrDTO>(service.agreeDetail(app_no, emp_no), HttpStatus.OK);
+	}
+	
 }
