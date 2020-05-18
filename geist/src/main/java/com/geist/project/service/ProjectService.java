@@ -23,5 +23,6 @@ public interface ProjectService {
 	public int projectUpdate(ProjectVO vo);
 	
 	public void projectDelete(int proj_no);
-
+	
+	public int projectDept(int emp_no);
 }

@@ -43,6 +43,10 @@ constraint fk_proj_management_dept_no foreign key(dept_no) references department
 		select proj_name, proj_agency, proj_start, proj_end from project where proj_no = #{proj_no}
 </select>
 
+<select id = "projectFindDeptno" resultType = "com.geist.project.domain.ProjectFindDeptno">
+	select d.dept_no from department d, employee e where e.emp_no = #{emp_no}
+</select>
+
 <insert id = "projectWrite">
 	insert into project(proj_no, proj_name, proj_agency, proj_start, proj_end)
 	values (project_seq.nextval, #{proj_name}, #{proj_agency}, #{proj_start}, #{proj_end})
