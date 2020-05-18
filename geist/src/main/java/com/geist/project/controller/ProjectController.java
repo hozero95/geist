@@ -2,6 +2,9 @@ package com.geist.project.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.geist.login.domain.LoginVO;
+import com.geist.login.service.LoginService;
 import com.geist.project.domain.ProjectCriVO;
 import com.geist.project.domain.ProjectVO;
 import com.geist.project.service.ProjectService;
@@ -33,14 +38,20 @@ import lombok.extern.log4j.Log4j;
 public class ProjectController {
 
 		private ProjectService service;
+		private LoginService service2;
 		
 		//프로젝트의 목록을 보여주는 부분
-		@GetMapping(value = "/projectList/{dept_no}/{page}",
+		@GetMapping(value = "/projectList/{page}",
 				produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-		public ResponseEntity<List<ProjectVO>> projectList(@PathVariable("page") int page,
-				@PathVariable("dept_no") int dept_no){
-			ProjectCriVO vo = new ProjectCriVO(page, 10);
-			return new ResponseEntity<List<ProjectVO>>(service.projectList(vo), HttpStatus.OK);
+		public ResponseEntity<List<ProjectVO>> projectList(@PathVariable("page") int page, @RequestBody LoginVO vo, HttpServletRequest req){
+			HttpSession session = req.getSession();
+			
+			int emp_no = (int)session.getAttribute("member");
+			
+			int dept_no = service.projectDept(emp_no);
+			
+			ProjectCriVO vo2 = new ProjectCriVO(page, 10, dept_no);
+			return new ResponseEntity<List<ProjectVO>>(service.projectList(vo2), HttpStatus.OK);
 		}
 		
 		//프로젝트를 작성하는 부분
@@ -79,6 +90,7 @@ public class ProjectController {
 			return new ResponseEntity<ProjectVO>(service.projectRead(proj_no), HttpStatus.OK);
 		}
 		
+		//프로젝트 삭제 부분
 		@DeleteMapping(value ="/projectDelete/{proj_no}", produces = {MediaType.TEXT_PLAIN_VALUE})
 		public ResponseEntity<String> remove(@PathVariable("proj_no") int proj_no){
 			log.info("projectDelete Controller");
