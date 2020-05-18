@@ -14,12 +14,17 @@ import lombok.Data;
 @Data
 public class MypageDTO {
 
-	private Long emp_no;
-	private Date emp_birth;
 	private String emp_id;
-	private String emp_pw;
-	private String emp_phone;		//개인 연락처
+	private Long emp_no;
+	private String emp_position;
+	private Long emp_sal;
+	private Date emp_date;
 	private String emp_tel;			//사내 연락처
+	private String emp_phone;		//개인 연락처
+	private Date emp_birth;
 	private String emp_address;	
+
+	private String emp_pw;
+	private String emp_name;
 	
 }

@@ -15,7 +15,7 @@
 
 	<select id="read" resultType="com.geist.myPage.domain.MypageDTO">
 		SELECT 
-			emp_id, emp_no, emp_position, emp_sal, emp_tel, emp_phone, emp_birth, emp_address
+			emp_name, emp_id, emp_no, emp_position, emp_sal, emp_date, emp_tel, emp_phone, emp_birth, emp_address
 		FROM
 			employee
 		WHERE
