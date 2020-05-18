@@ -5,12 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Geist</title>
 <link href="/resources/css/document.css" rel="stylesheet" />
 <link href="/resources/css/main.css" rel="stylesheet" />
 </head>
 <body>
-<div class="app-container fixed-sidebar fixed-header closed-sidebar">
+	<input type="hidden" name="login_no" value="${member.emp_no}">
+	<div class="app-container fixed-sidebar fixed-header closed-sidebar">
         <!-- Lower -->
         <div class="app-main">
             <!-- Main page -->
@@ -38,29 +40,29 @@
                                         <table class="task-doc">
                                             <tr>
                                                 <td><span class="table-text">부서</span></td>
-                                                <td><span class="table-text">총무팀</span></td>
+                                                <td><span class="dept-name">총무팀</span></td>
                                             </tr>
                                             <tr>
                                                 <td><span class="table-text">직급</span></td>
-                                                <td><span class="table-text">과장</span></td>
+                                                <td><span class="emp-position">과장</span></td>
                                             </tr>
                                             <tr>
                                                 <td><span class="table-text">작성자명</span></td>
-                                                <td><span class="table-text">김호영</span></td>
+                                                <td><span class="emp-name">김호영</span></td>
                                             </tr>
                                             <tr>
                                                 <td><span class="table-text">기안일</span></td>
-                                                <td><span class="table-text">2020-04-09</span></td>
+                                                <td><span class="app-date">2020-04-09</span></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2">
                                                     <input type="checkbox" name="management" value="대리">&nbsp;대리&nbsp;
                                                     &nbsp; &nbsp;
-                                                    <input type="checkbox" name="" value="과장">&nbsp;과장&nbsp; &nbsp;
+                                                    <input type="checkbox" name="management" value="과장">&nbsp;과장&nbsp; &nbsp;
                                                     &nbsp;
-                                                    <input type="checkbox" name="" value="차장">&nbsp;차장&nbsp; &nbsp;
+                                                    <input type="checkbox" name="management" value="차장">&nbsp;차장&nbsp; &nbsp;
                                                     &nbsp;
-                                                    <input type="checkbox" name="" value="부장">&nbsp;부장&nbsp; &nbsp;
+                                                    <input type="checkbox" name="management" value="부장">&nbsp;부장&nbsp; &nbsp;
                                                     &nbsp;
                                                 </td>
                                             </tr>
@@ -92,7 +94,7 @@
                                     </div>
 
                                     <div class="btn-row">
-                                        <input type="button" class="btn-write" value="작성">
+                                        <input type="button" class="btn-write" value="작성" onclick="alert('작성 되었습니다')">
                                     </div>
                                     
                                 </form>
@@ -103,6 +105,6 @@
             </div>
         </div>
     </div>
- 
+<script type="text/javascript" src="/resources/js/approvalRequest.js"></script>
 </body>
 </html>

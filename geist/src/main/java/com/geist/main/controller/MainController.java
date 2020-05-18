@@ -105,18 +105,36 @@ public class MainController {
 		return "/page/approval-admit";
 	}
 	
-	@RequestMapping("/approvalAdmit/detail/1")
-	public String approvalAdmitClass1() {
+	@RequestMapping("/approvalRequest/detail/1")
+	public String approvalRequestClass1() {
+		log.info("결재 작성 : 주간업무 보고서 페이지 이동");
+		return "/page/weekly-doc";
+	}
+	
+	@RequestMapping("/approvalRequest/detail/2")
+	public String approvalRequestClass2() {
+		log.info("결재 작성 : 휴가 신청서 페이지 이동");
+		return "/page/leave-doc";
+	}
+	
+	@RequestMapping("/approvalRequest/detail/3")
+	public String approvalRequestClass3() {
+		log.info("결재 작성 : 사직 신청서 페이지 이동");
+		return "/page/resignation-doc";
+	}
+	
+	@RequestMapping("/approval/detail/1")
+	public String approvalAppClass1() {
 		log.info("주간업무 보고서 페이지 이동");
 		return "/page/re-weekly-doc";
 	}
-	@RequestMapping("/approvalAdmit/detail/2")
-	public String approvalAdmitClass2() {
+	@RequestMapping("/approval/detail/2")
+	public String approvalAppClass2() {
 		log.info("휴가 페이지 이동");
 		return "/page/re-leave-doc";
 	}
-	@RequestMapping("/approvalAdmit/detail/3")
-	public String approvalAdmitClass3() {
+	@RequestMapping("/approval/detail/3")
+	public String approvalAppClass3() {
 		log.info("사직 신청서 페이지 이동");
 		return "/page/re-resignation-doc";
 	}

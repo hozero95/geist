@@ -33,9 +33,10 @@ import lombok.extern.log4j.Log4j;
 public class AppRequestController {
 	private ApprovalService service;
 	
-	// 결재 작성
+	// 결재 문서 생성
 	@PostMapping(value = "/new", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> create(@RequestBody ApprovalWholeDTO dto) {
+		log.info("create() 실행");
 		service.appCreate(dto);
 		service.appReqCreate(dto);
 		service.appAgrCreate(dto);

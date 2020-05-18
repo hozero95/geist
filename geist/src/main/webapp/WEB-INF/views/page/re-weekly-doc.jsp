@@ -55,13 +55,13 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="2">
-                                                    <input type="checkbox" id="assistant" name="assistant" value="대리" checked="checked" disabled="disabled">&nbsp;대리&nbsp;
+                                                    <input type="checkbox" id="assistant" name="management" value="대리" checked="checked" disabled="disabled">&nbsp;대리&nbsp;
                                                     &nbsp; &nbsp;
-                                                    <input type="checkbox" id="manager" name="manager" value="과장" checked="checked" disabled="disabled">&nbsp;과장&nbsp; &nbsp;
+                                                    <input type="checkbox" id="manager" name="management" value="과장" checked="checked" disabled="disabled">&nbsp;과장&nbsp; &nbsp;
                                                     &nbsp;
-                                                    <input type="checkbox" id="deputy" name="" value="차장" disabled="disabled">&nbsp;차장&nbsp; &nbsp;
+                                                    <input type="checkbox" id="deputy" name="management" value="차장" disabled="disabled">&nbsp;차장&nbsp; &nbsp;
                                                     &nbsp;
-                                                    <input type="checkbox" id="general" name="general" value="부장" disabled="disabled">&nbsp;부장&nbsp; &nbsp;
+                                                    <input type="checkbox" id="general" name="management" value="부장" disabled="disabled">&nbsp;부장&nbsp; &nbsp;
                                                     &nbsp;
                                                 </td>
                                             </tr>
@@ -104,6 +104,6 @@
             </div>
         </div>
     </div>
- <script type="text/javascript" src="/resources/js/weekly-doc.js"></script>
+    <script type="text/javascript" src="/resources/js/approvalAdmitDetail.js"></script>
 </body>
 </html>

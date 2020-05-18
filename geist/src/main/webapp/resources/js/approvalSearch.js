@@ -1,5 +1,6 @@
-/**
- * 
+/* *
+ * 결재 페이지
+ * 담당 : 김현선
  */
 
 console.log("approvalSearch.js")
@@ -8,13 +9,9 @@ var approvalSearchService = (function(){
 	function getList(param, callback, error){
 		var page = param.page;
 		var emp_no = param.emp_no;
-		console.log("approvalSearchService.getList() page === " + page);
-		console.log("approvalSearchService.getList() emp_no === " + emp_no);
 		
 		$.getJSON("/approvalSearch/" + page + "/" + emp_no + ".json", function(data){
 			if(callback){
-				console.log("data.count === " + data.count)
-				console.log("data.page === " + data.page)
 				callback(data.count, data.list);
 			}
 		}).fail(function(xhr, status, err){
@@ -34,20 +31,13 @@ $(document).ready(function() {
 	var tbody = $(".table-body");
 	var tpage = $(".table-page");
 	var pageNum = 1;
-	console.log(emp_no);
-	console.log(typeof emp_no);
 	
 	if(typeof emp_no === 'string'){
 		emp_no = parseInt(emp_no);
-		
-//		return emp_no
 	}
-	console.log(typeof emp_no);
 	showList(1, emp_no);
 	
-	console.log("showList() 실행전 === " + emp_no);
 	function showList(page, emp_no){
-		console.log("showList() 실행후 === " + emp_no);
 		approvalSearchService.getList({
 			page : page || 1,
 			emp_no : emp_no
@@ -78,7 +68,9 @@ $(document).ready(function() {
 				}
 				str += "<tr>";
 				str += "<td>" + list[i].app_date + "</td>";
-				str += "<td>" + list[i].app_title + "</td>";
+				str += "<td><a href='#'>" + list[i].app_title 
+				+ "<input type='hidden' name='app_no' value='" + list[i].app_no + "'>" 
+				+ "<input type='hidden' name='app_class' value='" + list[i].app_class + "'></a></td>";
 				str += "<td>" + list[i].emp_name + "</td>";
 				str += "<td>" + status + "</td>";
 				str += "</tr>";
@@ -126,5 +118,20 @@ $(document).ready(function() {
 		pageNum = targetPageNum;
 
 		showList(pageNum, emp_no);
+	});
+	
+	tbody.on("click", "tr td a", function(e){
+		e.preventDefault();	
+		
+		var app_no = $(this).children().eq(0).val();
+		var app_class = $(this).children().eq(1).val();
+				
+		if(app_class === "1"){			
+			location.href = "/approval/detail/1?app_no=" + app_no + "&emp_no=" + emp_no;
+		}else if(app_class === "2"){
+			location.href = "/approval/detail/2?app_no=" + app_no + "&emp_no=" + emp_no;
+		}else if(app_class === "3"){
+			location.href = "/approval/detail/3?app_no=" + app_no + "&emp_no=" + emp_no;
+		}
 	});
 });
