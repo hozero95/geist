@@ -43,15 +43,17 @@ public class ProjectController {
 		//프로젝트의 목록을 보여주는 부분
 		@GetMapping(value = "/projectList/{page}",
 				produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-		public ResponseEntity<List<ProjectVO>> projectList(@PathVariable("page") int page, @RequestBody LoginVO vo, HttpServletRequest req){
+		public ResponseEntity<List<ProjectVO>> projectList(@PathVariable("page") int page, HttpServletRequest req){
 			HttpSession session = req.getSession();
 			
+			//session에 잇던거 가지고오기
 			int emp_no = (int)session.getAttribute("member");
 			
+			//session에서 가져온 emp_no가 mapper을 한번더 거쳐 dept_no 꺼냄
 			int dept_no = service.projectDept(emp_no);
 			
-			ProjectCriVO vo2 = new ProjectCriVO(page, 10, dept_no);
-			return new ResponseEntity<List<ProjectVO>>(service.projectList(vo2), HttpStatus.OK);
+			ProjectCriVO vo = new ProjectCriVO(page, 10, dept_no);
+			return new ResponseEntity<List<ProjectVO>>(service.projectList(vo), HttpStatus.OK);
 		}
 		
 		//프로젝트를 작성하는 부분
@@ -59,7 +61,7 @@ public class ProjectController {
 				produces = {MediaType.TEXT_PLAIN_VALUE})
 		public ResponseEntity<String> projectWrite(@RequestBody ProjectVO vo){
 			
-			//로그를 찍는 부분
+			//로그를 찍는 부분	
 			log.info("projectWrite Controller");
 			
 			//작성시 projectWrite를 통해 내용을 저장하고 projectMWrite를 통해 부서 번호를 할당한다
