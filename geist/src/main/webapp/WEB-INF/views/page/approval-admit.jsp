@@ -10,6 +10,7 @@
 	<!-- main Css-->
     <link href="/resources/css/document.css" rel="stylesheet" />
     <link href="/resources/css/main.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Data table-->
     <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" ></script>
     <!-- Bootstrap -->
@@ -20,7 +21,6 @@
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
     
 </head>
-
 <body>
 
 	<%
@@ -90,74 +90,6 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="table-body">
-                                                <!-- -->
-                                                    <tr role="row" class="odd">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td><a href="./page/re-weekly-doc.jsp" >주간업무 보고서</a></td>
-                                                        <td>박동한 </td>
-                                                        <td>처리중 </td>
-                                                    </tr>
-                                                    <tr role="row" class="even">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>주간업무 보고서 </td>
-                                                        <td>박동한 </td>
-                                                        <td>처리중 </td>
-                                                    </tr>
-                                                    <tr role="row" class="odd">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>사직 신청서 </td>
-                                                        <td>박동한 </td>
-                                                        <td>반려 </td>
-                                                    </tr>
-                                                    <tr role="row" class="even">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>휴가 신청서 </td>
-                                                        <td>박동한 </td>
-                                                        <td>승인 </td>
-                                                    </tr>
-                                                    <tr role="row" class="odd">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>휴가 신청서 </td>
-                                                        <td>김현선 </td>
-                                                        <td>승인 </td>
-                                                    </tr>
-                                                    <tr role="row" class="even">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>주간업무 보고서 </td>
-                                                        <td>홍예진 </td>
-                                                        <td>승인 </td>
-                                                    </tr>
-                                                    <tr role="row" class="odd">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>휴가 신청서 </td>
-                                                        <td>홍예진 </td>
-                                                        <td>승인 </td>
-                                                    </tr>
-                                                    <tr role="row" class="even">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>휴가 신청서</td>
-                                                        <td>장혜영 </td>
-                                                        <td>승인 </td>
-                                                    </tr>
-                                                    <tr role="row" class="odd">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>주간업무 보고서 </td>
-                                                        <td>이연수 </td>
-                                                        <td>승인 </td>
-                                                    </tr>
-                                                    <tr role="row" class="even">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>사직 신청서 </td>
-                                                        <td>김민수 </td>
-                                                        <td>승인 </td>
-                                                    </tr>
-                                                    <tr role="row" class="even">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>사직 신청서 </td>
-                                                        <td>이연수 </td>
-                                                        <td>승인 </td>
-                                                    </tr>
-                                                     
                                                 </tbody>
                                             </table>
                                             <div class="table-page"></div>
@@ -181,13 +113,9 @@
     <script type="text/javascript" src="/resources/js/include.js"></script>
     <script type="text/javascript" src="/resources/js/main.js"></script>
     <script type="text/javascript" src="/resources/js/register.js"></script>
-    <script type="text/javascript" src="/resources/js/My-register.js"></script>
-    
+    <script type="text/javascript" src="/resources/js/My-register.js"></script>    
     <script type="text/javascript" src="/resources/js/approvalAdmit.js"></script>
-    <!-- 
-	<script type="text/javascript" src="/resources/js/approvalAdmit.js"></script>
- -->
-    <!--js-->
+    
     <script>
 		$(document).ready(function() {
 	            

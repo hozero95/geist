@@ -111,8 +111,8 @@ public class ApprovalMapperTests {
 		Long appNo = 100L;
 		Long empNo = 106L;
 		
-		List<ApprovalVO> list = mapper.reqListDetail(appNo, empNo);
-		list.forEach(table -> log.info(table));
+//		List<ApprovalVO> list = mapper.reqListDetail(appNo, empNo);
+//		list.forEach(table -> log.info(table));
 	}
 	
 }

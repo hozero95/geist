@@ -1,9 +1,8 @@
-/* *
- * 결재 페이지
- * 담당 : 김현선
+/**
+ * 
  */
 
-console.log("weekly-doc.jsp");
+console.log("approvalAdmitDetail.js");
 
 var approvalAdmitDetailService = (function(){
 	function detail(param, callback, error){

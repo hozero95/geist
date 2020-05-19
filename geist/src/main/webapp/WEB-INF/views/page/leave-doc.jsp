@@ -5,10 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Geist</title>
+<link href="/resources/css/document.css" rel="stylesheet" />
+<link href="/resources/css/main.css" rel="stylesheet" />
 </head>
 <body>
+	<input type="hidden" name="login_no" value="${member.emp_no}">
 	<div class="app-container fixed-sidebar fixed-header closed-sidebar">
 		<div class="app-main">
 			<!-- Main page -->
@@ -54,12 +57,12 @@
 												<td><span class="table-text">2020-04-10</span></td>
 											</tr>
 											<tr>
-												<td colspan="2"><input type="checkbox"
-													name="management" value="대리">&nbsp;대리&nbsp; &nbsp;
-													&nbsp; <input type="checkbox" name="" value="과장">&nbsp;과장&nbsp;
-													&nbsp; &nbsp; <input type="checkbox" name="" value="차장">&nbsp;차장&nbsp;
-													&nbsp; &nbsp; <input type="checkbox" name="" value="부장">&nbsp;부장&nbsp;
-													&nbsp; &nbsp;</td>
+												<td colspan="2">
+													<input type="checkbox" name="management" value="대리">&nbsp;대리&nbsp;&nbsp;&nbsp;													 
+													<input type="checkbox" name="management" value="과장">&nbsp;과장&nbsp;&nbsp; &nbsp; 
+													<input type="checkbox" name="management" value="차장">&nbsp;차장&nbsp;&nbsp; &nbsp; 
+													<input type="checkbox" name="management" value="부장">&nbsp;부장&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+												</td>
 											</tr>
 											<tr>
 												<td colspan="2"><input type="radio" name="vacation"
@@ -162,7 +165,7 @@
 									</div>
 
 									<div class="btn-row">
-										<input type="button" class="btn-write" value="작성">
+										<input type="button" class="btn-write" value="작성" onclick="alert('작성 되었습니다')">
 									</div>
 
 								</form>
@@ -174,5 +177,6 @@
 			</div>
 		</div>
 	</div>
+<script type="text/javascript" src="/resources/js/approvalRequest.js"></script>
 </body>
 </html>
