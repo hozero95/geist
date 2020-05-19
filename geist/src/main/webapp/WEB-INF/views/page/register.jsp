@@ -173,15 +173,25 @@
 		var registerForm = $("#join-form");
 		var registerBtn = $("#btn-join");
 		var inputId = $("#id");
+		var idCheck = true;
 		
 		inputId.blur(function() {
+			
+			if(!registerForm.find("input[name='id']").val()) {
+				$("#id-error").show();
+				$("#id").focus();
+				return false;
+			} else {
+				$("#id-error").hide();
+			}
+			
 			var req_id = $("input[name='id']").val();
 			
 			registerService.checkId({
 				req_id : req_id
 			}, function(data) {
-					
 				if(data) { // 사용가능한 아이디 일때
+					idCheck = false;
 					$("#id-error").text('사용가능한 아이디 입니다.').addClass("msgOk").show();
 
 				} else { // 사용중인 아이디 일때
@@ -191,8 +201,6 @@
 				
 				$("#id-error").removeClass("msgOk").text("아이디는 반드시 입력하세요.").hide();
 			})
-			
-			
 		});		
 		
 		registerBtn.on("click", function() {
