@@ -76,12 +76,14 @@
                                                                 aria-label="작성날짜: activate to sort column ascending" style="width: 300px;text-align: center;">작성날짜</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody class="table-body">
+                                                    <tbody class="table-body" id="document-body">
 		
 													</tbody>
                                                 </table>
-                                                
-                                                <div class="table-page"></div>
+                                                <div class="pt-2" style="float: left;">
+                                            		<button type="button" class="btn btn-sm dt-button" id="notice-write" >글쓰기</button>
+                                        		</div>
+                                                <div class="table-page" id="document-table-page"></div>
                                                 	
                                             </div>
                                         </div>

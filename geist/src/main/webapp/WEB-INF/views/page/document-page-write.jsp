@@ -66,7 +66,7 @@
                             <!-- Write -->
                             <article>
                                 <div class="container" role="main" style="padding: 0px 100px 0px 100px;">
-                                    <form name="form" id="form" role="form">
+                                    <form name="notice-w-form" id="notice-w-form" role="form">
                                         <div class="mb-3">
                                             <label for="title">제목</label>
                                             <input type="text" class="form-control" name="title" id="NOTI_TITLE"
@@ -79,8 +79,8 @@
                                         </div>
                                     </form>
                                     <div class="pt-2" style="float: right;">
-                                        <button type="button" class="btn btn-sm dt-button" id="btnSave" >저장</button>
-                                        <button type="button" class="btn btn-sm dt-button" id="btnList" >목록</button>
+                                        <button type="button" class="btn btn-sm dt-button" id="btnSave" onclick="javascript:insertBoard();">저장</button>
+                                        <button type="button" class="btn btn-sm dt-button" id="btnList" onclick="javascript:goBoardList();">목록</button>
                                     </div>
 
                                 </div>
@@ -103,19 +103,7 @@
     <script type="text/javascript" src="/resources/js/main.js"></script>
     <script type="text/javascript" src="/resources/js/register.js"></script>
     <script type="text/javascript" src="/resources/js/My-register.js"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-
-	<script>
-	$(document).ready(function(){        
-        
-    });
-        
-	/** 게시판 - 목록 페이지 이동 */
-	function goNoticeList(){				
-		location.href = "/notice";
-	}
-	
-
-	</script>
+    <script type="text/javascript" src="/resources/js/document-write.js"></script>
+    
 </body>
 </html>
