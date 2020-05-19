@@ -7,6 +7,14 @@ $(document).ready(function(){
         location.href = "/notice";
     }
     
+    /** 게시판 - 수정 페이지 이동 */
+    function goBoardUpdate(){
+        
+    	var noti_seq = $("#noti_no").val();
+        
+        location.href = "/notice/noticeUpdate/"+ noti_seq;
+    }
+    
     /** 게시판 - 상세 조회  */
     function getBoardDetail(noti_no){
         
@@ -16,23 +24,21 @@ $(document).ready(function(){
             
             $.ajax({    
                 
-                url        : "/notice/noticeUpdate/"+noti_seq,
-                contentType: 'application/json; charset=utf-8',
-                data    : $("#Notice-form").serialize(),
+                url        : "/notice/noticeRead/"+noti_seq,
+                data    : $("#noti_seq").serialize(),
                 dataType: "JSON",
                 cache   : false,
                 async   : true,
-                type    : "PUT",    
+                type    : "GET",    
                 success : function(obj) {
                     getBoardDetailCallback(obj);                
                 },           
                 error     : function(xhr, status, error) {}
                 
              });
-            
         } else {
             alert("오류가 발생했습니다.\n관리자에게 문의하세요.");
-        }    
+        }            
     }
     
     /** 게시판 - 상세 조회  콜백 함수 */
@@ -42,70 +48,64 @@ $(document).ready(function(){
         
         if(obj != null){                                
                             
-            var noti_seq        = obj.noti_no; 
+        	var noti_seq        = obj.noti_no; 
             var noti_title         = obj.noti_title; 
             var noti_content         = obj.noti_content; 
             var noti_date         = obj.noti_date; 
                     
-            $("#NOTI_TITLE").val(noti_title);            
-            $("#NOTI_CONTENT").val(noti_content);
+            str += "<div class='board-title'>" + noti_title + "</div>";
+            str += "<div class='board-info-box'>";
+            str += "<span class='board-date'>" + noti_date + "</span>";
+            str += "</div>";
+            str += "<hr>";
+            str += "<div class='board-content'>" + noti_content + "</div>";
             
-        } else {            
+        } else {
+            
             alert("등록된 글이 존재하지 않습니다.");
             return;
         }        
+        
+        $("#notice-content").html(str);
     }
     
-    /** 게시판 - 수정  */
-    function updateBoard(){
+    /** 게시판 - 삭제  */
+    function deleteBoard(){
  
-        var NOTI_TITLE    = $("#NOTI_TITLE").val();
-        var NOTI_CONTENT     = $("#NOTI_CONTENT").val();
-            
-        if (NOTI_TITLE == ""){            
-            alert("제목을 입력해주세요.");
-            $("#NOTI_TITLE").focus();
-            return;
-        }
+    	var noti_seq = $("#noti_no").val();
         
-        if (NOTI_CONTENT == ""){            
-            alert("내용을 입력해주세요.");
-            $("#NOTI_CONTENT").focus();
-            return;
-        }
-        
-        var yn = confirm("게시글을 수정하시겠습니까?");        
+        var yn = confirm("게시글을 삭제하시겠습니까?");        
         if(yn){
-                
+            
             $.ajax({    
                 
-                url        : "/notice/noticeUpdate/"+noti_seq,
+                url        : "/notice/noticeDelete/"+noti_seq,
                 data    : $("#Notice-form").serialize(),
                 dataType: "JSON",
                 cache   : false,
                 async   : true,
-                type    : "GET",    
+                type    : "POST",    
                 success : function(obj) {
-                    updateBoardCallback(obj);                
+                    deleteBoardCallback(obj);                
                 },           
                 error     : function(xhr, status, error) {}
                 
-            });
-        }
+             });
+        }        
     }
     
-    /** 게시판 - 수정 콜백 함수 */
-    function updateBoardCallback(obj){
+    /** 게시판 - 삭제 콜백 함수 */
+    function deleteBoardCallback(obj){
     
         if(obj != null){        
             
             var result = obj.result;
             
             if(result == "SUCCESS"){                
-                alert("게시글 수정을 성공하였습니다.");                
-                goBoardList();                 
+                alert("게시글 삭제를 성공하였습니다.");                
+                goBoardList();                
             } else {                
-                alert("게시글 수정을 실패하였습니다.");    
+                alert("게시글 삭제를 실패하였습니다.");    
                 return;
             }
         }
