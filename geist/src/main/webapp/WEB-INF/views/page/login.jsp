@@ -108,7 +108,7 @@
     				emp_id : emp_id,
     				emp_pw : emp_pw
     			}, function(result){
-    				if(result == 'success')
+    				if(result == 'success') {
     					location.href = "/main";
     				}
     				else{

@@ -162,6 +162,8 @@
 				}
 			})
 		}
+		
+		
 		function projectDelete(param, callback) {
 			$.ajax({
 				type : 'get',
@@ -218,14 +220,22 @@
 
 	    
 		proUpdate.on("click", function() {
-
+			
 		})
 		
+		/* proDelete.click(function() {
+			var checked = $("input[name=selected]:checked");
+			var projectNo;
+			
+			for(var i = 1; i < $('table tr').size(); i++) {
+				
+			}
+		}) */
 		
 		
 		
 		// 체크된 테이블 행의 값 가져오기
-  		$("#testBtn").click(function() {
+  		proDelete.click(function() {
   			var tdArr = new Array();
   			var checked = $("input[name=selected]:checked");
   			
