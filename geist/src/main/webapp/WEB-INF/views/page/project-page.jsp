@@ -164,14 +164,13 @@
 		}
 		
 		
-		function projectDelete(param, callback) {
+		function projectDelete(proj_no, callback, error) {
 			$.ajax({
-				type : 'get',
-				url : '/projectDelete/' + proj_no,
-				data : JSON.stringify(param),
-				contentType : "application/json; charset=utf-8",
+				type : 'delete',
+				url : '/project/projectDelete/' + proj_no,
+				//data : proj_no,
 				success : function(result, status, xhr) {
-					alert('projectDelete');
+					console.log('projectDelete');
 					if(callback) {
 						callback(result);
 					}
@@ -216,26 +215,40 @@
 	    
 	    showList(dept_no);
 		
-	   	console.log(proj_no);
 
 	    
 		proUpdate.on("click", function() {
 			
 		})
 		
-		/* proDelete.click(function() {
+		proDelete.click(function() {
+			var chk = $("tr").children().find("input[name=selected]").is(':checked');
 			var checked = $("input[name=selected]:checked");
-			var projectNo;
+			var proj_no;
 			
-			for(var i = 1; i < $('table tr').size(); i++) {
-				
-			}
-		}) */
+			checked.each(function(i) {
+				var tr = checked.parent().parent().eq(i);
+	   			var td = tr.children();				
+			
+				if(chk) {
+					proj_no = Number(td.eq(1).text());
+					console.log(typeof proj_no);
+				}
+			})
+			projectDelete(proj_no, function(result){
+				console.log(result)
+				console.log('projectDelete() 호출!' + proj_no);
+				location.reload();
+			});
+		})
+		
+		
+		
 		
 		
 		
 		// 체크된 테이블 행의 값 가져오기
-  		proDelete.click(function() {
+  		$('#testBtn').click(function() {
   			var tdArr = new Array();
   			var checked = $("input[name=selected]:checked");
   			
