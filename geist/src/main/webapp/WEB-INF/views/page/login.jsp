@@ -105,17 +105,18 @@
                 var emp_pw = $("input[name='emp_pw']").val();
                 
                 loginService.login({
-                    emp_id : emp_id,
-                    emp_pw : emp_pw
-                }, function(result) {
-                    if(result == 'success') {
-                        location.href = "/main";
-                    } else {
-                        alert("로그인 정보가 일치하지 않습니다.");
-                    }
-                });
-
+    				emp_id : emp_id,
+    				emp_pw : emp_pw
+    			}, function(result){
+    				if(result == 'success') {
+    					location.href = "/main";
+    				}
+    				else{
+    					alert("아이디 또는 비밀번호가 잘못되었습니다.");
+    				}
+    			});
             });
+            
             registerLink.on("click", function() {
                 location.href = "/register";
             });
