@@ -60,7 +60,7 @@ $(function() {
 
 	$("#btn-join").click(function() {
 	    var id = $("#id").val();
-	    if (id == null) {
+	    if (id.length < 1) {
 	      $("#id-error").show();
 	      $("#id").focus();
 	      return false;
@@ -69,7 +69,7 @@ $(function() {
 	    }
 
 		var pwd1 = $("#pwd1").val();
-		if (pwd1 == null) {
+		if (pwd1.length < 1) {
 			$("#pwd-error1").show();
 			$("#pwd1").focus();
 			return false;
@@ -87,7 +87,7 @@ $(function() {
 		}
 
 		var name = $("#name").val();
-		if (name == null) {
+		if (name.length < 1) {
 			$("#name-error").show();
 			$("#name").focus();
 			return false;
@@ -96,7 +96,8 @@ $(function() {
 		}
 
 		var email = $("#email").val();
-		if (!email.match("@")) {
+		// if (!email.match("@")) {
+		if(email.length < 1) {
 			$("#email-error").show();
 			$("#email").focus();
 			return false;
@@ -154,6 +155,7 @@ $(function() {
 function noKorean(obj) {
 	obj.value = obj.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
 }
+
 // input#input-number : 자동 "-" 삽입
 function inputPhoneNumber(obj) {
 	var number = obj.value.replace(/[^0-9]/g, "");
