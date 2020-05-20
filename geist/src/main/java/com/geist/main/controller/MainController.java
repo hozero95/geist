@@ -75,6 +75,12 @@ public class MainController {
 		return "/page/Mypage-page";
 	}
 	
+	@RequestMapping("/myPage/detail")
+	public String myPagedetail() {
+		log.info("마이페이지 수정 이동");
+		return "/page/Mypage-page-write";
+	}
+	
 	@RequestMapping("/notice")
 	public String notice() {
 		log.info("공지사항 페이지 이동");
@@ -103,6 +109,40 @@ public class MainController {
 	public String approvalAdmit() {
 		log.info("결재 승인 페이지 이동");
 		return "/page/approval-admit";
+	}
+	
+	@RequestMapping("/approvalRequest/detail/1")
+	public String approvalRequestClass1() {
+		log.info("결재 작성 : 주간업무 보고서 페이지 이동");
+		return "/page/weekly-doc";
+	}
+	
+	@RequestMapping("/approvalRequest/detail/2")
+	public String approvalRequestClass2() {
+		log.info("결재 작성 : 휴가 신청서 페이지 이동");
+		return "/page/leave-doc";
+	}
+	
+	@RequestMapping("/approvalRequest/detail/3")
+	public String approvalRequestClass3() {
+		log.info("결재 작성 : 사직 신청서 페이지 이동");
+		return "/page/resignation-doc";
+	}
+	
+	@RequestMapping("/approval/detail/1")
+	public String approvalAppClass1() {
+		log.info("주간업무 보고서 페이지 이동");
+		return "/page/re-weekly-doc";
+	}
+	@RequestMapping("/approval/detail/2")
+	public String approvalAppClass2() {
+		log.info("휴가 페이지 이동");
+		return "/page/re-leave-doc";
+	}
+	@RequestMapping("/approval/detail/3")
+	public String approvalAppClass3() {
+		log.info("사직 신청서 페이지 이동");
+		return "/page/re-resignation-doc";
 	}
 	
 	@RequestMapping("/address")

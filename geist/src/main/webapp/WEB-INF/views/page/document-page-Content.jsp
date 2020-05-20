@@ -10,14 +10,10 @@
 	<!-- main Css-->
     <link href="/resources/css/document.css" rel="stylesheet" />
     <link href="/resources/css/main.css" rel="stylesheet" />
-    <!-- Data table-->
-    <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" ></script>
     <!-- Bootstrap -->
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Data button-->
-    <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
     
 </head>
 
@@ -36,7 +32,11 @@
 		}else{
 			admin_nav="admin-nav.jsp";
 		}
+		
+		String noti_no = request.getParameter("noti_no"); 
 	%>
+	
+	<c:set var="noti_no" value="<%=noti_no%>"/> <!-- 게시글 번호 -->
 	
 	<div id="header">
 		<jsp:include page="topnav.jsp" />
@@ -66,24 +66,21 @@
                             <!-- Write -->
                             <article>
                                 <div class="container" role="main">
-                                    <div class="rounded">
-                                        <div class="board-title">${#.NOTI_TITLE}</div>
-                                        <div class="board-info-box">
-                                            <span class="board-author">${#.NOTI_NO}</span>
-                                            <span class="board-date">${#.NOTI_DATE}</span>
-                                        </div>
-                                        <hr>
-                                        <div class="board-content">${#.NOTI_CONTENT}</div>
+                                <form id="Notice-form" name="Notice-form">
+                                    <div class="rounded" id="notice-content">
+                                        
                                     </div>
+                                    <input type="hidden" id="noti_no" name="noti_no" value="${noti_no}"/> <!-- 게시글 번호 -->
+                                </form>
                                     <hr>
                                     <div class="pt-2" style="float: right;">
-                                        <button type="button" class="btn btn-sm dt-button" id="btnUpdate">수정</button>
-                                        <button type="button" class="btn btn-sm dt-button" id="btnDelete">삭제</button>
-                                        <button type="button" class="btn btn-sm dt-button" id="btnList">목록</button>
+                                        <button type="button" class="btn btn-sm dt-button" id="btnUpdate" onclick="javascript:goBoardUpdate();">수정</button>
+                                        <button type="button" class="btn btn-sm dt-button" id="btnDelete" onclick="javascript:deleteBoard();">삭제</button>
+                                        <button type="button" class="btn btn-sm dt-button" id="btnList" onclick="javascript:goBoardList();">목록</button>
                                     </div>
                                 </div>
                             </article>
-
+							
                         </div>
                     </div>
                 </div>
@@ -100,26 +97,7 @@
     <script type="text/javascript" src="/resources/js/main.js"></script>
     <script type="text/javascript" src="/resources/js/register.js"></script>
     <script type="text/javascript" src="/resources/js/My-register.js"></script>
+    <script type="text/javascript" src="/resources/js/document-content.js"></script>
     
-    <script>
-        $(document).on('click', '#btnUpdate', function(e){
-        	e.preventDefault();
-        	location.href="index.jsp?contentPage=page/document-page-modify.jsp";
-        });
-
-        $(document).on('click', '#btnList', function(e){
-        	e.preventDefault();
-        	location.href="index.jsp?contentPage=page/document-page.jsp";
-        });
-        $(document).on('click', '#btnDelete', function(e){
-        	var returnValue = confirm('작성글을 삭제하시겠습니까?')
-			if(returnValue=true){
-				alert("작성글이 정상적으로 삭제되었습니다.")
-				self.location.href ="${path}/#/.do" //삭제메소드 불러오기
-			}else{ 
-				alert("취소되었습니다.") };
-
-        });
-    </script>
 </body>
 </html>

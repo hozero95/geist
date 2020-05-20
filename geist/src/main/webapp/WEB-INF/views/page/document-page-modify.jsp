@@ -37,8 +37,10 @@
 			admin_nav="admin-nav.jsp";
 		}
 		
-		String boardSeq = request.getParameter("boardSeq");	
+		String noti_no = request.getParameter("noti_no"); 
 	%>
+		
+		<c:set var="noti_no" value="<%=noti_no%>"/> <!-- 게시글 번호 -->
 	
 	<div id="header">
 		<jsp:include page="topnav.jsp" />
@@ -73,17 +75,17 @@
                                         <div class="mb-3">
                                             <label for="title">제목</label>
                                             <input type="text" class="form-control" name="title" id="NOTI_TITLE"
-                                                placeholder="제목을 입력해 주세요" value="${#.NOTI_TITLE}">
+                                                placeholder="제목을 입력해 주세요" value="">
                                         </div>
                                         <div class="mb-3">
                                             <label for="content">내용</label>
                                             <textarea class="form-control" rows="15" name="content" id="NOTI_CONTENT"
-                                                placeholder="내용을 입력해 주세요">${#.NOTI_CONTENT}</textarea>
+                                                placeholder="내용을 입력해 주세요"></textarea>
                                         </div>
-                                        <input type="hidden" id="noti_no" name="board_seq" value="${noti_no}"/> <!-- 게시글 번호 -->
+                                        <input type="hidden" id="noti_no" name="noti_no" value="${noti_no}"/> <!-- 게시글 번호 -->
                                     </form>
                                     <div class="pt-2" style="float: right;">
-                                        <button type="button" class="btn btn-sm dt-button" id="btnSave" >저장</button>
+                                        <button type="button" class="btn btn-sm dt-button" id="btnSave" onclick="javascript:updateNotice();">저장</button>
                                         <button type="button" class="btn btn-sm dt-button" id="btnList" onclick="javascript:goNoticeList();" >목록</button>
                                     </div>
                                 </div>
@@ -105,126 +107,8 @@
     <script type="text/javascript" src="/resources/js/main.js"></script>
     <script type="text/javascript" src="/resources/js/register.js"></script>
     <script type="text/javascript" src="/resources/js/My-register.js"></script>
-    <script type="text/javascript">
-    	$(document).ready(function(){getNoticeModify();});
-    	
-    	/** 게시판 - 목록 페이지 이동 */
-    	function goNoticeList(){				
-    		location.href = "/notice";
-    	}
-    	
-    	/** 게시판 - 상세 조회  */
-    	function getNoticeModify(boardSeq){
-    		
-    		var boardSeq = $("#board_seq").val();
-    		
-    		if(boardSeq != ""){
-    			
-    			$.ajax({	
-    				type	: "GET",
-    			    url		: "/noticeRead/{noti_no}",
-    			    data    : $("#Notice-form").serialize(),
-    		        dataType: "JSON",
-    		        cache   : false,
-    				async   : true,	
-    		        success : function(obj) {
-    		        	getNoticeCallback(obj);				
-    		        },	       
-    		        error 	: function(xhr, status, error) {}
-    		        
-    		     });
-    			
-    		} else {
-    			alert("오류가 발생했습니다.");
-    		}
-    	}
-    	
-    	/** 게시판 - 상세 조회  콜백 함수 */
-    	function getNoticeCallback(obj){
-    		
-    		var str = "";
-    		
-    		if(obj != null){								
-    							
-    			var noti_no		= obj.noti_no; 
-    			var noti_title 		= obj.noti_title; 
-    			var noti_content 		= obj.noti_content; 
-    			var noti_date 		= obj.noti_date; 
-    					
-    			$("#NOTI_TITLE").val(NOTI_TITLE);			
-    			$("#NOTI_CONTENT").val(NOTI_CONTENT);
-    			
-    		} else {			
-    			alert("등록된 글이 존재하지 않습니다.");
-    			return;
-    		}		
-    	}
-    	
-    	/** 게시판 - 수정  */
-    	function updateNotice(){
-
-    		var NOTI_TITLE	= $("#NOTI_TITLE").val();
-    		var NOTI_CONTENT 	= $("#NOTI_CONTENT").val();
-    			
-    		if (NOTI_TITLE == ""){			
-    			alert("제목을 입력해주세요.");
-    			$("#NOTI_TITLE").focus();
-    			return;
-    		}
-    		
-    		if (NOTI_CONTENT == ""){			
-    			alert("내용을 입력해주세요.");
-    			$("#NOTI_CONTENT").focus();
-    			return;
-    		}
-    		
-    		var yn = confirm("게시글을 수정하시겠습니까?");		
-    		if(yn){
-    				
-    			$.ajax({	
-    				type	: "GET",
-    			    url		: "/noticeUpdate/{noti_no}",
-    			    data    : $("#Notice-form").serialize(),
-    		        dataType: "JSON",
-    		        cache   : false,
-    		        async   : true,
-    		        success : function(obj) {
-    		        	updateNoticeCallback(obj);				
-    		        },	       
-    		        error 	: function(xhr, status, error) {}
-    		        
-    		    });
-    		}
-    	}
-    	
-    	/** 게시판 - 수정 콜백 함수 */
-    	function updateNoticeCallback(obj){
-    	
-    		if(obj != null){		
-    			
-    			var result = obj.result;
-    			
-    			if(result == "SUCCESS"){				
-    				alert("게시글 수정을 성공하였습니다.");				
-    				goBoardList();				 
-    			} else {				
-    				alert("게시글 수정을 실패하였습니다.");	
-    				return;
-    			}
-    		}
-    	}
-    	
-    </script>
-    <script>
-        $(document).on('click', '#btnSave', function(e){
-            e.preventDefault();
-            $("#form").submit();
-        });
-
-        $(document).on('click', '#btnList', function(e){
-        	e.preventDefault();
-        	location.href="index.jsp?contentPage=page/document-page.jsp";
-        });
-    </script>
+    <script type="text/javascript" src="/resources/js/document-modify.js"></script>
+    
+    
 </body>
 </html>

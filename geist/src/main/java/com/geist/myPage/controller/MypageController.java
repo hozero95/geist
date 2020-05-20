@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.geist.myPage.domain.MypageVO;
+import com.geist.myPage.domain.MypageDTO;
 import com.geist.myPage.service.MypageService;
 
 import lombok.AllArgsConstructor;
@@ -29,25 +29,19 @@ public class MypageController {
 	private MypageService service;
 
 	@GetMapping(value = "/{emp_no}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<MypageVO> get(@PathVariable("emp_no") Long emp_no) {
-		/* MypageMapperTests.java
-			Long targetEmpNo = 101L;							//value = "/{emp_no}" 이 대신할 것임	
-			MypageVO vo = mapper.read(targetEmpNo);	//service.get(emp_no) 에 넘겨주면 -> MypageServiceImpl가 Mapper에 넘겨줘서 쿼리문이 실행
-			
-			log.info(vo);
-		 */
+	public ResponseEntity<MypageDTO> get(@PathVariable("emp_no") Long emp_no) {
 		return new ResponseEntity<>(service.get(emp_no), HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH},
-			value = "/{emp_no}", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
+			value = "/detail/{emp_no}", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
 	/* consumes = "application/json"
 		: client가 보내는 content-type이 'consumes'에서 명시한 media-type과 동일해야 한다
 	 */
-	public ResponseEntity<String> modify(@RequestBody MypageVO vo, @PathVariable("emp_no") Long emp_no){
-		vo.setEmp_no(emp_no);
+	public ResponseEntity<String> modify(@RequestBody MypageDTO dto, @PathVariable("emp_no") Long emp_no){
+		dto.setEmp_no(emp_no);
 		
-		return service.modify(vo) == 1 
+		return service.modify(dto) == 1 
 				? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	};	

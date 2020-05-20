@@ -23,6 +23,7 @@
 <!-- Data button-->
 <script
 	src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+
 <script>
     function showPopupWrite() { window.open("/projWrite", "프로젝트 작성", "width=1200, height=700, left=100, top=50"); }
     function showPopupUpdate() { window.open("/projUpdate", "프로젝트 수정", "width=1200, height=700, left=100, top=50"); }
@@ -119,7 +120,7 @@
 										<div class="table-page"></div>
 										<!-- radioBtn test -->
 										<button type="button" id="testBtn">선택</button>
-										<div class="col-sm-12" id="test"></div>
+                    <div class="col-sm-12" id="test"></div>
 
 									</div>
 								</div>

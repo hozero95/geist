@@ -15,7 +15,7 @@
               <div class="app-sidebar-inner">
                   <ul class="vertical-nav-menu">
                       <li>
-                          <a href="index.jsp">
+                          <a href="/main">
                               <i class="metismenu-icon pe-7s-home"></i>
                               Home
                           </a>

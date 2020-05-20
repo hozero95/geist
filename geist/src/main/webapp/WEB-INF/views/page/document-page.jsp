@@ -10,15 +10,11 @@
 	<!-- main Css-->
     <link href="/resources/css/document.css" rel="stylesheet" />
     <link href="/resources/css/main.css" rel="stylesheet" />
-    <!-- Data table-->
-    <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" ></script>
     <!-- Bootstrap -->
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Data button-->
-    <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
-    
+
 </head>
 
 <body>
@@ -67,7 +63,7 @@
                                     <div id="foo-table_wrapper" class="">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <table id="foo-table" class="table table-bordered dataTable" role="grid"
+                                                <table id="Notice-table" class="table table-bordered dataTable" role="grid"
                                                     aria-describedby="foo-table_info">
                                                     <thead>
                                                         <tr role="row">
@@ -80,7 +76,15 @@
                                                                 aria-label="작성날짜: activate to sort column ascending" style="width: 300px;text-align: center;">작성날짜</th>
                                                         </tr>
                                                     </thead>
+                                                    <tbody class="table-body" id="document-body">
+		
+													</tbody>
                                                 </table>
+                                                <div class="pt-2" style="float: left;">
+                                            		<button type="button" class="btn btn-sm dt-button" id="notice-write" >글쓰기</button>
+                                        		</div>
+                                                <div class="table-page" id="document-table-page"></div>
+                                                	
                                             </div>
                                         </div>
                                     </div>
@@ -101,56 +105,7 @@
     <script type="text/javascript" src="/resources/js/main.js"></script>
     <script type="text/javascript" src="/resources/js/register.js"></script>
     <script type="text/javascript" src="/resources/js/My-register.js"></script>
+    <script type="text/javascript" src="/resources/js/document-page.js"></script>
 
-    <!--js-->
-    <script>
-    	$(document).ready(function() {
-            $('#foo-table').DataTable( {
-                "info" :  false,
-                lengthChange: false,
-                pageLength: 5,
-                bPaginate: true,
-                processing: true,
-                ordering: true,
-                serverSide: false,
-                searching: true,
-                ajax : {
-                    "url":"#.json",
-                    //"type":"POST",
-                    "dataSrc": ''
-                    }
-                },
-                columns : [
-                    {"data": "NOTI_NO"},
-                    {"data": "NOTI_TITLE"
-                    "render": function(data, type, row , meta){
-                    	if(type == 'display'){
-                    		data = '<a href="/'+row.NOTI_TITLE+'">'+data+'</a>';
-                    	}
-                    	return data;
-                    }	},
-                    {"data": "NOTI_DATE"}
-                ],
-                dom: 'Bfrtip',
-                buttons: [
-                    {
-                        text: '글쓰기',
-                        action: function ( e, dt, node, config ) {
-                        	e.preventDefault();
-            	        	location.href="/document-page-write";
-                        }
-                    }
-                ]
-                
-                
-            
-            });
-            $('div').removeClass('form-inline');
-            $('div.app-page-title').css('margin','0px 0px 0px');
-            $('div.app-page-title').css('padding','50px 0px 30px 0px');
-            
-        });
-
-    </script>
 </body>
 </html>

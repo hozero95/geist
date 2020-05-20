@@ -12,14 +12,19 @@ import lombok.Data;
  */
 
 @Data
-public class MypageVO {
+public class MypageDTO {
 
 	private Long emp_no;
-	private Date emp_birth;
 	private String emp_id;
 	private String emp_pw;
+	private String emp_name;
+	private String emp_birth;
 	private String emp_phone;		//개인 연락처
 	private String emp_tel;			//사내 연락처
 	private String emp_address;	
-	
+	private String emp_position;
+	private Long emp_sal;
+	private String emp_date;
+	private Long dept_no;
+	private String dept_name;
 }

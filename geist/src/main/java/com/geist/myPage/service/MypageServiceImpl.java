@@ -3,7 +3,7 @@ package com.geist.myPage.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.geist.myPage.domain.MypageVO;
+import com.geist.myPage.domain.MypageDTO;
 import com.geist.myPage.mapper.MypageMapper;
 
 import lombok.Setter;
@@ -22,13 +22,13 @@ public class MypageServiceImpl implements MypageService {
 	private MypageMapper mapper;
 
 	@Override
-	public MypageVO get(Long emp_no) {
+	public MypageDTO get(Long emp_no) {
 		return mapper.read(emp_no);
 	}
 
 	@Override
-	public int modify(MypageVO user) {
-		return mapper.update(user);
+	public int modify(MypageDTO dto) {
+		return mapper.update(dto);
 	}
 	
 }

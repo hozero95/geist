@@ -28,10 +28,10 @@ constraint fk_proj_management_dept_no foreign key(dept_no) references department
 
 <select id = "projectList" resultType = "com.geist.project.domain.ProjectVO">
 <![CDATA[
-		select proj_name, proj_agency, proj_start, proj_end
+		select proj_no, proj_name, proj_agency, proj_start, proj_end
 		from(
 		select /*+INDEX_DESC(project pk_project) */
-			rownum rn, p.proj_name, p.proj_agency, p.proj_start, p.proj_end
+			rownum rn, p.proj_no, p.proj_name, p.proj_agency, p.proj_start, p.proj_end
 		from
 			project p, proj_management m
 		where m.dept_no = #{dept_no} and rownum <= #{pageNum} * #{amount})
@@ -44,12 +44,15 @@ constraint fk_proj_management_dept_no foreign key(dept_no) references department
 </select>
 
 <insert id = "projectWrite">
-	insert into project(proj_no, proj_name, proj_agency, proj_start, proj_end)
+	insert into project
+	(proj_no, proj_name, proj_agency, proj_start, proj_end)
 	values (project_seq.nextval, #{proj_name}, #{proj_agency}, #{proj_start}, #{proj_end})
 </insert>
 
 <insert id = "projectMWrite">
-	insert into proj_management(proj_no, dept_no) values (#{proj_no}, #{dept_no})
+	insert into proj_management(proj_no, dept_no) values ((select MAX(proj_no) from project
+	),#{dept_no})
+
 </insert>
 
 <update id = "projectUpdate">
@@ -57,7 +60,7 @@ constraint fk_proj_management_dept_no foreign key(dept_no) references department
 </update>
 
 <delete id = "projectDelete">
-	delete from project where proj_no = #{proj_no}
+	delete * from project where proj_no = #{proj_no}
 </delete>
 
 </mapper>
