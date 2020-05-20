@@ -91,7 +91,7 @@
                                                 <tr>
                                                     <th scope="row">사내연락처</th>
                                                     <td>
-                                                        <input type="text" id="My-company-phone" class="form-control" oninput="noKorean(this);"
+                                                        <input type="text" id="My-c-phone" class="form-control" oninput="noKorean(this);"
               onkeyup="inputPhoneNumber(this);" maxlength="13"  placeholder="사내연락처를 입력해주세요" class="form-control" />
                                                         <span class="text-danger" id="My-company-ph-error">사내연락처를 반드시 입력해주세요.</span>
                                                     </td>

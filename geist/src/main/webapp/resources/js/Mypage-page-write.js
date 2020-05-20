@@ -16,8 +16,8 @@ var MypageService = (function(){
 		
 		function modifyEmp(param, callback, error){
 			$.ajax({
-				type : 'POST',
-				url : '/mypage/detail'+emp_no,
+				type : 'PUT',
+				url : '/mypage/detail/'+ param.emp_no,
 				data : JSON.stringify(param),
 				contentType : "application/json; charset=utf-8",
 				success : function(result, status, xhr){
@@ -42,7 +42,8 @@ var MypageService = (function(){
 $(document).ready(function(){
 	var mypageForm = $("#mypage-form");
 	var mypageBtn = $("#My-btnSave");
-	detailView($("input[name='login_no']").val());
+	var emp_no = $("input[name='login_no']").val()
+	detailView(emp_no);
 	
 	function detailView(emp_no){
 		MypageService.detailView({
@@ -64,20 +65,21 @@ $(document).ready(function(){
 		
 		mypageBtn.on("click", function(e){
 			var emp_pw = $("#My-pwd").val();
-			var emp_tel = $("#My-company-phone").val();
+			var emp_tel = $("#My-c-phone").val();
 			var emp_phone = $("#My-phone").val();
 			var emp_address = $("#My-addr1").val();
 			emp_address += $("#My-addr2").val();
 			emp_address += $("#My-addr-etc").val();
 						
 			MypageService.modifyEmp({
+				emp_no : emp_no,
 				emp_pw : emp_pw,
 				emp_tel : emp_tel,
 				emp_phone : emp_phone,
 				emp_address : emp_address
 			}, function(result){
 				alert(result);
-				location.href = "/mypage";
+				location.href = "/myPage";
 			});
 		});
 		
