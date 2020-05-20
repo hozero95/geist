@@ -56,13 +56,17 @@
 	                                            </tr>
 	                                            <tr>
 	                                                <th scope="row">시작일</th>
-	                                                <td><div class="in-put"><input type="text" id="proj_start" maxlength="10" required 
-	                                                							onkeyup="inputDateNumber(this)" oninput="noKorean(this)" /></div></td>
+	                                                <td>
+	                                                <div class="in-put">
+	                                                <input type="text" id="proj_start" maxlength="10" required onkeyup="inputDateNumber(this);" />
+	                                                </div>
+	                                                </td>
 	                                            </tr>
 	                                            <tr>
 	                                                <th scope="row">종료일</th>
-	                                                <td><div class="in-put"><input type="text" id="proj_end" maxlength="10" required 
-	                                                							onkeyup="inputDateNumber(this)" oninput="noKorean(this)" /></div></td>
+	                                                <td>
+	                                                <div class="in-put">
+	                                                <input type="text" id="proj_end" maxlength="10" required onkeyup="inputDateNumber(this);" /></div></td>
 	                                            </tr>
                                             </tbody>
                                         </table>
@@ -92,41 +96,46 @@
     }); */
     
     
-    
-   	function projectWrite(param, callback, error) {
-		$.ajax({
-			type : 'post',
-			url : '/project/projectWrite',
-			data : JSON.stringify(param),
-			contentType : "application/json; charset=utf-8",
-			success : function() {
-				console.log("성공 시 호출 됨!");
-				if(callback) {
-					callback();
+
+    	var proWrite = $("#proWrite");
+   		
+	   	function projectWrite(param, callback, error) {
+			$.ajax({
+				type : 'post',
+				url : '/project/projectWrite',
+				data : JSON.stringify(param),
+				contentType : "application/json; charset=utf-8",
+				success : function() {
+					console.log("작성 성공!");
+					if(callback) {
+						callback();
+					}
+				},
+				error : function(xhr, status, err) {
+					console.log("작성 실패!");
+					if(error) {
+						error(err);
+					}
 				}
-			},
-			error : function(xhr, status, err) {
-				console.log("전달 실패!");
-				if(error) {
-					error(err);
-				}
-			}
-		});
-	}
-   	
-   	$(function() {
-   		console.log("projectWrite 호출됨");
-   		var proWrite = $("#proWrite");
-   		var dept_no = $("#dept_no");
-   		var proj_name = $("#proj_name").val();
-   		var proj_agency = $("#proj_agency").val();
-   		var proj_start = $("#proj_start").val();
-   		var proj_end = $("#proj_end").val();
-   		console.log(proWrite);
+			});
+		}
+
    		
    		proWrite.click(function() {
-   			console.log("작성버튼 클릭시 호출!");
-   			projectWrite({
+   	  		var dept_no = $("#dept_no").val();
+   	   		var proj_name = $("#proj_name").val();
+   	   		var proj_agency = $("#proj_agency").val();
+   	   		var proj_start = $("#proj_start").val();
+   	   		var proj_end = $("#proj_end").val();
+   			
+   	   		console.log("작성버튼 클릭시 호출!");
+   	   		console.log(dept_no);
+   	   		console.log(proj_name);
+   	   		console.log(proj_agency);
+   	   		console.log(proj_start);
+   	   		console.log(proj_end);
+   			
+   	   		projectWrite({
    				"dept_no" : dept_no,
    				"proj_name" : proj_name,
    				"proj_agency" : proj_agency,
@@ -139,11 +148,12 @@
    	    		window.close();
    			})
    		})
-   	});
-   	
-   	
-   	
- 	// input#input-number : 자동 "-" 삽입
+
+    });
+ 	
+    
+    // 자동 "-" 삽입
+
 	function inputDateNumber(obj) {
 		var number = obj.value.replace(/[^0-9]/g, "");
 		var date = "";
@@ -169,11 +179,13 @@
 		}
 		obj.value = date;
 	}
-	// input#input-number : 한글 입력 불가능
+
+		
+	// 한글 입력 불가능
 	function noKorean(obj) {
 		obj.value = obj.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
 	}
-   	
+
     </script>
 </body>
 </html>
