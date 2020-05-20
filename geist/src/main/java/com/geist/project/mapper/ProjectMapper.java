@@ -41,5 +41,5 @@ public interface ProjectMapper {
 	
 	public void projectDelete(int proj_no);
 	
-	public int projectDept(int emp_no);
+	public int projectDept(Long emp_no);
 }

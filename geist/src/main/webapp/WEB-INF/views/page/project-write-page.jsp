@@ -95,8 +95,8 @@
 	    });
     }); */
     
-    $(function() {
     
+
     	var proWrite = $("#proWrite");
    		
 	   	function projectWrite(param, callback, error) {
@@ -119,8 +119,8 @@
 				}
 			});
 		}
+
    		
-	   	
    		proWrite.click(function() {
    	  		var dept_no = $("#dept_no").val();
    	   		var proj_name = $("#proj_name").val();
@@ -142,15 +142,18 @@
    				"proj_start" : proj_start,
    				"proj_end" : proj_end 				
    			}, function(e) {
-   				console.log("콜백함수 호출됨!");
+   				e.preventDefault();
+   				console.log("콜백함수 호출됨 !");
    	    		window.opener.location.reload();
    	    		window.close();
    			})
    		})
+
     });
  	
     
     // 자동 "-" 삽입
+
 	function inputDateNumber(obj) {
 		var number = obj.value.replace(/[^0-9]/g, "");
 		var date = "";
@@ -176,11 +179,13 @@
 		}
 		obj.value = date;
 	}
+
 		
 	// 한글 입력 불가능
 	function noKorean(obj) {
 		obj.value = obj.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
 	}
+
     </script>
 </body>
 </html>
