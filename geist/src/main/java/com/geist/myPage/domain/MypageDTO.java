@@ -26,5 +26,5 @@ public class MypageDTO {
 	private Long emp_sal;
 	private String emp_date;
 	private Long dept_no;
-	
+	private String dept_name;
 }
