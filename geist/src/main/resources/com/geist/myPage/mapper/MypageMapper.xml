@@ -14,12 +14,17 @@
 <mapper namespace="com.geist.myPage.mapper.MypageMapper">
 
 	<select id="read" resultType="com.geist.myPage.domain.MypageDTO">
+		<![CDATA[
 		SELECT 
-			emp_name, emp_id, emp_no, emp_position, emp_sal, emp_date, emp_tel, emp_phone, emp_birth, emp_address
+			d.dept_name, e.dept_no, e.emp_name, e.emp_id, e.emp_no, e.emp_position, e.emp_sal, 
+			to_char(emp_date, 'YYYY-MM-DD') emp_date, e.emp_tel, e.emp_phone,
+			to_char(emp_birth, 'YYYY-MM-DD') emp_birth, e.emp_address
 		FROM
-			employee
+			employee e, department d
 		WHERE
-			emp_no = #{emp_no}
+			e.emp_no = #{emp_no}
+			and e.dept_no = d.dept_no
+		]]>
 	</select>
 	
 	<update id="update">

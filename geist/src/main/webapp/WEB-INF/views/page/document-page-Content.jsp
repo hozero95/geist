@@ -33,7 +33,7 @@
 			admin_nav="admin-nav.jsp";
 		}
 		
-		 String noti_no = request.getParameter("noti_no"); 
+		String noti_no = request.getParameter("noti_no"); 
 	%>
 	
 	<c:set var="noti_no" value="<%=noti_no%>"/> <!-- 게시글 번호 -->
