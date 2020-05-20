@@ -47,7 +47,7 @@ public class ProjectController {
 			HttpSession session = req.getSession();
 			
 			//session에 잇던거 가지고오기
-			int emp_no = (int)session.getAttribute("member");
+			int emp_no = (int)session.getAttribute("merber");
 			
 			//session에서 가져온 emp_no가 mapper을 한번더 거쳐 dept_no 꺼냄
 			int dept_no = service.projectDept(emp_no);
