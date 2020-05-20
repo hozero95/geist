@@ -23,8 +23,8 @@
 <script
 	src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
 <script>
-    function showPopupWrite() { window.open("/projectWrite", "프로젝트 작성", "width=1200, height=700, left=100, top=50"); }
-    function showPopupUpdate() { window.open("/projectUpdate", "프로젝트 수정", "width=1200, height=700, left=100, top=50"); }
+    function showPopupWrite() { window.open("/project/projectWrite", "프로젝트 작성", "width=1200, height=700, left=100, top=50"); }
+    function showPopupUpdate() { window.open("/project/projectUpdate", "프로젝트 수정", "width=1200, height=700, left=100, top=50"); }
 </script>
 </head>
 <body>
