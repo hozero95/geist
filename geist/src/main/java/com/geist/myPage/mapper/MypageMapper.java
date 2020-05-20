@@ -1,6 +1,6 @@
 package com.geist.myPage.mapper;
 
-import com.geist.myPage.domain.MypageVO;
+import com.geist.myPage.domain.MypageDTO;
 
 /* *
  * 마이페이지
@@ -9,7 +9,7 @@ import com.geist.myPage.domain.MypageVO;
 
 public interface MypageMapper {
 
-	public MypageVO read(Long emp_no);
+	public MypageDTO read(Long emp_no);
 	
-	public int update(MypageVO user);
+	public int update(MypageDTO dto);
 }

@@ -91,39 +91,38 @@
 	    });
     }); */
     
+    $(function() {
     
-    
-   	function projectWrite(param, callback, error) {
-		$.ajax({
-			type : 'post',
-			url : '/project/projectWrite',
-			data : JSON.stringify(param),
-			contentType : "application/json; charset=utf-8",
-			success : function() {
-				console.log("성공 시 호출 됨!");
-				if(callback) {
-					callback();
-				}
-			},
-			error : function(xhr, status, err) {
-				console.log("전달 실패!");
-				if(error) {
-					error(err);
-				}
-			}
-		});
-	}
-   	
-   	$(function() {
-   		console.log("projectWrite 호출됨");
-   		var proWrite = $("#proWrite");
+    	var proWrite = $("#proWrite");
    		var dept_no = $("#dept_no");
    		var proj_name = $("#proj_name").val();
    		var proj_agency = $("#proj_agency").val();
    		var proj_start = $("#proj_start").val();
    		var proj_end = $("#proj_end").val();
-   		console.log(proWrite);
+    	
    		
+	   	function projectWrite(param, callback, error) {
+			$.ajax({
+				type : 'post',
+				url : '/project/projectWrite',
+				data : JSON.stringify(param),
+				contentType : "application/json; charset=utf-8",
+				success : function() {
+					console.log("작성 성공!");
+					if(callback) {
+						callback();
+					}
+				},
+				error : function(xhr, status, err) {
+					console.log("작성 실패!");
+					if(error) {
+						error(err);
+					}
+				}
+			});
+		}
+   		
+	   	
    		proWrite.click(function() {
    			console.log("작성버튼 클릭시 호출!");
    			projectWrite({
@@ -133,47 +132,48 @@
    				"proj_start" : proj_start,
    				"proj_end" : proj_end 				
    			}, function(e) {
-   				e.preventDefault();
-   				console.log("콜백함수 호출됨 !");
+   				console.log("콜백함수 호출됨!");
    	    		window.opener.location.reload();
    	    		window.close();
    			})
    		})
-   	});
-   	
-   	
-   	
- 	// input#input-number : 자동 "-" 삽입
-	function inputDateNumber(obj) {
-		var number = obj.value.replace(/[^0-9]/g, "");
-		var date = "";
 
-		if (number.length < 4) {
-			return number;
-		} else if (number.length < 6) {
-			date += number.substr(0, 4);
-			date += "-";
-			date += number.substr(4);
-		} else if (number.length < 8) {
-			date += number.substr(0, 4);
-			date += "-";
-			date += number.substr(4, 2);
-			date += "-";
-			date += number.substr(6);
-		} else {
-			date += number.substr(0, 4);
-			date += "-";
-			date += number.substr(4, 2);
-			date += "-";
-			date += number.substr(6);
-		}
-		obj.value = date;
-	}
-	// input#input-number : 한글 입력 불가능
-	function noKorean(obj) {
-		obj.value = obj.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
-	}
    	
+   	
+   	
+	 	// 자동 "-" 삽입
+		function inputDateNumber(obj) {
+			var number = obj.value.replace(/[^0-9]/g, "");
+			var date = "";
+	
+			if (number.length < 4) {
+				return number;
+			} else if (number.length < 6) {
+				date += number.substr(0, 4);
+				date += "-";
+				date += number.substr(4);
+			} else if (number.length < 8) {
+				date += number.substr(0, 4);
+				date += "-";
+				date += number.substr(4, 2);
+				date += "-";
+				date += number.substr(6);
+			} else {
+				date += number.substr(0, 4);
+				date += "-";
+				date += number.substr(4, 2);
+				date += "-";
+				date += number.substr(6);
+			}
+			obj.value = date;
+		}
+   		
+		// 한글 입력 불가능
+		function noKorean(obj) {
+			obj.value = obj.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+		}
+	
+    })
     </script>
 </body>
 </html>

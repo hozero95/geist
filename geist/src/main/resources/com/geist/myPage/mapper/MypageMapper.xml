@@ -5,19 +5,17 @@
 
 <!-- 
 	마이페이지
-	담당 : 김현선
+	담당 : 김현선	
 	
-	조회 : 사원번호, 생년월일, 아이디, 개인 연락처, 사내 연락처, 주소
-	수정 : 사원번호, 생년월일, 아이디, 비밀번호, 비밀번호 확인, 개인 연락처, 사내 연락처, 주소
-	
-	emp_no, emp_birth, emp_id, emp_pw, emp_phone, emp_tel, emp_address	
+	조회 : 아이디, 사원번호, (직책, 급여, 입사일,) 사내연락처, 개인연락처, 생년월일, 주소
+	수정 : 아이디, (새 비밀번호, 새 비밀번호 재입력), 사원번호, 직책, 급여, 입사일, 사내연락처, 개인연락처, 생년월일, 주소
  -->
 
 <mapper namespace="com.geist.myPage.mapper.MypageMapper">
 
-	<select id="read" resultType="com.geist.myPage.domain.MypageVO">
+	<select id="read" resultType="com.geist.myPage.domain.MypageDTO">
 		SELECT 
-			emp_no, emp_birth, emp_id, emp_phone, emp_tel, emp_address
+			emp_name, emp_id, emp_no, emp_position, emp_sal, emp_date, emp_tel, emp_phone, emp_birth, emp_address
 		FROM
 			employee
 		WHERE
@@ -28,7 +26,7 @@
 		UPDATE 
 			employee 
 		SET 
-			emp_pw = #{emp_pw}, emp_phone = #{emp_phone}, emp_tel = #{emp_tel}, emp_address = #{emp_address}
+			emp_pw = #{emp_pw}, emp_tel = #{emp_tel}, emp_phone = #{emp_phone}, emp_address = #{emp_address}
 		WHERE
 			emp_no = #{emp_no}
 	</update>

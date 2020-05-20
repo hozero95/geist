@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Geist</title>
 <link href="/resources/css/document.css" rel="stylesheet" />
 <link href="/resources/css/main.css" rel="stylesheet" />
@@ -124,8 +125,8 @@
                                     </div>
 
                                     <div class="pt-2" style="float: right;">
-                                           	<button type="button" class="btn btn-sm dt-button" id="approve" onclick="">승인</button>
-                                           	<button type="button" class="btn btn-sm dt-button" id="return" onclick="">반려</button>
+                                           	<button type="button" class="btn btn-sm dt-button" id="approve" onclick="alert('승인 되었습니다.')">승인</button>
+                                           	<button type="button" class="btn btn-sm dt-button" id="return" onclick="alert('반려 되었습니다')">반려</button>
                                     </div>
                                 </form>
                             </div>
@@ -136,6 +137,6 @@
             </div>
         </div>
     </div>
-
+<script type="text/javascript" src="/resources/js/approvalAdmitDetail.js"></script>
 </body>
 </html>

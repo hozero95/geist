@@ -10,6 +10,7 @@
 	<!-- main Css-->
     <link href="/resources/css/document.css" rel="stylesheet" />
     <link href="/resources/css/main.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Data table-->
     <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" ></script>
     <!-- Bootstrap -->
@@ -18,6 +19,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Data button-->
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+    <!-- jQuery -->
     
 </head>
 
@@ -88,7 +90,8 @@
                                                             
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
+                                                    <tbody class="table-body">
+                                                    <!-- 
                                                         <tr role="row" class="odd">
                                                             <td class="sorting_1">1</td>
                                                             <td>홍길동</td>
@@ -107,8 +110,10 @@
                                                             <td>제작팀</td>
                                                             <td>Geist</td>
                                                         </tr>
+                                                         -->
                                                     </tbody>
                                                 </table>
+                                                <div class="table-page"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -129,18 +134,20 @@
     <script type="text/javascript" src="/resources/js/main.js"></script>
     <script type="text/javascript" src="/resources/js/register.js"></script>
     <script type="text/javascript" src="/resources/js/My-register.js"></script>
+    <script type="text/javascript" src="/resources/js/address.js"></script>
     
     <script>
     	$(document).ready(function() {
+    		/*
         	$("#foo-table").DataTable({
                 "info" :  false,
                 lengthChange: false,
         	});
+    		*/
             $('div').removeClass('form-inline');
             $('div.app-page-title').css('margin','0px 0px 0px');
             $('div.app-page-title').css('padding','50px 0px 30px 0px');
         });
     </script>
-    
 </body>
 </html>
