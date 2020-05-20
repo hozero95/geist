@@ -48,7 +48,7 @@ public class NoticeController {
 		return new ResponseEntity<NoticeVO>(service.noticeRead(noti_no), HttpStatus.OK);
 	}
 	
-
+	
 	//Post형식에선 return값을 주지 않아도 됨
 	@PostMapping(value = "/noticeWrite", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> noticeWrite(@RequestBody NoticeVO vo){
