@@ -49,6 +49,15 @@ constraint fk_proj_management_dept_no foreign key(dept_no) references department
 	]]>
 </select>
 
+<select id="projectDept" resultType="int">
+		SELECT
+			dept_no
+		FROM
+			employee
+		Where
+			emp_no = #{emp_no}
+	</select>
+
 <insert id = "projectWrite">
 	insert into project
 	(proj_no, proj_name, proj_agency, proj_start, proj_end)

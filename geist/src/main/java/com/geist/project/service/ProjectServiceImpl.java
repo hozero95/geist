@@ -64,7 +64,7 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public int projectDept(int emp_no) {
+	public int projectDept(Long emp_no) {
 		// TODO Auto-generated method stub
 		log.info("ProjecService projectDept()");
 		return mapper.projectDept(emp_no);
