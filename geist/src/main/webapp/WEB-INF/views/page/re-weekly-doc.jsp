@@ -104,6 +104,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/resources/js/approvalAdmitDetail.js"></script>
+    <script type="text/javascript" src="/resources/js/approvalAdmitDetail2.js"></script>
 </body>
 </html>

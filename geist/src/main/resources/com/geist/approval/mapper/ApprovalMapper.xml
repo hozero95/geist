@@ -107,7 +107,7 @@
 		]]>
 	</select>	
 	<!-- 결재 승인 상세 조회 -->
-	<select id="admitDetail" resultType="com.geist.approval.domain.ApprovalAgrDTO">
+	<select id="admitDetail" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
 		<![CDATA[
 			SELECT 
 				dept_name, emp_position, emp_name, app_title, app_date
@@ -126,7 +126,15 @@
 			)
 		]]>
 	</select>
-	
+	<!-- 결재 승인자들 조회 -->
+	<select id="approvers" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
+		<![CDATA[
+			SELECT emp_position FROM employee 
+			WHERE emp_no IN (
+				SELECT emp_no FROM app_agree WHERE app_no IN (#{app_no})
+				)
+		]]>
+	</select>
 	
 	<!-- 결재 승인 or 반려 -->
 	<update id="appAdmit">

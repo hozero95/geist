@@ -9,7 +9,7 @@ var approvalAdmitDetailService = (function(){
 	function detail(param, callback, error){
 		var app_no = param.app_no;
 		var emp_no = param.emp_no;
-		$.getJSON("/approvalAdmit/detailView/" + app_no + "/" + emp_no + ".json", function(data){
+		$.getJSON("/approvalAdmit/detail/" + app_no + "/" + emp_no + ".json", function(data){
 			if(callback){
 				callback(data);
 			}
@@ -68,25 +68,25 @@ $(document).ready(function(){
 	console.log(typeof app_no)
 	console.log(emp_no)
 	
-//	detailView(app_no, emp_no);
+	var deptName = $(".dept-name");
+	var empPostion = $(".emp-position");
+	var empName = $(".emp-name");
+	var appDate = $(".app-date");
+
+	detailView(app_no, emp_no);	
 	
 	// 실행 안됨, sql에 오류있음
-//	function detailView(app_no, emp_no){
-//		approvalAdmitDetailService.detail({
-//			app_no : app_no,
-//			emp_no : emp_no
-//		},function(data){
-//			var deptName = $(".dept-name");
-//			var empPostion = $(".emp-position");
-//			var empName = $(".emp-name");
-//			var appDate = $(".app-date");
-//			
-//			deptName.innerHTML = data.dept_name;
-//			empPosition.innerHTML = data.emp_position;
-//			empName.innerHTML = data.emp_name;
-//			appDate.innerHTML = data.app_date;
-//		});
-//	}
+	function detailView(app_no, emp_no){
+		approvalAdmitDetailService.detail({
+			app_no : app_no,
+			emp_no : emp_no
+		},function(data){						
+			deptName.innerHTML = data.dept_name;
+			empPosition.innerHTML = data.emp_position;
+			empName.innerHTML = data.emp_name;
+			appDate.innerHTML = data.app_date;
+		});
+	}
 	
 	var admit = $("#approve");
 	var reject = $("#return");

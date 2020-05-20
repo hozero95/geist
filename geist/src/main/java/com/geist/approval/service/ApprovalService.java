@@ -1,6 +1,10 @@
 package com.geist.approval.service;
 
+import java.util.List;
+
 import com.geist.approval.domain.ApprovalAgrDTO;
+import com.geist.approval.domain.ApprovalAgrDetailDTO;
+import com.geist.approval.domain.ApprovalAgrDetailPositionDTO;
 import com.geist.approval.domain.ApprovalAgrVO;
 import com.geist.approval.domain.ApprovalReqDTO;
 import com.geist.approval.domain.ApprovalWholeDTO;
@@ -31,7 +35,9 @@ public interface ApprovalService {
 	// 결재 승인 조회
 	public ApprovalAgrDTO admitListWithPaging(Criteria cri, Long emp_no);
 	// 결재 승인 상세 조회
-	public ApprovalAgrDTO admitDetail(Long app_no, Long emp_no);
+	public ApprovalAgrDetailDTO admitDetail(Long app_no, Long emp_no);
+	// 결재 승인자들 조회
+//	public List<ApprovalAgrDetailPositionDTO> approvers(Long app_no);
 	
 	// 결재 승인 or 반려
 	public void appAdmit(ApprovalAgrVO agrVo);

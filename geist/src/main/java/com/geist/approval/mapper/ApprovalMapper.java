@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.geist.approval.domain.ApprovalAgrDTO;
+import com.geist.approval.domain.ApprovalAgrDetailDTO;
 import com.geist.approval.domain.ApprovalAgrVO;
 import com.geist.approval.domain.ApprovalReqDTO;
 import com.geist.approval.domain.ApprovalReqVO;
@@ -43,11 +43,11 @@ public interface ApprovalMapper {
 			@Param("cri") Criteria cri, 
 			@Param("emp_no") Long emp_no);	
 	// 결재 승인 상세 조회
-	public ApprovalAgrDTO admitDetail(
+	public ApprovalAgrDetailDTO admitDetail(
 			@Param("app_no") Long app_no, 
 			@Param("emp_no") Long emp_no);
-
-	
+	// 결재 승인자들 조회
+	public ApprovalAgrDetailDTO approvers(Long app_no);
 	
 	// 결재 승인 or 반려
 	public void appAdmit(ApprovalAgrVO agrVo);

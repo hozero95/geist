@@ -38,19 +38,19 @@
                                         <table class="task-doc">
                                             <tr>
                                                 <td><span class="table-text">부서</span></td>
-                                                <td><span class="table-text">개발팀</span></td>
+                                                <td><span class="dept-name">개발팀</span></td>
                                             </tr>
                                             <tr>
                                                 <td><span class="table-text">직급</span></td>
-                                                <td><span class="table-text">차장</span></td>
+                                                <td><span class="emp-position">차장</span></td>
                                             </tr>
                                             <tr>
-                                                <td><span class="table-text">작성자명</span></td>
-                                                <td><span class="table-text">김현선</span></td>
+                                                <td><span class="table-text">작성자명</s	pan></td>
+                                                <td><span class="emp-name">김현선</span></td>
                                             </tr>
                                             <tr>
                                                 <td><span class="table-text">기안일</span></td>
-                                                <td><span class="table-text">2020-04-10</span></td>
+                                                <td><span class="app-date">2020-04-10</span></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2">
@@ -137,6 +137,6 @@
             </div>
         </div>
     </div>
-<script type="text/javascript" src="/resources/js/approvalAdmitDetail.js"></script>
+<script type="text/javascript" src="/resources/js/approvalAdmitDetail2.js"></script>
 </body>
 </html>

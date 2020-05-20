@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.geist.approval.domain.ApprovalAgrDTO;
+import com.geist.approval.domain.ApprovalAgrDetailDTO;
+import com.geist.approval.domain.ApprovalAgrDetailPositionDTO;
 import com.geist.approval.domain.ApprovalAgrVO;
 import com.geist.approval.domain.ApprovalReqDTO;
 import com.geist.approval.domain.ApprovalReqVO;
@@ -113,9 +115,15 @@ public class ApprovalServiceImpl implements ApprovalService {
 		return new ApprovalAgrDTO(mapper.getCount(emp_no), mapper.admitListWithPaging(cri, emp_no));	
 	}
 	
+	// 결재 승인 상세 조회
 	@Override
-	public ApprovalAgrDTO admitDetail(Long app_no, Long emp_no) {
+	public ApprovalAgrDetailDTO admitDetail(Long app_no, Long emp_no) {
 		return mapper.admitDetail(app_no, emp_no);	
 	}
 
+	// 결재 승인자들 조회
+//	@Override
+//	public List<ApprovalAgrDetailPositionDTO> approvers(Long app_no) {
+//		return mapper.approvers(app_no);
+//	}
 }
