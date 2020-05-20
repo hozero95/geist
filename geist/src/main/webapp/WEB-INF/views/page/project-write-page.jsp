@@ -56,13 +56,17 @@
 	                                            </tr>
 	                                            <tr>
 	                                                <th scope="row">시작일</th>
-	                                                <td><div class="in-put"><input type="text" id="proj_start" maxlength="10" required 
-	                                                							onkeyup="inputDateNumber(this)" oninput="noKorean(this)" /></div></td>
+	                                                <td>
+	                                                <div class="in-put">
+	                                                <input type="text" id="proj_start" maxlength="10" required onkeyup="inputDateNumber(this);" />
+	                                                </div>
+	                                                </td>
 	                                            </tr>
 	                                            <tr>
 	                                                <th scope="row">종료일</th>
-	                                                <td><div class="in-put"><input type="text" id="proj_end" maxlength="10" required 
-	                                                							onkeyup="inputDateNumber(this)" oninput="noKorean(this)" /></div></td>
+	                                                <td>
+	                                                <div class="in-put">
+	                                                <input type="text" id="proj_end" maxlength="10" required onkeyup="inputDateNumber(this);" /></div></td>
 	                                            </tr>
                                             </tbody>
                                         </table>
@@ -94,12 +98,6 @@
     $(function() {
     
     	var proWrite = $("#proWrite");
-   		var dept_no = $("#dept_no");
-   		var proj_name = $("#proj_name").val();
-   		var proj_agency = $("#proj_agency").val();
-   		var proj_start = $("#proj_start").val();
-   		var proj_end = $("#proj_end").val();
-    	
    		
 	   	function projectWrite(param, callback, error) {
 			$.ajax({
@@ -124,8 +122,20 @@
    		
 	   	
    		proWrite.click(function() {
-   			console.log("작성버튼 클릭시 호출!");
-   			projectWrite({
+   	  		var dept_no = $("#dept_no").val();
+   	   		var proj_name = $("#proj_name").val();
+   	   		var proj_agency = $("#proj_agency").val();
+   	   		var proj_start = $("#proj_start").val();
+   	   		var proj_end = $("#proj_end").val();
+   			
+   	   		console.log("작성버튼 클릭시 호출!");
+   	   		console.log(dept_no);
+   	   		console.log(proj_name);
+   	   		console.log(proj_agency);
+   	   		console.log(proj_start);
+   	   		console.log(proj_end);
+   			
+   	   		projectWrite({
    				"dept_no" : dept_no,
    				"proj_name" : proj_name,
    				"proj_agency" : proj_agency,
@@ -137,43 +147,40 @@
    	    		window.close();
    			})
    		})
+    });
+ 	
+    
+    // 자동 "-" 삽입
+	function inputDateNumber(obj) {
+		var number = obj.value.replace(/[^0-9]/g, "");
+		var date = "";
 
-   	
-   	
-   	
-	 	// 자동 "-" 삽입
-		function inputDateNumber(obj) {
-			var number = obj.value.replace(/[^0-9]/g, "");
-			var date = "";
-	
-			if (number.length < 4) {
-				return number;
-			} else if (number.length < 6) {
-				date += number.substr(0, 4);
-				date += "-";
-				date += number.substr(4);
-			} else if (number.length < 8) {
-				date += number.substr(0, 4);
-				date += "-";
-				date += number.substr(4, 2);
-				date += "-";
-				date += number.substr(6);
-			} else {
-				date += number.substr(0, 4);
-				date += "-";
-				date += number.substr(4, 2);
-				date += "-";
-				date += number.substr(6);
-			}
-			obj.value = date;
+		if (number.length < 4) {
+			return number;
+		} else if (number.length < 6) {
+			date += number.substr(0, 4);
+			date += "-";
+			date += number.substr(4);
+		} else if (number.length < 8) {
+			date += number.substr(0, 4);
+			date += "-";
+			date += number.substr(4, 2);
+			date += "-";
+			date += number.substr(6);
+		} else {
+			date += number.substr(0, 4);
+			date += "-";
+			date += number.substr(4, 2);
+			date += "-";
+			date += number.substr(6);
 		}
-   		
-		// 한글 입력 불가능
-		function noKorean(obj) {
-			obj.value = obj.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
-		}
-	
-    })
+		obj.value = date;
+	}
+		
+	// 한글 입력 불가능
+	function noKorean(obj) {
+		obj.value = obj.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+	}
     </script>
 </body>
 </html>
