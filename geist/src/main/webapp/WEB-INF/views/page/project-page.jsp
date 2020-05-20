@@ -23,8 +23,8 @@
 <script
 	src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
 <script>
-    function showPopupWrite() { window.open("/projWrite", "프로젝트 작성", "width=1200, height=700, left=100, top=50"); }
-    function showPopupUpdate() { window.open("/projUpdate", "프로젝트 수정", "width=1200, height=700, left=100, top=50"); }
+    function showPopupWrite() { window.open("/projectWrite", "프로젝트 작성", "width=1200, height=700, left=100, top=50"); }
+    function showPopupUpdate() { window.open("/projectUpdate", "프로젝트 수정", "width=1200, height=700, left=100, top=50"); }
 </script>
 </head>
 <body>
@@ -116,13 +116,7 @@
 											</div>
 										</div>
 										<div class="table-page">
-											<ul class="page">
-												<li>1</li>
-												<li>2</li>
-												<li>3</li>
-												<li>4</li>
-											</ul>
-											
+										
 										</div>
 										<!-- radioBtn test -->
 										<button type="button" id="testBtn">선택</button>
@@ -151,17 +145,18 @@
 		var proUpdate = $("#proUpdate");
 		var proDelete = $("#proDelete");
 		var tbody = $("#table-body");
+		var tpage = $(".table-page");
 		
 		var proj_no;
 		var proj_name;
 		var proj_agency;
 		var proj_start;
 		var proj_end;
-		
-		var page = 1;
+		var pageNum = 1;
 		
 
 		function projectList(param, callback, error) {
+			var page = param.page;
 			$.getJSON("/project/projectList/" + page, function(data) {
 				if(callback) {
 					callback(data);
@@ -222,14 +217,49 @@
 			});
 		}
 	    
-	    showList(page);
-		
-
+	    function showListPage(count) {
+	    	var endNum = Math.ceil(pageNum / 10.0) * 10;
+	    	var startNum = endNum-9;
+	    	var prev = startNum != 1;
+	    	var next = false;
+	    	
+	    	if(endNum * 10 >= count) {
+	    		endNum = Math.ceil(count / 10.0);
+	    	}
+	    	if(endNum * 10 < count) {
+	    		next = true;
+	    	}
+	    	
+	    	var str = "<ul>";
+	    	if(prev) {
+	    		str += "<li><a href '" + (startNum -1) + "'>Prev</a></li>";
+	    	}
+	    	for(var i = startNum; i <= endNum; i++) {
+	    		var linkStart = pageNum != i ? "<a href='" + i + "'>'" : "";
+	    		var linkEnd = pageNum != i ? "</a>" : "";
+	    		str += "<li>" + linkStart + i + linkEnd + "</li>";
+	    	}
+	    	if(next) {
+	    		str += "<li><a href='" + (endNum + 1) + "'>Next</a></li>";
+	    	}
+	    	str =+ "</ul>";
+	    	
+	    	tpage.html(str);
+	    }
 	    
-		proUpdate.on("click", function() {
-			
-		})
-		
+	    tpage.on("click", "li a", function(e) {
+	    	e.preventDefault();
+	    	
+	    	var targetPageNum = $(this).attr("href");
+	    	pageNum = targetPageNum;
+	    	
+	    	showList(pageNum);
+	    });
+	    
+	    
+	    
+	    
+
 		proDelete.click(function() {
 			var chk = $("tr").children().find("input[name=selected]").is(':checked');
 			var checked = $("input[name=selected]:checked");
@@ -252,6 +282,13 @@
 		})
 		
 		
+	    
+		proUpdate.on("click", function() {
+			
+		})
+		
+			    
+	    showList(1);
 		
 		
 		
