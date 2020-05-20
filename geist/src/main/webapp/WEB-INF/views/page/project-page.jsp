@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -23,7 +22,6 @@
 <!-- Data button-->
 <script
 	src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
-
 <script>
     function showPopupWrite() { window.open("/projWrite", "프로젝트 작성", "width=1200, height=700, left=100, top=50"); }
     function showPopupUpdate() { window.open("/projUpdate", "프로젝트 수정", "width=1200, height=700, left=100, top=50"); }
@@ -117,10 +115,18 @@
 													id="proDelete" onclick="">삭제</button>
 											</div>
 										</div>
-										<div class="table-page"></div>
+										<div class="table-page">
+											<ul class="page">
+												<li>1</li>
+												<li>2</li>
+												<li>3</li>
+												<li>4</li>
+											</ul>
+											
+										</div>
 										<!-- radioBtn test -->
 										<button type="button" id="testBtn">선택</button>
-                    <div class="col-sm-12" id="test"></div>
+										<div class="col-sm-12" id="test"></div>
 
 									</div>
 								</div>
@@ -141,9 +147,6 @@
 	
 	$(function() {
 
-		var page = 1;
-		var dept_no = 1;
-		
 		var proWrite = $("#proWrite");
 		var proUpdate = $("#proUpdate");
 		var proDelete = $("#proDelete");
@@ -155,12 +158,16 @@
 		var proj_start;
 		var proj_end;
 		
-		//function projectList(param, callback, error) {
-		function projectList(param, callback) {
-			$.getJSON("/project/projectList/" + dept_no + "/" + page, function(data) {
+		var page = 1;
+		
+
+		function projectList(param, callback, error) {
+			$.getJSON("/project/projectList/" + page, function(data) {
 				if(callback) {
 					callback(data);
 				}
+			}).error(function() {
+				console.log("projectList 실패");
 			})
 		}
 		
@@ -169,23 +176,24 @@
 			$.ajax({
 				type : 'delete',
 				url : '/project/projectDelete/' + proj_no,
-				//data : proj_no,
 				success : function(result, status, xhr) {
-					console.log('projectDelete');
+					console.log("projectDelete");
 					if(callback) {
 						callback(result);
 					}
+				},
+				error : function() {
+					console.log("프로젝트 삭제 실패");
 				}
 			});
-			return {
+			/*  return {
 				projectList : projectList,
 				projectDelete : projectDelete
-			}
+			} */
 		};
 	
 	    
-	    function showList(dept_no) {
-	
+	    function showList(page) {
 			projectList({
 				"proj_no" : proj_no,
 				"proj_name" : proj_name,
@@ -214,7 +222,7 @@
 			});
 		}
 	    
-	    showList(dept_no);
+	    showList(page);
 		
 
 	    
@@ -275,5 +283,5 @@
 	});
 
     </script>
-</body>
+	</body>
 </html>
