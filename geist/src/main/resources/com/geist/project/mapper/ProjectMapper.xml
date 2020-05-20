@@ -40,8 +40,23 @@ constraint fk_proj_management_dept_no foreign key(dept_no) references department
 </select>
 
 <select id = "projectRead" resultType = "com.geist.project.domain.ProjectVO">
-		select proj_name, proj_agency, proj_start, proj_end from project where proj_no = #{proj_no}
+	select proj_name, proj_agency, proj_start, proj_end from project where proj_no = #{proj_no}
 </select>
+
+<select id = "projectPageMake" resultType = "com.geist.project.domain.ProjectPageMakeVO">
+	<![CDATA[
+		select count(proj_no) from project where proj_no > 0
+	]]>
+</select>
+
+<select id="projectDept" resultType="int">
+		SELECT
+			dept_no
+		FROM
+			employee
+		Where
+			emp_no = #{emp_no}
+	</select>
 
 <insert id = "projectWrite">
 	insert into project
