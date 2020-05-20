@@ -19,7 +19,7 @@ public class ProjectMoveController {
 		return "/page/project-update-page";
 	}
 	
-	@RequestMapping(value = "/projectWrite", method = RequestMethod.GET)
+	@RequestMapping(value = "/project/projectWrite", method = RequestMethod.GET)
 	public String address() {
 		log.info("프로젝트 작성 페이지 이동");
 		return "/page/project-write-page";
