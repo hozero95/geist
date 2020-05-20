@@ -55,7 +55,6 @@ $(function () {
   $("#sal-error").hide();
   $("#Department-error").hide();
   $("#My-phone-error").hide();
-  $("#My-company-phone").hide();
   $("#My-company-ph-error").hide();
   $("#My-addr-error").hide();
 
@@ -79,7 +78,7 @@ $("#My-btnSave").click(function () {
     }
     
     var phone = $("#My-phone").val();
-    if (phone.length < 9 || phone.length > 14) {
+    if (phone.length < 13 || phone.length > 17) {
       $("#My-phone-error").show();
       $("#My-phone").focus();
       return false;
@@ -87,10 +86,10 @@ $("#My-btnSave").click(function () {
       $("#My-phone-error").hide();
     }
     
-    var phone2 = $("#My-company-phone").val();
-    if (phone2.length < 9 || phone2.length > 14) {
+    var phone2 = $("#My-c-phone").val();
+    if (phone2.length < 13 || phone2.length > 17) {
       $("#My-company-ph-error").show();
-      $("#My-company-phone").focus();
+      $("#My-c-phone").focus();
       return false;
     } else {
       $("#My-company-ph-error").hide();
@@ -154,7 +153,7 @@ $("#approve-btnSave").click(function () {
     }
     
     var phone = $("#My-phone").val();
-    if (phone.length < 9 || phone.length > 14) {
+    if (phone.length < 13 || phone.length > 17) {
       $("#My-phone-error").show();
       $("#My-phone").focus();
       return false;
@@ -162,10 +161,10 @@ $("#approve-btnSave").click(function () {
       $("#My-phone-error").hide();
     }
     
-    var phone2 = $("#My-company-phone").val();
-    if (phone2.length < 9 || phone2.length > 14) {
+    var phone2 = $("#My-c-phone").val();
+    if (phone2.length < 13 || phone2.length > 17) {
       $("#My-company-ph-error").show();
-      $("#My-company-phone").focus();
+      $("#My-c-phone").focus();
       return false;
     } else {
       $("#My-company-ph-error").hide();
