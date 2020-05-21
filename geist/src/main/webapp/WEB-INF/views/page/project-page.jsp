@@ -118,10 +118,6 @@
 										<div class="table-page">
 										
 										</div>
-										<!-- radioBtn test -->
-										<button type="button" id="testBtn">선택</button>
-										<div class="col-sm-12" id="test"></div>
-
 									</div>
 								</div>
 							</div>
@@ -157,7 +153,8 @@
 
 		function projectList(param, callback, error) {
 			var page = param.page;
-			$.getJSON("/project/projectList/" + page, function(data) {
+			console.log("projectList의 param" + page);
+			$.getJSON("/project/projectList/" + pageNum, function(data) {
 				if(callback) {
 					callback(data);
 				}
@@ -172,7 +169,7 @@
 				type : 'delete',
 				url : '/project/projectDelete/' + proj_no,
 				success : function(result, status, xhr) {
-					console.log("projectDelete");
+					console.log("프로젝트 삭제 성공");
 					if(callback) {
 						callback(result);
 					}
@@ -181,14 +178,9 @@
 					console.log("프로젝트 삭제 실패");
 				}
 			});
-			/*  return {
-				projectList : projectList,
-				projectDelete : projectDelete
-			} */
-		};
-	
-	    
-	    function showList(page) {
+		}
+		
+		function showList(page) { // 페이지
 			projectList({
 				"proj_no" : proj_no,
 				"proj_name" : proj_name,
@@ -202,7 +194,7 @@
 					return;
 				}
 				
-				for(var i = 0, len = data.length || 0; i < len; i++) {
+				for(var i = 0; i < data.length; i++) {
 					
 					str += "<tr onmouseover='this.style.backgroundColor=\"#dadada\"' onmouseout='this.style.backgroundColor=\"\"'>";
 					str += "<td id='ch-row'><input type='radio' class='radioBtn' name='selected'></td>";
@@ -216,6 +208,35 @@
 				tbody.html(str);
 			});
 		}
+	    
+	    /* function showList(page) {
+			projectList({
+				"proj_no" : proj_no,
+				"proj_name" : proj_name,
+				"proj_agency" : proj_agency,
+				"proj_start" : proj_start,
+				"proj_end" : proj_end,
+			}, function(data){
+				console.log(data)
+				var str = "";
+				if(data == null || data.length == 0) {
+					return;
+				}
+				
+				for(var i = 0; i < data.length; i++) {
+					
+					str += "<tr onmouseover='this.style.backgroundColor=\"#dadada\"' onmouseout='this.style.backgroundColor=\"\"'>";
+					str += "<td id='ch-row'><input type='radio' class='radioBtn' name='selected'></td>";
+					str += "<td>" + data[i].proj_no + "</td>";
+					str += "<td>" + data[i].proj_name + "</td>";
+					str += "<td>" + data[i].proj_agency + "</td>";
+					str += "<td>" + data[i].proj_start + "</td>";
+					str += "<td>" + data[i].proj_end + "</td>";
+					str += "</tr>";
+				}
+				tbody.html(str);
+			});
+		} */
 	    
 	    function showListPage(count) {
 	    	var endNum = Math.ceil(pageNum / 10.0) * 10;
@@ -289,33 +310,6 @@
 		
 			    
 	    showList(1);
-		
-		
-		
-		
-		// 체크된 테이블 행의 값 가져오기
-  		$('#testBtn').click(function() {
-  			var tdArr = new Array();
-  			var checked = $("input[name=selected]:checked");
-  			
-  			// 체크된 라디오버튼의 값
-  			checked.each(function(i) {
-	   			var tr = checked.parent().parent().eq(i);
-	   			var td = tr.children();
-	   			
-	   			var projectName = td.eq(1).text();
-	   			var agency = td.eq(2).text();
-	   			var startDay = td.eq(3).text();
-	   			var endDay = td.eq(4).text();
-	   			
-	   			tdArr.push(projectName);
-	   			tdArr.push(agency);
-	   			tdArr.push(startDay);
-	   			tdArr.push(endDay);
-  			});
-  			
-  			$("#test").html("체크된 라디오버튼 행의 값 : " + tdArr);
-  		});
 		
 	});
 
