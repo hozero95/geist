@@ -18,16 +18,15 @@ function ChangeMpage(value){
     }
     else if(value == "4") // nav 버튼 클릭시 전자결제요청 화면이동
     {
-        location.href="index.jsp?contentPage=./page/approval-request.jsp";
+        location.href="/approvalRequest";
     }
-    else if(value == "5") // nav 버튼 클릭시 전자결제승인 화면이동
+    else if(value == "5") // nav 버튼 클릭시 전자결제요청 조회 화면이동
     {
-        location.href="index.jsp?contentPage=./page/approval-check.jsp";
+        location.href="/approvalSearch";
     }
-    else if(value == "6") // nav 버튼 클릭시 전자결제조회 화면이동
+    else if(value == "6") // nav 버튼 클릭시 전자결제승인 조회 화면이동
     {
-    	console.log("ChangeMpage(6) 실행");
-        location.href="index.jsp?contentPage=./page/approval-admit.jsp";
+        location.href="/approvalAdmit";
     }
     else if(value == "7") // nav 버튼 클릭시 인사근태 화면이동
     {
@@ -60,9 +59,5 @@ function ChangeMpage(value){
     else if(value == "14") // nav 버튼 클릭시 프로젝트 사직서 화면이동
     {
         location.href="approvalRequest/detail/3";
-    }
-    else if(value == "15") // 
-    {
-        location.href="index.jsp?contentPage=./page/re-weekly-doc.jsp";
     }
 }
