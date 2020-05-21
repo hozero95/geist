@@ -10,18 +10,11 @@
 	<!-- main Css-->
     <link href="/resources/css/document.css" rel="stylesheet" />
     <link href="/resources/css/main.css" rel="stylesheet" />
-    <!-- Data table-->
-    <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" ></script>
-    <!-- Bootstrap -->
+   <!-- Bootstrap -->
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Data button-->
-    <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
-            
-<script>
-    function showPopup() { window.open("./page/admin-Mypage-page.jsp", "회원정보", "width=900, height=700, left=100, top=50"); }
-</script>
+
 </head>
 <body>
 
@@ -39,6 +32,8 @@
 			admin_nav="admin-nav.jsp";
 		}
 	%>
+	
+	<input type="hidden" name="login_no" value="${member.emp_no}">
 	
 	<div id="header">
 		<jsp:include page="topnav.jsp" />
@@ -69,48 +64,49 @@
                                 <div class="page-title-wrapper">
                                     <div id="foo-table_wrapper" class="">
                                         <div class="row">
+                                        	<form id="searchForm" action="/empManage" method="get">
+												<select name="type">
+													<option value="">--</option>
+													<option value="N">이름</option>
+													<option value="P">직급</option>
+													<option value="D">부서</option>
+												</select>
+												<input type="text" name="keyword" value="">
+												<button class="search">Search</button>
+											</form><br>
                                             <div class="col-sm-12">
                                                 <table id="foo-table" class="table table-bordered dataTable" role="grid"
                                                     aria-describedby="foo-table_info">
                                                     <thead>
                                                         <tr role="row">
                                                             <th class="sorting_asc" tabindex="0" aria-controls="foo-table" rowspan="1" colspan="1"
-                                                                aria-sort="ascending" aria-label="이름: activate to sort column descending"
-                                                                style="width: 80px;">이름</th>
+                                                                aria-sort="ascending" aria-label="사원번호: activate to sort column descending"
+                                                                style="width: 100px;">사원 번호</th>
                                                             <th class="sorting_asc" tabindex="0" aria-controls="foo-table" rowspan="1" colspan="1"
-                                                                aria-sort="ascending" aria-label="부서명: activate to sort column descending"
-                                                                style="width: 300px;">부서명</th>
+                                                                aria-sort="ascending" aria-label="이름: activate to sort column descending"
+                                                                style="width: 300px;">이름</th>
+                                                            <th class="sorting_asc" tabindex="0" aria-controls="foo-table" rowspan="1" colspan="1"
+                                                                aria-sort="ascending" aria-label="직급: activate to sort column descending"
+                                                                style="width: 300px;">직급</th>
                                                             <th class="sorting" tabindex="0" aria-controls="foo-table" rowspan="1" colspan="1"
-                                                                aria-label="직책: activate to sort column ascending" style="width: 300px;">직책</th>
+                                                                aria-label="입사일: activate to sort column ascending" style="width: 300px;">입사일</th>
                                                             <th class="sorting" tabindex="0" aria-controls="foo-table" rowspan="1" colspan="1"
-                                                                aria-label="회사소속: activate to sort column ascending" style="width: 400px;">회사소속</th>
+                                                                aria-label="부서: activate to sort column ascending" style="width: 400px;">부서</th>
                                                                 <th class="sorting_asc" tabindex="0" aria-controls="foo-table" rowspan="1" colspan="1"
                                                                 aria-sort="ascending" aria-label="조회: activate to sort column descending"
                                                                 style="width: 100px;">조회</th>
                                                            
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        <tr role="row" class="odd">
-                                                            <td class="sorting_1">홍길동</td>
-                                                            <td>기획팀</td>
-                                                            <td>사원</td>
-                                                            <td>Geist</td>
-                                                            <td>
-                                                                <button type="button" class="btn btn-sm dt-button" id="btnRetrieve" onclick="showPopup();">조회</button>                                                         
-                                                            </td>
-                                                        </tr>
-                                                        <tr role="row" class="even">
-                                                            <td class="sorting_1">김을룡</td>
-                                                            <td>기획팀</td>
-                                                            <td>사원</td>
-                                                            <td>Geist</td>
-                                                            <td>
-                                                                <button type="button" class="btn btn-sm dt-button" id="btnRetrieve" onclick="showPopup();">조회</button>                                                         
-                                                            </td>
-                                                        </tr>
+                                                    <tbody class="table-body">
+                                                        
                                                     </tbody>
                                                 </table>
+                                                
+                                                <div class="table-page">
+	
+												</div><br>
+												
                                             </div>
                                         </div>
                                     </div>
@@ -131,19 +127,7 @@
     <script type="text/javascript" src="/resources/js/main.js"></script>
     <script type="text/javascript" src="/resources/js/register.js"></script>
     <script type="text/javascript" src="/resources/js/My-register.js"></script>
+    <script type="text/javascript" src="/resources/js/admin-page.js"></script>
 
-
-    <script>
-	   $(document).ready(function() {
-	        $('#foo-table').DataTable( {
-	            "info" :  false,
-	            lengthChange: false,
-	        });
-	        
-            $('div').removeClass('form-inline');
-            $('div.app-page-title').css('margin','0px 0px 0px');
-            $('div.app-page-title').css('padding','50px 0px 30px 0px');
-	    });
-    </script>
 </body>
 </html>
