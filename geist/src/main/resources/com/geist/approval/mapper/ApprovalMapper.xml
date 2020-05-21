@@ -127,7 +127,7 @@
 		]]>
 	</select>
 	<!-- 결재 승인자들 조회 -->
-	<select id="approvers" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
+	<select id="approvers" resultType="com.geist.approval.domain.ApprovalAgrDetailPositionVO">
 		<![CDATA[
 			SELECT emp_position FROM employee 
 			WHERE emp_no IN (
@@ -135,6 +135,7 @@
 				)
 		]]>
 	</select>
+	
 	
 	<!-- 결재 승인 or 반려 -->
 	<update id="appAdmit">

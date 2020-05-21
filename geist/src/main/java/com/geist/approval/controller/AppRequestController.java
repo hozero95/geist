@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.geist.approval.domain.ApprovalAgrVO;
 import com.geist.approval.domain.ApprovalVO;
-import com.geist.approval.domain.ApprovalWholeDTO;
+import com.geist.approval.domain.ApprovalCreateDTO;
 import com.geist.approval.service.ApprovalService;
 import com.geist.main.domain.Criteria;
 
@@ -35,7 +35,7 @@ public class AppRequestController {
 	
 	// 결재 문서 생성
 	@PostMapping(value = "/new", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> create(@RequestBody ApprovalWholeDTO dto) {
+	public ResponseEntity<String> create(@RequestBody ApprovalCreateDTO dto) {
 		log.info("create() 실행");
 		service.appCreate(dto);
 		service.appReqCreate(dto);

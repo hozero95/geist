@@ -4,6 +4,7 @@
  */
 
 console.log("approvalSearch.js")
+console.log("111")
 
 var approvalSearchService = (function(){
 	function getList(param, callback, error){
@@ -125,13 +126,14 @@ $(document).ready(function() {
 		
 		var app_no = $(this).children().eq(0).val();
 		var app_class = $(this).children().eq(1).val();
-				
-		if(app_class === "1"){			
-			location.href = "/approval/detail/1?app_no=" + app_no + "&emp_no=" + emp_no;
+		var search = "search";
+
+		if(app_class === "1"){
+			location.href = "/approval/detail/1?app_no=" + app_no + "&emp_no=" + emp_no + "&whoRu=" + search;
 		}else if(app_class === "2"){
-			location.href = "/approval/detail/2?app_no=" + app_no + "&emp_no=" + emp_no;
+			location.href = "/approval/detail/2?app_no=" + app_no + "&emp_no=" + emp_no + "&whoRu=" + search;
 		}else if(app_class === "3"){
-			location.href = "/approval/detail/3?app_no=" + app_no + "&emp_no=" + emp_no;
+			location.href = "/approval/detail/3?app_no=" + app_no + "&emp_no=" + emp_no + "&whoRu=" + search;
 		}
 	});
 });
