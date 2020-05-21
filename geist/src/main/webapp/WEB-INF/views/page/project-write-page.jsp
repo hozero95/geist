@@ -95,7 +95,7 @@
 	    });
     }); */
     
-    
+    $(function() {
 
     	var proWrite = $("#proWrite");
    		
@@ -142,10 +142,10 @@
    				"proj_start" : proj_start,
    				"proj_end" : proj_end 				
    			}, function(e) {
-   				e.preventDefault();
    				console.log("콜백함수 호출됨 !");
+   				window.close();
    	    		window.opener.location.reload();
-   	    		window.close();
+   	    		
    			})
    		//}); 예진 수정
 
