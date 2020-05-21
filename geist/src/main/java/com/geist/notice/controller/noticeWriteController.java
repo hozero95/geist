@@ -15,6 +15,6 @@ public class noticeWriteController {
 	@RequestMapping("/write")
 	public String noticeWrite() {
 		log.info("공지 작성페이지 이동");
-		return "/page/write";
+		return "page/document-page-write";
 	}
 }
