@@ -157,7 +157,7 @@
 
 		function projectList(param, callback, error) {
 			var page = param.page;
-			$.getJSON("/project/projectList/" + page, function(data) {
+			$.getJSON("/project/projectList/" + pageNum, function(data) {
 				if(callback) {
 					callback(data);
 				}

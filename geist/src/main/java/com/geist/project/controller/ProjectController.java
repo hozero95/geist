@@ -38,7 +38,6 @@ import lombok.extern.log4j.Log4j;
 public class ProjectController {
 
 		private ProjectService service;
-		private LoginService service2;
 		
 		//프로젝트의 목록을 보여주는 부분
 		@GetMapping(value = "/projectList/{page}",
