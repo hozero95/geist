@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="/resources/css/login.css" />
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Geist</title>
 </head>
 <body class="wrap">
@@ -34,11 +34,11 @@
             </form>
             <br />
             <div class="find-info">
-                <a href="#" target="_blank" class="idSearchLink">아이디 찾기</a> 
+                <a href="#" class="idSearchLink">아이디 찾기</a> 
                 <span> | </span> 
-                <a href="#" target="_blank" class="pwSearchLink">비밀번호 찾기</a> 
+                <a href="#" class="pwSearchLink">비밀번호 찾기</a> 
                 <span> | </span> 
-                <a href="#" target="_blank" class="registerLink">회원가입</a>
+                <a href="#" class="registerLink">회원가입</a>
             </div>
             <br />
             
@@ -71,7 +71,7 @@
         })();
         
         
-        $(function() {
+        $(document).ready(function(){
             var loginForm = $("#loginForm");
             var loginBtn = $(".btn-login");
             var registerLink = $(".registerLink");
@@ -105,15 +105,16 @@
                 var emp_pw = $("input[name='emp_pw']").val();
                 
                 loginService.login({
-                    emp_id : emp_id,
-                    emp_pw : emp_pw
-                }, function(result) {
-                    if(result == 'success') {
-                        location.href = "/main";
-                    } else {
-                        alert("로그인 정보가 일치하지 않습니다.");
-                    }
-                });
+    				emp_id : emp_id,
+    				emp_pw : emp_pw
+    			}, function(result){
+    				if(result == 'success') {
+    					location.href = "/main";
+    				}
+    				else{
+    					alert("아이디 또는 비밀번호가 잘못되었습니다.");
+    				}
+    			});
             });
             
             registerLink.on("click", function() {

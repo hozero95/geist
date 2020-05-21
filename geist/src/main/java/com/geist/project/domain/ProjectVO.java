@@ -34,5 +34,4 @@ public class ProjectVO {
 	private String proj_agency;
 	private Date proj_start;
 	private Date proj_end;
-	
 }

@@ -47,7 +47,8 @@ public class ProjectController {
 			HttpSession session = req.getSession();
 			
 			//session에 잇던거 가지고오기
-			int emp_no = (int)session.getAttribute("member");
+			LoginVO no = (LoginVO)session.getAttribute("member");
+			Long emp_no = no.getEmp_no();
 			
 			//session에서 가져온 emp_no가 mapper을 한번더 거쳐 dept_no 꺼냄
 			int dept_no = service.projectDept(emp_no);
@@ -71,8 +72,7 @@ public class ProjectController {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		
-		@RequestMapping(method = { RequestMethod.PUT,
-				RequestMethod.PATCH }, value = "/projectUpdate/{proj_no}", consumes = "application/json", produces = {
+		@RequestMapping(method = { RequestMethod.PUT, RequestMethod.PATCH }, value = "/projectUpdate/{proj_no}", consumes = "application/json", produces = {
 						MediaType.TEXT_PLAIN_VALUE })
 		public ResponseEntity<String> projectUpdate(@RequestBody ProjectVO vo, @PathVariable("proj_no") int proj_no) {
 			

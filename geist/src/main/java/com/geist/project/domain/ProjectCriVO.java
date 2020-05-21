@@ -9,17 +9,15 @@ public class ProjectCriVO {
 	private int amount;
 	private int dept_no;
 	
-	private String type;
-	private String keyword;
-	
 	public ProjectCriVO() {
 		this(1, 10, 0);
 	}
 	
-	public ProjectCriVO(int pageNum, int amount, int dept_no) {
-		
+	public ProjectCriVO(int pageNum, int amount, int dept_no) {		
 		this.pageNum = pageNum;
 		this.amount = amount;
 		this.dept_no = dept_no;
 	}
+	
+	
 }

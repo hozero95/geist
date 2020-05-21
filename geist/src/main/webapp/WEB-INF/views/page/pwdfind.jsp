@@ -5,6 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="/resources/css/pwdfind.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>비밀번호 찾기</title>
 </head>
 <body>
@@ -12,14 +13,14 @@
     <div id="header">
         <div class="top">
             <h1>
-                <a href="#" class="logo"><span class="logo">GEIST</span></a>
+                <a href="javascript:void(0)" class="logo"><span class="logo">GEIST</span></a>
             </h1>
         </div>
         <div class="menu">
             <ul class="menu_type">
-                <li><a href="/page/idfind.jsp" class="idclick"><span>아이디 찾기</span></a></li>
+                <li><a href="javascript:void(0)" onclick="location.href='/idSearch'" class="idclick"><span>아이디 찾기</span></a></li>
                 <span class="menu-bar">&nbsp;|&nbsp;</span>
-                <li><a href="#" class="idclick"><span>비밀번호 찾기</span></a></li>
+                <li><a href="javascript:void(0)" onclick="location.herf='/pwSearch'" class="pwdclick"><span>비밀번호 찾기</span></a></li>
             </ul>
         </div>
     </div>
@@ -38,7 +39,7 @@
                     <input type="text" id="name" name="name" maxlength="20" placeholder="이름을 입력하세요"> 
                 </span>
                 <span class="ps_box">
-                    <input type="text" id="phone" name="phone" maxlength="20" placeholder="휴대폰 번호를 입력하세요"> 
+                    <input type="text" id="phone" name="phone" maxlength="13" placeholder="휴대폰 번호를 입력하세요" oninput="noKorean(this);" onkeyup="inputPhoneNumber(this);"> 
                 </span>
                 <span class="ps_box">
                     <input type="text" id="email" name="email" maxlength="20" placeholder="이메일을 입력하세요"> 
@@ -49,16 +50,7 @@
             </form>
         </div>
     </div>
-    <div class="footer">
-        <div class="container-fluid">
-            <div class="d-flex justify-content-end small">
-                <div>
-                    회사소개&emsp;|&emsp;제휴제안&emsp;|&emsp;이용약관&emsp;|&emsp;개인정보처리방침&emsp;|&emsp;고객센터&emsp;
-                    <br>Geist ™ 2020.mental.warr 
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </div>
 
 <script type="text/javascript">
@@ -86,7 +78,6 @@
 			pwSearch : pwSearch
 		}
 	})();
-	
 	
 	$(documnet).ready(function() {
 		var searchForm = $("#pwdfind");
@@ -129,16 +120,42 @@
 				}
 			});
 			
-		})
+		});
 		
-	})
+	});
+	
+	
+	// input#input-number : 한글 입력 불가능
+	function noKorean(obj) {
+		obj.value = obj.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+	}
+	
+	// input#input-number : 자동 "-" 삽입
+	function inputPhoneNumber(obj) {
+		var number = obj.value.replace(/[^0-9]/g, "");
+		var phone = "";
 
-
-
-
-
-
-
+		if (number.length < 4) {
+			return number;
+		} else if (number.length < 7) {
+			phone += number.substr(0, 3);
+			phone += "-";
+			phone += number.substr(3);
+		} else if (number.length < 11) {
+			phone += number.substr(0, 3);
+			phone += "-";
+			phone += number.substr(3, 3);
+			phone += "-";
+			phone += number.substr(6);
+		} else {
+			phone += number.substr(0, 3);
+			phone += "-";
+			phone += number.substr(3, 4);
+			phone += "-";
+			phone += number.substr(7);
+		}
+		obj.value = phone;
+	}
 
 </script>
 
