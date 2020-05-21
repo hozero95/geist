@@ -30,7 +30,7 @@ $(document).ready(function(){
                 
             $.ajax({    
                 
-                url        : "/write",
+                url        : "/notice/noticeWrite",
                 data    : $("#notice-w-form").serialize(),
                 dataType: "JSON",
                 contentType : "application/json; charset=utf-8",
