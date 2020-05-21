@@ -3,18 +3,31 @@
  */
 
 console.log("approvalAdmitDetail.js");
+console.log("3333")
 
 var approvalAdmitDetailService = (function(){
 	function detail(param, callback, error){
 		var app_no = param.app_no;
 		var emp_no = param.emp_no;
-		$.getJSON("/approvalAdmit/detailView/" + app_no + "/" + emp_no + ".json", function(data){
+		$.getJSON("/approvalAdmit/detail/" + app_no + "/" + emp_no + ".json", function(data){
 			if(callback){
 				callback(data);
 			}
 		}).fail(function(xhr, status, err){
 			if(error){
 				error();
+			}
+		});
+	}
+	
+	function approvers(app_no, callback, error){
+		$.getJSON("/approvalAdmit/detailApprovers/" + app_no + ".json", function(data){
+			if(callback){
+				callback(data);
+			}
+		}).fail(function(xhr, status, err){
+			if(err){
+				status();
 			}
 		});
 	}
@@ -40,15 +53,20 @@ var approvalAdmitDetailService = (function(){
 	
 	return {
 		detail : detail,
+		approvers : approvers,
 		admit : admit
 	}
 })();
 
-$(document).ready(function(){
+$(document).ready(function(){	
 	var uri = document.location.href.split("?");
 	var param = uri[1].split("&");
 	var app_no;
 	var emp_no;
+	var search;
+	
+	console.log(uri);
+	console.log(param);
 	
 	for(let i = 0; i < param.length; i++){
 		var val = param[i].split("=");
@@ -57,30 +75,58 @@ $(document).ready(function(){
 			app_no = Number(val[1]);			
 		}else if(i == 1){
 			emp_no = Number(val[1]);
+		}else if(i == 2){
+			search = val[1];
 		}
 	}
 	
 	console.log(app_no)
-	console.log(typeof app_no)
 	console.log(emp_no)
+	console.log(search)
 	
-	detailView(app_no, emp_no);
+	if(search === "search"){
+		$(".pt-2 button").attr('disabled', true);
+		$(".btn").css('color', 'white');
+	}
 	
-	// 실행 안됨, sql에 오류있음
+	var deptName = $(".dept-name");
+	var empPosition = $(".emp-position");
+	var empName = $(".emp-name");
+	var appDate = $(".app-date");
+
+	detailView(app_no, emp_no);	
+	
 	function detailView(app_no, emp_no){
 		approvalAdmitDetailService.detail({
 			app_no : app_no,
 			emp_no : emp_no
-		},function(data){
-			var deptName = $(".dept-name");
-			var empPostion = $(".emp-position");
-			var empName = $(".emp-name");
-			var appDate = $(".app-date");
-			
-			deptName.innerHTML = data.dept_name;
-			empPosition.innerHTML = data.emp_position;
-			empName.innerHTML = data.emp_name;
-			appDate.innerHTML = data.app_date;
+		},function(data){				
+			console.log(data)
+			deptName.text(data.dept_name);
+			empPosition.text(data.emp_position);
+			empName.text(data.emp_name);
+			appDate.text(data.app_date);
+		});
+	}
+	
+	detailApprovers(app_no)
+	
+	function detailApprovers(app_no){
+		approvalAdmitDetailService.approvers(app_no, function(data){				
+			console.log(data);
+			for(var i = 0; i < data.approvers.length; i++){
+				var position = data.approvers[i].emp_position;
+		
+				if(position === "대리"){
+					$('input:checkbox[id="assistant"]').prop("checked", true)
+				}if(position === "과장"){
+					$('input:checkbox[id="manager"]').prop("checked", true)
+				}if(position === "차장"){
+					$('input:checkbox[id="deputy"]').prop("checked", true)
+				}if(position === "부장"){
+					$('input:checkbox[id="general"]').prop("checked", true)
+				}
+			}
 		});
 	}
 	
@@ -115,3 +161,4 @@ $(document).ready(function(){
 		})
 	});
 });
+

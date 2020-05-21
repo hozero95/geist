@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.geist.approval.domain.ApprovalAgrDTO;
+import com.geist.approval.domain.ApprovalAgrDetailDTO;
+import com.geist.approval.domain.ApprovalAgrDetailPositionDTO;
 import com.geist.approval.domain.ApprovalAgrVO;
 import com.geist.approval.domain.ApprovalReqDTO;
 import com.geist.approval.domain.ApprovalReqVO;
 import com.geist.approval.domain.ApprovalVO;
-import com.geist.approval.domain.ApprovalWholeDTO;
+import com.geist.approval.domain.ApprovalCreateDTO;
 import com.geist.approval.mapper.ApprovalMapper;
 import com.geist.main.domain.Criteria;
 
@@ -32,7 +34,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 	
 	// 결재 문서 생성 insert
 	@Override
-	public int appCreate(ApprovalWholeDTO dto) {
+	public int appCreate(ApprovalCreateDTO dto) {
 		log.info("결재 문서 생성 메서드 실행");
 		ApprovalVO avo = new ApprovalVO();
 		
@@ -51,7 +53,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 
 	// 결재 요청자 insert
 	@Override
-	public int appReqCreate(ApprovalWholeDTO dto) {
+	public int appReqCreate(ApprovalCreateDTO dto) {
 		log.info("결재 요청 메서드 실행");
 		ApprovalReqVO reqVo = new ApprovalReqVO();
 		
@@ -65,7 +67,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 
 	// 결재승인자들 insert
 	@Override
-	public void appAgrCreate(ApprovalWholeDTO dto) {	
+	public void appAgrCreate(ApprovalCreateDTO dto) {	
 		log.info("결재 승인 요청 메서드 실행");
 		ApprovalAgrVO agrVo = new ApprovalAgrVO();
 		List<ApprovalAgrVO> list = dto.getManager_no();
@@ -113,9 +115,17 @@ public class ApprovalServiceImpl implements ApprovalService {
 		return new ApprovalAgrDTO(mapper.getCount(emp_no), mapper.admitListWithPaging(cri, emp_no));	
 	}
 	
+	// 결재 승인 상세 조회
 	@Override
-	public ApprovalAgrDTO admitDetail(Long app_no, Long emp_no) {
+	public ApprovalAgrDetailDTO admitDetail(Long app_no, Long emp_no) {
 		return mapper.admitDetail(app_no, emp_no);	
+	}
+
+	// 결재 승인자들 조회
+	@Override
+	public ApprovalAgrDetailPositionDTO approvers(Long app_no) {
+//		return mapper.approvers(app_no);
+		return new ApprovalAgrDetailPositionDTO(mapper.approvers(app_no));
 	}
 
 }

@@ -111,6 +111,13 @@ public class MainController {
 		return "/page/approval-admit";
 	}
 	
+	@RequestMapping("/address")
+	public String address() {
+		log.info("주소록 페이지 이동");
+		return "/page/address-page";
+	}
+	
+	
 	@RequestMapping("/approvalRequest/detail/1")
 	public String approvalRequestClass1() {
 		log.info("결재 작성 : 주간업무 보고서 페이지 이동");
@@ -145,9 +152,5 @@ public class MainController {
 		return "/page/re-resignation-doc";
 	}
 	
-	@RequestMapping("/address")
-	public String address() {
-		log.info("주소록 페이지 이동");
-		return "/page/address-page";
-	}
+	
 }
