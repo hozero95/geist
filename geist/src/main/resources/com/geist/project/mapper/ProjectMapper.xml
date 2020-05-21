@@ -34,8 +34,8 @@ constraint fk_proj_management_dept_no foreign key(dept_no) references department
 			rownum rn, p.proj_no, p.proj_name, p.proj_agency, p.proj_start, p.proj_end
 		from
 			project p, proj_management m
-		where m.dept_no = #{dept_no} and rownum <= #{pageNum} * #{amount} order by rn asc)
-		where rn > (#{pageNum} -1) * #{amount}
+		where m.dept_no = #{dept_no} and p.proj_no = m.proj_no) where rn <= #{pageNum} * #{amount}
+		and rn > (#{pageNum} -1) * #{amount} order by proj_no desc
 		]]>
 </select>
 

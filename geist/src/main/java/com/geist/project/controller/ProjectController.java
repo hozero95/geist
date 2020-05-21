@@ -53,6 +53,7 @@ public class ProjectController {
 			int dept_no = service.projectDept(emp_no);
 			
 			ProjectCriVO vo = new ProjectCriVO(page, 10, dept_no);
+			
 			return new ResponseEntity<List<ProjectVO>>(service.projectList(vo), HttpStatus.OK);
 		}
 		
