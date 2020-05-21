@@ -10,21 +10,21 @@ $(document).ready(function(){
     /** 게시판 - 수정 페이지 이동 */
     function goBoardUpdate(){
         
-    	var noti_seq = $('input[name=noti_no]').val();
+    	var noti_no = $('input[name=noti_no]').val();
         
-        location.href = "/notice/noticeUpdate/"+ noti_seq;
+        location.href = "/notice/noticeUpdate/"+ noti_no;
     }
     
     /** 게시판 - 상세 조회  */
     function getBoardDetail(noti_no){
         
-        var noti_seq = $('input[name=noti_no]').val();
+        var noti_no = $('input[name=noti_no]').val();
  
         if(noti_seq != ""){
             
             $.ajax({    
                 
-                url        : "/notice/noticeRead/"+noti_seq,
+                url        : "/notice/noticeRead/"+noti_no,
                 data    : $("#noti_seq").serialize(),
                 contentType : "application/json; charset=utf-8",
                 dataType: "JSON",
@@ -49,7 +49,7 @@ $(document).ready(function(){
         
         if(obj != null){                                
                             
-        	var noti_seq        = obj.noti_no; 
+        	var noti_no        = obj.noti_no; 
             var noti_title         = obj.noti_title; 
             var noti_content         = obj.noti_content; 
             var noti_date         = obj.noti_date; 
@@ -73,14 +73,14 @@ $(document).ready(function(){
     /** 게시판 - 삭제  */
     function deleteBoard(){
  
-    	var noti_seq = $('input[name=noti_no]').val();
+    	var noti_no = $('input[name=noti_no]').val();
         
         var yn = confirm("게시글을 삭제하시겠습니까?");        
         if(yn){
             
             $.ajax({    
                 
-                url        : "/notice/noticeDelete/"+noti_seq,
+                url        : "/notice/noticeDelete/"+noti_no,
                 data    : $("#Notice-form").serialize(),
                 contentType : "application/json; charset=utf-8",
                 dataType: "JSON",

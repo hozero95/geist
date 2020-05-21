@@ -10,13 +10,13 @@ $(document).ready(function(){
     /** 게시판 - 상세 조회  */
     function getBoardDetail(noti_no){
         
-        var noti_seq = $("#noti_no").val();
+        var noti_no = $("#noti_no").val();
  
-        if(noti_seq != ""){
+        if(noti_no != ""){
             
             $.ajax({    
                 
-                url        : "/notice/noticeUpdate/"+noti_seq,
+                url        : "/notice/noticeUpdate/"+noti_no,
                 contentType: 'application/json; charset=utf-8',
                 data    : $("#Notice-form").serialize(),
                 dataType: "JSON",
@@ -42,7 +42,7 @@ $(document).ready(function(){
         
         if(obj != null){                                
                             
-            var noti_seq        = obj.noti_no; 
+            var noti_no        = obj.noti_no; 
             var noti_title         = obj.noti_title; 
             var noti_content         = obj.noti_content; 
             var noti_date         = obj.noti_date; 
@@ -54,6 +54,28 @@ $(document).ready(function(){
             alert("등록된 글이 존재하지 않습니다.");
             return;
         }        
+    }
+    
+    /** 게시판 - ajax */
+    function noticeUpdate(param, callback, error) {
+    	$.ajax({    
+            url : "/notice/noticeUpdate/"+noti_no,
+            data : JSON.stringify(param),
+            contentType : "application/json; charset=utf-8",
+            cache   : false,
+            async   : true,
+            type    : "GET",    
+            success : function(result, status, xhr) {
+            	if(callback){
+					callback(result);
+				}             
+            },                  
+            error     : function(xhr, status, error) {
+            	if(error){    
+					error(err);
+				}
+            }
+        });
     }
     
     /** 게시판 - 수정  */
@@ -76,37 +98,15 @@ $(document).ready(function(){
         
         var yn = confirm("게시글을 수정하시겠습니까?");        
         if(yn){
-                
-            $.ajax({    
-                
-                url        : "/notice/noticeUpdate/"+noti_seq,
-                data    : $("#Notice-form").serialize(),
-                dataType: "JSON",
-                cache   : false,
-                async   : true,
-                type    : "GET",    
-                success : function(obj) {
-                    updateBoardCallback(obj);                
-                },           
-                error     : function(xhr, status, error) {}
-                
-            });
-        }
-    }
-    
-    /** 게시판 - 수정 콜백 함수 */
-    function updateBoardCallback(obj){
-    
-        if(obj != null){        
-            
-            var result = obj.result;
-            
-            if(result == "SUCCESS"){                
-                alert("게시글 수정을 성공하였습니다.");                
-                goBoardList();                 
-            } else {                
-                alert("게시글 수정을 실패하였습니다.");    
-                return;
-            }
+        	noticeUpdate({
+        		"noti_title" : NOTI_TITLE,
+   				"noti_content" : NOTI_CONTENT,
+        	},function(result){
+        		alert("게시글 등록을 성공하였습니다.");                
+        		location.href = "/notice";
+        	})
+        }else{
+        	alert("게시글 등록을 실패하였습니다.");
+        	return;
         }
     }

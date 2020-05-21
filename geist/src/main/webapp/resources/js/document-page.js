@@ -1,20 +1,22 @@
-function getList(param, callback, error){
-		var page = param.page;
-		var pageNum = 1;
-		console.log("NoticeService.getList()page === " + page);
-		
-		$.getJSON("/notice/noticeList/" + pageNum, function(data){
-			if(callback){
-				console.log("data.count === " + data.count)
-				console.log("data.page === " + data.page)
-				callback(data.count, data.list);
-			}
-		}).fail(function(xhr, status, err){
-			if(error){
-				error();
-			}
-		});
-	}
+var NoticeService = (function(){
+	function getList(param, callback, error){
+			var page = param.page;
+			console.log("NoticeService.getList()page === " + page);
+			
+			$.getJSON("/notice/noticeList/" + page + ".json", function(data){
+				if(callback){
+					callback(data);
+				}
+			}).fail(function(xhr, status, err){
+				if(error){
+					error();
+				}
+			});
+		}
+	return{
+		getList : getList
+	};
+})();
 
 $(document).ready(function() {
 	var tbody = $("#document-body");
@@ -28,25 +30,27 @@ $(document).ready(function() {
 	showList(1);
 
 	function showList(page){
-		getList({
-			"noti_no" : noti_no,
-			"noti_title" : noti_title,
-			"noti_date" : noti_date,
-		}, function(data){
-			console.log(data)
-			var str = "";
-			if(data == null || data.length == 0) {
+		NoticeService.getList({
+			page : page || 1
+		}, function(list){
+			if(page == -1){
+				pageNum = Math.ceil(count / 10.0);
+				showList(pageNum);
 				return;
 			}
-			for(var i = 0, len = data.length || 0; i < len; i++){
-				console.log("list === " + list);
+			var str = "";
+			if(list == null || list.length == 0){
+				return;
+			}
+			for(var i = 0, len = list.length || 0; i < len; i++){
 				str += "<tr>";
-				str += "<td>" + data[i].noti_no + "</td>";
-				str += "<td>" + data[i].noti_title + "</td>";
-				str += "<td>" + data[i].noti_date + "</td>";
+				str += "<td>" + list[i].noti_no + "</td>";
+				str += "<td>" + list[i].noti_title + "</td>";
+				str += "<td>" + list[i].noti_date + "</td>";
 				str += "</tr>";
 			}
 			tbody.html(str);
+			showListPage(count);
 		});
 	}
 	
