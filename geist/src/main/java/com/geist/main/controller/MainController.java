@@ -102,7 +102,7 @@ public class MainController {
 	@RequestMapping("/approvalSearch")
 	public String approvalSearch() {
 		log.info("결재 조회 페이지 이동");
-		return "/page/approval-check";
+		return "/page/approval-search";
 	}
 	
 	@RequestMapping("/approvalAdmit")

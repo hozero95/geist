@@ -51,7 +51,7 @@ $(document).ready(function(){
 			emp_no : emp_no
 		}, function(data){
 			$("div[name='emp_name']").append("<h1 class='m-0'>"+data.emp_name+" "+data.emp_position+'</h1>');
-			$("div[name='emp_name']").append("<h6 class='m-0 pt-3 pb-4' name='dept_no'>"+"Geist회사 >"+" "+data.dept_no+'</h1>');
+			$("div[name='emp_name']").append("<h6 class='m-0 pt-3 pb-4' name='dept_no'>"+"Geist회사 >"+" "+data.dept_name+'</h1>');
 			
 			$("thead").append("<th scope='row'>"+"아이디"+"</th>");
 			$("thead").append("<td>"+data.emp_id+"</td>");
