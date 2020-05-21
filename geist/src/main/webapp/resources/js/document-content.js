@@ -10,7 +10,7 @@ $(document).ready(function(){
     /** 게시판 - 수정 페이지 이동 */
     function goBoardUpdate(){
         
-    	var noti_seq = $("#noti_no").val();
+    	var noti_seq = $('input[name=noti_no]').val();
         
         location.href = "/notice/noticeUpdate/"+ noti_seq;
     }
@@ -18,7 +18,7 @@ $(document).ready(function(){
     /** 게시판 - 상세 조회  */
     function getBoardDetail(noti_no){
         
-        var noti_seq = $("#noti_no").val();
+        var noti_seq = $('input[name=noti_no]').val();
  
         if(noti_seq != ""){
             
@@ -26,6 +26,7 @@ $(document).ready(function(){
                 
                 url        : "/notice/noticeRead/"+noti_seq,
                 data    : $("#noti_seq").serialize(),
+                contentType : "application/json; charset=utf-8",
                 dataType: "JSON",
                 cache   : false,
                 async   : true,
@@ -72,7 +73,7 @@ $(document).ready(function(){
     /** 게시판 - 삭제  */
     function deleteBoard(){
  
-    	var noti_seq = $("#noti_no").val();
+    	var noti_seq = $('input[name=noti_no]').val();
         
         var yn = confirm("게시글을 삭제하시겠습니까?");        
         if(yn){
@@ -81,6 +82,7 @@ $(document).ready(function(){
                 
                 url        : "/notice/noticeDelete/"+noti_seq,
                 data    : $("#Notice-form").serialize(),
+                contentType : "application/json; charset=utf-8",
                 dataType: "JSON",
                 cache   : false,
                 async   : true,

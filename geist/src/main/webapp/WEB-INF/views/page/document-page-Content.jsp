@@ -33,7 +33,7 @@
 			admin_nav="admin-nav.jsp";
 		}
 		
-		String noti_no = request.getParameter("noti_no"); 
+		String noti_no= request.getParameter("noti_no");
 	%>
 	
 	<c:set var="noti_no" value="<%=noti_no%>"/> <!-- 게시글 번호 -->
@@ -70,7 +70,7 @@
                                     <div class="rounded" id="notice-content">
                                         
                                     </div>
-                                    <input type="hidden" id="noti_no" name="noti_no" value="${noti_no}"/> <!-- 게시글 번호 -->
+                                    <input type="hidden" id="noti_no"        name="noti_no"    value="${noti_no}"/> <!-- 게시글 번호 -->
                                 </form>
                                     <hr>
                                     <div class="pt-2" style="float: right;">

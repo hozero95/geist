@@ -10,10 +10,24 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/resources/css/pwdfind.css">
 <meta charset="UTF-8">
 <title>사원 상세 조회</title>
 </head>
 <body>
+	<div class="wrap">
+	    <div id="header">
+	        <div class="top">
+	            <h1>
+	                <a href="javascript:void(0)" class="logo"><span class="logo">GEIST</span></a>
+	            </h1>
+	        </div>
+	        <div class="menu">
+	            <ul class="menu_type">
+	                
+	            </ul>
+	        </div>
+	    </div>
 	<div id="btnForm">
 		사원 번호 : <input type="text" name="emp_no" value="${emp_no}" readonly><br>
 		아이디 : <input type="text" name="emp_id" readonly><br>
@@ -94,6 +108,7 @@
 		var btnForm = $("#btnForm");
 		var modifyBtn = $(".modifyBtn");
 		var deleteBtn = $(".deleteBtn");
+		
 		
 		detailView($("input[name='emp_no']").val());
 		
