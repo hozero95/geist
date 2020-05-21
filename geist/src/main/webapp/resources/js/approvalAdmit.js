@@ -21,26 +21,9 @@ var approvalAdmitService = (function(){
 			}
 		});
 	}
-	
-	function getDetail(param, callback, error){
-		var app_class = param.app_class;
-		var app_no = param.app_no;
-		var emp_no = param.emp_no;
 		
-		$.getJSON("/approvalAdmit/detail/" + app_class + "/" + app_no + "/" +  emp_no + ".json", function(data){
-			if(callback){
-				callback(data);
-			}
-		}).fail(function(xhr, status, err){
-			if(error){
-				error();
-			}
-		});
-	}
-	
 	return{
-		getList : getList,
-		getDetail : getDetail
+		getList : getList
 	};
 })();
 
