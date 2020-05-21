@@ -147,7 +147,7 @@
    	    		window.opener.location.reload();
    	    		window.close();
    			})
-   		})
+   		//}); 예진 수정
 
     });
  	
