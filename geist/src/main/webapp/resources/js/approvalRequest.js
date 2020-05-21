@@ -3,6 +3,7 @@
  */
 
 console.log("approvalRequest.js")
+console.log("222")
 
 var approvalCreateService = (function(){	
 	function appCreate(param, callback, error){
@@ -25,8 +26,24 @@ var approvalCreateService = (function(){
         });
 	}
 	
+	function detail(param, callback, error){
+		var emp_no = param.emp_no;
+		
+		$.getJSON("/approvalRequest/new/" + emp_no + ".json", function(data){
+			if(callback){
+				callback(data);
+			}
+		}).fail(function(xhr, status, err){
+			console.log("fail")
+			if(error){
+				error();
+			}
+		});
+	}
+	
 	return {
-		appCreate : appCreate
+		appCreate : appCreate,
+		detail : detail
 	}
 })();
 
@@ -35,6 +52,24 @@ $(document).ready(function(){
 	var emp_no = Number($("input[name='login_no']").val());
 	
 	console.log(emp_no)
+	
+	var deptName = $(".dept-name");
+	var empPosition = $(".emp-position");
+	var empName = $(".emp-name");
+	
+	detailView(emp_no);	
+	
+	function detailView(emp_no){
+		console.log("detailVeiw 실행")
+		approvalCreateService.detail({
+			emp_no : emp_no
+		}, function(data){				
+			console.log(data)
+			deptName.text(data.dept_name);
+			empPosition.text(data.emp_position);
+			empName.text(data.emp_name);
+		});
+	}
 	
 	writeBtn.click(function(){
 		// app_class : 1(2, 3)
