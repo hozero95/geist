@@ -1,9 +1,9 @@
-var NoticeService = (function(){
-	function getList(param, callback, error){
+function getList(param, callback, error){
 		var page = param.page;
+		var pageNum = 1;
 		console.log("NoticeService.getList()page === " + page);
 		
-		$.getJSON("/notice/noticeList/" + page + ".json", function(data){
+		$.getJSON("/notice/noticeList/" + pageNum, function(data){
 			if(callback){
 				console.log("data.count === " + data.count)
 				console.log("data.page === " + data.page)
@@ -15,44 +15,38 @@ var NoticeService = (function(){
 			}
 		});
 	}
-	
-	return{
-		getList : getList
-	};
-})();
 
 $(document).ready(function() {
 	var tbody = $("#document-body");
 	var tpage = $("#document-table-page");
 	var write = $("#notice-write");
+	var noti_no;
+	var noti_title;
+	var noti_date;
 	var pageNum = 1;
 
 	showList(1);
 
 	function showList(page){
-		NoticeService.getList({
-			page : page || 1
-		}, function(count, list){
-			if(page == -1){
-				pageNum = Math.ceil(count / 10.0);
-				showList(pageNum);
-				return;
-			}
+		getList({
+			"noti_no" : noti_no,
+			"noti_title" : noti_title,
+			"noti_date" : noti_date,
+		}, function(data){
+			console.log(data)
 			var str = "";
-			if(list == null || list.length == 0){
+			if(data == null || data.length == 0) {
 				return;
 			}
-			for(var i = 0, len = list.length || 0; i < len; i++){
+			for(var i = 0, len = data.length || 0; i < len; i++){
 				console.log("list === " + list);
 				str += "<tr>";
-				str += "<td>" + list[i].noti_no + "</td>";
-				str += "<td>" + list[i].noti_title + "</td>";
-				str += "<td>" + list[i].noti_date + "</td>";
+				str += "<td>" + data[i].noti_no + "</td>";
+				str += "<td>" + data[i].noti_title + "</td>";
+				str += "<td>" + data[i].noti_date + "</td>";
 				str += "</tr>";
 			}
-			
 			tbody.html(str);
-			showListPage(count);
 		});
 	}
 	
@@ -96,6 +90,6 @@ $(document).ready(function() {
 	});
 	
 	write.on("click", function(){
-		location.href = "/write";
+		location.href = "/notice/noticeWrite";
 	});
 });
