@@ -14,6 +14,7 @@ import com.geist.approval.domain.ApprovalAgrVO;
 import com.geist.approval.domain.ApprovalReqDTO;
 import com.geist.approval.domain.ApprovalReqVO;
 import com.geist.approval.domain.ApprovalVO;
+import com.geist.approval.domain.ApprovalWriterDTO;
 import com.geist.approval.domain.ApprovalCreateDTO;
 import com.geist.approval.mapper.ApprovalMapper;
 import com.geist.main.domain.Criteria;
@@ -86,6 +87,12 @@ public class ApprovalServiceImpl implements ApprovalService {
 		}
 	}
 	
+	//결재 문서 생성할 작성자 정보 조회 
+	@Override
+	public ApprovalWriterDTO appWriter(Long emp_no) {
+		return mapper.appWriter(emp_no);
+	}
+	
 	// 결재 문서 승인 or 반려
 	@Override
 	public void appAdmit(ApprovalAgrVO agrVo) {
@@ -126,6 +133,6 @@ public class ApprovalServiceImpl implements ApprovalService {
 	public ApprovalAgrDetailPositionDTO approvers(Long app_no) {
 //		return mapper.approvers(app_no);
 		return new ApprovalAgrDetailPositionDTO(mapper.approvers(app_no));
-	}
+	}	
 
 }
