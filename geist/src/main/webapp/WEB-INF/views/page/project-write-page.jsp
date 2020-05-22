@@ -147,7 +147,7 @@
    	    		window.opener.location.reload();
    	    		
    			})
-   		//}); 예진 수정
+   		});
 
     });
  	
@@ -185,7 +185,6 @@
 	function noKorean(obj) {
 		obj.value = obj.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
 	}
-
     </script>
 </body>
 </html>

@@ -31,7 +31,7 @@ constraint fk_proj_management_dept_no foreign key(dept_no) references department
 		select proj_no, proj_name, proj_agency, proj_start, proj_end
 		from(
 		select /*+INDEX_DESC(project pk_project) */
-			rownum rn, p.proj_no, p.proj_name, p.proj_agency, p.proj_start, p.proj_end
+			rownum rn, p.proj_no proj_no, p.proj_name proj_name, p.proj_agency proj_agency, to_char(p.proj_start, 'YYYY-MM-DD') proj_start, to_char(p.proj_end, 'YYYY-MM-DD') proj_end
 		from
 			project p, proj_management m
 		where m.dept_no = #{dept_no} and p.proj_no = m.proj_no) where rn <= #{pageNum} * #{amount}
@@ -51,7 +51,14 @@ constraint fk_proj_management_dept_no foreign key(dept_no) references department
 		Where
 			emp_no = #{emp_no}
 	</select>
-
+	
+	<select id="projectCount" resultType="int">
+		<![CDATA[
+			SELECT count(proj_no) FROM project p, proj_management m WHERE
+			p.proj_no = m.proj_no
+		]]>
+	</select>
+	
 <insert id = "projectWrite">
 	insert into project
 	(proj_no, proj_name, proj_agency, proj_start, proj_end)
@@ -69,7 +76,7 @@ constraint fk_proj_management_dept_no foreign key(dept_no) references department
 </update>
 
 <delete id = "projectDelete">
-	delete * from project where proj_no = #{proj_no}
+	delete from project where proj_no = #{proj_no}
 </delete>
 
 </mapper>
