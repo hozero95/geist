@@ -46,6 +46,15 @@
 		    )
 	</insert>
 	
+	<select id="appWriter" resultType="com.geist.approval.domain.ApprovalWriterDTO">
+		SELECT 
+		    d.dept_name, e.emp_name, e.emp_position
+		FROM
+		    employee e, department d
+		WHERE
+		    e.emp_no = #{emp_no}
+			and e.dept_no = d.dept_no
+	</select>
 	
 	<!-- 결재 요청 조회 -->	
 	<select id="reqListWithPaging" resultType="com.geist.approval.domain.ApprovalVO">
