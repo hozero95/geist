@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ApprovalWholeDTO {
+public class ApprovalCreateDTO {
 	private Long emp_no; 
 	
 	private Long app_no;

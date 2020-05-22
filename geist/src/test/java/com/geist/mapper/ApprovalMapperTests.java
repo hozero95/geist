@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.geist.approval.domain.ApprovalAgrVO;
 import com.geist.approval.domain.ApprovalReqVO;
 import com.geist.approval.domain.ApprovalVO;
-import com.geist.approval.domain.ApprovalWholeDTO;
+import com.geist.approval.domain.ApprovalCreateDTO;
 import com.geist.approval.mapper.ApprovalMapper;
 import com.geist.main.domain.Criteria;
 
