@@ -57,10 +57,10 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public void projectDelete(int proj_no) {
+	public int projectDelete(int proj_no) {
 		// TODO Auto-generated method stub
 		log.info("ProjectService projectDelete()");
-		mapper.projectDelete(proj_no);
+		return mapper.projectDelete(proj_no);
 	}
 
 	@Override

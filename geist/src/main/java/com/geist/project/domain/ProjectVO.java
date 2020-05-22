@@ -32,6 +32,6 @@ public class ProjectVO {
 	private int dept_no;
 	private String proj_name;
 	private String proj_agency;
-	private Date proj_start;
-	private Date proj_end;
+	private String proj_start;
+	private String proj_end;
 }

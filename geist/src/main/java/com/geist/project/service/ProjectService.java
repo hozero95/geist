@@ -22,7 +22,7 @@ public interface ProjectService {
 	
 	public int projectUpdate(ProjectVO vo);
 	
-	public void projectDelete(int proj_no);
+	public int projectDelete(int proj_no);
 	
 	public int projectDept(Long emp_no);
 }

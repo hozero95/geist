@@ -53,6 +53,7 @@ public class ProjectController {
 			int dept_no = service.projectDept(emp_no);
 			
 			ProjectCriVO vo = new ProjectCriVO(page, 10, dept_no);
+			
 			return new ResponseEntity<List<ProjectVO>>(service.projectList(vo), HttpStatus.OK);
 		}
 		
@@ -95,8 +96,7 @@ public class ProjectController {
 		@DeleteMapping(value ="/projectDelete/{proj_no}", produces = {MediaType.TEXT_PLAIN_VALUE})
 		public ResponseEntity<String> remove(@PathVariable("proj_no") int proj_no){
 			log.info("projectDelete Controller");
-			service.projectDelete(proj_no);
-			return new ResponseEntity<>("success", HttpStatus.OK);
+			return service.projectDelete(proj_no) == 1 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 }
 
