@@ -29,10 +29,10 @@
                             <div class="app-page-title" style="margin: 0px; padding: 50px 0px 20px;">
                                 <div class="page-title-heading">
                                     <i class="pe-7s-project-inverse"></i>
-                                    <h2>프로젝트 </h2>
+                                    <h2>프로젝트</h2>
                                     <p>
                                 </div>
-                                <hr class="Geist-board-hr">
+                                <hr class="Geist-board-hr" />
                             </div>
                             <!-- Write -->
                             <form name="projectUpdate" action="#">
@@ -85,88 +85,86 @@
     </div>
     
     <script>
-    $( document ).ready( function() {
-    	$(document).on('click', '#proUpdate', function(e){
-    		e.preventDefault();
-    		parent.close();
-    		window.close();
-    		self.close();
-	    });
-    });
     
-    var proj_no = 1;
- 	// var proj_no = ?
- 	var dept_no = 1;
- 	// var dept_no = ?
- 	
- 	
-    
-    var projectUpdateService = (function() {
+    $(function() {
     	
-    	function getUpdateList(param, callback, error) {
+    	var btnUpdate = $("#proUpdate");
+    	
+    	function getUpdateList(callback, error) {
     		
-    		var porj_no = 1;
-    		
-    		$.getJSON("/projcet/projectUpdate/" + proj_no), function(data) {
+    		$.getJSON("/projcet/projectUpdate/"), function(data) {
     			callback(data);
     			console.log(data);
-    		}
-    		
+    		}.error(function() {
+    			console.log("수정데이터 받아오기 실패!");
+    		})
     	}
     	
     	
     	function projcetUpdate(param, callback, error) {
-    		
     		$.ajax({
     			type : 'get',
     			url : '/project/projectUpdate' + proj_no,
     			data : JSON.stringify(param),
     			contentType : "application/json; charset=utf-8",
     			success : function() {
-    				console.log("성공 시 호출 됨!");
+    				console.log("수정 성공!");
     				if(callback) {
     					callback();
     				}
+    			},
+    			error : function(xhr, status, err) {
+    				console.log("수정 실패!");
+    				if(error) {
+    					error(err);
+    				}
     			}
-    			
     		});
     	}
-	 })();
-    
-    
-    $(function() {
-    	var btnUpdate = $("#proUpdate");
-    	var dept_no = $("#dept_no");
-    	var proj_name = $("#proj_name");
-    	var proj_agency = $("#proj_agency");
-    	var proj_start = $("#proj_start");
-    	var proj_end = $("#proj_end");
+
     	
-    	projectUpdateService.getUpdateList({
-    		
-    		
-    		
+    	function showUpdateList() {
+    		function(data) {
+    			$("#dept_no").val(data.dept_no);
+    			$("#proj_name").val(data.proj_name);
+    			$("#proj_agency").val(data.proj_agency);
+    			$("#proj_start").val(data.proj_start);
+    			$("#proj_end").val(data.proj_end);
+    		}
+    	}
+    	
+    	btnUpdate.click(function() {
+	    	var dept_no = $("#dept_no").val();
+	    	var proj_name = $("#proj_name").val();
+	    	var proj_agency = $("#proj_agency").val();
+	    	var proj_start = $("#proj_start").val();
+	    	var proj_end = $("#proj_end").val();
+			
+	    	console.log("수정버튼 클릭시 호출!");
+   	   		console.log(dept_no);
+   	   		console.log(proj_name);
+   	   		console.log(proj_agency);
+   	   		console.log(proj_start);
+   	   		console.log(proj_end);
+	    	
+   	   		projcetUpdate({
+   	   			"dept_no" : dept_no,
+				"proj_name" : proj_name,
+				"proj_agency" : proj_agency,
+				"proj_start" : proj_start,
+				"proj_end" : proj_end 	
+   	   		}, function(e) {
+   	   			console.log("콜백함수 호출됨 !");
+				window.close();
+	    		window.opener.location.reload();
+   	   		})
     	})
-    	
-    	projcetUpdateService.projectUpdate({
-    		proj_no : proj_no, 
-    		proj_name : proj_name,
-    		proj_agency : porj_agency,
-    		proj_start : proj_start,
-    		proj_end : proj_end
-    	}, function(data) {
-    		
-    	})
-    	
-    	
-    })
+    });
     
     
     
     
-    
-    
-    // input#input-number : 자동 "-" 삽입
+    // 자동 "-" 삽입
 	function inputDateNumber(obj) {
 		var number = obj.value.replace(/[^0-9]/g, "");
 		var date = "";
@@ -192,7 +190,8 @@
 		}
 		obj.value = date;
 	}
-	// input#input-number : 한글 입력 불가능
+    
+	// 한글 입력 불가능
 	function noKorean(obj) {
 		obj.value = obj.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
 	}

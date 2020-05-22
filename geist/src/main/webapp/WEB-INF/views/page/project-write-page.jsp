@@ -87,13 +87,6 @@
     </div>
     
     <script>
-    /* $(function() {
-    	$(document).on('click', '#proWrite', function(e){
-    		e.preventDefault();
-    		window.opener.location.reload();
-    		window.close();
-	    });
-    }); */
     
     $(function() {
 
@@ -145,15 +138,12 @@
    				console.log("콜백함수 호출됨 !");
    				window.close();
    	    		window.opener.location.reload();
-   	    		
    			})
    		})
-
     });
  	
     
     // 자동 "-" 삽입
-
 	function inputDateNumber(obj) {
 		var number = obj.value.replace(/[^0-9]/g, "");
 		var date = "";
@@ -180,7 +170,6 @@
 		obj.value = date;
 	}
 
-		
 	// 한글 입력 불가능
 	function noKorean(obj) {
 		obj.value = obj.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');

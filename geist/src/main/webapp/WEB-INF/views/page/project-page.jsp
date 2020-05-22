@@ -66,7 +66,7 @@
 									<h1>
 										<sub> 프로젝트</sub>
 									</h1>
-									<p>
+									<p />
 								</div>
 								<hr class="Geist-board-hr" />
 							</div>
@@ -150,7 +150,6 @@
 		var proj_end;
 		var pageNum = 1;
 		
-
 		function projectList(param, callback, error) {
 			var page = param.page;
 			console.log("projectList의 param" + page);
@@ -163,7 +162,7 @@
 			})
 		}
 		
-		
+		// 프로젝트 삭제
 		function projectDelete(proj_no, callback, error) {
 			$.ajax({
 				type : 'delete',
@@ -180,15 +179,18 @@
 			});
 		}
 		
-		function showList(page) { // 페이지
+		// 프로젝트 리스트 받아오기
+		function showList(page) { 
 			projectList({
-				"proj_no" : proj_no,
-				"proj_name" : proj_name,
-				"proj_agency" : proj_agency,
-				"proj_start" : proj_start,
-				"proj_end" : proj_end,
-			}, function(data){
-				console.log(data)
+				page : page || 1
+			}, function(data, count){
+				if(page == -1) {
+					pageNum = Math.ceil(count / 10.0);
+					showList(pageNum);
+					return;
+				}
+				console.log(count);
+				console.log(data);
 				var str = "";
 				if(data == null || data.length == 0) {
 					return;
@@ -206,38 +208,12 @@
 					str += "</tr>";
 				}
 				tbody.html(str);
+				showListPage(count);
 			});
 		}
 	    
-	    /* function showList(page) {
-			projectList({
-				"proj_no" : proj_no,
-				"proj_name" : proj_name,
-				"proj_agency" : proj_agency,
-				"proj_start" : proj_start,
-				"proj_end" : proj_end,
-			}, function(data){
-				console.log(data)
-				var str = "";
-				if(data == null || data.length == 0) {
-					return;
-				}
-				
-				for(var i = 0; i < data.length; i++) {
-					
-					str += "<tr onmouseover='this.style.backgroundColor=\"#dadada\"' onmouseout='this.style.backgroundColor=\"\"'>";
-					str += "<td id='ch-row'><input type='radio' class='radioBtn' name='selected'></td>";
-					str += "<td>" + data[i].proj_no + "</td>";
-					str += "<td>" + data[i].proj_name + "</td>";
-					str += "<td>" + data[i].proj_agency + "</td>";
-					str += "<td>" + data[i].proj_start + "</td>";
-					str += "<td>" + data[i].proj_end + "</td>";
-					str += "</tr>";
-				}
-				tbody.html(str);
-			});
-		} */
-	    
+		
+		// 페이징처리
 	    function showListPage(count) {
 	    	var endNum = Math.ceil(pageNum / 10.0) * 10;
 	    	var startNum = endNum-9;
@@ -280,7 +256,7 @@
 	    
 	    
 	    
-
+		
 		proDelete.click(function() {
 			var chk = $("tr").children().find("input[name=selected]").is(':checked');
 			var checked = $("input[name=selected]:checked");
@@ -292,7 +268,7 @@
 			
 				if(chk) {
 					proj_no = Number(td.eq(1).text());
-					console.log(typeof proj_no);
+					console.log(proj_no);
 				}
 			})
 			projectDelete(proj_no, function(result){
@@ -305,13 +281,42 @@
 		
 	    
 		proUpdate.on("click", function() {
+			var chk = $("tr").children().find("input[name=selected]").is(':checked');
+			var checked = $("input[name=selected]:checked");
+			var proj_no;
 			
-		})
-		
-			    
-	    showList(1);
-		
+			checked.each(function(i) {
+				var tr = checked.parent().parent().eq(i);
+	   			var td = tr.children();				
+			
+				if(chk) {
+					proj_no = Number(td.eq(1).text());
+					console.log(proj_no);
+				}
+			})
+  			function projcetUpdate(proj_no) {
+				$.ajax({
+					type : 'get',
+					url : '/project/projectUpdate' + proj_no,
+					data : proj_no,
+					success : function() {
+						console.log("proj_no 전달 성공");
+						showPopUpdate();
+					}
+				})
+			}
+	  			
+
+	  	});
+			
+			
+			
+			
+
+		showList(1);
+			
 	});
+
 
     </script>
 	</body>

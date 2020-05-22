@@ -112,74 +112,7 @@
                                                 </thead>
                                                 <tbody class="table-body">
                                                 </tbody>
-                                                <!-- <tbody>
-                                                    <tr role="row" class="odd">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>08:35:38</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr role="row" class="even">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>09:26:39</td>
-                                                        <td>18:25:22</td>
-                                                        <td>지각</td>
-                                                    </tr>
-                                                    <tr role="row" class="odd">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>08:47:55</td>
-                                                        <td>19:04:15</td>
-                                                        <td>퇴근</td>
-                                                    </tr>
-                                                    <tr role="row" class="even">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>08:35:38</td>
-                                                        <td>18:56:36</td>
-                                                        <td>퇴근</td>
-                                                    </tr>
-                                                    <tr role="row" class="odd">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>08:35:38</td>
-                                                        <td>18:18:18</td>
-                                                        <td>퇴근</td>
-                                                    </tr>
-                                                    <tr role="row" class="even">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>08:21:34</td>
-                                                        <td>21:18:18</td>
-                                                        <td>야근</td>
-                                                    </tr>
-                                                    <tr role="row" class="odd">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>08:59:46</td>
-                                                        <td>18:45:21</td>
-                                                        <td>퇴근</td>
-                                                    </tr>
-                                                    <tr role="row" class="even">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>10:21:55</td>
-                                                        <td>19:30:21</td>
-                                                        <td>지각</td>
-                                                    </tr>
-                                                    <tr role="row" class="odd">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>08:40:38</td>
-                                                        <td>19:10:23</td>
-                                                        <td>퇴근</td>
-                                                    </tr>
-                                                    <tr role="row" class="even">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>08:35:38</td>
-                                                        <td>13:20:12</td>
-                                                        <td>조퇴</td>
-                                                    </tr>
-                                                    <tr role="row" class="even">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>08:35:38</td>
-                                                        <td>18:55:29</td>
-                                                        <td>퇴근</td>
-                                                    </tr>
-                                                </tbody> -->
+
                                             </table>
                                         </div>
                                     </div>
