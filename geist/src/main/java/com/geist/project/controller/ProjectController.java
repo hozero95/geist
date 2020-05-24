@@ -72,11 +72,11 @@ public class ProjectController {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		
-		@RequestMapping(method = { RequestMethod.PUT, RequestMethod.PATCH }, value = "/projectUpdate/{proj_no}", consumes = "application/json", produces = {
-						MediaType.TEXT_PLAIN_VALUE })
+		@RequestMapping(method = { RequestMethod.PUT, RequestMethod.PATCH }, value = "/projectUpdate/{proj_no}", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE })
 		public ResponseEntity<String> projectUpdate(@RequestBody ProjectVO vo, @PathVariable("proj_no") int proj_no) {
 			
 			vo.setProj_no(proj_no);
+			
 			log.info("projectUpdate Controller");
 
 			service.projectUpdate(vo);
@@ -84,13 +84,13 @@ public class ProjectController {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		
-		@GetMapping(value = "/projectUpdate/{proj_no}",  produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-		public ResponseEntity<ProjectVO> noticeUpdate(@PathVariable("proj_no") int proj_no){
-			
-			log.info("projectUpdate Controller Get()");
-			
-			return new ResponseEntity<ProjectVO>(service.projectRead(proj_no), HttpStatus.OK);
-		}
+//		@GetMapping(value = "/projectUpdate",  produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+//		public ResponseEntity<ProjectVO> noticeUpdate(){
+//			
+//			log.info("projectUpdate Controller Get()");
+//			
+//			return new ResponseEntity<ProjectVO>(HttpStatus.OK);
+//		}
 		
 		//프로젝트 삭제 부분
 		@DeleteMapping(value ="/projectDelete/{proj_no}", produces = {MediaType.TEXT_PLAIN_VALUE})
