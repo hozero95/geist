@@ -18,15 +18,15 @@ function ChangeMpage(value){
     }
     else if(value == "4") // nav 버튼 클릭시 전자결제요청 화면이동
     {
-        location.href="/approvalRequest";
+        location.href="approvalRequest";
     }
     else if(value == "5") // nav 버튼 클릭시 전자결제요청 조회 화면이동
     {
-        location.href="/approvalSearch";
+        location.href="approvalSearch";
     }
     else if(value == "6") // nav 버튼 클릭시 전자결제승인 조회 화면이동
     {
-        location.href="/approvalAdmit";
+        location.href="approvalAdmit";
     }
     else if(value == "7") // nav 버튼 클릭시 인사근태 화면이동
     {
