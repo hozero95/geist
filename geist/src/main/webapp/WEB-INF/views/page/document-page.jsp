@@ -106,7 +106,7 @@
     <script type="text/javascript" src="/resources/js/My-register.js"></script>
     <script type="text/javascript" src="/resources/js/document-page.js"></script>
 	
-	<script>
+	<script> 
 	    $(document).ready(function() {
 		    $('div').removeClass('form-inline');
 		    $('div.app-page-title').css('margin', '0px 0px 0px');

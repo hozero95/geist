@@ -184,7 +184,7 @@ console.log("1")
 		    }
 		    for(var i = startNum; i <= endNum; i++){
 		        var linkStart = pageNum != i ? "'><a href='" + i + "'>" : "active'><a href='" + i + "'>";
-		        var linkEnd = pageNum != i ? "</a>" : "</a>";
+		        var linkEnd = pageNum != i ? "</a>" : "</a>" ;
 		        str += "<li class='page-item " + linkStart + i + linkEnd + "</a></li>";
 		        //var linkStart = pageNum != i ? "<a href='" + i + "'>" : "";
 				//var linkEnd = pageNum != i ? "</a>" : "";
