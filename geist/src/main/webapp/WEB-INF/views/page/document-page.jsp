@@ -42,22 +42,21 @@
     </div>
     
 	<div class="app-container fixed-sidebar fixed-header closed-sidebar">
-        <!-- Lower -->
         <div class="app-main">
             <!-- Main page -->
             <div class="app-main-outer">
-                    <!-- Main button page -->
-                    <div class="app-main_inner">
-                        <div class="container-fluid">
-                            <div class="container">
-                                <!-- Title -->
-                                <div class="app-page-title">
-                                    <div class="page-title-heading">
-                                        <i class="pe-7s-document-inverse"></i>
-                                        <h2><sub>사내공지</sub></h2><p>
-                                    </div>
-                                    <hr class="Geist-board-hr">
+                <!-- Main button page -->
+                <div class="app-main_inner">
+                    <div class="container-fluid">
+                        <div class="container">
+                            <!-- Title -->
+                            <div class="app-page-title">
+                                <div class="page-title-heading">
+                                	<i class="pe-7s-document-inverse"></i>
+                                    <h2><sub>사내공지</sub></h2><p>
                                 </div>
+                                    <hr class="Geist-board-hr">
+                            </div>
                                 <!-- table -->
                                 <div class="page-title-wrapper">
                                     <div id="foo-table_wrapper" class="">
@@ -106,6 +105,13 @@
     <script type="text/javascript" src="/resources/js/register.js"></script>
     <script type="text/javascript" src="/resources/js/My-register.js"></script>
     <script type="text/javascript" src="/resources/js/document-page.js"></script>
-
+	
+	<script>
+	    $(document).ready(function() {
+		    $('div').removeClass('form-inline');
+		    $('div.app-page-title').css('margin', '0px 0px 0px');
+		    $('div.app-page-title').css('padding', '50px 0px 30px 0px');
+		});
+    </script>
 </body>
 </html>
