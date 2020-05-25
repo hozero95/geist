@@ -1,3 +1,4 @@
+
 var NoticeService = (function(){
 	function getList(param, callback, error){
 			var page = param.page;
@@ -18,6 +19,7 @@ var NoticeService = (function(){
 	};
 })();
 
+
 $(document).ready(function() {
 	var tbody = $("#document-body");
 	var tpage = $("#document-table-page");
@@ -30,6 +32,7 @@ $(document).ready(function() {
 	showList(1);
 
 	function showList(page){
+
 		NoticeService.getList({
 			page : page || 1
 		}, function(list){
@@ -38,19 +41,21 @@ $(document).ready(function() {
 				showList(pageNum);
 				return;
 			}
+
 			var str = "";
-			if(list == null || list.length == 0){
+			if(data == null || data.length == 0) {
 				return;
 			}
+
 			for(var i = 0, len = list.length || 0; i < len; i++){
+
 				str += "<tr>";
-				str += "<td>" + list[i].noti_no + "</td>";
-				str += "<td>" + list[i].noti_title + "</td>";
-				str += "<td>" + list[i].noti_date + "</td>";
+				str += "<td>" + data[i].noti_no + "</td>";
+				str += "<td>" + data[i].noti_title + "</td>";
+				str += "<td>" + data[i].noti_date + "</td>";
 				str += "</tr>";
 			}
 			tbody.html(str);
-			showListPage(count);
 		});
 	}
 	

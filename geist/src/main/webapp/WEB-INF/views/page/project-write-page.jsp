@@ -95,7 +95,7 @@
 	    });
     }); */
     
-    
+    $(function() {
 
     	var proWrite = $("#proWrite");
    		
@@ -142,12 +142,12 @@
    				"proj_start" : proj_start,
    				"proj_end" : proj_end 				
    			}, function(e) {
-   				e.preventDefault();
    				console.log("콜백함수 호출됨 !");
+   				window.close();
    	    		window.opener.location.reload();
-   	    		window.close();
+   	    		
    			})
-   		//}); 예진 수정
+   		});
 
     });
  	
@@ -185,7 +185,6 @@
 	function noKorean(obj) {
 		obj.value = obj.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
 	}
-
     </script>
 </body>
 </html>
