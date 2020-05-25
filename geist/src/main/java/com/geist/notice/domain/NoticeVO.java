@@ -13,5 +13,5 @@ public class NoticeVO{
 	private int noti_no;//key
 	private String noti_title;//제목
 	private String noti_content;//내용
-	private Date noti_date;//날짜
+	private String noti_date;//날짜
 }
