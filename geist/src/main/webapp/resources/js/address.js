@@ -170,6 +170,7 @@ console.log("1")
 			var startNum = endNum - 9;
 			var prev = startNum != 1;
 			var next = false;
+			console.log(count)
 			
 			if(endNum * 10 >= count){
 				endNum = Math.ceil(count / 10.0);
