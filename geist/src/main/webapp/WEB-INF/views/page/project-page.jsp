@@ -24,7 +24,7 @@
 	src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
 <script>
     function showPopupWrite() { window.open("/project/projectWrite", "프로젝트 작성", "width=1200, height=700, left=100, top=50"); }
-    function showPopupUpdate() { window.open("/project/projectUpdate", "프로젝트 수정", "width=1200, height=700, left=100, top=50"); }
+    
 </script>
 </head>
 <body>
@@ -110,7 +110,7 @@
 												<button type="button" class="btn btn-sm dt-button"
 													id="proWrite" onclick="showPopupWrite();">작성</button>
 												<button type="button" class="btn btn-sm dt-button"
-													id="proUpdate" onclick="showPopupUpdate();">수정</button>
+													id="proUpdate" onclick="">수정</button>
 												<button type="button" class="btn btn-sm dt-button"
 													id="proDelete" onclick="">삭제</button>
 											</div>
@@ -152,8 +152,9 @@
 		
 		function projectList(param, callback, error) {
 			var page = param.page;
-console.log("projectList의 param" + page);
-			$.getJSON("/project/projectList/" + pageNum, function(data) {				if(callback) {
+			console.log("projectList의 param" + page);
+			$.getJSON("/project/projectList/" + pageNum, function(data) {				
+				if(callback) {
 					callback(data);
 				}
 			}).error(function() {
@@ -174,6 +175,21 @@ console.log("projectList의 param" + page);
 				},
 				error : function() {
 					console.log("프로젝트 삭제 실패");
+				}
+			});
+		}
+		
+		// 프로젝트 수정
+		function projectUpdate(proj_no) {
+			$.ajax({
+				type : 'get',
+				url : '/project/projectUpdate' + proj_no,
+				data : proj_no,
+				success : function() {
+					console.log("proj_no 전달 성공");
+				},
+				error : function() {
+					console.log("proj_no 전달 실패 : ");
 				}
 			});
 		}
@@ -255,7 +271,7 @@ console.log("projectList의 param" + page);
 	    
 	    
 	    
-		
+		// 삭제버튼 클릭시 이벤트 처리
 		proDelete.click(function() {
 			var chk = $("tr").children().find("input[name=selected]").is(':checked');
 			var checked = $("input[name=selected]:checked");
@@ -278,12 +294,13 @@ console.log("projectList의 param" + page);
 		})
 		
 		
-	    
+	    // 수정버튼 클릭시 이벤트 처리
 		proUpdate.on("click", function() {
 			var chk = $("tr").children().find("input[name=selected]").is(':checked');
 			var checked = $("input[name=selected]:checked");
 			var proj_no;
 			
+			// 프로젝트 번호 파싱
 			checked.each(function(i) {
 				var tr = checked.parent().parent().eq(i);
 	   			var td = tr.children();				
@@ -293,16 +310,13 @@ console.log("projectList의 param" + page);
 					console.log(proj_no);
 				}
 			})
-  			function projcetUpdate(proj_no) {
-				$.ajax({
-					type : 'get',
-					url : '/project/projectUpdate' + proj_no,
-					data : proj_no,
-					success : function() {
-						console.log("proj_no 전달 성공");
-						showPopUpdate();
-					}
-				})
+
+			if(proj_no == null) {
+				alert('프로젝트 번호를 선택하세요!');
+				return;
+			} else { 
+				window.open("/project/projectUpdate", "프로젝트 수정", "width=1200, height=700, left=100, top=50"); 
+				projectUpdate(proj_no);
 			}
 	  			
 

@@ -139,12 +139,7 @@
    				window.close();
    	    		window.opener.location.reload();
    			})
-<<<<<<< HEAD
-   		})
-=======
    		});
-
->>>>>>> branch 'master' of https://github.com/hozero95/geist.git
     });
  	
     

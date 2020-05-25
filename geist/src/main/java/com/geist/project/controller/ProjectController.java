@@ -84,13 +84,13 @@ public class ProjectController {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		
-//		@GetMapping(value = "/projectUpdate",  produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-//		public ResponseEntity<ProjectVO> noticeUpdate(){
-//			
-//			log.info("projectUpdate Controller Get()");
-//			
-//			return new ResponseEntity<ProjectVO>(HttpStatus.OK);
-//		}
+		@GetMapping(value = "/projectUpdate/{proj_no}",  produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+		public ResponseEntity<ProjectVO> noticeUpdate(@PathVariable("proj_no") int proj_no){
+			
+			log.info("projectUpdate Controller Get()");
+			
+			return new ResponseEntity<ProjectVO>(service.projectRead(proj_no), HttpStatus.OK);
+		}
 		
 		//프로젝트 삭제 부분
 		@DeleteMapping(value ="/projectDelete/{proj_no}", produces = {MediaType.TEXT_PLAIN_VALUE})

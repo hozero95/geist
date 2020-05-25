@@ -49,22 +49,22 @@
 	                                            <tr>
 	                                                <th scope="row">프로젝트명</th>
 	                                                <td><div class="in-put"><input type="text"id="proj_name" name="projectName" maxlength="30" 
-	                                                									value="프로젝트1" required /></div></td>
+	                                                									value="" required /></div></td>
 	                                            </tr>
 	                                            <tr>
 	                                                <th scope="row">주체기관</th>
 	                                                <td><div class="in-put"><input type="text" id="proj_agency" name="projectAgency" maxlength="30"
-	                                                									value="주체기관1" required /></div></td>
+	                                                									value="" required /></div></td>
 	                                            </tr>
 	                                            <tr>
 	                                                <th scope="row">시작일</th>
 	                                                <td><div class="in-put"><input type="text" id="proj_start" name="projectStart" maxlength="10"
-	                                                									value="2020-03-20" required onkeyup="inputDateNumber(this)" oninput="noKorean(this)" /></div></td>
+	                                                									value="" required onkeyup="inputDateNumber(this)" oninput="noKorean(this)" /></div></td>
 	                                            </tr>
 	                                            <tr>
 	                                                <th scope="row">종료일</th>
 	                                                <td><div class="in-put"><input type="text" id="proj_end" name="projectEnd" maxlength="10"
-	                                                									value="2020-04-20" required onkeyup="inputDateNumber(this)" oninput="noKorean(this)" /></div></td>
+	                                                									value="" required onkeyup="inputDateNumber(this)" oninput="noKorean(this)" /></div></td>
 	                                            </tr>
                                             </tbody>
                                         </table>
@@ -90,8 +90,7 @@
     	
     	var btnUpdate = $("#proUpdate");
     	
-    	function getUpdateList(callback, error) {
-    		
+    	function getUpdateList(callback) {
     		$.getJSON("/projcet/projectUpdate/"), function(data) {
     			callback(data);
     			console.log(data);
@@ -104,7 +103,7 @@
     	function projcetUpdate(param, callback, error) {
     		$.ajax({
     			type : 'get',
-    			url : '/project/projectUpdate' + proj_no,
+    			url : '/project/projectUpdate/' + proj_no,
     			data : JSON.stringify(param),
     			contentType : "application/json; charset=utf-8",
     			success : function() {
@@ -113,24 +112,21 @@
     					callback();
     				}
     			},
-    			error : function(xhr, status, err) {
+    			error : function() {
     				console.log("수정 실패!");
-    				if(error) {
-    					error(err);
-    				}
     			}
     		});
     	}
 
     	
     	function showUpdateList() {
-    		function(data) {
+    		getUpdateList(function() {
     			$("#dept_no").val(data.dept_no);
     			$("#proj_name").val(data.proj_name);
     			$("#proj_agency").val(data.proj_agency);
     			$("#proj_start").val(data.proj_start);
     			$("#proj_end").val(data.proj_end);
-    		}
+    		});
     	}
     	
     	btnUpdate.click(function() {
