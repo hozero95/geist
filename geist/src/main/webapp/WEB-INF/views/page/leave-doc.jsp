@@ -9,6 +9,8 @@
 <title>Geist</title>
 <link href="/resources/css/document.css" rel="stylesheet" />
 <link href="/resources/css/main.css" rel="stylesheet" />
+<!-- 기안일을 위해 필요한 스크립트 -->
+<script type="text/javascript" src="/resources/js/date.js"></script>
 </head>
 <body>
 	<input type="hidden" name="login_no" value="${member.emp_no}">
