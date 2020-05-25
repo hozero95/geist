@@ -16656,17 +16656,16 @@ legend {
     padding: .5rem .75rem;
     margin-left: -1px;
     line-height: 1.25;
-    color: #007bff;
+    color: var(--teal);
     background-color: #fff;
     border: 1px solid #dee2e6
 }
 
 .pagination li a:hover {
     z-index: 2;
-    color: #0056b3;
+    color: var(--teal);
     text-decoration: none;
     background-color: #e9ecef;
-    border-color: #dee2e6
 }
 
 .pagination li a:focus {
@@ -16694,7 +16693,6 @@ legend {
     z-index: 1;
     color: #fff;
     background-color: var(--teal);
-    border-color: #007bff
 }
 
 .pagination li.active a:hover {
