@@ -3,7 +3,8 @@
  */
 
 console.log("approvalRequest.js")
-console.log("222")
+console.log("2221")
+console.log(today())
 
 var approvalCreateService = (function(){	
 	function appCreate(param, callback, error){
@@ -56,6 +57,7 @@ $(document).ready(function(){
 	var deptName = $(".dept-name");
 	var empPosition = $(".emp-position");
 	var empName = $(".emp-name");
+	var appDate = $(".app-date");
 	
 	detailView(emp_no);	
 	
@@ -68,6 +70,7 @@ $(document).ready(function(){
 			deptName.text(data.dept_name);
 			empPosition.text(data.emp_position);
 			empName.text(data.emp_name);
+			appDate.text(today());
 		});
 	}
 	
