@@ -1,3 +1,7 @@
+/** 게시판 - 상세 페이지 이동 */
+    function noticeRead(noti_no){                
+        location.href = "/notice/noticeRead/"+ noti_no;
+    }
 
 var NoticeService = (function(){
 	function getList(param, callback, error){
@@ -14,6 +18,7 @@ var NoticeService = (function(){
 				}
 			});
 		}
+	
 	return{
 		getList : getList
 	};
@@ -24,7 +29,7 @@ $(document).ready(function() {
 	var tbody = $("#document-body");
 	var tpage = $("#document-table-page");
 	var write = $("#notice-write");
-	var noti_no;
+	var noti_no
 	var noti_title;
 	var noti_date;
 	var pageNum = 1;
@@ -43,16 +48,16 @@ $(document).ready(function() {
 			}
 
 			var str = "";
-			if(data == null || data.length == 0) {
+			if(list == null || list.length == 0) {
 				return;
 			}
 
 			for(var i = 0, len = list.length || 0; i < len; i++){
 
 				str += "<tr>";
-				str += "<td>" + data[i].noti_no + "</td>";
-				str += "<td>" + data[i].noti_title + "</td>";
-				str += "<td>" + data[i].noti_date + "</td>";
+				str += "<td>" + list[i].noti_no + "</td>";
+				str += "<td onclick='javascript:noticeRead("+ noti_no +");' style='cursor:Pointer'>" + list[i].noti_title + "</td>";
+				str += "<td>" + list[i].noti_date + "</td>";
 				str += "</tr>";
 			}
 			tbody.html(str);
