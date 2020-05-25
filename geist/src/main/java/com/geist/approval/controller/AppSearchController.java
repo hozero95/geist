@@ -1,7 +1,5 @@
 package com.geist.approval.controller;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.geist.approval.domain.ApprovalReqDTO;
-import com.geist.approval.domain.ApprovalVO;
 import com.geist.approval.service.ApprovalService;
 import com.geist.main.domain.Criteria;
 

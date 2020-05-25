@@ -43,6 +43,7 @@ $(document).ready(function(){
 	var mypageForm = $("#mypage-form");
 	var mypageBtn = $("#My-btnSave");
 	var emp_no = $("input[name='login_no']").val()
+	
 	detailView(emp_no);
 	
 	function detailView(emp_no){
@@ -50,7 +51,7 @@ $(document).ready(function(){
 			emp_no : emp_no
 		}, function(data){
 			$("div[name='emp_name']").append("<h1 class='m-0'>"+data.emp_name+" "+data.emp_position+'</h1>');
-			$("div[name='emp_name']").append("<h6 class='m-0 pt-3 pb-4' name='dept_no'>"+"Geist회사 >"+" "+data.dept_no+'</h1>');
+			$("div[name='emp_name']").append("<h6 class='m-0 pt-3 pb-4' name='dept_no'>"+"Geist회사 >"+" "+data.dept_name+'</h1>');
 			
 			$("thead").append("<th scope='row'>"+"아이디"+"</th>");
 			$("thead").append("<td>"+data.emp_id+"</td>");
@@ -64,6 +65,18 @@ $(document).ready(function(){
 		});
 		
 		mypageBtn.on("click", function(e){
+			var phone = $("#My-phone").val();
+			var phone2 = $("#My-c-phone").val();
+			
+			if(phone.length < 13 || phone2.length > 17){
+				alert("개인 연락처를 13이상 17자리 이하로 작성해주세요.");
+				return false;
+			}
+			if(phone2.length < 13 || phone2.length > 17){
+				alert("사내 연락처를 13이상 17자리 이하로 작성해주세요.");
+				return false;
+			}
+			
 			var emp_pw = $("#My-pwd").val();
 			var emp_tel = $("#My-c-phone").val();
 			var emp_phone = $("#My-phone").val();

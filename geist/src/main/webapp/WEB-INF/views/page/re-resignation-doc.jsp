@@ -38,30 +38,26 @@
                                         <table class="task-doc">
                                             <tr>
                                                 <td><span class="table-text">부서</span></td>
-                                                <td><span class="table-text">개발팀</span></td>
+                                                <td><span class="dept-name">개발팀</span></td>
                                             </tr>
                                             <tr>
                                                 <td><span class="table-text">직급</span></td>
-                                                <td><span class="table-text">차장</span></td>
+                                                <td><span class="emp-position">차장</span></td>
                                             </tr>
                                             <tr>
-                                                <td><span class="table-text">작성자명</span></td>
-                                                <td><span class="table-text">김현선</span></td>
+                                                <td><span class="table-text">작성자명</s	pan></td>
+                                                <td><span class="emp-name">김현선</span></td>
                                             </tr>
                                             <tr>
                                                 <td><span class="table-text">기안일</span></td>
-                                                <td><span class="table-text">2020-04-10</span></td>
+                                                <td><span class="app-date">2020-04-10</span></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2">
-                                                    <input type="checkbox" id="assistant" name="assistant" value="대리" checked="checked" disabled="disabled">&nbsp;대리&nbsp;
-                                                    &nbsp; &nbsp;
-                                                    <input type="checkbox" id="manager" name="manager" value="과장" checked="checked" disabled="disabled">&nbsp;과장&nbsp; &nbsp;
-                                                    &nbsp;
-                                                    <input type="checkbox" id="deputy" name="" value="차장" disabled="disabled">&nbsp;차장&nbsp; &nbsp;
-                                                    &nbsp;
-                                                    <input type="checkbox" id="general" name="general" value="부장" disabled="disabled">&nbsp;부장&nbsp; &nbsp;
-                                                    &nbsp;
+                                                    <input type="checkbox" id="assistant" name="assistant" value="대리" disabled="disabled">&nbsp;대리&nbsp;&nbsp; &nbsp;
+													<input type="checkbox" id="manager" name="manager" value="과장" disabled="disabled">&nbsp;과장&nbsp; &nbsp;&nbsp;
+			                                        <input type="checkbox" id="deputy" name="deputy" value="차장" disabled="disabled">&nbsp;차장&nbsp; &nbsp;&nbsp;
+			                                        <input type="checkbox" id="general" name="general" value="부장" disabled="disabled">&nbsp;부장&nbsp; &nbsp;&nbsp;
                                                 </td>
                                             </tr>
 

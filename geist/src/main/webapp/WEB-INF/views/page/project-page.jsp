@@ -152,9 +152,8 @@
 		
 		function projectList(param, callback, error) {
 			var page = param.page;
-			console.log("projectList의 param" + page);
-			$.getJSON("/project/projectList/" + pageNum, function(data) {
-				if(callback) {
+console.log("projectList의 param" + page);
+			$.getJSON("/project/projectList/" + pageNum, function(data) {				if(callback) {
 					callback(data);
 				}
 			}).error(function() {
@@ -309,10 +308,6 @@
 
 	  	});
 			
-			
-			
-			
-
 		showList(1);
 			
 	});

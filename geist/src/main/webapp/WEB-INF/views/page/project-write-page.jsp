@@ -139,7 +139,12 @@
    				window.close();
    	    		window.opener.location.reload();
    			})
+<<<<<<< HEAD
    		})
+=======
+   		});
+
+>>>>>>> branch 'master' of https://github.com/hozero95/geist.git
     });
  	
     
@@ -174,7 +179,6 @@
 	function noKorean(obj) {
 		obj.value = obj.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
 	}
-
     </script>
 </body>
 </html>

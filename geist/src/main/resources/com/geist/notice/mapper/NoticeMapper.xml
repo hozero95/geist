@@ -24,7 +24,7 @@
 			rownum rn, noti_title, noti_date
 		from
 			notice
-		where rownum <= #{pageNum} * #{amount})
+		where rownum <= #{pageNum} * #{amount} order by rn desc)
 		where rn > (#{pageNum} -1) * #{amount} 
 		]]>
 	</select>

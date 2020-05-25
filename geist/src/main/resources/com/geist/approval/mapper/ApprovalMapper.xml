@@ -46,6 +46,15 @@
 		    )
 	</insert>
 	
+	<select id="appWriter" resultType="com.geist.approval.domain.ApprovalWriterDTO">
+		SELECT 
+		    d.dept_name, e.emp_name, e.emp_position
+		FROM
+		    employee e, department d
+		WHERE
+		    e.emp_no = #{emp_no}
+			and e.dept_no = d.dept_no
+	</select>
 	
 	<!-- 결재 요청 조회 -->	
 	<select id="reqListWithPaging" resultType="com.geist.approval.domain.ApprovalVO">
@@ -107,7 +116,7 @@
 		]]>
 	</select>	
 	<!-- 결재 승인 상세 조회 -->
-	<select id="admitDetail" resultType="com.geist.approval.domain.ApprovalAgrDTO">
+	<select id="admitDetail" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
 		<![CDATA[
 			SELECT 
 				dept_name, emp_position, emp_name, app_title, app_date
@@ -124,6 +133,15 @@
 			        and agr.app_no = #{app_no}
 			        and agr.emp_no = #{emp_no} 
 			)
+		]]>
+	</select>
+	<!-- 결재 승인자들 조회 -->
+	<select id="approvers" resultType="com.geist.approval.domain.ApprovalAgrDetailPositionVO">
+		<![CDATA[
+			SELECT emp_position FROM employee 
+			WHERE emp_no IN (
+				SELECT emp_no FROM app_agree WHERE app_no IN (#{app_no})
+				)
 		]]>
 	</select>
 	

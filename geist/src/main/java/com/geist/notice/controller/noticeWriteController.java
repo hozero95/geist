@@ -12,9 +12,9 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 public class noticeWriteController {
-	@RequestMapping("/write")
+	@RequestMapping("/notice/noticeWrite")
 	public String noticeWrite() {
 		log.info("공지 작성페이지 이동");
-		return "/page/write";
+		return "page/document-page-write";
 	}
 }
