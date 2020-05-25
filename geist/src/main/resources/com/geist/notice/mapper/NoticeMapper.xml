@@ -21,12 +21,16 @@
 		select noti_title, noti_date
 		from(
 		select /*+INDEX_DESC(notice pk_notice) */
-			rownum rn, noti_title, noti_date
+			rownum rn, noti_title, to_char(noti_date, 'YYYY-MM-DD') noti_date
 		from
-			notice
-		where rownum <= #{pageNum} * #{amount} order by rn desc)
-		where rn > (#{pageNum} -1) * #{amount} 
+			notice)
+		where rownum <= #{pageNum} * #{amount}
+		and rn > (#{pageNum} -1) * #{amount} order by rn desc
 		]]>
+	</select>
+	
+	<select id = "noticeCount" resultType = "int">
+		SELECT count(noti_no) FROM notice
 	</select>
 	
 	<select id = "noticeRead" resultType = "com.geist.notice.domain.NoticeVO">
