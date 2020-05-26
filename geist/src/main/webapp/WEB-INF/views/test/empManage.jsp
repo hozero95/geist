@@ -22,13 +22,13 @@
 	<button type="button" class="joinRequestBtn">가입 승인 페이지</button><br>
 	
 	<form id="searchForm" action="/empManage" method="get">
-		<select name="type">
+		<select name="type" class="form-control form-control-sm">
 			<option value="">--</option>
 			<option value="N">이름</option>
 			<option value="P">직급</option>
 			<option value="D">부서</option>
 		</select>
-		<input type="text" name="keyword" value="">
+		<input type="text" name="keyword" value="" class="form-control">
 		<button class="search">Search</button>
 	</form><br>
 	
