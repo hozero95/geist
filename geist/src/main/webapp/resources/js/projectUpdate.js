@@ -3,7 +3,8 @@
  */
 	// 부모창 함수 호출
    	var proj_no = opener.parent.setData();
-    
+    $("#proj_no").val(proj_no);
+   	
     $(function() {
     	var btnUpdate = $("#proUpdate");
     	console.log(proj_no);
@@ -46,7 +47,7 @@
 					console.log('data 없음');
     				return;
 				}
-    			$("#dept_no").val(data.dept_no);
+
     			$("#proj_name").val(data.proj_name);
     			$("#proj_agency").val(data.proj_agency);
     			$("#proj_start").val(data.proj_start);
