@@ -6,7 +6,6 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  <script type="text/JavaScript" src="/resources/js/register.js"></script>
   <link rel="stylesheet" href="/resources/css/register.css" />
   <title>Geist</title>
 </head>
@@ -128,119 +127,7 @@
     
   </div>
   
-<script type="text/javascript">
-	
-	var registerService = (function() {
-		function checkId(param, callback, error) {
-			var req_id = param.req_id;
-			$.getJSON("/register/" + req_id + ".json", function(data) {
-				if(callback) {
-					callback(data); // 회원가입을 요청했을때 결과를 리턴받음
-				}
-			}), fail(function(xhr, status, err) {
-				if(error) {
-					error();
-				}
-			});
-		}
-		
-		function joinRequest(param, callback, error) {
-			$.ajax({
-				type : 'post',
-				url : '/register/regist',
-				data : JSON.stringify(param),
-				contentType : "application/json; charset=utf-8",
-				success : function(result, status, xhr) {
-					if(callback) {
-						callback(result);
-					}
-				},
-				error : function(xhr, status, err) {
-					if(error) {
-						error();
-					}
-				}
-			});
-		}
-		
-		return {
-			checkId : checkId,
-			joinRequest : joinRequest
-		}		
-	})();
-	
-	$(document).ready(function() {
-		var registerForm = $("#join-form");
-		var registerBtn = $("#btn-join");
-		var inputId = $("#id");
-		var idCheck = true;
-		
-		inputId.blur(function() {
-			
-			if(!registerForm.find("input[name='id']").val()) {
-				$("#id-error").show();
-				$("#id").focus();
-				return false;
-			} else {
-				$("#id-error").hide();
-			}
-			
-			var req_id = $("input[name='id']").val();
-			
-			registerService.checkId({
-				req_id : req_id
-			}, function(data) {
-				if(data) { // 사용가능한 아이디 일때
-					idCheck = false;
-					$("#id-error").text('사용가능한 아이디 입니다.').addClass("msgOk").show();
-
-				} else { // 사용중인 아이디 일때
-					$("#id-error").text('이미 사용 중인 아이디 입니다.').show();
-					return false;
-				}
-				
-				$("#id-error").removeClass("msgOk").text("아이디는 반드시 입력하세요.").hide();
-			})
-		});		
-		
-		registerBtn.on("click", function() {
-			var req_id = $("input[name='id']").val();
-			var req_pw = $("input[name='pwd2']").val();
-		 	var req_name = $("input[name='name']").val();
-			var req_email = $("input[name='email']").val();
-			
-			var req_year = $("input[name='year']").val();
-			var req_month = $("select").val();
-			var req_day = $("input[name='day']").val();
-			
-			if($("input[name='day']").val().length == 1) {
-				var day = '0';
-				req_day = day.concat($("input[name='day']").val());
-			}
-			
-			var req_birth = req_year.concat("-", req_month, "-", req_day);
-			
-			var req_phone = $("input[name='phone']").val();
-			var req_address = $("input[name='addr1']").val();
-			req_address += $("input[name='addr2']").val();
-			req_address += $("input[name='addr-etc']").val();
-			
-			registerService.joinRequest({
-				req_id : req_id,
-				req_pw : req_pw,
-				req_name : req_name,
-				req_birth : req_birth,
-				req_phone : req_phone,
-				req_email : req_email,
-				req_address : req_address
-			}, function(result) {
-				alert(result);
-				location.href = "/login";
-			});
-		});
-	});
-	
-</script>
+<script type="text/JavaScript" src="/resources/js/register.js"></script>
 </body>
 
 </html>
