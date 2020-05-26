@@ -10,6 +10,9 @@
 	<!-- main Css-->
     <link href="/resources/css/document.css" rel="stylesheet" />
     <link href="/resources/css/main.css" rel="stylesheet" />
+    <!-- .buttoncard css 수정 --> 
+    <link href="/resources/css/mainEdit.css" rel="stylesheet" />
+     
     <!-- Data table-->
     <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" ></script>
     <!-- Bootstrap -->
@@ -91,50 +94,50 @@
 					</div>
 					<!-- Main button page -->
 					<div class="app-main-inner">
-						<div class="add_card">
+					<div class="add_card">
 							<div class="buttoncard" onclick="ChangeMpage(2)">
 								<div class="card-header"
 									style="height: 5px; background-color: #2ac1bc;"></div>
-								<span><a href="#">
-									<img src="/resources/img/main_ui/document.png"></a>
+								<a href="#">
+									<img src="/resources/img/main_ui/document.png">
 									<h5>공지사항</h5>
-								</span>
+								</a>
 							</div>
 							<div class="buttoncard" onclick="ChangeMpage(3)">
 								<div class="card-header"
 									style="height: 5px; background-color: #2ac1bc;"></div>
-								<span> <a href="#" id="Project-nav"><img
-										src="/resources/img/main_ui/project.png"></a>
+								<a href="#" id="Project-nav"><img
+										src="/resources/img/main_ui/project.png">
 									<h5>프로젝트</h5>
-								</span>
+								</a>
 							</div>
 							<div class="buttoncard" onclick="ChangeMpage(4)">
 								<div class="card-header"
 									style="height: 5px; background-color: #2ac1bc;"></div>
-								<span> <a href="#" id="Project-nav"><img src="/resources/img/main_ui/ink.png"></a>
+								<a href="#" id="Project-nav"><img src="/resources/img/main_ui/ink.png">
 									<h5>전자결재</h5>
-								</span>
+								</a>
 							</div>
 							<div class="buttoncard" onclick="ChangeMpage(7)">
 								<div class="card-header"
 									style="height: 5px; background-color: #2ac1bc;"></div>
-								<span> <a href="#"><img src="/resources/img/main_ui/card.png"></a>
+								<a href="#"><img src="/resources/img/main_ui/card.png">
 									<h5>인사/근태</h5>
-								</span>
+								</a>
 							</div>
 							<div class="buttoncard" onclick="ChangeMpage(8)">
 								<div class="card-header"
 									style="height: 5px; background-color: #2ac1bc;"></div>
-								<span> <a href="address"><img src="/resources/img/main_ui/book.png"></a>
+								<a href="address"><img src="/resources/img/main_ui/book.png">
 									<h5>주소록</h5>
-								</span>
+								</a>
 							</div>
 							<div class="buttoncard" onclick="ChangeMpage(9)">
 								<div class="card-header"
 									style="height: 5px; background-color: #2ac1bc;"></div>
-								<span> <a href="#"><img src="/resources/img/main_ui/user.png"></a>
+								<a href="#"><img src="/resources/img/main_ui/user.png">
 									<h5>마이페이지</h5>
-								</span>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -151,8 +154,6 @@
     <!--js-->
     <script type="text/javascript" src="/resources/js/include.js"></script>
     <script type="text/javascript" src="/resources/js/main.js"></script>
-    <script type="text/javascript" src="/resources/js/register.js"></script>
-    <script type="text/javascript" src="/resources/js/My-register.js"></script>
 	<script type="text/javascript" src="/resources/js/calender.js"></script>
 </body>
 </html>
