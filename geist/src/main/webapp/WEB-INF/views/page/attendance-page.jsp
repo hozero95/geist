@@ -22,6 +22,7 @@
 		margin-left : -50%;
 		width : 100%;
 		margin-bottom : 30px;
+		
 	}
 	.com-btn {
 	    border-radius: 4px;
@@ -31,6 +32,7 @@
 		height : 50px;
 		font-size : 25px;
 		margin-left : 30px;
+		box-shadow : 3px 3px 2px #aaaaaa
 	}
 	.disabled {
 		 border-radius: 4px;
@@ -40,6 +42,7 @@
 		height : 50px;
 		font-size : 25px;
 		margin-left : 30px;
+		box-shadow : 3px 3px 2px #aaaaaa
 	}
 </style>
 </head>
