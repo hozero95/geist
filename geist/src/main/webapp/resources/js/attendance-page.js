@@ -3,8 +3,9 @@
  * 담당 : 김현선(김호영)
  */
 
-console.log("근태 페이지ㅋㅋ")
-var attendanceService = (function() {
+console.log("attendance-page.js!!!")		
+    	var attendanceService = (function() {
+    		
     		function getList(param, callback, error) {
 	    		var emp_no = param.emp_no;
 		        $.getJSON("/attendance/" + emp_no + ".json", function(data) {
@@ -80,8 +81,8 @@ var attendanceService = (function() {
     	
     	$(function() {
     		var emp_no = $("input[name='login_no']").val();
-		    var att_on = $("#attend");
-		    var att_off = $("#getoff");
+    		var att_on = $("#att_onBtn");
+    		var att_off = $("#att_offBtn");
 		    var tbody = $(".table-body");
 		    
 		    console.log(emp_no);
@@ -95,14 +96,18 @@ var attendanceService = (function() {
 		    	}, function(data) {
 		    		if(data.checkOn == 1) {
 		    			att_on.prop("disabled", true);
+		    			att_on.addClass("disabled");
 		    		} else {
 		    			att_on.prop("disabled", false);
+		    			att_off.removeClass("disabled");	
 		    		}
 		    		
 		    		if(data.checkOff == 1) {
 		    			att_off.prop("disabled", false);
+		    			att_off.removeClass("disabled");	
 		    		} else {
 		    			att_off.prop("disabled", true);
+		    			att_off.addClass("disabled");		    			
 		    		}
 		    	});
 		    }
@@ -157,11 +162,4 @@ var attendanceService = (function() {
 					showList(emp_no);
 				});
 			});
-		    
-		    
-	            
-	        $('div').removeClass('form-inline');
-	        $('div.app-page-title').css('margin', '0px 0px 0px');
-	        $('div.app-page-title').css('padding', '50px 0px 30px 0px');
-
     	});
