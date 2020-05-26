@@ -60,20 +60,19 @@
 											</tr>
 											<tr>
 												<td colspan="2">
-													<input type="checkbox" name="management" value="대리">&nbsp;대리&nbsp;&nbsp;&nbsp;													 
-													<input type="checkbox" name="management" value="과장">&nbsp;과장&nbsp;&nbsp; &nbsp; 
-													<input type="checkbox" name="management" value="차장">&nbsp;차장&nbsp;&nbsp; &nbsp; 
-													<input type="checkbox" name="management" value="부장">&nbsp;부장&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+													<label for="position1"><input type="checkbox" name="management" value="대리" id="position1">&nbsp;대리</label>&nbsp;&nbsp;&nbsp;													 
+													<label for="position2"><input type="checkbox" name="management" value="과장" id="position2">&nbsp;과장</label>&nbsp;&nbsp; &nbsp; 
+													<label for="position3"><input type="checkbox" name="management" value="차장" id="position3">&nbsp;차장</label>&nbsp;&nbsp; &nbsp; 
+													<label for="position4"><input type="checkbox" name="management" value="부장" id="position4">&nbsp;부장</label>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
 												</td>
 											</tr>
 											<tr>
-												<td colspan="2"><input type="radio" name="vacation"
-													value="연차">&nbsp;연차&nbsp; &nbsp; &nbsp; <input
-													type="radio" name="vacation" value="월차">&nbsp;월차&nbsp;
-													&nbsp; &nbsp; <input type="radio" name="vacation"
-													value="병가">&nbsp;병가&nbsp; &nbsp; &nbsp; <input
-													type="radio" name="vacation" value="기타">&nbsp;기타&nbsp;
-													&nbsp; &nbsp;</td>
+												<td colspan="2">
+													<label for="leaveType1"><input type="radio" name="vacation"" value="연차" id="leaveType1">&nbsp;연차</label>&nbsp; &nbsp; &nbsp; 
+													<label for="leaveType2"><input type="radio" name="vacation" value="월차" id="leaveType2">&nbsp;월차</label>&nbsp;&nbsp; &nbsp; 
+													<label for="leaveType3"><input type="radio" name="vacation" value="병가" id="leaveType3">&nbsp;병가</label>&nbsp; &nbsp; &nbsp; 
+													<label for="leaveType4"><input type="radio" name="vacation" value="기타" id="leaveType4">&nbsp;기타</label>&nbsp;&nbsp; &nbsp;
+												</td>
 											</tr>
 										</table>
 
