@@ -1,6 +1,6 @@
 /**
  * 가입 승인 페이지
- * 담당 : 김현선
+ * 담당 : 김현선(김호영)
  */
 
 var joinRequestService = (function(){

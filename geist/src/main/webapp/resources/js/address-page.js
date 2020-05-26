@@ -20,22 +20,6 @@ console.log("1")
 				}
 			});
 		}
-		 
-		function searchTypeList(param, callback, error){
-			var page = param.page;
-			var type = param.type;
-			var keyword = param.keyword;
-			
-			$.getJSON("/address/" + page + "/" + type + "/" + keyword + ".json", function(data){
-				if(callback){
-					callback(data.count, data.list, data.type, data.keyword);
-				}
-			}).fail(function(xhr, status, err){
-				if(error){
-					error();
-				}
-			});
-		}
 		
 		function searchList(param, callback, error){
 			var page = param.page;
@@ -54,14 +38,14 @@ console.log("1")
 			
 		return {
 			getList : getList,
-			searchTypeList : searchTypeList,
 			searchList : searchList
 		}		
 	})();
 
 	$(document).ready(function() {
 		var searchForm = $("#searchForm");
-		var search = $(".search");
+		var search = $("#search");
+		var clear = $("#clear");
 		var tbody = $(".table-body");
 		var tpage = $(".table-page");
 		var main = $(".mainBtn");
@@ -90,44 +74,10 @@ console.log("1")
 					str += "<td>" + list[i].emp_phone + "</td>";
 					str += "<td>" + list[i].emp_tel + "</td>";
 					str += "<td>" + list[i].emp_position + "</td>";
-					str += "<td>" + list[i].dept_no + "</td>";
+					str += "<td>" + list[i].dept_name + "</td>";
 					str += "</tr>";
 				}
 				
-				tbody.html(str);
-				showListPage(count);
-			});
-		}
-		
-		function showSearchTypeList(page, type, keyword){
-			addressService.searchTypeList({
-				page : page || 1,
-				type : type,
-				keyword : keyword
-			},function(count, list, type, keyword){
-				if(page == -1){
-					pageNum = Math.ceil(count / 10.0);
-					showList(pageNum);
-					return;
-				}
-				var str = "";
-				if(list == null || list.length == 0){
-					alert("검색 결과가 없습니다.");
-					return;
-				}
-				for(var i = 0, len = list.length || 0; i < len; i++){
-					str += "<tr>";
-					str += "<td>" + list[i].emp_name + "</td>";
-					str += "<td>" + list[i].emp_email + "</td>";
-					str += "<td>" + list[i].emp_phone + "</td>";
-					str += "<td>" + list[i].emp_tel + "</td>";
-					str += "<td>" + list[i].emp_position + "</td>";
-					str += "<td>" + list[i].dept_no + "</td>";
-					str += "</tr>";
-				}
-				
-				$("select[name='type']").find("option[value='" + type + "']").attr("selected", true);
-				$("input[name='keyword']").val(keyword);
 				tbody.html(str);
 				showListPage(count);
 			});
@@ -155,7 +105,7 @@ console.log("1")
 					str += "<td>" + list[i].emp_phone + "</td>";
 					str += "<td>" + list[i].emp_tel + "</td>";
 					str += "<td>" + list[i].emp_position + "</td>";
-					str += "<td>" + list[i].dept_no + "</td>";
+					str += "<td>" + list[i].dept_name + "</td>";
 					str += "</tr>";
 				}
 				
@@ -201,24 +151,20 @@ console.log("1")
 		}
 		
 		search.on("click", function(e){	//엔터로 변경해야 함
-			/*
-			if(!searchForm.find("option:selected").val()){
-				alert("검색 종류를 선택하세요.");
-				return false;
-			}
-		*/
 			if(!searchForm.find("input[name='keyword']").val()){
 				alert("키워드를 입력하세요.");
 				return false;
 			}
 			
-			//var type = $("select[name='type'] option:selected").val();
 			var keyword = $("input[name='keyword']").val();
 			
 			e.preventDefault();
-			//showSearchTypeList(1, type, keyword);
 			showSearchList(1, keyword);
 		});
+		
+		clear.on("click", function(e){
+			showList(1);
+		})
 		
 		tpage.on("click", "li a", function(e){
 			e.preventDefault();

@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.buttoncard > a {
+    text-align: center;
+    display: inline-block;
+    width: 200px;
+    padding: 20px 0 10px 0;
+    text-decoration: none;
+    color: #495057;
+}
+
+.buttoncard > a > h5 {
+    padding-top: 15px;
+}
