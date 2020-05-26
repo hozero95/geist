@@ -25,4 +25,6 @@ public interface NoticeService {
 	
 	//삭제
 	public void noticeDelete(int noti_no);
+	
+	public int noticeCount();
 }

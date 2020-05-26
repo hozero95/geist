@@ -13,7 +13,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class ProjectMoveController {
 
-	@RequestMapping(value = "/projectUpdate", method = RequestMethod.GET)
+	@RequestMapping(value = "/project/projectUpdate", method = RequestMethod.GET)
 	public String projectUpdate() {
 		log.info("프로젝트 수정 페이지 이동");
 		return "/page/project-update-page";

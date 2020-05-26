@@ -26,4 +26,6 @@ public interface NoticeMapper {
 	
 	//삭제
 	public void noticeDelete(int noti_no);
+
+	public int noticeCount();
 }
