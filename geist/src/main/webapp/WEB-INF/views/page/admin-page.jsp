@@ -73,6 +73,7 @@
 												</select>
 												<input type="text" name="keyword" value="">
 												<button class="search">Search</button>
+												<button class="clear">Clear</button>
 											</form><br>
                                             <div class="col-sm-12">
                                                 <table id="foo-table" class="table table-bordered dataTable" role="grid"
@@ -125,8 +126,6 @@
     <!--js-->
     <script type="text/javascript" src="/resources/js/include.js"></script>
     <script type="text/javascript" src="/resources/js/main.js"></script>
-    <script type="text/javascript" src="/resources/js/register.js"></script>
-    <script type="text/javascript" src="/resources/js/My-register.js"></script>
     <script type="text/javascript" src="/resources/js/admin-page.js"></script>
 
 </body>

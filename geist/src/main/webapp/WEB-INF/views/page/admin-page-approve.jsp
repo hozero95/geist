@@ -64,43 +64,29 @@
                                                 <table id="foo-table" class="table table-bordered dataTable" role="grid"
                                                     aria-describedby="foo-table_info">
                                                     <thead>
-                                                        <tr role="row">
+                                                   		<tr role="row">
                                                         	<th class="sorting" tabindex="0" aria-controls="foo-table" rowspan="1" colspan="1"
-                                                                aria-label="회사소속: activate to sort column ascending" style="width: 400px;">사원번호</th>
+                                                                aria-label="아이디 activate to sort column ascending" style="width: 100px;">아이디</th>
                                                             <th class="sorting_asc" tabindex="0" aria-controls="foo-table" rowspan="1" colspan="1"
                                                                 aria-sort="ascending" aria-label="이름: activate to sort column descending"
                                                                 style="width: 80px;">이름</th>
                                                             <th class="sorting_asc" tabindex="0" aria-controls="foo-table" rowspan="1" colspan="1"
-                                                                aria-sort="ascending" aria-label="부서명: activate to sort column descending"
-                                                                style="width: 300px;">부서명</th>
+                                                                aria-sort="ascending" aria-label="생일: activate to sort column descending"
+                                                                style="width: 300px;">생일</th>
                                                             <th class="sorting" tabindex="0" aria-controls="foo-table" rowspan="1" colspan="1"
-                                                                aria-label="직책: activate to sort column ascending" style="width: 300px;">직책</th>
+                                                                aria-label="개인연락처: activate to sort column ascending" style="width: 300px;">개인연락처</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="foo-table" rowspan="1" colspan="1"
+                                                                aria-label="이메일: activate to sort column ascending" style="width: 300px;">이메일</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="foo-table" rowspan="1" colspan="1"
+                                                                aria-label="주소: activate to sort column ascending" style="width: 300px;">주소</th>
                                                             <th class="sorting_asc" tabindex="0" aria-controls="foo-table" rowspan="1" colspan="1"
                                                                 aria-sort="ascending" aria-label="조회: activate to sort column descending"
                                                                 style="width: 200px;text-align: center;">조회</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        <tr role="row" class="odd">
-                                                            <td class="sorting_1">12345</td>
-                                                            <td>홍길동</td>
-                                                            <td>기획팀</td>
-                                                            <td>사원</td>
-                                                            <td>
-                                                                <button type="button" class="btn btn-sm dt-button" style="text-align: center;" onclick="showPopup();">조회</button>                                                         
-                                                            </td>
-                                                        </tr>
-                                                        <tr role="row" class="even">
-                                                            <td class="sorting_1">12346</td>
-                                                            <td>김을룡</td>
-                                                            <td>제작팀</td>
-                                                            <td>사원</td>                                                            
-                                                            <td>
-                                                                <button type="button" class="btn btn-sm dt-button" style="text-align: center;" onclick="showPopup();">조회</button>                                                         
-                                                            </td>                                                      
-                                                        </tr>
-                                                    </tbody>
+                                                    <tbody class="table-body"></tbody>
                                                 </table>
+                                                <div class="table-page"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -119,8 +105,7 @@
     <!--js-->
     <script type="text/javascript" src="/resources/js/include.js"></script>
     <script type="text/javascript" src="/resources/js/main.js"></script>
-    <script type="text/javascript" src="/resources/js/register.js"></script>
-    <script type="text/javascript" src="/resources/js/My-register.js"></script>
+    <script type="text/javascript" src="/resources/js/admin-page-approve.js"></script>
 	
     <script>
 
