@@ -13,7 +13,7 @@
     <!-- Bootstrap -->
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <!-- Data button-->
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
 <style>
@@ -27,6 +27,15 @@
 	    border-radius: 4px;
 	    color:white; 
 	    background-color: var(--teal);	
+		width : 80px;
+		height : 50px;
+		font-size : 25px;
+		margin-left : 30px;
+	}
+	.disabled {
+		 border-radius: 4px;
+	    color:white; 
+	    background-color: #dadada;	
 		width : 80px;
 		height : 50px;
 		font-size : 25px;
@@ -112,74 +121,7 @@
                                                 </thead>
                                                 <tbody class="table-body">
                                                 </tbody>
-                                                <!-- <tbody>
-                                                    <tr role="row" class="odd">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>08:35:38</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr role="row" class="even">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>09:26:39</td>
-                                                        <td>18:25:22</td>
-                                                        <td>지각</td>
-                                                    </tr>
-                                                    <tr role="row" class="odd">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>08:47:55</td>
-                                                        <td>19:04:15</td>
-                                                        <td>퇴근</td>
-                                                    </tr>
-                                                    <tr role="row" class="even">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>08:35:38</td>
-                                                        <td>18:56:36</td>
-                                                        <td>퇴근</td>
-                                                    </tr>
-                                                    <tr role="row" class="odd">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>08:35:38</td>
-                                                        <td>18:18:18</td>
-                                                        <td>퇴근</td>
-                                                    </tr>
-                                                    <tr role="row" class="even">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>08:21:34</td>
-                                                        <td>21:18:18</td>
-                                                        <td>야근</td>
-                                                    </tr>
-                                                    <tr role="row" class="odd">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>08:59:46</td>
-                                                        <td>18:45:21</td>
-                                                        <td>퇴근</td>
-                                                    </tr>
-                                                    <tr role="row" class="even">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>10:21:55</td>
-                                                        <td>19:30:21</td>
-                                                        <td>지각</td>
-                                                    </tr>
-                                                    <tr role="row" class="odd">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>08:40:38</td>
-                                                        <td>19:10:23</td>
-                                                        <td>퇴근</td>
-                                                    </tr>
-                                                    <tr role="row" class="even">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>08:35:38</td>
-                                                        <td>13:20:12</td>
-                                                        <td>조퇴</td>
-                                                    </tr>
-                                                    <tr role="row" class="even">
-                                                        <td class="sorting_1">2020/04/13</td>
-                                                        <td>08:35:38</td>
-                                                        <td>18:55:29</td>
-                                                        <td>퇴근</td>
-                                                    </tr>
-                                                </tbody> -->
+
                                             </table>
                                         </div>
                                     </div>
@@ -298,6 +240,7 @@
 		    	}, function(data) {
 		    		if(data.checkOn == 1) {
 		    			att_on.prop("disabled", true);
+		    			att_on.addClass("disabled");
 		    		} else {
 		    			att_on.prop("disabled", false);
 		    		}
@@ -306,6 +249,8 @@
 		    			att_off.prop("disabled", false);
 		    		} else {
 		    			att_off.prop("disabled", true);
+		    			att_off.addClass("disabled");
+		    			
 		    		}
 		    	});
 		    }
@@ -360,12 +305,6 @@
 					showList(emp_no);
 				});
 			});
-		    
-		    
-	            
-	        $('div').removeClass('form-inline');
-	        $('div.app-page-title').css('margin', '0px 0px 0px');
-	        $('div.app-page-title').css('padding', '50px 0px 30px 0px');
 
     	});
     </script>
