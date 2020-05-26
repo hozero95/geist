@@ -70,7 +70,7 @@ constraint fk_proj_management_dept_no foreign key(dept_no) references department
 </insert>
 
 <update id = "projectUpdate">
-	update project set proj_name = #{proj_name}, proj_agency = #{proj_agency}, proj_start = #{proj_start}, proj_end = #{proj_end} where proj_no = #{proj_no}
+	update project set proj_name = #{proj_name}, proj_agency = #{proj_agency}, proj_start = to_char(#{proj_start}, 'YYYY-MM-DD') , proj_end = to_char(#{proj_end}, 'YYYY-MM-DD')  where proj_no = #{proj_no}
 </update>
 
 <delete id = "projectDelete">

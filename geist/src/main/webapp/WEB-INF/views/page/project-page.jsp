@@ -25,15 +25,6 @@
 <script>
     function showPopupWrite() { window.open("/project/projectWrite", "프로젝트 작성", "width=1200, height=700, left=100, top=50"); }
 </script>
-
-<style>
-	ul {
-		list-style-type : none;
-		margin : 0;
-		padding : 0;
-	}
-</style>
-
 </head>
 <body>
 	<%
@@ -86,41 +77,41 @@
 
 											<table id="foo-table" class="table table-bordered dataTable"
 												role="grid" aria-describedby="foo-table_info">
-												<thead>
+												<thead style="text-align : center;">
 													<tr role="row">
 														<th id="ch-row"></th>
-														<th class="sorting" tabindex="0" aria-controls="foo-table"
+														<th class="" tabindex="0" aria-controls="foo-table"
 															rowspan="1" colspan="1"
 															aria-label="제목: activate to sort column ascending"
-															style="width: 1500px;">프로젝트 번호</th>
-														<th class="sorting" tabindex="0" aria-controls="foo-table"
+															style="width: 400px;">프로젝트 번호</th>
+														<th class="" tabindex="0" aria-controls="foo-table"
 															rowspan="1" colspan="1"
 															aria-label="제목: activate to sort column ascending"
-															style="width: 1500px;">프로젝트 명</th>
-														<th class="sorting" tabindex="0" aria-controls="foo-table"
+															style="width: 1200px;">프로젝트 명</th>
+														<th class="" tabindex="0" aria-controls="foo-table"
 															rowspan="1" colspan="1"
 															aria-label="작성날짜: activate to sort column ascending"
-															style="width: 600px;">주체기관</th>
-														<th class="sorting" tabindex="0" aria-controls="foo-table"
+															style="width: 1000px;">주체기관</th>
+														<th class="" tabindex="0" aria-controls="foo-table"
 															rowspan="1" colspan="1"
 															aria-label="작성날짜: activate to sort column ascending"
-															style="width: 200px;">시작일</th>
-														<th class="sorting" tabindex="0" aria-controls="foo-table"
+															style="width: 400px;">시작일</th>
+														<th class="" tabindex="0" aria-controls="foo-table"
 															rowspan="1" colspan="1"
 															aria-label="작성날짜: activate to sort column ascending"
-															style="width: 200px;">종료일</th>
+															style="width: 400px;">종료일</th>
 													</tr>
 												</thead>
-												<tbody id="table-body">
+												<tbody id="table-body" style="text-align : center;">
 												</tbody>
 											</table>
 											<div class="pt-2" style="float: right;">
-												<button type="button" class="btn btn-sm dt-button"
+												<button type="button" class="btn btn-sm dt-button" style="box-shadow : 3px 3px 2px #aaaaaa"
 													id="proWrite" onclick="showPopupWrite();">작성</button>
 												<button type="button" class="btn btn-sm dt-button"
-													id="proUpdate" onclick="">수정</button>
+													id="proUpdate" style="box-shadow : 3px 3px 2px #aaaaaa">수정</button>
 												<button type="button" class="btn btn-sm dt-button"
-													id="proDelete" onclick="">삭제</button>
+													id="proDelete" style="box-shadow : 3px 3px 2px #aaaaaa">삭제</button>
 											</div>
 										</div>
 										<div class="table-page">

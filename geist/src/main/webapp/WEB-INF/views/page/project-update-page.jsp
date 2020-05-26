@@ -37,13 +37,13 @@
                             <!-- Write -->
                             <form name="projectUpdate">
                                 <div class="container" role="main">
-                                    <h4 class="m-0 p-2">프로젝트 작성 </h4>
+                                    <h4 class="m-0 p-2">프로젝트 수정</h4>
                                     <div class="rounded">
 
                                         <table class="type09">
                                             <thead>
-                                                <th scope="row">부서번호</th>
-                                                <td><div class="in-put"><input type="text" id="dept_no" maxlength="10" readonly /></div></td>
+                                                <th scope="row">프로젝트 번호</th>
+                                                <td><div class="in-put"><input type="text" id="proj_no" maxlength="10" readonly /></div></td>
                                             </thead>
                                             <tbody>
 	                                            <tr>
@@ -69,7 +69,7 @@
                                             </tbody>
                                         </table>
                                         <div class="pt-2" style="float: right;">
-                                            <button type="button" class="btn btn-sm dt-button" id="proUpdate">저장</button>
+                                            <button type="button" class="btn btn-sm dt-button" id="proUpdate" style="box-shadow : 3px 3px 2px #aaaaaa">저장</button>
                                         </div>
                                     </div>
 
