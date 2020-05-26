@@ -1,29 +1,28 @@
 /** 게시판 - 상세 페이지 이동 */
-    function noticeRead(noti_no){                
-        location.href = "/notice/noticeRead/"+ noti_no;
-    }
+function noticeRead(noti_no){                
+    location.href = "/notice/noticeRead/"+ noti_no;
+}
 
 var NoticeService = (function(){
-	function getList(param, callback, error){
-			var page = param.page;
-			console.log("NoticeService.getList()page === " + page);
+function getList(param, callback, error){
+		var page = param.page;
+		console.log("NoticeService.getList()page === " + page);
 			
-			$.getJSON("/notice/noticeList/" + page + ".json", function(data){
-				if(callback){
-					callback(data);
-				}
-			}).fail(function(xhr, status, err){
-				if(error){
-					error();
-				}
-			});
-		}
+		$.getJSON("/notice/noticeList/" + page + ".json", function(data){
+			if(callback){
+				callback(data);
+			}
+		}).fail(function(xhr, status, err){
+			if(error){
+				error();
+			}
+		});
+	}	
 	
-	return{
-		getList : getList
-	};
+return{
+	getList : getList
+};
 })();
-
 
 $(document).ready(function() {
 	var tbody = $("#document-body");
@@ -55,7 +54,6 @@ $(document).ready(function() {
 			for(var i = 0, len = list.length || 0; i < len; i++){
 
 				str += "<tr>";
-				//str += "<td>" + list[i].noti_no + "</td>";
 				str += "<td>" + ((pageNum)*10-i) +"</td>";
 				str += "<td onclick='javascript:noticeRead("+ noti_no +");' style='cursor:Pointer'>" + list[i].noti_title + "</td>";
 				str += "<td>" + list[i].noti_date + "</td>";

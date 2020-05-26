@@ -9,6 +9,8 @@
 <title>Geist</title>
 <link href="/resources/css/document.css" rel="stylesheet" />
 <link href="/resources/css/main.css" rel="stylesheet" />
+<!-- 기안일을 위해 필요한 스크립트 -->
+<script type="text/javascript" src="/resources/js/date.js"></script>
 </head>
 <body>
 	<input type="hidden" name="login_no" value="${member.emp_no}">
@@ -55,15 +57,11 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="2">
-                                                    <input type="checkbox" name="management" value="대리">&nbsp;대리&nbsp;
-                                                    &nbsp; &nbsp;
-                                                    <input type="checkbox" name="management" value="과장">&nbsp;과장&nbsp; &nbsp;
-                                                    &nbsp;
-                                                    <input type="checkbox" name="management" value="차장">&nbsp;차장&nbsp; &nbsp;
-                                                    &nbsp;
-                                                    <input type="checkbox" name="management" value="부장">&nbsp;부장&nbsp; &nbsp;
-                                                    &nbsp;
-                                                </td>
+													<label for="position1"><input type="checkbox" name="management" value="대리" id="position1">&nbsp;대리</label>&nbsp;&nbsp;&nbsp;													 
+													<label for="position2"><input type="checkbox" name="management" value="과장" id="position2">&nbsp;과장</label>&nbsp;&nbsp; &nbsp; 
+													<label for="position3"><input type="checkbox" name="management" value="차장" id="position3">&nbsp;차장</label>&nbsp;&nbsp; &nbsp; 
+													<label for="position4"><input type="checkbox" name="management" value="부장" id="position4">&nbsp;부장</label>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+												</td>
                                             </tr>
 
                                         </table>

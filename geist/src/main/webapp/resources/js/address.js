@@ -20,7 +20,7 @@ console.log("1")
 				}
 			});
 		}
-		
+		 
 		function searchTypeList(param, callback, error){
 			var page = param.page;
 			var type = param.type;
@@ -170,6 +170,7 @@ console.log("1")
 			var startNum = endNum - 9;
 			var prev = startNum != 1;
 			var next = false;
+			console.log(count)
 			
 			if(endNum * 10 >= count){
 				endNum = Math.ceil(count / 10.0);
@@ -178,17 +179,18 @@ console.log("1")
 				next = true;
 			}
 			
+			
 			var str = "<ul class='pagination justify-content-end'>";
 		    if(prev){
 		        str += "<li class='page-item'><a class='page-link' href='" + (startNum - 1) + "'>Prev</a></li>";
 		    }
 		    for(var i = startNum; i <= endNum; i++){
 		        var linkStart = pageNum != i ? "'><a href='" + i + "'>" : "active'><a href='" + i + "'>";
-		        var linkEnd = pageNum != i ? "</a>" : "</a>" ;
+		        var linkEnd = pageNum != i ? "</a>" : "</a>";
 		        str += "<li class='page-item " + linkStart + i + linkEnd + "</a></li>";
-		        //var linkStart = pageNum != i ? "<a href='" + i + "'>" : "";
-				//var linkEnd = pageNum != i ? "</a>" : "";
-				//str += "<li>" + linkStart + i + linkEnd + "</li>";
+		        /*var linkStart = pageNum != i ? "<a href='" + i + "'>" : "";
+				var linkEnd = pageNum != i ? "</a>" : "";
+				str += "<li>" + linkStart + i + linkEnd + "</li>";*/
 		    }
 		    if(next){
 		        str += "<li class='page-item ><a href='" + (endNum + 1) + "'>Next</a></li>";
@@ -197,7 +199,6 @@ console.log("1")
 		    
 		    tpage.html(str);
 		}
-		
 		
 		search.on("click", function(e){	//엔터로 변경해야 함
 			/*
