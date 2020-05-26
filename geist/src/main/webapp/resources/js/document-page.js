@@ -1,6 +1,6 @@
 /** 게시판 - 상세 페이지 이동 */
-function noticeRead(noti_no){                
-    location.href = "/notice/noticeRead/"+ noti_no;
+	function noticeRead(noti_no){                
+    	location.href = "/notice/noticeRead/"+ noti_no;
 }
 
 var NoticeService = (function(){
