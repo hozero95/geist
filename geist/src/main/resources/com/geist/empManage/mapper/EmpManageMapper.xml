@@ -30,6 +30,31 @@
 			SELECT
 				emp_no, emp_name, emp_position, emp_date, dept_name
 			FROM
+				(
+				SELECT /*+ INDEX_ASC(employee pk_employee) */
+			        empSearch.*, rownum rn
+			    FROM (
+			        SELECT emp_no, emp_name, emp_position, to_char(emp_date, 'YYYY-MM-DD') emp_date, dept_name
+			        FROM employee emp, department dept
+			        WHERE emp.dept_no = dept.dept_no
+			        ORDER BY emp_name ASC
+			        ) empSearch
+			    WHERE        
+		]]>
+		<include refid="criteria"></include>
+		<![CDATA[
+					rownum <= #{pageNum} * #{amount}
+			)
+			WHERE
+				rn > (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
+	<!-- 
+	<select id="getListWithPaging" resultType="com.geist.empManage.domain.EmpManageVO">
+		<![CDATA[
+			SELECT
+				emp_no, emp_name, emp_position, emp_date, dept_name
+			FROM
 			(
 				SELECT /*+ INDEX_DESC(employee pk_employee) */
 					rownum rn, emp_no, emp_name, emp_position, to_char(emp_date, 'YYYY-MM-DD') emp_date, dept_name
@@ -45,6 +70,7 @@
 				rn > (#{pageNum} - 1) * #{amount}
 		]]>
 	</select>
+	-->
 	
 	<select id="getCount" resultType="int">
 		<![CDATA[

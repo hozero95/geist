@@ -76,7 +76,7 @@
                           </a>
                           <ul>
                               <li>
-                                  <a href="javascript:void(0);" onclick="ChangeMpage(10)">회원조회</a>
+                                  <a href="javascript:void(0);" onclick="ChangeMpage(10)">사원조회</a>
                               </li>
                               <li>
                                   <a href="javascript:void(0);" onclick="ChangeMpage(11)">가입승인</a>

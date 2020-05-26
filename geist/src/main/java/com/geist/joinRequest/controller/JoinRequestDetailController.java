@@ -23,6 +23,7 @@ public class JoinRequestDetailController {
 		
 		model.addAttribute("req_id", req_id);
 		
-		return "/test/joinRequestDetail";
+		return "/page/admin-page-approve-detail";
+//		return "/test/joinRequestDetail";
 	}
 }

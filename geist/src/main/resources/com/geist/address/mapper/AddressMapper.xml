@@ -35,10 +35,13 @@
 				emp_name, emp_email, emp_phone, emp_tel, emp_position, dept_no
 			FROM
 			(
-				SELECT /*+ INDEX_DESC(employee pk_employee) */
-					rownum rn, emp_name, emp_email, emp_phone, emp_tel, emp_position, dept_no
-				FROM
-					employee
+				SELECT /*+ INDEX_ASC(employee pk_employee) */
+			        e.*, rownum rn
+			    FROM (
+			            SELECT emp_name, emp_email, emp_phone, emp_tel, emp_position, dept_no
+			            FROM employee
+			            ORDER BY emp_name ASC
+			        ) e	
 				WHERE
 					rownum <= #{pageNum} * #{amount} 
 				]]>
@@ -47,7 +50,6 @@
 			)
 			WHERE
 				rn > (#{pageNum} - 1) * #{amount}
-			ORDER BY emp_name ASC
 		]]>
 	</select>
 	
