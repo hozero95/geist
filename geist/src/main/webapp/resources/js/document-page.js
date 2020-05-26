@@ -55,7 +55,8 @@ $(document).ready(function() {
 			for(var i = 0, len = list.length || 0; i < len; i++){
 
 				str += "<tr>";
-				str += "<td>" + list[i].noti_no + "</td>";
+				//str += "<td>" + list[i].noti_no + "</td>";
+				str += "<td>" + ((pageNum)*10-i) +"</td>";
 				str += "<td onclick='javascript:noticeRead("+ noti_no +");' style='cursor:Pointer'>" + list[i].noti_title + "</td>";
 				str += "<td>" + list[i].noti_date + "</td>";
 				str += "</tr>";

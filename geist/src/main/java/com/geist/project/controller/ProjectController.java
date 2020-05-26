@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.geist.login.domain.LoginVO;
-import com.geist.login.service.LoginService;
 import com.geist.project.domain.ProjectCriVO;
+import com.geist.project.domain.ProjectUpdateVO;
 import com.geist.project.domain.ProjectVO;
 import com.geist.project.service.ProjectService;
 
@@ -85,11 +86,25 @@ public class ProjectController {
 		}
 		
 		@GetMapping(value = "/projectUpdate/{proj_no}",  produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-		public ResponseEntity<ProjectVO> noticeUpdate(@PathVariable("proj_no") int proj_no){
+		public ResponseEntity<ProjectVO> noticeUpdate(@PathVariable("proj_no") int proj_no, HttpServletRequest req, Model model){
+			
+			HttpSession session = req.getSession();
+			
+			LoginVO no = (LoginVO)session.getAttribute("member");
+			Long emp_no = no.getEmp_no();
+			
+			//session에서 가져온 emp_no가 mapper을 한번더 거쳐 dept_no 꺼냄
+			int dept_no = service.projectDept(emp_no);
+			ProjectUpdateVO vo = new ProjectUpdateVO();
+			
+			vo.setDept_no(dept_no);
+			vo.setRead(service.projectRead(proj_no));
+			
+			model.addAttribute("ProjectUpdatVO", vo);
 			
 			log.info("projectUpdate Controller Get()");
 			
-			return new ResponseEntity<ProjectVO>(service.projectRead(proj_no), HttpStatus.OK);
+			return new ResponseEntity<ProjectVO>(HttpStatus.OK);
 		}
 		
 		//프로젝트 삭제 부분

@@ -58,5 +58,11 @@ public class NoticeServiceImpl implements NoticeService {
 		log.info("NoticeService noticeDelete()");
 		mapper.noticeDelete(noti_no);
 	}
+	//공지 count
+	@Override
+	public int noticeCount() {
+		// TODO Auto-generated method stub
+		return mapper.noticeCount();
+	}
 
 }
