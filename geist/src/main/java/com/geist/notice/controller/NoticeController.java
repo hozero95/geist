@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.geist.main.domain.Criteria;
+import com.geist.notice.domain.NoticeCountVO;
 import com.geist.notice.domain.NoticeVO;
 import com.geist.notice.service.NoticeService;
 
@@ -36,9 +38,16 @@ public class NoticeController {
 	
 	//목록
 	@GetMapping(value = "/noticeList/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<List<NoticeVO>> noticeList(@PathVariable("page") int page){
+	public ResponseEntity<List<NoticeCountVO>> noticeList(@PathVariable("page") int page, Model model){
+				
 		Criteria cri = new Criteria(page, 10);
-		return new ResponseEntity<List<NoticeVO>>(service.noticeList(cri), HttpStatus.OK);
+		NoticeCountVO vo = new NoticeCountVO();
+		vo.setCount(service.noticeCount());
+		vo.setCri2(service.noticeList(cri));
+		model.addAttribute("noticeCountVO", vo);
+		
+		
+		return new ResponseEntity<List<NoticeCountVO>>(HttpStatus.OK);
 	}
 	
 	//조회
