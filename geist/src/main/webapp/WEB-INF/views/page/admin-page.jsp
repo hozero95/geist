@@ -10,11 +10,22 @@
 	<!-- main Css-->
     <link href="/resources/css/document.css" rel="stylesheet" />
     <link href="/resources/css/main.css" rel="stylesheet" />
-   <!-- Bootstrap -->
+   	<!-- Bootstrap -->
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+	<script>
+	    $(document).ready(function() {
+	    	$('div').removeClass('form-inline');
+	        $('div.app-page-title').css('margin','0px 0px 0px');
+	        $('div.app-page-title').css('padding','50px 0px 30px 0px');
+	        $('div.app-page-title').css('padding','50px 0px 30px 0px');
+	        $('.form-control').css('float','right');
+	        $('.form-control').css('margin','5px 2px 5px 2px');
+	        $('button.dt-button').css('float','right');
+	        $('button.dt-button').css('margin','7px 2px 5px 2px');
+	    });
+    </script>
 </head>
 <body>
 
@@ -55,26 +66,27 @@
 	                            <div class="app-page-title">
 	                                <div class="page-title-heading">
 	                                    <i class="pe-7s-master-inverse"></i>
-	                                    <h2><sub>회원조회</sub></h2>
+	                                    <h2><sub>사원조회</sub></h2>
 	                                    <p>
 	                                </div>
 	                                <hr class="Geist-board-hr">
 	                            </div>
                                 <!-- table -->
                                 <div class="page-title-wrapper">
-                                    <div id="foo-table_wrapper" class="">
+                                    <div id="foo-table_wrapper" >
                                         <div class="row">
-                                        	<form id="searchForm" action="/empManage" method="get">
-												<select name="type">
-													<option value="">--</option>
-													<option value="N">이름</option>
-													<option value="P">직급</option>
-													<option value="D">부서</option>
-												</select>
-												<input type="text" name="keyword" value="">
-												<button class="search">Search</button>
-												<button class="clear">Clear</button>
-											</form><br>
+                                        	<form id="searchForm" action="/empManage" method="get" class="col-sm-12">
+											    <button class="btn btn-lg dt-button" id="clear">Clear</button>
+											    <button class="btn btn-lg dt-button" id="search">Search</button>
+											    <input type="text" name="keyword" value="" class="form-control ">
+											    <select name="type" class="form-control">
+											        <option value="">--</option>
+											        <option value="N">이름</option>
+											        <option value="P">직급</option>
+											        <option value="D">부서</option>
+											    </select>
+											</form>
+											<br>
                                             <div class="col-sm-12">
                                                 <table id="foo-table" class="table table-bordered dataTable" role="grid"
                                                     aria-describedby="foo-table_info">
@@ -127,6 +139,6 @@
     <script type="text/javascript" src="/resources/js/include.js"></script>
     <script type="text/javascript" src="/resources/js/main.js"></script>
     <script type="text/javascript" src="/resources/js/admin-page.js"></script>
-
+    
 </body>
 </html>

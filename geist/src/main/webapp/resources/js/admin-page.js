@@ -55,8 +55,8 @@ var empManageService = (function(){
 	
 	$(document).ready(function(){
 		var searchForm = $("#searchForm");
-		var search = $(".search");
-		var clear = $(".clear");
+		var search = $("#search");
+		var clear = $("#clear");
 		var tbody = $(".table-body");
 		var tpage = $(".table-page");
 		var pageNum = 1;
@@ -83,14 +83,14 @@ var empManageService = (function(){
 					str += "<td>" + list[i].emp_position + "</td>";
 					str += "<td>" + list[i].emp_date + "</td>";
 					str += "<td>" + list[i].dept_name + "</td>";
-					str += "<td><button type='button' class='detailBtn'>조회</button></td>";
+					str += "<td><button type='button' class='btn btn-lg dt-button' id='detailBtn'>조회</button></td>";
 					str += "</tr>";
 				}
 				
 				tbody.html(str);
 				showListPage(count);
 				
-				$(".detailBtn").on("click", function(){
+				$("#detailBtn").on("click", function(){
 					var tr = $(this).parent().parent();
 					var td = tr.children();
 					var emp_no = td.eq(0).text();
@@ -148,21 +148,24 @@ var empManageService = (function(){
 				next = true;
 			}
 			
-			var str = "<ul>";
-			if(prev){
-				str += "<li><a href='" + (startNum - 1) + "'>Prev</a></li>";
-			}
-			for(var i = startNum; i <= endNum; i++){
-				var linkStart = pageNum != i ? "<a href='" + i + "'>" : "";
+			var str = "<ul class='pagination justify-content-end'>";
+		    if(prev){
+		        str += "<li class='page-item'><a class='page-link' href='" + (startNum - 1) + "'>Prev</a></li>";
+		    }
+		    for(var i = startNum; i <= endNum; i++){
+		        var linkStart = pageNum != i ? "'><a href='" + i + "'>" : "active'><a href='" + i + "'>";
+		        var linkEnd = pageNum != i ? "</a>" : "</a>";
+		        str += "<li class='page-item " + linkStart + i + linkEnd + "</a></li>";
+		        /*var linkStart = pageNum != i ? "<a href='" + i + "'>" : "";
 				var linkEnd = pageNum != i ? "</a>" : "";
-				str += "<li>" + linkStart + i + linkEnd + "</li>";
-			}
-			if(next){
-				str += "<li><a href='" + (endNum + 1) + "'>Next</a></li>";
-			}
-			str += "</ul>";
-			
-			tpage.html(str);
+				str += "<li>" + linkStart + i + linkEnd + "</li>";*/
+		    }
+		    if(next){
+		        str += "<li class='page-item ><a href='" + (endNum + 1) + "'>Next</a></li>";
+		    }
+		    str += "</ul>";
+		    
+		    tpage.html(str);
 		}
 		
 		tpage.on("click", "li a", function(e){

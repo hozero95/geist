@@ -10,11 +10,23 @@
 	<!-- main Css-->
     <link href="/resources/css/document.css" rel="stylesheet" />
     <link href="/resources/css/main.css" rel="stylesheet" />
-    <!-- Bootstrap -->
+   	<!-- Bootstrap -->
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     
+    <script>
+	    $(document).ready(function() {
+	    	$('div').removeClass('form-inline');
+	        $('div.app-page-title').css('margin','0px 0px 0px');
+	        $('div.app-page-title').css('padding','50px 0px 30px 0px');
+	        $('div.app-page-title').css('padding','50px 0px 30px 0px');
+	        $('.form-control').css('float','right');
+	        $('.form-control').css('margin','5px 2px 5px 2px');
+	        $('button.dt-button').css('float','right');
+	        $('button.dt-button').css('margin','7px 2px 5px 2px');
+	    });
+    </script>
 </head>
 <body>
 
@@ -107,17 +119,5 @@
     <script type="text/javascript" src="/resources/js/main.js"></script>
     <script type="text/javascript" src="/resources/js/admin-page-approve.js"></script>
 	
-    <script>
-
-	    $(document).ready(function() {
-        	$("#foo-table").DataTable({
-                "info" :  false,
-                lengthChange: false,
-            });
-            $('div').removeClass('form-inline');
-            $('div.app-page-title').css('margin','0px 0px 0px');
-            $('div.app-page-title').css('padding','50px 0px 30px 0px');
-        });
-    </script>
 </body>
 </html>
