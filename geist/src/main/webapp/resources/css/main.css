@@ -7,7 +7,7 @@
  * Licensed under MIT (https://github.com/DashboardPack/architectui-html-theme-free/blob/master/LICENSE)
  =========================================================
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- */
+ */ 
 .border-primary {
     border-color: #3f6ad8
 }
@@ -2329,8 +2329,8 @@ pre code {
 }
 
 .form-control {
-    display: block;
-    width: 100%;
+    /*display: block;
+    width: 100%;*/
     height: calc(2.25rem + 2px);
     padding: .375rem .75rem;
     font-size: 1rem;
@@ -16662,7 +16662,7 @@ legend {
 
 .pagination li a:hover {
     z-index: 2;
-    color: #0056b3;
+    color: ;
     text-decoration: none;
     background-color: #e9ecef;
     border-color: #dee2e6
