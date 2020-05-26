@@ -1,6 +1,6 @@
 /**
  * 사원관리 페이지
- * 담당 : 김현선
+ * 담당 : 김현선(김호영)
  */
 
 var empManageService = (function(){

@@ -14,5 +14,5 @@ public class AddressVO {
 	private String emp_phone;		//개인 연락처
 	private String emp_tel;			//사내 연락처
 	private String emp_position;	//직책
-	private String dept_no;			//부서명
+	private String dept_name;			//부서명
 }

@@ -20,7 +20,11 @@
     <!-- Data button-->
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
     <!-- jQuery -->
-    
+    <style>
+    	.form-control::placeholder{
+    		color: #ced4da;
+    	}    	
+    </style>
 </head>
 
 <body>
@@ -68,6 +72,12 @@
                                 <div class="page-title-wrapper">
                                     <div id="foo-table_wrapper" class="">
                                         <div class="row">
+                                        	<form id="searchForm" action="/address" method="get" class="col-sm-12">
+											    <button class="btn btn-lg dt-button" id="clear">Clear</button>
+											    <button class="btn btn-lg dt-button" id="search">Search</button>
+											    <input type="text" name="keyword" value="" class="form-control" placeholder="이름으로 검색하세요">
+											</form>
+											<br>
                                             <div class="col-sm-12">
                                                 <table id="foo-table" class="table table-bordered dataTable" role="grid"
                                                     aria-describedby="foo-table_info">
@@ -90,28 +100,7 @@
                                                             
                                                         </tr>
                                                     </thead>
-                                                    <tbody class="table-body">
-                                                    <!-- 
-                                                        <tr role="row" class="odd">
-                                                            <td class="sorting_1">1</td>
-                                                            <td>홍길동</td>
-                                                            <td>abc@naver.com</td>
-                                                            <td>010-1234-5678</td>
-                                                            <td>사원</td>
-                                                            <td>기획팀</td>
-                                                            <td>Geist</td>
-                                                        </tr>
-                                                        <tr role="row" class="even">
-                                                            <td class="sorting_1">2</td>
-                                                            <td>김을룡</td>
-                                                            <td>abc@naver.com</td>
-                                                            <td>010-1234-5678</td>
-                                                            <td>사원</td>
-                                                            <td>제작팀</td>
-                                                            <td>Geist</td>
-                                                        </tr>
-                                                         -->
-                                                    </tbody>
+                                                    <tbody class="table-body"></tbody>
                                                 </table>
                                                 <div class="table-page"></div>
                                             </div>
@@ -132,9 +121,7 @@
     <!--js-->
     <script type="text/javascript" src="/resources/js/include.js"></script>
     <script type="text/javascript" src="/resources/js/main.js"></script>
-    <script type="text/javascript" src="/resources/js/register.js"></script>
-    <script type="text/javascript" src="/resources/js/My-register.js"></script>
-    <script type="text/javascript" src="/resources/js/address.js"></script>
+    <script type="text/javascript" src="/resources/js/address-page.js"></script>
     
     <script>
     	$(document).ready(function() {
