@@ -20,7 +20,7 @@ console.log("1")
 				}
 			});
 		}
-		
+		 
 		function searchTypeList(param, callback, error){
 			var page = param.page;
 			var type = param.type;

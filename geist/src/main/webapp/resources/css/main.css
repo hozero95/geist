@@ -25503,6 +25503,7 @@ table.type09 td {
   position: relative;
   cursor: pointer;
 }
+
 .cal-table td.today {
   background: #4094BD;
   border-radius: 50%;

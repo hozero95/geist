@@ -24,7 +24,6 @@ return{
 };
 })();
 
-
 $(document).ready(function() {
 var tbody = $("#document-body");
 var tpage = $("#document-table-page");
