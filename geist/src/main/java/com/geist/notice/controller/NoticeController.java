@@ -37,7 +37,7 @@ public class NoticeController {
 	
 	//목록
 	@GetMapping(value = "/noticeList/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<List<NoticeVO>> noticeList(@PathVariable("page") int page, @RequestBody NoticeCountVO vo){
+	public ResponseEntity<List<NoticeVO>> noticeList(@PathVariable("page") int page){
 		
 		Criteria cri = new Criteria(page, 10);
 		
