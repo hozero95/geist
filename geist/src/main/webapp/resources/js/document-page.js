@@ -4,11 +4,24 @@
 }
 
 var NoticeService = (function(){
-function getList(param, callback, error){
-		var page = param.page;
-		console.log("NoticeService.getList()page === " + page);
-			
-		$.getJSON("/notice/noticeList/" + page + ".json", function(data){
+	function getList(param, callback, error){
+			var page = param.page;
+			console.log("NoticeService.getList()page === " + page);
+				
+			$.getJSON("/notice/noticeList/" + page + ".json", function(data){
+				if(callback){
+					callback(data);
+				}
+			}).fail(function(xhr, status, err){
+				if(error){
+					error();
+				}
+			});
+		}	
+	
+	function detailView(param, callback, error){
+		var noti_no = param.noti_no;
+		$.getJSON("/notice/noticeRead/" + noti_no + ".json", function(data){
 			if(callback){
 				callback(data);
 			}
@@ -17,18 +30,19 @@ function getList(param, callback, error){
 				error();
 			}
 		});
-	}	
+	}
 	
-return{
-	getList : getList
-};
+	return{
+		getList : getList,
+		detailView : detailView
+	};
 })();
 
 $(document).ready(function() {
 	var tbody = $("#document-body");
 	var tpage = $("#document-table-page");
 	var write = $("#notice-write");
-	var noti_no
+	var noti_no = 
 	var noti_title;
 	var noti_date;
 	var pageNum = 1;
@@ -60,6 +74,8 @@ $(document).ready(function() {
 				str += "</tr>";
 			}
 			tbody.html(str);
+			showListPage(count);
+
 		});
 	}
 	
