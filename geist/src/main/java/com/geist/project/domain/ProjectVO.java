@@ -2,6 +2,8 @@ package com.geist.project.domain;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 /*
@@ -32,6 +34,8 @@ public class ProjectVO {
 	private int dept_no;
 	private String proj_name;
 	private String proj_agency;
-	private String proj_start;
-	private String proj_end;
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+	private Date proj_start;
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+	private Date proj_end;
 }
