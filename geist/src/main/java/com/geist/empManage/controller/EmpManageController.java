@@ -49,6 +49,7 @@ public class EmpManageController {
 	
 	@GetMapping(value = "/detailView/{emp_no}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<EmpManageVO> detailView(@PathVariable("emp_no") Long emp_no){
+		log.info("detailView 컨트롤러");
 		return new ResponseEntity<EmpManageVO>(service.detailView(emp_no), HttpStatus.OK);
 	}
 	
