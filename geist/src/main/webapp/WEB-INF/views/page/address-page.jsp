@@ -31,17 +31,18 @@
 
 	<%
 		request.setCharacterEncoding("UTF-8");
-	
+		
 	    String contentPage=request.getParameter("contentPage");
 	    if(contentPage==null)
 	        contentPage="main.jsp";
 	    
-	    String admin_nav = (String)session.getAttribute("adminOk");
-		if(admin_nav == null) {
-			admin_nav="admin-nav.jsp";
-		}else{
-			admin_nav="admin-nav.jsp";
-		}
+	    String admin_nav = (String)session.getAttribute("sys");
+	    
+	  	if(admin_nav == "sys") {
+	  		admin_nav="admin-nav.jsp";
+	  	}else{
+	  		admin_nav="nav.jsp";
+	  	}
 	%>
 	
 	<div id="header">
