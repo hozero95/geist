@@ -77,11 +77,11 @@
                                     <div id="foo-table_wrapper" >
                                         <div class="row">
                                         	<form id="searchForm" action="/empManage" method="get" class="col-sm-12">
-											    <button class="btn btn-lg dt-button" id="clear">Clear</button>
-											    <button class="btn btn-lg dt-button" id="search">Search</button>
+											    <button class="btn btn-lg dt-button" id="clear">지우기</button>
+											    <button class="btn btn-lg dt-button" id="search">검색</button>
 											    <input type="text" name="keyword" value="" class="form-control ">
 											    <select name="type" class="form-control">
-											        <option value="">--</option>
+											        <option value="">선택하세요</option>
 											        <option value="N">이름</option>
 											        <option value="P">직급</option>
 											        <option value="D">부서</option>

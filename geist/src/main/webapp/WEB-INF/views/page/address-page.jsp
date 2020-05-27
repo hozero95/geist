@@ -74,8 +74,8 @@
                                     <div id="foo-table_wrapper" class="">
                                         <div class="row">
                                         	<form id="searchForm" action="/address" method="get" class="col-sm-12">
-											    <button class="btn btn-lg dt-button" id="clear">Clear</button>
-											    <button class="btn btn-lg dt-button" id="search">Search</button>
+											    <button class="btn btn-lg dt-button" id="clear">지우기</button>
+											    <button class="btn btn-lg dt-button" id="search">검색</button>
 											    <input type="text" name="keyword" value="" class="form-control" placeholder="이름으로 검색하세요">
 											</form>
 											<br>
