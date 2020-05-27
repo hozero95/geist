@@ -48,6 +48,7 @@ public class NoticeController {
 	@GetMapping(value = "/noticeRead/{noti_no}",  produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<NoticeVO> noticeRead(@PathVariable("noti_no") int noti_no){
 		log.info("noticeRead Controller");
+		log.info(" =================="+noti_no);
 		return new ResponseEntity<NoticeVO>(service.noticeRead(noti_no), HttpStatus.OK);
 	}
 	
