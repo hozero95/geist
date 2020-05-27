@@ -1,120 +1,102 @@
-$(document).ready(function(){        
-        getBoardDetail();        
-    });
-    
-    /** 게시판 - 목록 페이지 이동 */
-    function goBoardList(){                
-        location.href = "/notice";
-    }
-    
-    /** 게시판 - 수정 페이지 이동 */
-    function goBoardUpdate(){
-        
+var NoticeService = (function(){
+	function detailView(param, callback, error){
+			var noti_no = param.noti_no;
+			console.log("NoticeService.getList()noti_no === " + noti_no);
+				
+			$.getJSON("/notice/noticeRead/" + noti_no + ".json", function(data){
+				if(callback){
+					callback(data);
+				}
+			}).fail(function(xhr, status, err){
+				if(error){
+					error();
+				}
+			});
+		}
+	
+	return{
+		detailView : detailView,
+	};
+})();
+/** 게시판 - 목록 페이지 이동 */
+function goBoardList(){                
+    location.href = "/notice";
+}
 
-    	var noti_no = $('input[name=noti_no]').val();
+/** 게시판 - 수정 페이지 이동 */
+function goBoardUpdate(noti_no){
+	var noti_no = noti_no;
+    location.href = "/notice/noticeUpdate/?noti_no="+noti_no;
+}
 
-        
-        location.href = "/notice/noticeUpdate/"+ noti_no;
-    }
+/** 게시판 - 삭제  */
+function deleteBoard(noti_no){
     
-    /** 게시판 - 상세 조회  */
-    function getBoardDetail(noti_no){
-        
+    var yn = confirm("게시글을 삭제하시겠습니까?");        
+    if(yn){
+    	$.ajax({    
+			type : 'delete',
+            url        : "/notice/noticeDelete/"+noti_no,
+            data : JSON.stringify(noti_no),
+			contentType : "application/json; charset=utf-8",
+			success : function(obj) {
+				deleteBoardCallback(obj);
+			},
+			error     : function(xhr, status, error) {}
+            
+        	});
+    }else {
+		alert("오류가 발생했습니다.\n관리자에게 문의하세요.");
+	}
+}
 
-        var noti_no = $('input[name=noti_no]').val();
+/** 게시판 - 삭제 콜백 함수 */
+function deleteBoardCallback(obj){
 
- 
-        if(noti_seq != ""){
-            
-            $.ajax({    
-                
-                url        : "/notice/noticeRead/"+noti_no,
-                data    : $("#noti_seq").serialize(),
-                contentType : "application/json; charset=utf-8",
-                dataType: "JSON",
-                cache   : false,
-                async   : true,
-                type    : "GET",    
-                success : function(obj) {
-                    getBoardDetailCallback(obj);                
-                },           
-                error     : function(xhr, status, error) {}
-                
-             });
-        } else {
-            alert("오류가 발생했습니다.\n관리자에게 문의하세요.");
-        }            
-    }
-    
-    /** 게시판 - 상세 조회  콜백 함수 */
-    function getBoardDetailCallback(obj){
+    if(obj != null){        
+      
+        var result = obj;
         
-        var str = "";
-        
-        if(obj != null){                                
-                            
-        	var noti_no        = obj.noti_no; 
-            var noti_title         = obj.noti_title; 
-            var noti_content         = obj.noti_content; 
-            var noti_date         = obj.noti_date; 
-                    
-            str += "<div class='board-title'>" + noti_title + "</div>";
-            str += "<div class='board-info-box'>";
-            str += "<span class='board-date'>" + noti_date + "</span>";
-            str += "</div>";
-            str += "<hr>";
-            str += "<div class='board-content'>" + noti_content + "</div>";
-            
-        } else {
-            
-            alert("등록된 글이 존재하지 않습니다.");
-            return;
-        }        
-        
-        $("#notice-content").html(str);
-    }
-    
-    /** 게시판 - 삭제  */
-    function deleteBoard(){
- 
-
-    	var noti_no = $('input[name=noti_no]').val();
-
-        
-        var yn = confirm("게시글을 삭제하시겠습니까?");        
-        if(yn){
-            
-            $.ajax({    
-                
-                url        : "/notice/noticeDelete/"+noti_no,
-                data    : $("#Notice-form").serialize(),
-                contentType : "application/json; charset=utf-8",
-                dataType: "JSON",
-                cache   : false,
-                async   : true,
-                type    : "POST",    
-                success : function(obj) {
-                    deleteBoardCallback(obj);                
-                },           
-                error     : function(xhr, status, error) {}
-                
-             });
-        }        
-    }
-    
-    /** 게시판 - 삭제 콜백 함수 */
-    function deleteBoardCallback(obj){
-    
-        if(obj != null){        
-            
-            var result = obj.result;
-            
-            if(result == "SUCCESS"){                
-                alert("게시글 삭제를 성공하였습니다.");                
-                goBoardList();                
-            } else {                
-                alert("게시글 삭제를 실패하였습니다.");    
-                return;
-            }
+        if(result === "success"){   
+        	alert("게시글 삭제를 성공하였습니다.");                
+            goBoardList();        
+        } else {         
+            alert("게시글 삭제를 실패하였습니다.");    
+            return; 
         }
     }
+}
+
+$(document).ready(function(){ 
+	var url = document.location.href.split("?");
+	var pram = url[1].split("noti_no=");
+	var noti_no = pram[1]
+	
+	detailView(noti_no);
+	
+	function detailView(noti_no){
+		NoticeService.detailView({
+			noti_no : noti_no
+		}, function(data){
+			$("div.rounded").append("<div class='board-title'>" + data.noti_title + "</div>");
+			$("div.rounded").append("<div class='board-info-box'>" + 
+					"<span class='board-date'>" + data.noti_date + "</span>"
+					+ "</div>");
+			$("div.rounded").append("<hr>");
+			$("div.rounded").append("<div class='board-content'>" + data.noti_content + "</div>");
+		});
+	}
+	
+	$("#btnUpdate").on("click", function(){
+		goBoardUpdate(noti_no);
+	});
+	
+	$("#btnDelete").on("click", function(){
+		deleteBoard(noti_no);
+	});
+	
+	$("#btnList").on("click", function(){
+		goBoardList();
+	});
+	
+});

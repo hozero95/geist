@@ -1,112 +1,83 @@
-$(document).ready(function(){        
-        getBoardDetail();        
-    });
-    
-    /** 게시판 - 목록 페이지 이동 */
-    function goBoardList(){                
-        location.href = "/notice";
-    }
-    
-    /** 게시판 - 상세 조회  */
-    function getBoardDetail(noti_no){
-        
-        var noti_no = $("#noti_no").val();
- 
-        if(noti_no != ""){
-            
-            $.ajax({    
-                
-                url        : "/notice/noticeUpdate/"+noti_no,
-                contentType: 'application/json; charset=utf-8',
-                data    : $("#Notice-form").serialize(),
-                dataType: "JSON",
-                cache   : false,
-                async   : true,
-                type    : "PUT",    
-                success : function(obj) {
-                    getBoardDetailCallback(obj);                
-                },           
-                error     : function(xhr, status, error) {}
-                
-             });
-            
-        } else {
-            alert("오류가 발생했습니다.\n관리자에게 문의하세요.");
-        }    
-    }
-    
-    /** 게시판 - 상세 조회  콜백 함수 */
-    function getBoardDetailCallback(obj){
-        
-        var str = "";
-        
-        if(obj != null){                                
-                            
-            var noti_no        = obj.noti_no; 
-            var noti_title         = obj.noti_title; 
-            var noti_content         = obj.noti_content; 
-            var noti_date         = obj.noti_date; 
-                    
-            $("#NOTI_TITLE").val(noti_title);            
-            $("#NOTI_CONTENT").val(noti_content);
-            
-        } else {            
-            alert("등록된 글이 존재하지 않습니다.");
-            return;
-        }        
-    }
-    
-    /** 게시판 - ajax */
-    function noticeUpdate(param, callback, error) {
-    	$.ajax({    
-            url : "/notice/noticeUpdate/"+noti_no,
-            data : JSON.stringify(param),
-            contentType : "application/json; charset=utf-8",
-            cache   : false,
-            async   : true,
-            type    : "GET",    
-            success : function(result, status, xhr) {
-            	if(callback){
+var NoticeService = (function(){
+	function detailView(param, callback, error){
+			var noti_no = param.noti_no;
+			console.log("NoticeService.getList()noti_no === " + noti_no);
+				
+			$.getJSON("/notice/noticeUpdate/" + noti_no + ".json", function(data){
+				if(callback){
+					callback(data);
+				}
+			}).fail(function(xhr, status, err){
+				if(error){
+					error();
+				}
+			});
+		}
+	
+	function modifyEmp(param, callback, error){
+		$.ajax({
+			type : 'PUT',
+			url : '/notice/noticeUpdate/'+ param.noti_no,
+			data : JSON.stringify(param),
+			contentType : "application/json; charset=utf-8",
+			success : function(result, status, xhr){
+				if(callback){
 					callback(result);
-				}             
-            },                  
-            error     : function(xhr, status, error) {
-            	if(error){    
+				}
+			},
+			error : function(xhr, status, err){
+				if(error){
 					error(err);
 				}
-            }
-        });
-    }
+			}
+		});
+	}
+	
+	return{
+		detailView : detailView,
+		modifyEmp : modifyEmp
+	};
+})();
+
+$(document).ready(function(){ 
+	var url = document.location.href.split("?");
+	var pram = url[1].split("noti_no=");
+	var noti_no = pram[1]
+	var noti_Btn = $("#btnSave");
+	
+	detailView(noti_no);
+	
+	function detailView(noti_no){
+		NoticeService.detailView({
+			noti_no : noti_no
+		}, function(data){
+			$("#Notice-title").append("<label for='title'>제목</label>");
+			$("#Notice-title").append("<input type='text' class='form-control' id='title' name='title' value='"+ data.noti_title +"'>");
+			
+			$("#Notice-content").append("<label for='content'>내용</label>");
+			$("#Notice-content").append("<textarea class='form-control' rows='15' id='content' name='content' autofocus>"
+										+ data.noti_content +"</textarea>");
+		});
+		
+		noti_Btn.on("click", function(e){
+			var noti_title = $("#title").val();
+			var noti_content = $("#content").val();
+			
+			NoticeService.modifyEmp({
+				noti_no : noti_no,
+				noti_title : noti_title,
+				noti_content : noti_content
+			}, function(result){
+				alert("게시글이 수정되었습니다.");
+				location.href = "/notice/noticeRead/?noti_no="+noti_no;
+			});
+		})
+		
+		
+		$("#btnList").on("click", function(){
+			location.href = "/notice"
+		});
+	}       
+    });
     
-    /** 게시판 - 수정  */
-    function updateBoard(){
- 
-        var NOTI_TITLE    = $("#NOTI_TITLE").val();
-        var NOTI_CONTENT     = $("#NOTI_CONTENT").val();
-            
-        if (NOTI_TITLE == ""){            
-            alert("제목을 입력해주세요.");
-            $("#NOTI_TITLE").focus();
-            return;
-        }
-        
-        if (NOTI_CONTENT == ""){            
-            alert("내용을 입력해주세요.");
-            $("#NOTI_CONTENT").focus();
-            return;
-        }
-        
-        var yn = confirm("게시글을 수정하시겠습니까?");        
-        if(yn){
-        	noticeUpdate({
-        		"noti_title" : NOTI_TITLE,
-   				"noti_content" : NOTI_CONTENT,
-        	},function(result){
-        		alert("게시글 등록을 성공하였습니다.");                
-        		location.href = "/notice";
-        	})
-        }else{
-        	alert("게시글 등록을 실패하였습니다.");
-        	return;
-        }
-    }
+    

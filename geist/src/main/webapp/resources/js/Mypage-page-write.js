@@ -35,7 +35,7 @@ var MypageService = (function(){
 		
 		return{
 			detailView : detailView,
-			modifyEmp : modifyEmp,
+			modifyEmp : modifyEmp
 		};
 	})();
 	

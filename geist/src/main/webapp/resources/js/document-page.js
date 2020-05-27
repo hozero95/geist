@@ -119,7 +119,7 @@ $(document).ready(function() {
 		var noti_no = $(this).children().eq(0).val();
 		
 		noticeRead(noti_no);
-		location.href = "/notice/noticeRead/"+ noti_no;
+		location.href = "/notice/noticeRead/?noti_no="+noti_no;
 	});
 	write.on("click", function(){
 		location.href = "/notice/noticeWrite";
