@@ -23,7 +23,7 @@ public interface JoinRequestMapper {
 	
 	public Long getDeptNo(String dept_name);
 	
-	public int insertEmp(@Param("vo") JoinRequestVO vo, @Param("emp_position") String emp_position, @Param("emp_sal") Long emp_sal, @Param("dept_no") Long dept_no);
+	public int insertEmp(@Param("vo") JoinRequestVO vo, @Param("emp_position") String emp_position, @Param("emp_sal") Long emp_sal, @Param("dept_no") Long dept_no, @Param("emp_tel") String emp_tel);
 	
 	public int deleteRequest(String req_id);
 }

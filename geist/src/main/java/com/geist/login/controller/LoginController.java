@@ -37,14 +37,22 @@ public class LoginController {
 		HttpSession session = req.getSession();
 		LoginVO login = service.login(vo);
 		String result = "";
+		String sys = "";
 		
 		if(login == null) {
 			session.setAttribute("member", null);
 			result = "fail";
 		}
 		else {
-			session.setAttribute("member", login);
-			result = "success";
+			if(login.getEmp_no() == 100) {
+				result = "success";
+				sys = "sys";
+				session.setAttribute("sys", sys);
+				session.setAttribute("member", login);
+			}else {
+				session.setAttribute("member", login);
+				result = "success";				
+			}
 		}
 		log.info("session : " + session);
 		

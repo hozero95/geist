@@ -25,17 +25,18 @@
 
 	<%
 		request.setCharacterEncoding("UTF-8");
-	
+		
 	    String contentPage=request.getParameter("contentPage");
 	    if(contentPage==null)
 	        contentPage="main.jsp";
 	    
-	    String admin_nav = (String)session.getAttribute("adminOk");
-		if(admin_nav == null) {
-			admin_nav="admin-nav.jsp";
-		}else{
-			admin_nav="admin-nav.jsp";
-		}
+	    String admin_nav = (String)session.getAttribute("sys");
+	    
+	  	if(admin_nav == "sys") {
+	  		admin_nav="admin-nav.jsp";
+	  	}else{
+	  		admin_nav="nav.jsp";
+	  	}
 	%>
 	
 	<div id="header">
@@ -113,8 +114,6 @@
     <!--js-->
     <script type="text/javascript" src="/resources/js/include.js"></script>
     <script type="text/javascript" src="/resources/js/main.js"></script>
-    <script type="text/javascript" src="/resources/js/register.js"></script>
-    <script type="text/javascript" src="/resources/js/My-register.js"></script>
     <script type="text/javascript" src="/resources/js/approvalSearch.js"></script>
 
     <!--js-->

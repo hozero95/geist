@@ -51,7 +51,9 @@ public class JoinRequestController {
 		String emp_position = vo.getEmp_position();
 		Long emp_sal = Long.parseLong(vo.getEmp_sal());
 		Long dept_no = service.getDeptNo(vo.getDept_name());
-		int inCount = service.insertEmp(joinRequestVO, emp_position, emp_sal, dept_no);
+		String emp_tel = vo.getEmp_tel();  
+		log.info("emp_tel === " + emp_tel);
+		int inCount = service.insertEmp(joinRequestVO, emp_position, emp_sal, dept_no, emp_tel);
 		return inCount == 1 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	

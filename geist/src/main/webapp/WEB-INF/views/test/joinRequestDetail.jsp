@@ -24,6 +24,7 @@
 		직급 : <input type="text" name="emp_position"><br>
 		연봉 : <input type="text" name="emp_sal"><br>
 		부서 : <input type="text" name="dept_name"><br>
+		사내연락처: <input type="text" name="emp_tel"><br>
 		<br>
 		<button type="button" class="insertBtn">가입 승인</button>
 		<button type="button" class="deleteBtn">가입 거절</button>
@@ -126,6 +127,7 @@
 			var emp_position = $("input[name='emp_position']").val();
 			var emp_sal = $("input[name='emp_sal']").val();
 			var dept_name = $("input[name='dept_name']").val();
+			var emp_tel = $("input[name='emp_tel']").val();
 			
 			if(emp_position != "사원" && emp_position != "대리" && emp_position != "차장" && emp_position != "과장" && emp_position != "부장" && emp_position != "사장"){
 				alert("없는 직급입니다.");
@@ -136,7 +138,8 @@
 				req_id : req_id,
 				emp_position : emp_position,
 				emp_sal : emp_sal,
-				dept_name : dept_name
+				dept_name : dept_name,
+				emp_tel : emp_tel
 			}, function(result){
 				joinRequestDetailService.deleteRequest(req_id, function(result2){
 					alert(result2);

@@ -56,7 +56,7 @@ $(document).ready(function() {
 			}
 			for(var i = 0, len = list.length || 0; i < len; i++){
 				var status = "";
-				switch(list[i].app_status){
+				switch(list[i].agr_status){
 				case 1:
 					status = "처리중";
 					break;
@@ -130,7 +130,7 @@ $(document).ready(function() {
 		
 		var app_no = $(this).children().eq(0).val();
 		var app_class = $(this).children().eq(1).val();
-				
+		
 		if(app_class === "1"){			
 			location.href = "/approval/detail/1?app_no=" + app_no + "&emp_no=" + emp_no;
 		}else if(app_class === "2"){
@@ -138,5 +138,13 @@ $(document).ready(function() {
 		}else if(app_class === "3"){
 			location.href = "/approval/detail/3?app_no=" + app_no + "&emp_no=" + emp_no;
 		}
+		
+//		if(app_class === "1"){			
+//			location.href = "/approval/detail/1?app_no=" + app_no + "&emp_no=" + emp_no;
+//		}else if(app_class === "2"){
+//			location.href = "/approval/detail/2?app_no=" + app_no + "&emp_no=" + emp_no;
+//		}else if(app_class === "3"){
+//			location.href = "/approval/detail/3?app_no=" + app_no + "&emp_no=" + emp_no;
+//		}
 	});
 });

@@ -33,6 +33,7 @@
 		직급 : <input type="text" name="emp_position"><br>
 		연봉 : <input type="text" name="emp_sal"><br>
 		부서 : <input type="text" name="dept_name"><br>
+		사내연락처: <input type="text" name="emp_tel"><br>
 		<br>
 		<button type="button" class="insertBtn">가입 승인</button>
 		<button type="button" class="deleteBtn">가입 거절</button>
