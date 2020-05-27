@@ -32,11 +32,7 @@
 		}else{
 			admin_nav="admin-nav.jsp";
 		}
-		
-		String noti_no= request.getParameter("noti_no");
 	%>
-	
-	<c:set var="noti_no" value="<%=noti_no%>"/> <!-- 게시글 번호 -->
 	
 	<div id="header">
 		<jsp:include page="topnav.jsp" />
@@ -70,13 +66,12 @@
                                     <div class="rounded" id="notice-content">
                                         
                                     </div>
-                                    <input type="hidden" id="noti_no"        name="noti_no"    value="${noti_no}"/> <!-- 게시글 번호 -->
                                 </form>
                                     <hr>
                                     <div class="pt-2" style="float: right;">
-                                        <button type="button" class="btn btn-sm dt-button" id="btnUpdate" onclick="javascript:goBoardUpdate();">수정</button>
-                                        <button type="button" class="btn btn-sm dt-button" id="btnDelete" onclick="javascript:deleteBoard();">삭제</button>
-                                        <button type="button" class="btn btn-sm dt-button" id="btnList" onclick="javascript:goBoardList();">목록</button>
+                                        <button type="button" class="btn btn-sm dt-button" id="btnUpdate">수정</button>
+                                        <button type="button" class="btn btn-sm dt-button" id="btnDelete">삭제</button>
+                                        <button type="button" class="btn btn-sm dt-button" id="btnList">목록</button>
                                     </div>
                                 </div>
                             </article>
@@ -95,8 +90,6 @@
     <!--js-->
     <script type="text/javascript" src="/resources/js/include.js"></script>
     <script type="text/javascript" src="/resources/js/main.js"></script>
-    <script type="text/javascript" src="/resources/js/register.js"></script>
-    <script type="text/javascript" src="/resources/js/My-register.js"></script>
     <script type="text/javascript" src="/resources/js/document-content.js"></script>
     
 </body>
