@@ -1,11 +1,10 @@
 package com.geist.notice.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.geist.main.domain.Criteria;
+import com.geist.notice.domain.NoticeDTO;
 import com.geist.notice.domain.NoticeVO;
 import com.geist.notice.mapper.NoticeMapper;
 
@@ -24,9 +23,8 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	//목록
 	@Override
-	public List<NoticeVO> noticeList(Criteria cri) {
-		// TODO Auto-generated method stub
-		return mapper.noticeList(cri);
+	public NoticeDTO noticeList(Criteria cri) {
+		return new NoticeDTO(mapper.noticeCount(), mapper.noticeList(cri));
 	}
 	//조회
 	@Override
@@ -57,12 +55,6 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		log.info("NoticeService noticeDelete()");
 		mapper.noticeDelete(noti_no);
-	}
-	//공지 count
-	@Override
-	public int noticeCount() {
-		// TODO Auto-generated method stub
-		return mapper.noticeCount();
 	}
 
 }

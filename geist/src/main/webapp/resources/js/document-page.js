@@ -5,7 +5,7 @@ var NoticeService = (function(){
 				
 			$.getJSON("/notice/noticeList/" + page + ".json", function(data){
 				if(callback){
-					callback(data);
+					callback(data.count, data.list);
 				}
 			}).fail(function(xhr, status, err){
 				if(error){
@@ -34,7 +34,7 @@ $(document).ready(function() {
 
 		NoticeService.getList({
 			page : page || 1
-		}, function(list){
+		}, function(count, list){
 			if(page == -1){
 				pageNum = Math.ceil(count / 10.0);
 				showList(pageNum);
@@ -49,7 +49,7 @@ $(document).ready(function() {
 			for(var i = 0, len = list.length || 0; i < len; i++){
 
 				str += "<tr>";
-				str += "<td>" + ((pageNum)*10-i) +"</td>";
+				str += "<td>" + list[i].noti_no +"</td>";
 				str += "<td><a href='#'>" + list[i].noti_title 
 					+ "<input type='hidden' name='noti_no' value='" + list[i].noti_no + "'>"
 					+ "</a></td>";
@@ -58,7 +58,7 @@ $(document).ready(function() {
 			}
 			
 			tbody.html(str);
-
+			showListPage(count)
 		});
 	}
 	

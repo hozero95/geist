@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -27,19 +28,22 @@
 
 	<%
 		request.setCharacterEncoding("UTF-8");
-		
+	
 	    String contentPage=request.getParameter("contentPage");
 	    if(contentPage==null)
-	        contentPage="main.jsp";
+        	contentPage="main.jsp";
 	    
 	    String admin_nav = (String)session.getAttribute("sys");
-	    
+
 	  	if(admin_nav == "sys") {
+	  		System.out.println("admin_nav === " + admin_nav);
 	  		admin_nav="admin-nav.jsp";
 	  	}else{
+	  		System.out.println("admin_nav === " + admin_nav);
 	  		admin_nav="nav.jsp";
 	  	}
 	%>
+
 	
 	<div id="header">
 		<jsp:include page="topnav.jsp" />
@@ -82,16 +86,20 @@
                                                                 aria-label="작성날짜: activate to sort column ascending" style="width: 300px;text-align: center;">작성날짜</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody class="table-body" id="document-body">
-		
-													</tbody>
+                                                    <tbody class="table-body" id="document-body"></tbody>
                                                 </table>
-                                                <div class="pt-2" style="float: left;">
-                                            		<button type="button" class="btn btn-sm dt-button" id="notice-write" >글쓰기</button>
-                                        		</div>
-                                                <div class="table-page" id="document-table-page"></div>
-                                                	
-                                            </div>
+                                                 <%
+                                                	 String admin_nav2 = (String)session.getAttribute("sys");
+                                                 	if(admin_nav2 == "sys") { %>
+		                                                <div class="pt-2" style="float: right;">
+		                                            		<button type="button" class="btn btn-sm dt-button" id="notice-write" >글쓰기</button>
+		                                        		</div>
+	                                        		</div>
+													<div class="table-page" id="document-table-page"></div> 
+												<% } else { %>   
+                                            		</div>
+													<div class="table-page" id="document-table-page" style="margin-top: 34.2px;"></div>
+												<% } %>
                                         </div>
                                     </div>
                                 </div>
@@ -109,8 +117,6 @@
     <!--js-->
     <script type="text/javascript" src="/resources/js/include.js"></script>
     <script type="text/javascript" src="/resources/js/main.js"></script>
-    <script type="text/javascript" src="/resources/js/register.js"></script>
-    <script type="text/javascript" src="/resources/js/My-register.js"></script>
     <script type="text/javascript" src="/resources/js/document-page.js"></script>
 	
 </body>
