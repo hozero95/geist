@@ -95,16 +95,16 @@
 	
 	
 	<!-- 결재 승인 조회 -->
-	<select id="admitListWithPaging" resultType="com.geist.approval.domain.ApprovalVO">
+	<select id="admitListWithPaging" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
 		<![CDATA[
 			SELECT
-			    app_no, app_class, app_date, app_title, emp_name, app_status
+			    app_no, app_class, app_date, app_title, emp_name, agr_status
 			FROM
 			    (
 				SELECT /*+ INDEX_DESC(app_agree pk_app_agree) */
 			        appAdmit.*, rownum rn
 			    FROM (
-			        SELECT arq.app_no, a.app_class, to_char(app_date, 'YYYY-MM-DD') app_date, a.app_title, e.emp_name, a.app_status
+			        SELECT arq.app_no, a.app_class, to_char(app_date, 'YYYY-MM-DD') app_date, a.app_title, e.emp_name, agr.agr_status
 			        FROM approval a, employee e, app_request arq, app_agree agr
 			        WHERE 
 			            e.emp_no = arq.emp_no  

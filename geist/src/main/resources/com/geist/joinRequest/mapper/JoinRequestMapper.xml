@@ -65,7 +65,7 @@
 	</select>
 	
 	<insert id="insertEmp">
-		INSERT INTO employee(emp_no, emp_id, emp_pw, emp_name, emp_birth, emp_phone, emp_email, emp_address, emp_position, emp_sal, emp_date, dept_no)
+		INSERT INTO employee(emp_no, emp_id, emp_pw, emp_name, emp_birth, emp_phone, emp_tel, emp_email, emp_address, emp_position, emp_sal, emp_date, dept_no)
 		VALUES(
 			seq_emp_no.nextval,
 			#{vo.req_id},
@@ -73,6 +73,7 @@
 			#{vo.req_name},
 			to_date(#{vo.req_birth}),
 			#{vo.req_phone},
+			#{emp_tel},
 			#{vo.req_email},
 			#{vo.req_address},
 			#{emp_position},

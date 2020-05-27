@@ -18,7 +18,7 @@ public interface JoinRequestService {
 	
 	public Long getDeptNo(String dept_name);
 	
-	public int insertEmp(JoinRequestVO vo, String emp_position, Long emp_sal, Long dept_no);
+	public int insertEmp(JoinRequestVO vo, String emp_position, Long emp_sal, Long dept_no, String emp_tel);
 	
 	public int deleteRequest(String req_id);
 }

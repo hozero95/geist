@@ -19,8 +19,7 @@ public class ApprovalVO {
 	private Long app_class;
 	private String app_title;
 	private String app_date;
-	private Long app_status;
-	
+	private Long app_status;	
 	
 	//문서 작성자
 	private String emp_name;

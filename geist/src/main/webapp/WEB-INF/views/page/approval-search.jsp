@@ -113,8 +113,6 @@
     <!--js-->
     <script type="text/javascript" src="/resources/js/include.js"></script>
     <script type="text/javascript" src="/resources/js/main.js"></script>
-    <script type="text/javascript" src="/resources/js/register.js"></script>
-    <script type="text/javascript" src="/resources/js/My-register.js"></script>
     <script type="text/javascript" src="/resources/js/approvalSearch.js"></script>
 
     <!--js-->
