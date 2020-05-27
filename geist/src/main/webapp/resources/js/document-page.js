@@ -1,7 +1,3 @@
-function noticeRead(noti_no){
-	location.href = "/notice/noticeRead/"+ noti_no;
-}
-
 var NoticeService = (function(){
 	function getList(param, callback, error){
 			var page = param.page;
@@ -54,7 +50,9 @@ $(document).ready(function() {
 
 				str += "<tr>";
 				str += "<td>" + ((pageNum)*10-i) +"</td>";
-				str += "<td onclick='javascript:noticeRead("+ list[i].noti_no +");'><a href='#'>" + list[i].noti_title + "</a></td>";
+				str += "<td><a href='#'>" + list[i].noti_title 
+					+ "<input type='hidden' name='noti_no' value='" + list[i].noti_no + "'>"
+					+ "</a></td>";
 				str += "<td>" + list[i].noti_date + "</td>";
 				str += "</tr>";
 			}
@@ -94,6 +92,20 @@ $(document).ready(function() {
 	    tpage.html(str);
 	}
 	
+	function noticeRead(noti_no) {
+		$.ajax({
+			type : 'get',
+			url : '/notice/noticeRead/'+ noti_no,
+			data : noti_no,
+			success : function() {
+				console.log("noti_no 전달 성공");
+			},
+			error : function() {
+				console.log("noti_no 전달 실패 : ");
+			}
+		});
+	}
+	
 	tpage.on("click", "li a", function(e){
 		e.preventDefault();
 		
@@ -102,11 +114,13 @@ $(document).ready(function() {
 		
 		showList(pageNum);
 	});
-	
-	tbody.on("click", "tr td a", function(e){
-		e.preventDefault();	
+		
+	tbody.on("click", "tr td a", function() {
+		var noti_no = $(this).children().eq(0).val();
+		
+		noticeRead(noti_no);
+		location.href = "/notice/noticeRead/"+ noti_no;
 	});
-	
 	write.on("click", function(){
 		location.href = "/notice/noticeWrite";
 	});

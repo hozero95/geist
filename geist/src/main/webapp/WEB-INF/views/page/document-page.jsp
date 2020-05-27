@@ -47,8 +47,6 @@
     	<jsp:include page="<%=admin_nav%>" />
     </div>
     
-    <input type="hidden" name="noti_no" value="${noti_no}" />
-    
 	<div class="app-container fixed-sidebar fixed-header closed-sidebar">
         <div class="app-main">
             <!-- Main page -->
