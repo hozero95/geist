@@ -58,8 +58,8 @@
 
 	$(document).ready(function(){
 		var btnForm = $("#btnForm");
-		var modifyBtn = $(".modifyBtn");
-		var deleteBtn = $(".deleteBtn");
+		var modifyBtn = $("#modifyBtn");
+		var deleteBtn = $("#deleteBtn");
 		
 		
 		detailView($("input[name='emp_no']").val());

@@ -90,8 +90,10 @@
 			</tbody>
 		</table>
 	</div>
-	<button type="button" class="modifyBtn">수정</button>
-		<button type="button" class="deleteBtn">삭제</button>
+	<button type="button" class="btn pull-right btn-lg dt-button" id="modifyBtn">수정</button>
+	<button type="button" class="btn pull-right btn-lg dt-button" id="deleteBtn">삭제</button>
+	
+	<!-- js -->
 	<script type="text/javascript" src="/resources/js/empManageDetail.js"></script>
 	
 </body>
