@@ -50,6 +50,7 @@ public class LoginController {
 				session.setAttribute("sys", sys);
 				session.setAttribute("member", login);
 			}else {
+				session.setAttribute("sys", sys);
 				session.setAttribute("member", login);
 				result = "success";				
 			}

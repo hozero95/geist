@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.geist.main.domain.Criteria;
-import com.geist.notice.domain.NoticeCountVO;
+import com.geist.notice.domain.NoticeDTO;
 import com.geist.notice.domain.NoticeVO;
 import com.geist.notice.service.NoticeService;
 
@@ -37,11 +37,11 @@ public class NoticeController {
 	
 	//목록
 	@GetMapping(value = "/noticeList/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<List<NoticeVO>> noticeList(@PathVariable("page") int page){
+	public ResponseEntity<NoticeDTO> noticeList(@PathVariable("page") int page){
 		
 		Criteria cri = new Criteria(page, 10);
 		
-		return new ResponseEntity<List<NoticeVO>>(service.noticeList(cri), HttpStatus.OK);
+		return new ResponseEntity<NoticeDTO>(service.noticeList(cri), HttpStatus.OK);
 	}
 	
 	//조회

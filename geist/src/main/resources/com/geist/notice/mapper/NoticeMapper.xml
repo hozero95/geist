@@ -25,12 +25,12 @@
 		from
 			notice)
 		where rownum <= #{pageNum} * #{amount}
-		and rn > (#{pageNum} -1) * #{amount} order by rn desc
+		and rn > (#{pageNum} -1) * #{amount} order by noti_no desc
 		]]>
 	</select>
 	
 	<select id = "noticeCount" resultType = "int">
-		SELECT count(noti_no) FROM notice
+		SELECT count(*) FROM notice
 	</select>
 	
 	<select id = "noticeRead" resultType = "com.geist.notice.domain.NoticeVO">

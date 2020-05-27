@@ -1,8 +1,7 @@
 package com.geist.notice.service;
 
-import java.util.List;
-
 import com.geist.main.domain.Criteria;
+import com.geist.notice.domain.NoticeDTO;
 import com.geist.notice.domain.NoticeVO;
 
 /*
@@ -12,7 +11,7 @@ import com.geist.notice.domain.NoticeVO;
 public interface NoticeService {
 	
 	//목록(페이징처리 추가)
-	public List<NoticeVO> noticeList(Criteria cri);
+	public NoticeDTO noticeList(Criteria cri);
 	
 	//조회
 	public NoticeVO noticeRead(int noti_no);
@@ -26,5 +25,4 @@ public interface NoticeService {
 	//삭제
 	public void noticeDelete(int noti_no);
 	
-	public int noticeCount();
 }
