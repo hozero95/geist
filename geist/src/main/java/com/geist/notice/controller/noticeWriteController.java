@@ -17,9 +17,9 @@ public class noticeWriteController {
 		log.info("공지 작성페이지 이동");
 		return "page/document-page-write";
 	}
-	@RequestMapping("/notice/noticeUpdate")
+	@RequestMapping("/notice/noticeRead")
 	public String noticeUpdate() {
-		log.info("공지 작성페이지 이동");
-		return "page/document-page-update";
+		log.info("공지 조회페이지 이동");
+		return "page/document-page-read";
 	}
 }
