@@ -14,7 +14,13 @@
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+	<script> 
+	    $(document).ready(function() {
+		    $('div').removeClass('form-inline');
+		    $('div.app-page-title').css('margin', '0px 0px 0px');
+		    $('div.app-page-title').css('padding', '50px 0px 30px 0px');
+		});
+    </script>
 </head>
 
 <body>
@@ -40,6 +46,8 @@
     <div id="side">
     	<jsp:include page="<%=admin_nav%>" />
     </div>
+    
+    <input type="hidden" name="noti_no" value="${noti_no}" />
     
 	<div class="app-container fixed-sidebar fixed-header closed-sidebar">
         <div class="app-main">
@@ -106,12 +114,5 @@
     <script type="text/javascript" src="/resources/js/My-register.js"></script>
     <script type="text/javascript" src="/resources/js/document-page.js"></script>
 	
-	<script> 
-	    $(document).ready(function() {
-		    $('div').removeClass('form-inline');
-		    $('div.app-page-title').css('margin', '0px 0px 0px');
-		    $('div.app-page-title').css('padding', '50px 0px 30px 0px');
-		});
-    </script>
 </body>
 </html>

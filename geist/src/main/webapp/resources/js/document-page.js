@@ -1,27 +1,26 @@
-/** 게시판 - 상세 페이지 이동 */
-	function noticeRead(noti_no){                
-    	location.href = "/notice/noticeRead/"+ noti_no;
+function noticeRead(noti_no){
+	location.href = "/notice/noticeRead/"+ noti_no;
 }
 
 var NoticeService = (function(){
-function getList(param, callback, error){
-		var page = param.page;
-		console.log("NoticeService.getList()page === " + page);
-			
-		$.getJSON("/notice/noticeList/" + page + ".json", function(data){
-			if(callback){
-				callback(data);
-			}
-		}).fail(function(xhr, status, err){
-			if(error){
-				error();
-			}
-		});
-	}	
+	function getList(param, callback, error){
+			var page = param.page;
+			console.log("NoticeService.getList()page === " + page);
+				
+			$.getJSON("/notice/noticeList/" + page + ".json", function(data){
+				if(callback){
+					callback(data);
+				}
+			}).fail(function(xhr, status, err){
+				if(error){
+					error();
+				}
+			});
+		}
 	
-return{
-	getList : getList
-};
+	return{
+		getList : getList,
+	};
 })();
 
 $(document).ready(function() {
@@ -32,9 +31,9 @@ $(document).ready(function() {
 	var noti_title;
 	var noti_date;
 	var pageNum = 1;
-
+	
 	showList(1);
-
+	
 	function showList(page){
 
 		NoticeService.getList({
@@ -55,11 +54,13 @@ $(document).ready(function() {
 
 				str += "<tr>";
 				str += "<td>" + ((pageNum)*10-i) +"</td>";
-				str += "<td onclick='javascript:noticeRead("+ noti_no +");' style='cursor:Pointer'>" + list[i].noti_title + "</td>";
+				str += "<td onclick='javascript:noticeRead("+ list[i].noti_no +");'><a href='#'>" + list[i].noti_title + "</a></td>";
 				str += "<td>" + list[i].noti_date + "</td>";
 				str += "</tr>";
 			}
+			
 			tbody.html(str);
+
 		});
 	}
 	
@@ -100,6 +101,10 @@ $(document).ready(function() {
 		pageNum = targetPageNum;
 		
 		showList(pageNum);
+	});
+	
+	tbody.on("click", "tr td a", function(e){
+		e.preventDefault();	
 	});
 	
 	write.on("click", function(){
