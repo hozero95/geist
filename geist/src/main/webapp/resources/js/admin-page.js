@@ -83,22 +83,14 @@ var empManageService = (function(){
 					str += "<td>" + list[i].emp_position + "</td>";
 					str += "<td>" + list[i].emp_date + "</td>";
 					str += "<td>" + list[i].dept_name + "</td>";
-					str += "<td><button type='button' class='btn btn-lg dt-button' id='detailBtn'>조회</button></td>";
+					str += "<td>" 
+						+ "<span><button type='button' class='btn btn-lg dt-button detailBtn'>조회</button>" 
+						+ "<input type='hidden' name='emp_no' value='" + list[i].emp_no + "'></span></td>";
 					str += "</tr>";
 				}
 				
 				tbody.html(str);
 				showListPage(count);
-				
-				$("#detailBtn").on("click", function(){
-					var tr = $(this).parent().parent();
-					var td = tr.children();
-					var emp_no = td.eq(0).text();
-					
-					var popWindow = window.open("/empManage/detailView?emp_no=" + emp_no, "사원 상세 보기", "width=600, height=800");
-					
-					location.reload();
-				});
 			});
 		}
 		
@@ -165,6 +157,14 @@ var empManageService = (function(){
 		    tpage.html(str);
 		}
 		
+		tbody.on("click", "tr td span", function(e){
+			var emp_no = $(this).children().eq(1).val()
+			console.log(emp_no)
+			
+			var popWindow = window.open("/empManage/detailView?emp_no=" + emp_no, "사원 상세 보기", "width=600, height=800");
+//			location.reload();
+		});
+		
 		tpage.on("click", "li a", function(e){
 			e.preventDefault();
 			
@@ -194,12 +194,4 @@ var empManageService = (function(){
 		clear.on("click", function(e){
 			showList(1);
 		})
-		
-		joinRequest.on("click", function(){
-			location.href = "/joinRequest";
-		});
-		
-		main.on("click", function(){
-			location.href = "/main";
-		});
 	});

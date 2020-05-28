@@ -52,22 +52,14 @@ var joinRequestService = (function(){
 					str += "<td>" + list[i].req_phone + "</td>";
 					str += "<td>" + list[i].req_email + "</td>";
 					str += "<td>" + list[i].req_address + "</td>";
-					str += "<td><button type='button' class='btn btn-lg dt-button' id='detailBtn'>조회</button></td>";
+					str += "<td>" 
+						+ "<span><button type='button' class='btn btn-lg dt-button detailBtn'>조회</button>" 
+						+ "<input type='hidden' name='req_id' value='" + list[i].req_id + "'></span></td>";
 					str += "</tr>";
 				}
 				
 				tbody.html(str);
 				showListPage(count);
-				
-				$("#detailBtn").on("click", function(){
-					var tr = $(this).parent().parent();
-					var td = tr.children();
-					var req_id = td.eq(0).text();
-					
-					var popWindow = window.open("/joinRequest/detailView?req_id=" + req_id, "가입 승인 상세 보기", "width=500, height=700");
-					
-					location.reload();
-				});
 			});
 		}
 		
@@ -101,6 +93,13 @@ var joinRequestService = (function(){
 		    tpage.html(str);
 		}
 		
+		tbody.on("click", "tr td span", function(e){
+			var req_id = $(this).children().eq(1).val();
+			
+			var popWindow = window.open("/joinRequest/detailView?req_id=" + req_id, "가입 승인 상세 보기", "width=500, height=700");
+//			location.reload();
+		});
+		
 		tpage.on("click", "li a", function(e){
 			e.preventDefault();
 			
@@ -108,13 +107,5 @@ var joinRequestService = (function(){
 			pageNum = targetPageNum;
 			
 			showList(pageNum);
-		});
-		
-		empManage.on("click", function(){
-			location.href = "/empManage";
-		});
-		
-		main.on("click", function(){
-			location.href = "/main";
 		});
 	});
