@@ -124,7 +124,7 @@
 			</div>
 		</div>
 	</div>
-
+ 
 	<!--js-->
 	<script type="text/javascript" src="/resources/js/include.js"></script>
 	<script type="text/javascript" src="/resources/js/main.js"></script>
