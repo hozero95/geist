@@ -1,6 +1,6 @@
 package com.geist.project.service;
 
-import com.geist.project.domain.ProjectCriVO;
+import com.geist.main.domain.Criteria;
 import com.geist.project.domain.ProjectDTO;
 import com.geist.project.domain.ProjectVO;
 
@@ -11,7 +11,7 @@ import com.geist.project.domain.ProjectVO;
 
 public interface ProjectService {
 
-	public ProjectDTO projectList(ProjectCriVO vo, int dept_no);
+	public ProjectDTO projectList(Criteria cri, int dept_no);
 	
 	public ProjectVO projectRead(int proj_no);
 	
