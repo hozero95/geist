@@ -22,9 +22,9 @@
 	                    <div class="widget-content p-0">
 	                        <div class="widget-content-wrapper">
 	                            <div class="widget-content-left">
-	                                <div class="btn-group">
+	                                <div class="btn-group" data-toggle="dropdown">
 	                                    <i class="fas fa-user-circle fa-2x"></i>
-	                                    <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn" style="top:4px">
+	                                    <a aria-haspopup="true" aria-expanded="false" class="p-0 btn" style="top:20px">
 	                                        <i class="fa fa-angle-down ml-2 opacity-8" ></i>
 	                                    </a>
 	                                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">

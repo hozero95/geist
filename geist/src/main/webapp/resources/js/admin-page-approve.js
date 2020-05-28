@@ -64,7 +64,7 @@ var joinRequestService = (function(){
 					var td = tr.children();
 					var req_id = td.eq(0).text();
 					
-					var popWindow = window.open("/joinRequest/detailView?req_id=" + req_id, "가입 승인 상세 보기", "width=500, height=600");
+					var popWindow = window.open("/joinRequest/detailView?req_id=" + req_id, "가입 승인 상세 보기", "width=500, height=700");
 					
 					location.reload();
 				});
@@ -90,11 +90,8 @@ var joinRequestService = (function(){
 		    }
 		    for(var i = startNum; i <= endNum; i++){
 		        var linkStart = pageNum != i ? "'><a href='" + i + "'>" : "active'><a href='" + i + "'>";
-		        var linkEnd = pageNum != i ? "</a>" : "</a>";
+		        var linkEnd = pageNum != i ? "</a>" : "</a>" ;
 		        str += "<li class='page-item " + linkStart + i + linkEnd + "</a></li>";
-		        /*var linkStart = pageNum != i ? "<a href='" + i + "'>" : "";
-				var linkEnd = pageNum != i ? "</a>" : "";
-				str += "<li>" + linkStart + i + linkEnd + "</li>";*/
 		    }
 		    if(next){
 		        str += "<li class='page-item ><a href='" + (endNum + 1) + "'>Next</a></li>";

@@ -25,6 +25,14 @@
 <script>
     function showPopupWrite() { window.open("/project/projectWrite", "프로젝트 작성", "width=1200, height=700, left=100, top=50"); }
 </script>
+<script>
+    $(document).ready(function() {
+    	$('div').removeClass('form-inline');
+        $('div.app-page-title').css('margin','0px 0px 0px');
+        $('div.app-page-title').css('padding','50px 0px 30px 0px');
+        $('div.app-page-title').css('padding','50px 0px 30px 0px');
+    });
+</script>
 </head>
 <body>
 	<%

@@ -21,9 +21,25 @@
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
     <!-- jQuery -->
     <style>
-    	.form-control::placeholder{
+	   	.form-control{
+			width : 28%;
+			float : right;
+			margin : 5px 4px 5px 4px;
+		}
+		.form-control::placeholder{
     		color: #ced4da;
-    	}    	
+    	}
+		.app-page-title{
+			margin : 0px;
+			padding : 50px 0px 30px 0px;
+		}
+		.dt-button{
+			float : right;
+			margin : 7px 5px 5px 5px;
+		}
+		#select-input{
+			width : 15%;
+		}
     </style>
 </head>
 
@@ -103,6 +119,7 @@
                                                     </thead>
                                                     <tbody class="table-body"></tbody>
                                                 </table>
+                                                <p>
                                                 <div class="table-page"></div>
                                             </div>
                                         </div>

@@ -14,16 +14,27 @@
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+	.form-control{
+		width : 28%;
+		float : right;
+		margin : 5px 4px 5px 4px;
+	}
+	.app-page-title{
+		margin : 0px;
+		padding : 50px 0px 30px 0px;
+	}
+	.dt-button{
+		float : right;
+		margin : 7px 5px 5px 5px;
+	}
+	#select-input{
+		width : 15%;
+	}
+	</style>
 	<script>
 	    $(document).ready(function() {
 	    	$('div').removeClass('form-inline');
-	        $('div.app-page-title').css('margin','0px 0px 0px');
-	        $('div.app-page-title').css('padding','50px 0px 30px 0px');
-	        $('div.app-page-title').css('padding','50px 0px 30px 0px');
-	        $('.form-control').css('float','right');
-	        $('.form-control').css('margin','5px 2px 5px 2px');
-	        $('button.dt-button').css('float','right');
-	        $('button.dt-button').css('margin','7px 2px 5px 2px');
 	    });
     </script>
 </head>
@@ -80,7 +91,7 @@
 											    <button class="btn btn-lg dt-button" id="clear">지우기</button>
 											    <button class="btn btn-lg dt-button" id="search">검색</button>
 											    <input type="text" name="keyword" value="" class="form-control ">
-											    <select name="type" class="form-control">
+											    <select name="type" id="select-input" class="form-control">
 											        <option value="">선택하세요</option>
 											        <option value="N">이름</option>
 											        <option value="P">직급</option>
