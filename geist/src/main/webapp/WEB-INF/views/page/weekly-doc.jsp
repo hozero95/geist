@@ -7,8 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Geist</title>
-<link href="/resources/css/document.css" rel="stylesheet" />
-<link href="/resources/css/main.css" rel="stylesheet" />
+<link href="../resources/css/document.css" rel="stylesheet" />
+<link href="../resources/css/main.css" rel="stylesheet" />
 <!-- 기안일을 위해 필요한 스크립트 -->
 <script type="text/javascript" src="/resources/js/date.js"></script>
 </head>
@@ -104,6 +104,6 @@
         </div>
     </div>
 
-<script type="text/javascript" src="/resources/js/approvalRequest.js"></script>
+<script type="text/javascript" src="../resources/js/approvalRequest.js"></script>
 </body>
 </html>

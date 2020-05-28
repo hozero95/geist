@@ -8,8 +8,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Geist</title>
 	<!-- main Css-->
-    <link href="/resources/css/document.css" rel="stylesheet" />
-    <link href="/resources/css/main.css" rel="stylesheet" />
+    <link href="../resources/css/document.css" rel="stylesheet" />
+    <link href="../resources/css/main.css" rel="stylesheet" />
     <!-- Data table-->
     <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" ></script>
     <!-- Bootstrap -->
@@ -100,11 +100,11 @@
     </div>
     
     <!--js-->
-    <script type="text/javascript" src="/resources/js/include.js"></script>
-    <script type="text/javascript" src="/resources/js/main.js"></script>
-    <script type="text/javascript" src="/resources/js/register.js"></script>
-    <script type="text/javascript" src="/resources/js/My-register.js"></script>
-    <script type="text/javascript" src="/resources/js/document-modify.js"></script>
+    <script type="text/javascript" src="../resources/js/include.js"></script>
+    <script type="text/javascript" src="../resources/js/main.js"></script>
+    <script type="text/javascript" src="../resources/js/register.js"></script>
+    <script type="text/javascript" src="../resources/js/My-register.js"></script>
+    <script type="text/javascript" src="../resources/js/document-modify.js"></script>
     
     
 </body>

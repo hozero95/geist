@@ -11,8 +11,8 @@
 <head>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<link href="/resources/css/main.css" rel="stylesheet" />
-	<link rel="stylesheet" href="/resources/css/pwdfind.css">
+	<link href="../resources/css/main.css" rel="stylesheet" />
+	<link rel="stylesheet" href="../resources/css/pwdfind.css">
 	<meta charset="UTF-8">
 	<title>가입 승인 상세 조회</title>
 	<style>
@@ -100,6 +100,6 @@
 		</div>
 	</div>
 
-<script type="text/javascript" src="/resources/js/admin-page-approve-detail.js"></script>
+<script type="text/javascript" src="../resources/js/admin-page-approve-detail.js"></script>
 </body>
 </html>

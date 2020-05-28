@@ -8,10 +8,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Geist</title>
 	<!-- main Css-->
-    <link href="/resources/css/document.css" rel="stylesheet" />
-    <link href="/resources/css/main.css" rel="stylesheet" />
+    <link href="../resources/css/document.css" rel="stylesheet" />
+    <link href="../resources/css/main.css" rel="stylesheet" />
     <!-- .buttoncard css 수정 --> 
-    <link href="/resources/css/mainEdit.css" rel="stylesheet" />
+    <link href="../resources/css/mainEdit.css" rel="stylesheet" />
     <!-- Bootstrap -->
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -68,7 +68,7 @@
 								<div class="card-header"
 									style="height: 5px; background-color: #2ac1bc;"></div>
 								<a href="#">
-									<img src="/resources/img/main_ui/document.png">
+									<img src="../resources/img/main_ui/document.png">
 									<h5>공지사항</h5>
 								</a>
 							</div>
@@ -76,35 +76,35 @@
 								<div class="card-header"
 									style="height: 5px; background-color: #2ac1bc;"></div>
 								<a href="#" id="Project-nav"><img
-										src="/resources/img/main_ui/project.png">
+										src="../resources/img/main_ui/project.png">
 									<h5>프로젝트</h5>
 								</a>
 							</div>
 							<div class="buttoncard" onclick="ChangeMpage(4)">
 								<div class="card-header"
 									style="height: 5px; background-color: #2ac1bc;"></div>
-								<a href="#" id="Project-nav"><img src="/resources/img/main_ui/ink.png">
+								<a href="#" id="Project-nav"><img src="../resources/img/main_ui/ink.png">
 									<h5>전자결재</h5>
 								</a>
 							</div>
 							<div class="buttoncard" onclick="ChangeMpage(7)">
 								<div class="card-header"
 									style="height: 5px; background-color: #2ac1bc;"></div>
-								<a href="#"><img src="/resources/img/main_ui/card.png">
+								<a href="#"><img src="../resources/img/main_ui/card.png">
 									<h5>인사/근태</h5>
 								</a>
 							</div>
 							<div class="buttoncard" onclick="ChangeMpage(8)">
 								<div class="card-header"
 									style="height: 5px; background-color: #2ac1bc;"></div>
-								<a href="address"><img src="/resources/img/main_ui/book.png">
+								<a href="address"><img src="../resources/img/main_ui/book.png">
 									<h5>주소록</h5>
 								</a>
 							</div>
 							<div class="buttoncard" onclick="ChangeMpage(9)">
 								<div class="card-header"
 									style="height: 5px; background-color: #2ac1bc;"></div>
-								<a href="#"><img src="/resources/img/main_ui/user.png">
+								<a href="#"><img src="../resources/img/main_ui/user.png">
 									<h5>마이페이지</h5>
 								</a>
 							</div>

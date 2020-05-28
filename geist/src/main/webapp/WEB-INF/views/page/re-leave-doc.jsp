@@ -7,8 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Geist</title>
-<link href="/resources/css/document.css" rel="stylesheet" />
-<link href="/resources/css/main.css" rel="stylesheet" />
+<link href="../resources/css/document.css" rel="stylesheet" />
+<link href="../resources/css/main.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -177,6 +177,6 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript" src="/resources/js/approvalAdmitDetail.js"></script>
+<script type="text/javascript" src="../resources/js/approvalAdmitDetail.js"></script>
 </body>
 </html>

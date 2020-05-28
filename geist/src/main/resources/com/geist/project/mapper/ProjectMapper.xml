@@ -53,7 +53,7 @@ constraint fk_proj_management_dept_no foreign key(dept_no) references department
 	</select>
 	
 	<select id="projectCount" resultType="int">
-			SELECT count(*) FROM project
+			SELECT count(*) FROM project where dept_no = #{dept_no}
 	</select>
 	
 <insert id = "projectWrite">

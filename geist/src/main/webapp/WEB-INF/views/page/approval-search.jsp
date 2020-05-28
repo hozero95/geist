@@ -8,8 +8,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Geist</title>
 	<!-- main Css-->
-    <link href="/resources/css/document.css" rel="stylesheet" />
-    <link href="/resources/css/main.css" rel="stylesheet" />
+    <link href="../resources/css/document.css" rel="stylesheet" />
+    <link href="../resources/css/main.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Data table-->
     <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" ></script>
@@ -112,9 +112,9 @@
     </div>
     
     <!--js-->
-    <script type="text/javascript" src="/resources/js/include.js"></script>
-    <script type="text/javascript" src="/resources/js/main.js"></script>
-    <script type="text/javascript" src="/resources/js/approvalSearch.js"></script>
+    <script type="text/javascript" src="../resources/js/include.js"></script>
+    <script type="text/javascript" src="../resources/js/main.js"></script>
+    <script type="text/javascript" src="../resources/js/approvalSearch.js"></script>
 
     <!--js-->
     <script>
