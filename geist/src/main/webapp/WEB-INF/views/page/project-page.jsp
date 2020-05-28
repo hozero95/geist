@@ -25,6 +25,14 @@
 <script>
     function showPopupWrite() { window.open("/project/projectWrite", "프로젝트 작성", "width=1200, height=700, left=100, top=50"); }
 </script>
+<script>
+    $(document).ready(function() {
+    	$('div').removeClass('form-inline');
+        $('div.app-page-title').css('margin','0px 0px 0px');
+        $('div.app-page-title').css('padding','50px 0px 30px 0px');
+        $('div.app-page-title').css('padding','50px 0px 30px 0px');
+    });
+</script>
 </head>
 <body>
 	<%
@@ -34,13 +42,15 @@
 	    if(contentPage==null)
 	        contentPage="main.jsp";
 	    
-	    String admin_nav = (String)session.getAttribute("adminOk");
-		if(admin_nav == null) {
-			admin_nav="admin-nav.jsp";
-		}else{
-			admin_nav="admin-nav.jsp";
-		}
+	    String admin_nav = (String)session.getAttribute("sys");
+	    
+	  	if(admin_nav == "sys") {
+	  		admin_nav="admin-nav.jsp";
+	  	}else{
+	  		admin_nav="nav.jsp";
+	  	}
 	%>
+	
 
 	<div id="header">
 		<jsp:include page="topnav.jsp" />

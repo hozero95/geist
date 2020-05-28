@@ -56,7 +56,7 @@ $(document).ready(function() {
 			}
 			for(var i = 0, len = list.length || 0; i < len; i++){
 				var status = "";
-				switch(list[i].app_status){
+				switch(list[i].agr_status){
 				case 1:
 					status = "처리중";
 					break;
@@ -99,21 +99,21 @@ $(document).ready(function() {
 			next = true;
 		}
 
-		var str = "<ul>";
-		if (prev) {
-			str += "<li><a href='" + (startNum - 1)+ "'>Prev</a></li>";
-		}
-		for (var i = startNum; i <= endNum; i++) {
-			var linkStart = pageNum != i ? "<a href='" + i+ "'>" : "";
-			var linkEnd = pageNum != i ? "</a>" : "";
-			str += "<li>" + linkStart + i + linkEnd + "</li>";
-		}
-		if (next) {
-			str += "<li><a href='" + (endNum + 1)+ "'>Next</a></li>";
-		}
-		str += "</ul>";
-
-		tpage.html(str);
+		var str = "<ul class='pagination justify-content-end'>";
+	    if(prev){
+	        str += "<li class='page-item'><a class='page-link' href='" + (startNum - 1) + "'>Prev</a></li>";
+	    }
+	    for(var i = startNum; i <= endNum; i++){
+	        var linkStart = pageNum != i ? "'><a href='" + i + "'>" : "active'><a href='" + i + "'>";
+	        var linkEnd = pageNum != i ? "</a>" : "</a>" ;
+	        str += "<li class='page-item " + linkStart + i + linkEnd + "</a></li>";
+	    }
+	    if(next){
+	        str += "<li class='page-item ><a href='" + (endNum + 1) + "'>Next</a></li>";
+	    }
+	    str += "</ul>";
+	    
+	    tpage.html(str);
 	}
 		
 	tpage.on("click", "li a", function(e) {
@@ -130,7 +130,7 @@ $(document).ready(function() {
 		
 		var app_no = $(this).children().eq(0).val();
 		var app_class = $(this).children().eq(1).val();
-				
+		
 		if(app_class === "1"){			
 			location.href = "/approval/detail/1?app_no=" + app_no + "&emp_no=" + emp_no;
 		}else if(app_class === "2"){
@@ -138,5 +138,13 @@ $(document).ready(function() {
 		}else if(app_class === "3"){
 			location.href = "/approval/detail/3?app_no=" + app_no + "&emp_no=" + emp_no;
 		}
+		
+//		if(app_class === "1"){			
+//			location.href = "/approval/detail/1?app_no=" + app_no + "&emp_no=" + emp_no;
+//		}else if(app_class === "2"){
+//			location.href = "/approval/detail/2?app_no=" + app_no + "&emp_no=" + emp_no;
+//		}else if(app_class === "3"){
+//			location.href = "/approval/detail/3?app_no=" + app_no + "&emp_no=" + emp_no;
+//		}
 	});
 });

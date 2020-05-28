@@ -1,8 +1,7 @@
 package com.geist.project.service;
 
-import java.util.List;
-
 import com.geist.project.domain.ProjectCriVO;
+import com.geist.project.domain.ProjectDTO;
 import com.geist.project.domain.ProjectVO;
 
 /*
@@ -12,7 +11,7 @@ import com.geist.project.domain.ProjectVO;
 
 public interface ProjectService {
 
-	public List<ProjectVO> projectList(ProjectCriVO vo);
+	public ProjectDTO projectList(ProjectCriVO vo);
 	
 	public ProjectVO projectRead(int proj_no);
 	

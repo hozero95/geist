@@ -8,4 +8,5 @@ public class JoinRequestDetailVO {
 	private String emp_position;
 	private String emp_sal;
 	private String dept_name;
+	private String emp_tel;
 }

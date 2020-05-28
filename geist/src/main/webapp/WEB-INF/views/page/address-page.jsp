@@ -21,9 +21,25 @@
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
     <!-- jQuery -->
     <style>
-    	.form-control::placeholder{
+	   	.form-control{
+			width : 28%;
+			float : right;
+			margin : 5px 4px 5px 4px;
+		}
+		.form-control::placeholder{
     		color: #ced4da;
-    	}    	
+    	}
+		.app-page-title{
+			margin : 0px;
+			padding : 50px 0px 30px 0px;
+		}
+		.dt-button{
+			float : right;
+			margin : 7px 5px 5px 5px;
+		}
+		#select-input{
+			width : 15%;
+		}
     </style>
 </head>
 
@@ -31,17 +47,18 @@
 
 	<%
 		request.setCharacterEncoding("UTF-8");
-	
+		
 	    String contentPage=request.getParameter("contentPage");
 	    if(contentPage==null)
 	        contentPage="main.jsp";
 	    
-	    String admin_nav = (String)session.getAttribute("adminOk");
-		if(admin_nav == null) {
-			admin_nav="admin-nav.jsp";
-		}else{
-			admin_nav="admin-nav.jsp";
-		}
+	    String admin_nav = (String)session.getAttribute("sys");
+	    
+	  	if(admin_nav == "sys") {
+	  		admin_nav="admin-nav.jsp";
+	  	}else{
+	  		admin_nav="nav.jsp";
+	  	}
 	%>
 	
 	<div id="header">
@@ -73,8 +90,8 @@
                                     <div id="foo-table_wrapper" class="">
                                         <div class="row">
                                         	<form id="searchForm" action="/address" method="get" class="col-sm-12">
-											    <button class="btn btn-lg dt-button" id="clear">Clear</button>
-											    <button class="btn btn-lg dt-button" id="search">Search</button>
+											    <button class="btn btn-lg dt-button" id="clear">지우기</button>
+											    <button class="btn btn-lg dt-button" id="search">검색</button>
 											    <input type="text" name="keyword" value="" class="form-control" placeholder="이름으로 검색하세요">
 											</form>
 											<br>
@@ -102,6 +119,7 @@
                                                     </thead>
                                                     <tbody class="table-body"></tbody>
                                                 </table>
+                                                <p>
                                                 <div class="table-page"></div>
                                             </div>
                                         </div>

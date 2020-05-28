@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.geist.login.domain.LoginVO;
-import com.geist.login.service.LoginService;
 import com.geist.project.domain.ProjectCriVO;
+import com.geist.project.domain.ProjectDTO;
 import com.geist.project.domain.ProjectVO;
 import com.geist.project.service.ProjectService;
 
@@ -42,7 +42,7 @@ public class ProjectController {
 		//프로젝트의 목록을 보여주는 부분
 		@GetMapping(value = "/projectList/{page}",
 				produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-		public ResponseEntity<List<ProjectVO>> projectList(@PathVariable("page") int page, HttpServletRequest req){
+		public ResponseEntity<ProjectDTO> projectList(@PathVariable("page") int page, HttpServletRequest req){
 			HttpSession session = req.getSession();
 			
 			//session에 잇던거 가지고오기
@@ -54,7 +54,7 @@ public class ProjectController {
 			
 			ProjectCriVO vo = new ProjectCriVO(page, 10, dept_no);
 			
-			return new ResponseEntity<List<ProjectVO>>(service.projectList(vo), HttpStatus.OK);
+			return new ResponseEntity<ProjectDTO>(service.projectList(vo), HttpStatus.OK);
 		}
 		
 		//프로젝트를 작성하는 부분

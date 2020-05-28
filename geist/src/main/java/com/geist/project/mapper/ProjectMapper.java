@@ -42,4 +42,6 @@ public interface ProjectMapper {
 	public int projectDelete(int proj_no);
 	
 	public int projectDept(Long emp_no);
+	
+	public int projectCount();
 }

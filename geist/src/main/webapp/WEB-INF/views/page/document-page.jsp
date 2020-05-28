@@ -14,7 +14,13 @@
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+	<script> 
+	    $(document).ready(function() {
+		    $('div').removeClass('form-inline');
+		    $('div.app-page-title').css('margin', '0px 0px 0px');
+		    $('div.app-page-title').css('padding', '50px 0px 30px 0px');
+		});
+    </script>
 </head>
 
 <body>
@@ -24,15 +30,19 @@
 	
 	    String contentPage=request.getParameter("contentPage");
 	    if(contentPage==null)
-	        contentPage="main.jsp";
+        	contentPage="main.jsp";
 	    
-	    String admin_nav = (String)session.getAttribute("adminOk");
-		if(admin_nav == null) {
-			admin_nav="admin-nav.jsp";
-		}else{
-			admin_nav="admin-nav.jsp";
-		}
+	    String admin_nav = (String)session.getAttribute("sys");
+
+	  	if(admin_nav == "sys") {
+	  		System.out.println("admin_nav === " + admin_nav);
+	  		admin_nav="admin-nav.jsp";
+	  	}else{
+	  		System.out.println("admin_nav === " + admin_nav);
+	  		admin_nav="nav.jsp";
+	  	}
 	%>
+
 	
 	<div id="header">
 		<jsp:include page="topnav.jsp" />
@@ -75,16 +85,22 @@
                                                                 aria-label="작성날짜: activate to sort column ascending" style="width: 300px;text-align: center;">작성날짜</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody class="table-body" id="document-body">
-		
-													</tbody>
+                                                    <tbody class="table-body" id="document-body"></tbody>
                                                 </table>
-                                                <div class="pt-2" style="float: left;">
-                                            		<button type="button" class="btn btn-sm dt-button" id="notice-write" >글쓰기</button>
-                                        		</div>
-                                                <div class="table-page" id="document-table-page"></div>
-                                                	
-                                            </div>
+                                                 <%
+                                                	 String admin_nav2 = (String)session.getAttribute("sys");
+                                                 	if(admin_nav2 == "sys") { %>
+		                                                <div class="pt-2" style="float: right;">
+		                                            		<button type="button" class="btn btn-sm dt-button" id="notice-write" >글쓰기</button>
+		                                        		</div>
+	                                        		</div>
+	                                        		<p>
+													<div class="table-page" id="document-table-page"></div> 
+												<% } else { %>   
+                                            		</div>
+                                            		<p>
+													<div class="table-page" id="document-table-page" style="margin-top: 34.2px;"></div>
+												<% } %>
                                         </div>
                                     </div>
                                 </div>
@@ -102,16 +118,7 @@
     <!--js-->
     <script type="text/javascript" src="/resources/js/include.js"></script>
     <script type="text/javascript" src="/resources/js/main.js"></script>
-    <script type="text/javascript" src="/resources/js/register.js"></script>
-    <script type="text/javascript" src="/resources/js/My-register.js"></script>
     <script type="text/javascript" src="/resources/js/document-page.js"></script>
 	
-	<script> 
-	    $(document).ready(function() {
-		    $('div').removeClass('form-inline');
-		    $('div.app-page-title').css('margin', '0px 0px 0px');
-		    $('div.app-page-title').css('padding', '50px 0px 30px 0px');
-		});
-    </script>
 </body>
 </html>

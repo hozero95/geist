@@ -1,27 +1,22 @@
-/** 게시판 - 상세 페이지 이동 */
-	function noticeRead(noti_no){                
-    	location.href = "/notice/noticeRead/"+ noti_no;
-}
-
 var NoticeService = (function(){
-function getList(param, callback, error){
-		var page = param.page;
-		console.log("NoticeService.getList()page === " + page);
-			
-		$.getJSON("/notice/noticeList/" + page + ".json", function(data){
-			if(callback){
-				callback(data);
-			}
-		}).fail(function(xhr, status, err){
-			if(error){
-				error();
-			}
-		});
-	}	
+	function getList(param, callback, error){
+			var page = param.page;
+			console.log("NoticeService.getList()page === " + page);
+				
+			$.getJSON("/notice/noticeList/" + page + ".json", function(data){
+				if(callback){
+					callback(data.count, data.list);
+				}
+			}).fail(function(xhr, status, err){
+				if(error){
+					error();
+				}
+			});
+		}
 	
-return{
-	getList : getList
-};
+	return{
+		getList : getList,
+	};
 })();
 
 $(document).ready(function() {
@@ -32,14 +27,14 @@ $(document).ready(function() {
 	var noti_title;
 	var noti_date;
 	var pageNum = 1;
-
+	
 	showList(1);
-
+	
 	function showList(page){
 
 		NoticeService.getList({
 			page : page || 1
-		}, function(list){
+		}, function(count, list){
 			if(page == -1){
 				pageNum = Math.ceil(count / 10.0);
 				showList(pageNum);
@@ -54,12 +49,16 @@ $(document).ready(function() {
 			for(var i = 0, len = list.length || 0; i < len; i++){
 
 				str += "<tr>";
-				str += "<td>" + ((pageNum)*10-i) +"</td>";
-				str += "<td onclick='javascript:noticeRead("+ noti_no +");' style='cursor:Pointer'>" + list[i].noti_title + "</td>";
+				str += "<td>" + list[i].noti_no +"</td>";
+				str += "<td><a href='#'>" + list[i].noti_title 
+					+ "<input type='hidden' name='noti_no' value='" + list[i].noti_no + "'>"
+					+ "</a></td>";
 				str += "<td>" + list[i].noti_date + "</td>";
 				str += "</tr>";
 			}
+			
 			tbody.html(str);
+			showListPage(count)
 		});
 	}
 	
@@ -93,6 +92,20 @@ $(document).ready(function() {
 	    tpage.html(str);
 	}
 	
+	function noticeRead(noti_no) {
+		$.ajax({
+			type : 'get',
+			url : '/notice/noticeRead/'+ noti_no,
+			data : noti_no,
+			success : function() {
+				console.log("noti_no 전달 성공");
+			},
+			error : function() {
+				console.log("noti_no 전달 실패 : ");
+			}
+		});
+	}
+	
 	tpage.on("click", "li a", function(e){
 		e.preventDefault();
 		
@@ -101,7 +114,13 @@ $(document).ready(function() {
 		
 		showList(pageNum);
 	});
-	
+		
+	tbody.on("click", "tr td a", function() {
+		var noti_no = $(this).children().eq(0).val();
+		
+		noticeRead(noti_no);
+		location.href = "/notice/noticeRead/?noti_no="+noti_no;
+	});
 	write.on("click", function(){
 		location.href = "/notice/noticeWrite";
 	});

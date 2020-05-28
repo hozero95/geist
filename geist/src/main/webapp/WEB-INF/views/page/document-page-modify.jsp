@@ -30,12 +30,13 @@
 	    if(contentPage==null)
 	        contentPage="main.jsp";
 	    
-	    String admin_nav = (String)session.getAttribute("adminOk");
-		if(admin_nav == null) {
-			admin_nav="admin-nav.jsp";
-		}else{
-			admin_nav="admin-nav.jsp";
-		}
+	    String admin_nav = (String)session.getAttribute("sys");
+	    
+	  	if(admin_nav == "sys") {
+	  		admin_nav="admin-nav.jsp";
+	  	}else{
+	  		admin_nav="nav.jsp";
+	  	}
 		
 		String noti_no = request.getParameter("noti_no"); 
 	%>
@@ -72,21 +73,17 @@
                             <article>
                                 <div class="container" role="main" style="padding: 0px 100px 0px 100px;">
                                     <form name="Notice-form" id="Notice-form">
-                                        <div class="mb-3">
-                                            <label for="title">제목</label>
-                                            <input type="text" class="form-control" name="title" id="NOTI_TITLE"
-                                                placeholder="제목을 입력해 주세요" value="">
+                                        <div class="mb-3" id="Notice-title">
+                                            
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="content">내용</label>
-                                            <textarea class="form-control" rows="15" name="content" id="NOTI_CONTENT"
-                                                placeholder="내용을 입력해 주세요"></textarea>
+                                        <div class="mb-3" id="Notice-content">
+                                            
                                         </div>
                                         <input type="hidden" id="noti_no" name="noti_no" value="${noti_no}"/> <!-- 게시글 번호 -->
                                     </form>
                                     <div class="pt-2" style="float: right;">
-                                        <button type="button" class="btn btn-sm dt-button" id="btnSave" onclick="javascript:updateNotice();">저장</button>
-                                        <button type="button" class="btn btn-sm dt-button" id="btnList" onclick="javascript:goNoticeList();" >목록</button>
+                                        <button type="button" class="btn btn-sm dt-button" id="btnSave" >저장</button>
+                                        <button type="button" class="btn btn-sm dt-button" id="btnList" >목록</button>
                                     </div>
                                 </div>
                             </article>

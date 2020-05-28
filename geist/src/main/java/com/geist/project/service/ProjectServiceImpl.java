@@ -1,11 +1,10 @@
 package com.geist.project.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.geist.project.domain.ProjectCriVO;
+import com.geist.project.domain.ProjectDTO;
 import com.geist.project.domain.ProjectVO;
 import com.geist.project.mapper.ProjectMapper;
 
@@ -24,9 +23,9 @@ public class ProjectServiceImpl implements ProjectService {
 	private ProjectMapper mapper;
 	
 	@Override
-	public List<ProjectVO> projectList(ProjectCriVO vo){
+	public ProjectDTO projectList(ProjectCriVO vo){
 		// TODO Auto-generated method stub
-		return mapper.projectList(vo);
+		return new ProjectDTO(mapper.projectCount(), mapper.projectList(vo));
 	}
 
 	@Override

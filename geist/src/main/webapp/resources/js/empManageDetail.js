@@ -1,14 +1,9 @@
-/**
- * 가입 승인 상세 조회
- * 담당 : 김현선(김호영)
- */
 
-var joinRequestDetailService = (function(){
+	var empManageDetailService = (function(){
 		function detailView(param, callback, error){
-			var req_id = param.req_id;
-			$.getJSON("/joinRequest/detailView/" + req_id + ".json", function(data){
+			var emp_no = param.emp_no;
+			$.getJSON("/empManage/detailView/" + emp_no + ".json", function(data){
 				if(callback){
-					console.log(data)
 					callback(data);
 				}
 			}).fail(function(xhr, status, err){
@@ -18,10 +13,10 @@ var joinRequestDetailService = (function(){
 			});
 		}
 		
-		function insertEmp(param, callback, error){
+		function modifyEmp(param, callback, error){
 			$.ajax({
-				type : 'post',
-				url : '/joinRequest/detailView',
+				type : 'put',
+				url : '/empManage/detailView',
 				data : JSON.stringify(param),
 				contentType : "application/json; charset=utf-8",
 				success : function(result, status, xhr){
@@ -37,10 +32,10 @@ var joinRequestDetailService = (function(){
 			});
 		}
 		
-		function deleteRequest(req_id, callback, error){
+		function deleteEmp(emp_no, callback, error){
 			$.ajax({
 				type : 'delete',
-				url : '/joinRequest/detailView/' + req_id,
+				url : '/empManage/detailView/' + emp_no,
 				success : function(deleteResult, status, xhr){
 					if(callback){
 						callback(deleteResult);
@@ -56,32 +51,39 @@ var joinRequestDetailService = (function(){
 		
 		return{
 			detailView : detailView,
-			insertEmp : insertEmp,
-			deleteRequest : deleteRequest
-		}
+			modifyEmp : modifyEmp,
+			deleteEmp : deleteEmp
+		};
 	})();
-	
+
 	$(document).ready(function(){
 		var btnForm = $("#btnForm");
-		var insertBtn = $(".insertBtn");
-		var deleteBtn = $(".deleteBtn");
+		var modifyBtn = $("#modifyBtn");
+		var deleteBtn = $("#deleteBtn");
 		
-		detailView($("input[name='req_id']").val());
 		
-		function detailView(req_id){
-			joinRequestDetailService.detailView({
-				req_id : req_id
+		detailView($("input[name='emp_no']").val());
+		
+		function detailView(emp_no){
+			empManageDetailService.detailView({
+				emp_no : emp_no
 			}, function(data){
-				console.log(data)
-				$("input[name='req_id']").val(data.req_id);
-				$("input[name='req_name']").val(data.req_name);
-				$("input[name='req_birth']").val(data.req_birth);
-				$("input[name='req_phone']").val(data.req_phone);
-				$("input[name='req_address']").val(data.req_address);
+				$("input[name='emp_no']").val(data.emp_no);
+				$("input[name='emp_id']").val(data.emp_id);
+				$("input[name='emp_name']").val(data.emp_name);
+				$("input[name='emp_birth']").val(data.emp_birth);
+				$("input[name='emp_phone']").val(data.emp_phone);
+				$("input[name='emp_tel']").val(data.emp_tel);
+				$("input[name='emp_email']").val(data.emp_email);
+				$("input[name='emp_address']").val(data.emp_address);
+				$("input[name='emp_position']").val(data.emp_position);
+				$("input[name='emp_sal']").val(data.emp_sal);
+				$("input[name='emp_date']").val(data.emp_date);
+				$("input[name='dept_name']").val(data.dept_name);
 			});
 		}
 		
-		insertBtn.on("click", function(e){
+		modifyBtn.on("click", function(e){
 			if(!btnForm.find("input[name='emp_position']").val()){
 				alert("직급을 작성하세요.");
 				return false;
@@ -95,40 +97,33 @@ var joinRequestDetailService = (function(){
 				return false;
 			}
 			
-			var req_id = $("input[name='req_id']").val();
+			var emp_no = $("input[name='emp_no']").val();
 			var emp_position = $("input[name='emp_position']").val();
 			var emp_sal = $("input[name='emp_sal']").val();
 			var dept_name = $("input[name='dept_name']").val();
-			var emp_tel = $("input[name='emp_tel']").val();
 			
 			if(emp_position != "사원" && emp_position != "대리" && emp_position != "차장" && emp_position != "과장" && emp_position != "부장" && emp_position != "사장"){
 				alert("없는 직급입니다.");
 				return false;
 			}
 			
-			console.log("emp_tel === " + emp_tel);
-			
-			joinRequestDetailService.insertEmp({
-				req_id : req_id,
+			empManageDetailService.modifyEmp({
+				emp_no : emp_no,
 				emp_position : emp_position,
 				emp_sal : emp_sal,
-				dept_name : dept_name,
-				emp_tel : emp_tel
+				dept_name : dept_name
 			}, function(result){
-				joinRequestDetailService.deleteRequest(req_id, function(result2){
-					alert(result2);
-					self.close();
-					location.reload();
-				});
+				alert(result);
+				self.close();
 			});
 		});
 		
 		deleteBtn.on("click", function(e){
-			var req_id = $("input[name='req_id']").val();
-			joinRequestDetailService.deleteRequest(req_id, function(result){
+			var emp_no = $("input[name='emp_no']").val();
+			
+			empManageDetailService.deleteEmp(emp_no, function(result){
 				alert(result);
 				self.close();
-				//location.reload();
 			});
 		});
 	});

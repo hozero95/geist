@@ -41,8 +41,8 @@ public class JoinRequestServiceImpl implements JoinRequestService {
 	}
 
 	@Override
-	public int insertEmp(JoinRequestVO vo, String emp_position, Long emp_sal, Long dept_no) {
-		return mapper.insertEmp(vo, emp_position, emp_sal, dept_no);
+	public int insertEmp(JoinRequestVO vo, String emp_position, Long emp_sal, Long dept_no, String emp_tel) {
+		return mapper.insertEmp(vo, emp_position, emp_sal, dept_no, emp_tel);
 	}
 
 	@Override
