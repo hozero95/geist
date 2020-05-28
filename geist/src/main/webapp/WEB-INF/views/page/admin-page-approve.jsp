@@ -19,8 +19,7 @@
 	    $(document).ready(function() {
 	    	$('div').removeClass('form-inline');
 	        $('div.app-page-title').css('margin','0px 0px 0px');
-	        $('div.app-page-title').css('padding','50px 0px 30px 0px');
-	        $('div.app-page-title').css('padding','50px 0px 30px 0px');
+	        $('div.app-page-title').css('padding','50px 0px 0px 0px');
 	        $('.form-control').css('float','right');
 	        $('.form-control').css('margin','5px 2px 5px 2px');
 	        $('button.dt-button').css('float','right');
@@ -79,7 +78,7 @@
                                                     <thead>
                                                    		<tr role="row">
                                                         	<th class="sorting" tabindex="0" aria-controls="foo-table" rowspan="1" colspan="1"
-                                                                aria-label="아이디 activate to sort column ascending" style="width: 100px;">아이디</th>
+                                                                aria-label="아이디 activate to sort column ascending" style="width: 150px;">아이디</th>
                                                             <th class="sorting_asc" tabindex="0" aria-controls="foo-table" rowspan="1" colspan="1"
                                                                 aria-sort="ascending" aria-label="이름: activate to sort column descending"
                                                                 style="width: 80px;">이름</th>
@@ -94,7 +93,7 @@
                                                                 aria-label="주소: activate to sort column ascending" style="width: 300px;">주소</th>
                                                             <th class="sorting_asc" tabindex="0" aria-controls="foo-table" rowspan="1" colspan="1"
                                                                 aria-sort="ascending" aria-label="조회: activate to sort column descending"
-                                                                style="width: 200px;text-align: center;">조회</th>
+                                                                style="width: 100px;text-align: center;">조회</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="table-body"></tbody>

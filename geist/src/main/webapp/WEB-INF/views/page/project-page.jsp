@@ -8,9 +8,6 @@
 <!-- main Css-->
 <link href="/resources/css/document.css" rel="stylesheet" />
 <link href="/resources/css/main.css" rel="stylesheet" />
-<!-- Data table-->
-<script
-	src="http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
 <!-- Bootstrap -->
 <script
 	src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
@@ -19,9 +16,6 @@
 	rel="stylesheet" crossorigin="anonymous" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-<!-- Data button-->
-<script
-	src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
 <script>
     function showPopupWrite() { window.open("/project/projectWrite", "프로젝트 작성", "width=1200, height=700, left=100, top=50"); }
 </script>
@@ -29,8 +23,7 @@
     $(document).ready(function() {
     	$('div').removeClass('form-inline');
         $('div.app-page-title').css('margin','0px 0px 0px');
-        $('div.app-page-title').css('padding','50px 0px 30px 0px');
-        $('div.app-page-title').css('padding','50px 0px 30px 0px');
+        $('div.app-page-title').css('padding','50px 0px 0px 0px');
     });
 </script>
 </head>
@@ -84,7 +77,11 @@
 								<div id="foo-table_wrapper" class="">
 									<div class="row">
 										<div class="col-sm-12">
-
+											<button type="button" class="btn float-right btn-sm dt-button" id="proWrite" onclick="showPopupWrite();">작성</button>
+											<button type="button" class="btn float-right btn-sm dt-button" id="proUpdate">수정</button>
+											<button type="button" class="btn float-right btn-sm dt-button" id="proDelete">삭제</button>
+										</div>
+										<div class="col-sm-12">
 											<table id="foo-table" class="table table-bordered dataTable"
 												role="grid" aria-describedby="foo-table_info">
 												<thead style="text-align : center;">
@@ -115,17 +112,8 @@
 												<tbody id="table-body" style="text-align : center;">
 												</tbody>
 											</table>
-											<div class="pt-2" style="float: right;">
-												<button type="button" class="btn btn-sm dt-button" style="box-shadow : 3px 3px 2px #aaaaaa"
-													id="proWrite" onclick="showPopupWrite();">작성</button>
-												<button type="button" class="btn btn-sm dt-button"
-													id="proUpdate" style="box-shadow : 3px 3px 2px #aaaaaa">수정</button>
-												<button type="button" class="btn btn-sm dt-button"
-													id="proDelete" style="box-shadow : 3px 3px 2px #aaaaaa">삭제</button>
-											</div>
-										</div>
-										<div class="table-page">
-										
+											<p>
+											<div class="table-page"></div>
 										</div>
 									</div>
 								</div>
