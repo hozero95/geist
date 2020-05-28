@@ -109,6 +109,7 @@ body {
   vertical-align: middle;
   font-size: 15px;
   padding-left: 10px;
+  border : solid 1px #dadada;
 }
 
 #pst-btn {
@@ -137,6 +138,7 @@ body {
   vertical-align: middle;
   margin-top: 10px;
   padding-left: 10px;
+  border : solid 1px #dadada;
 }
 
 .btn-area {

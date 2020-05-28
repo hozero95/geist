@@ -18,12 +18,11 @@
 		var pageNum = 1;
 		
 		// 프로젝트 리스트 받아오기
-		function projectList(param, callback, error) {
+		function projectList(param, callback) {
 			var page = param.page;
-			console.log("projectList의 param" + page);
-			$.getJSON("/project/projectList/" + pageNum, function(data) {				
+			$.getJSON("/project/projectList/" + page, function(data) {				
 				if(callback) {
-					callback(data);
+					callback(data.count, data.list);
 				}
 			}).error(function() {
 				console.log("projectList 실패");
@@ -31,11 +30,11 @@
 		}
 		
 		// 프로젝트 삭제
-		function projectDelete(proj_no, callback, error) {
+		function projectDelete(proj_no, callback) {
 			$.ajax({
 				type : 'delete',
 				url : '/project/projectDelete/' + proj_no,
-				success : function(result, status, xhr) {
+				success : function(result) {
 					console.log("프로젝트 삭제 성공");
 					if(callback) {
 						callback(result);
@@ -66,28 +65,27 @@
 		function showList(page) { 
 			projectList({
 				page : page || 1
-			}, function(data, count){
+			}, function(count, list){
 				if(page == -1) {
 					pageNum = Math.ceil(count / 10.0);
 					showList(pageNum);
+					console.log("pageNum : ", pageNum);
 					return;
 				}
-				console.log(count);
-				console.log(data);
 				var str = "";
-				if(data == null || data.length == 0) {
+				if(list == null || list.length == 0) {
 					return;
 				}
-				
-				for(var i = 0; i < data.length; i++) {
-					
+				console.log(list);
+				console.log(count);
+				for(var i = 0; i < list.length; i++) {
 					str += "<tr onmouseover='this.style.backgroundColor=\"#dadada\"' onmouseout='this.style.backgroundColor=\"\"'>";
 					str += "<td id='ch-row'><input type='radio' class='radioBtn' name='selected'></td>";
-					str += "<td>" + data[i].proj_no + "</td>";
-					str += "<td>" + data[i].proj_name + "</td>";
-					str += "<td>" + data[i].proj_agency + "</td>";
-					str += "<td>" + data[i].proj_start + "</td>";
-					str += "<td>" + data[i].proj_end + "</td>";
+					str += "<td>" + list[i].proj_no + "</td>";
+					str += "<td>" + list[i].proj_name + "</td>";
+					str += "<td>" + list[i].proj_agency + "</td>";
+					str += "<td>" + list[i].proj_start + "</td>";
+					str += "<td>" + list[i].proj_end + "</td>";
 					str += "</tr>";
 				}
 				tbody.html(str);
@@ -158,7 +156,6 @@
 				}
 			})
 			projectDelete(proj_no, function(result){
-				console.log(result)
 				console.log('projectDelete() 호출!' + proj_no);
 				location.reload();
 			});
