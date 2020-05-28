@@ -78,13 +78,15 @@
 									<div class="row">
 									<%
 										String empPosition = (String)session.getAttribute("empPosition");
+										System.out.println("empPosition === " + empPosition);
                                         if(empPosition.equals("부장")) { %>
 											<div class="col-sm-12">
 												<button type="button" class="btn float-right btn-sm dt-button" id="proWrite" onclick="showPopupWrite();">작성</button>
 												<button type="button" class="btn float-right btn-sm dt-button" id="proUpdate">수정</button>
 												<button type="button" class="btn float-right btn-sm dt-button" id="proDelete">삭제</button>
 											</div>
-									<% } else { }%> 
+									<% } else {} %> 
+									
 										<div class="col-sm-12">
 											<table id="foo-table" class="table table-bordered dataTable"
 												role="grid" aria-describedby="foo-table_info">

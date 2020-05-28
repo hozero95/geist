@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,7 +57,7 @@ public class LoginController {
 			session.setAttribute("member", login);
 		}else {
 			result = "success";				
-			session.setAttribute("sys", sys);
+			session.setAttribute("empPosition", login.getEmp_position());
 			session.setAttribute("member", login);
 		}
 		log.info("session : " + session);
