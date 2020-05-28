@@ -150,18 +150,15 @@ var empManageService = (function(){
 			
 			var str = "<ul class='pagination justify-content-end'>";
 		    if(prev){
-		        str += "<li class='page-item'><a class='page-link' href='" + (startNum - 1) + "'>Prev</a></li>";
+		        str += "<li class='page-item'><a href='" + (startNum - 1) + "'class='page-link'>Prev</a></li>";
 		    }
 		    for(var i = startNum; i <= endNum; i++){
 		        var linkStart = pageNum != i ? "'><a href='" + i + "'>" : "active'><a href='" + i + "'>";
-		        var linkEnd = pageNum != i ? "</a>" : "</a>";
+		        var linkEnd = pageNum != i ? "</a>" : "</a>" ;
 		        str += "<li class='page-item " + linkStart + i + linkEnd + "</a></li>";
-		        /*var linkStart = pageNum != i ? "<a href='" + i + "'>" : "";
-				var linkEnd = pageNum != i ? "</a>" : "";
-				str += "<li>" + linkStart + i + linkEnd + "</li>";*/
 		    }
 		    if(next){
-		        str += "<li class='page-item ><a href='" + (endNum + 1) + "'>Next</a></li>";
+		        str += "<li class='page-item'><a href='" + (endNum + 1) + "'>Next</a></li>";
 		    }
 		    str += "</ul>";
 		    

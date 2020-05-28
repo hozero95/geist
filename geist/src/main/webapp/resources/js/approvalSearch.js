@@ -98,7 +98,7 @@ $(document).ready(function() {
 
 		var str = "<ul class='pagination justify-content-end'>";
 	    if(prev){
-	        str += "<li class='page-item'><a class='page-link' href='" + (startNum - 1) + "'>Prev</a></li>";
+	        str += "<li class='page-item'><a href='" + (startNum - 1) + "'class='page-link'>Prev</a></li>";
 	    }
 	    for(var i = startNum; i <= endNum; i++){
 	        var linkStart = pageNum != i ? "'><a href='" + i + "'>" : "active'><a href='" + i + "'>";
@@ -106,7 +106,7 @@ $(document).ready(function() {
 	        str += "<li class='page-item " + linkStart + i + linkEnd + "</a></li>";
 	    }
 	    if(next){
-	        str += "<li class='page-item ><a href='" + (endNum + 1) + "'>Next</a></li>";
+	        str += "<li class='page-item'><a href='" + (endNum + 1) + "'>Next</a></li>";
 	    }
 	    str += "</ul>";
 	    
