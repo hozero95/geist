@@ -114,7 +114,8 @@
 													id="proDelete" style="box-shadow : 3px 3px 2px #aaaaaa">삭제</button>
 											</div>
 										</div>
-										<div class="table-page">
+										<br />
+										<div class="table-page col-sm-12">
 										
 										</div>
 									</div>

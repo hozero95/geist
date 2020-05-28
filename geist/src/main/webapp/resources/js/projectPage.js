@@ -20,7 +20,6 @@
 		// 프로젝트 리스트 받아오기
 		function projectList(param, callback, error) {
 			var page = param.page;
-			console.log("projectList의 param" + page);
 			$.getJSON("/project/projectList/" + pageNum, function(data) {				
 				if(callback) {
 					callback(data);
@@ -70,9 +69,9 @@
 				if(page == -1) {
 					pageNum = Math.ceil(count / 10.0);
 					showList(pageNum);
+					console.log("pageNum : ", pageNum);
 					return;
 				}
-				console.log(count);
 				console.log(data);
 				var str = "";
 				if(data == null || data.length == 0) {
@@ -158,7 +157,6 @@
 				}
 			})
 			projectDelete(proj_no, function(result){
-				console.log(result)
 				console.log('projectDelete() 호출!' + proj_no);
 				location.reload();
 			});
