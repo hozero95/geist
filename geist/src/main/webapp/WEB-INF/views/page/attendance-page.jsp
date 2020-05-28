@@ -17,6 +17,15 @@
     <!-- Data button-->
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
 <style>
+	.form-control{
+		width : 28%;
+		float : right;
+		margin : 5px 4px 5px 4px;
+	}
+	.app-page-title{
+		margin : 0px;
+		padding : 50px 0px 30px 0px;
+	}
 	.btn-row {
 		position : relative;
 		margin-left : -50%;

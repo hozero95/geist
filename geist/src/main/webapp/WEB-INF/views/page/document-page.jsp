@@ -95,9 +95,11 @@
 		                                            		<button type="button" class="btn btn-sm dt-button" id="notice-write" >글쓰기</button>
 		                                        		</div>
 	                                        		</div>
+	                                        		<p>
 													<div class="table-page" id="document-table-page"></div> 
 												<% } else { %>   
                                             		</div>
+                                            		<p>
 													<div class="table-page" id="document-table-page" style="margin-top: 34.2px;"></div>
 												<% } %>
                                         </div>

@@ -95,7 +95,7 @@ var empManageService = (function(){
 					var td = tr.children();
 					var emp_no = td.eq(0).text();
 					
-					var popWindow = window.open("/empManage/detailView?emp_no=" + emp_no, "사원 상세 보기", "width=500, height=600");
+					var popWindow = window.open("/empManage/detailView?emp_no=" + emp_no, "사원 상세 보기", "width=600, height=800");
 					
 					location.reload();
 				});
