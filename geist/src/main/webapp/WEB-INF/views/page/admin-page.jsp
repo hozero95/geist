@@ -22,7 +22,7 @@
 	}
 	.app-page-title{
 		margin : 0px;
-		padding : 50px 0px 30px 0px;
+		padding : 50px 0px 10px 0px;
 	}
 	.dt-button{
 		float : right;

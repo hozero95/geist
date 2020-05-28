@@ -11,7 +11,7 @@
 <mapper namespace="com.geist.login.mapper.LoginMapper">
 	<select id="login" resultType="com.geist.login.domain.LoginVO">
 		SELECT
-			emp_no
+			emp_no, emp_position
 		FROM
 			employee
 		WHERE

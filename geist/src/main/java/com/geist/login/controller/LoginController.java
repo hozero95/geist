@@ -38,22 +38,28 @@ public class LoginController {
 		LoginVO login = service.login(vo);
 		String result = "";
 		String sys = "";
-		
+		String position = "";
+
 		if(login == null) {
 			session.setAttribute("member", null);
 			result = "fail";
 		}
-		else {
-			if(login.getEmp_no() == 100) {
-				result = "success";
-				sys = "sys";
-				session.setAttribute("sys", sys);
-				session.setAttribute("member", login);
-			}else {
-				session.setAttribute("sys", sys);
-				session.setAttribute("member", login);
-				result = "success";				
-			}
+		
+		position = login.getEmp_position();
+			
+		if(login.getEmp_no() == 100) {
+			sys = "sys";
+			result = "success";
+			session.setAttribute("sys", sys);
+			session.setAttribute("member", login);
+		}else if(position.equals("부장")) {
+			result = "success";				
+			session.setAttribute("empPosition", login.getEmp_position());
+			session.setAttribute("member", login);
+		}else {
+			result = "success";				
+			session.setAttribute("sys", sys);
+			session.setAttribute("member", login);
 		}
 		log.info("session : " + session);
 		

@@ -14,4 +14,5 @@ public class LoginVO {
 	String emp_pw;
 	String emp_phone;
 	String emp_email;
+	String emp_position;
 }

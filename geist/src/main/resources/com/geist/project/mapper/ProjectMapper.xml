@@ -27,16 +27,26 @@ constraint fk_proj_management_dept_no foreign key(dept_no) references department
 <mapper namespace = "com.geist.project.mapper.ProjectMapper">
 
 <select id = "projectList" resultType = "com.geist.project.domain.ProjectVO">
-<![CDATA[
-		select proj_no, proj_name, proj_agency, proj_start, proj_end
-		from(
-		select /*+INDEX_DESC(project pk_project) */
-			rownum rn, p.proj_no proj_no, p.proj_name proj_name, p.proj_agency proj_agency, to_char(p.proj_start, 'YYYY-MM-DD') proj_start, to_char(p.proj_end, 'YYYY-MM-DD') proj_end
-		from
-			project p, proj_management m
-		where m.dept_no = #{dept_no} and p.proj_no = m.proj_no) where rn <= #{pageNum} * #{amount}
-		and rn > (#{pageNum} -1) * #{amount} order by proj_no desc
-		]]>
+	<![CDATA[
+		SELECT 
+		    proj_no, proj_name, proj_agency, proj_start, proj_end
+		FROM(
+		    SELECT /*+INDEX_DESC(notice pk_project) */
+		        projManagement.*, rownum rn
+		    FROM (
+		        SELECT p.proj_no proj_no, p.proj_name proj_name, p.proj_agency proj_agency, to_char(p.proj_start, 'YYYY-MM-DD') proj_start, to_char(p.proj_end, 'YYYY-MM-DD') proj_end
+		        FROM project p, proj_management m
+		        WHERE
+		            m.dept_no = #{dept_no}
+		            and p.proj_no = m.proj_no
+		        ORDER BY proj_no DESC
+		    ) projManagement
+		    WHERE
+		        rownum <= #{pageNum} * #{amount}  
+		    )
+		WHERE 
+		    rn > (#{pageNum} -1) * #{amount} 
+	]]>
 </select>
 
 <select id = "projectRead" resultType = "com.geist.project.domain.ProjectVO">
