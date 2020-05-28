@@ -18,7 +18,7 @@
 	    $(document).ready(function() {
 		    $('div').removeClass('form-inline');
 		    $('div.app-page-title').css('margin', '0px 0px 0px');
-		    $('div.app-page-title').css('padding', '50px 0px 30px 0px');
+		    $('div.app-page-title').css('padding', '50px 0px 0px 0px');
 		});
     </script>
 </head>
@@ -66,11 +66,19 @@
                                     <h2><sub>사내공지</sub></h2><p>
                                 </div>
                                     <hr class="Geist-board-hr">
-                            </div>
+                            </div> 
                                 <!-- table -->
                                 <div class="page-title-wrapper">
                                     <div id="foo-table_wrapper" class="">
                                         <div class="row">
+                                        <%
+                           	 				String admin_nav2 = (String)session.getAttribute("sys");
+                               				if(admin_nav2 == "sys") { %>
+                                				<div class="col-sm-12">
+                             						<button type="button" class="btn float-right btn-sm dt-button" id="notice-write" >글쓰기</button>
+                         						</div>		
+										<% } else { }%> 
+										
                                             <div class="col-sm-12">
                                                 <table id="Notice-table" class="table table-bordered dataTable" role="grid"
                                                     aria-describedby="foo-table_info">
@@ -87,26 +95,15 @@
                                                     </thead>
                                                     <tbody class="table-body" id="document-body"></tbody>
                                                 </table>
-                                                 <%
-                                                	 String admin_nav2 = (String)session.getAttribute("sys");
-                                                 	if(admin_nav2 == "sys") { %>
-		                                                <div class="pt-2" style="float: right;">
-		                                            		<button type="button" class="btn btn-sm dt-button" id="notice-write" >글쓰기</button>
-		                                        		</div>
-	                                        		</div>
-	                                        		<p>
-													<div class="table-page" id="document-table-page"></div> 
-												<% } else { %>   
-                                            		</div>
-                                            		<p>
-													<div class="table-page" id="document-table-page" style="margin-top: 34.2px;"></div>
-												<% } %>
+                                                <p>
+												<div class="table-page"></div> 
+                                            </div>  
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                   </div>
             </div>
         </div>
     </div>

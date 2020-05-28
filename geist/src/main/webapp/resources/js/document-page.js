@@ -20,8 +20,8 @@ var NoticeService = (function(){
 })();
 
 $(document).ready(function() {
-	var tbody = $("#document-body");
-	var tpage = $("#document-table-page");
+	var tbody = $(".table-body");
+	var tpage = $(".table-page");
 	var write = $("#notice-write");
 	var noti_no
 	var noti_title;
