@@ -19,8 +19,7 @@
 	    $(document).ready(function() {
 	    	$('div').removeClass('form-inline');
 	        $('div.app-page-title').css('margin','0px 0px 0px');
-	        $('div.app-page-title').css('padding','50px 0px 30px 0px');
-	        $('div.app-page-title').css('padding','50px 0px 30px 0px');
+	        $('div.app-page-title').css('padding','50px 0px 10px 0px');
 	        $('.form-control').css('float','right');
 	        $('.form-control').css('margin','5px 2px 5px 2px');
 	        $('button.dt-button').css('float','right');
