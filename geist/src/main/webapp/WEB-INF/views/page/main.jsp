@@ -60,11 +60,6 @@
 							  </div>
 						<!-- // .my-calendar -->
 						</div>
-						<div class="app-calender-memo">
-							<ul>
-								<li>내용</li>
-							</ul>
-						</div>
 					</div>
 					<!-- Main button page -->
 					<div class="app-main-inner">
