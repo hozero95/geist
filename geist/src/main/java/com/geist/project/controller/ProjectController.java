@@ -54,7 +54,7 @@ public class ProjectController {
 			
 			ProjectCriVO vo = new ProjectCriVO(page, 10, dept_no);
 			
-			return new ResponseEntity<ProjectDTO>(service.projectList(vo), HttpStatus.OK);
+			return new ResponseEntity<ProjectDTO>(service.projectList(vo, dept_no), HttpStatus.OK);
 		}
 		
 		//프로젝트를 작성하는 부분

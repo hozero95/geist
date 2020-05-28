@@ -23,9 +23,9 @@ public class ProjectServiceImpl implements ProjectService {
 	private ProjectMapper mapper;
 	
 	@Override
-	public ProjectDTO projectList(ProjectCriVO vo){
+	public ProjectDTO projectList(ProjectCriVO vo, int dept_no){
 		// TODO Auto-generated method stub
-		return new ProjectDTO(mapper.projectCount(), mapper.projectList(vo));
+		return new ProjectDTO(mapper.projectCount(dept_no), mapper.projectList(vo));
 	}
 
 	@Override
@@ -69,4 +69,9 @@ public class ProjectServiceImpl implements ProjectService {
 		return mapper.projectDept(emp_no);
 	}
 
+	@Override
+	public int projectCount(int dept_no) {
+		log.info("ProjectService project Count()");
+		return mapper.projectCount(dept_no);	
+	}
 }

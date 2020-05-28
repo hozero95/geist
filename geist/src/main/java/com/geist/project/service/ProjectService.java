@@ -11,7 +11,7 @@ import com.geist.project.domain.ProjectVO;
 
 public interface ProjectService {
 
-	public ProjectDTO projectList(ProjectCriVO vo);
+	public ProjectDTO projectList(ProjectCriVO vo, int dept_no);
 	
 	public ProjectVO projectRead(int proj_no);
 	
@@ -25,4 +25,5 @@ public interface ProjectService {
 	
 	public int projectDept(Long emp_no);
 	
+	public int projectCount(int dept_no);
 }
