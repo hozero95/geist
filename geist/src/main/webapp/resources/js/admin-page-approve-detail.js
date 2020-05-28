@@ -106,8 +106,6 @@ var joinRequestDetailService = (function(){
 				return false;
 			}
 			
-			console.log("emp_tel === " + emp_tel);
-			
 			joinRequestDetailService.insertEmp({
 				req_id : req_id,
 				emp_position : emp_position,
@@ -117,8 +115,8 @@ var joinRequestDetailService = (function(){
 			}, function(result){
 				joinRequestDetailService.deleteRequest(req_id, function(result2){
 					alert(result2);
+					opener.parent.location.reload();
 					self.close();
-					location.reload();
 				});
 			});
 		});
@@ -127,8 +125,8 @@ var joinRequestDetailService = (function(){
 			var req_id = $("input[name='req_id']").val();
 			joinRequestDetailService.deleteRequest(req_id, function(result){
 				alert(result);
+				opener.parent.location.reload();
 				self.close();
-				//location.reload();
 			});
 		});
 	});
