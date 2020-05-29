@@ -7,10 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Geist</title>
-<link href="/resources/css/document.css" rel="stylesheet" />
-<link href="/resources/css/main.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/css/document.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" />
 <!-- 기안일을 위해 필요한 스크립트 -->
-<script type="text/javascript" src="/resources/js/date.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/date.js"></script>
 </head>
 <body>
 	<input type="hidden" name="login_no" value="${member.emp_no}">
@@ -53,7 +53,6 @@
 											<tr>
 												<td><span class="table-text">작성자명</span></td>
 												<td><span class="emp-name">김현선</span></td>
-											</tr>
 											<tr>
 												<td><span class="table-text">기안일</span></td>
 												<td><span class="app-date">2020-04-10</span></td>
@@ -178,6 +177,6 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript" src="/resources/js/approvalRequest.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/approvalRequest.js"></script>
 </body>
 </html>

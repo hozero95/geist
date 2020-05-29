@@ -2,7 +2,6 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
 	<!-- 	공지 페이지
 			담당: 홍예진 
 			
@@ -12,12 +11,11 @@
 			private Date noti_date;//날짜
 			
 			DB에 noti_seq 생성되야 noticeWrite 정상작동 가능
-	-->
-			
+	-->	
 <mapper namespace = "com.geist.notice.mapper.NoticeMapper">
 
 	<select id = "noticeList" resultType = "com.geist.notice.domain.NoticeVO">
-		<![CDATA[
+	<![CDATA[
 			SELECT 
 			    noti_no, noti_title, noti_date
 			FROM(
@@ -35,7 +33,7 @@
 			    rn > (#{pageNum} -1) * #{amount}
 		]]>
 	</select>
-	
+		
 	<select id = "noticeCount" resultType = "int">
 		SELECT count(*) FROM notice
 	</select>

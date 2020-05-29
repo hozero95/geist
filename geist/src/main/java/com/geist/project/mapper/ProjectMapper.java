@@ -2,7 +2,9 @@ package com.geist.project.mapper;
 
 import java.util.List;
 
-import com.geist.project.domain.ProjectCriVO;
+import org.apache.ibatis.annotations.Param;
+
+import com.geist.main.domain.Criteria;
 import com.geist.project.domain.ProjectVO;
 
 /*
@@ -29,7 +31,7 @@ constraint fk_proj_management_dept_no foreign key(dept_no) references department
 
 public interface ProjectMapper {
 	
-	public List<ProjectVO> projectList(ProjectCriVO vo);
+	public List<ProjectVO> projectList(@Param("cri") Criteria cri,@Param("dept_no") int dept_no);
 	
 	public ProjectVO projectRead(int proj_no);
 	
@@ -43,5 +45,6 @@ public interface ProjectMapper {
 	
 	public int projectDept(Long emp_no);
 	
-	public int projectCount();
+	public int projectCount(int dept_no);
+	
 }

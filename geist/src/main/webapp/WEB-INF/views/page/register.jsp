@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  <link rel="stylesheet" href="/resources/css/register.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/register.css" />
   <title>Geist</title>
 </head>
 
@@ -127,7 +127,7 @@
     
   </div>
   
-<script type="text/JavaScript" src="/resources/js/register.js"></script>
+<script type="text/JavaScript" src="${pageContext.request.contextPath}/resources/js/register.js"></script>
 </body>
 
 </html>

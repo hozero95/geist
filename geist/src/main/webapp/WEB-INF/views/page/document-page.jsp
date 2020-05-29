@@ -8,8 +8,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Geist</title>
 	<!-- main Css-->
-    <link href="/resources/css/document.css" rel="stylesheet" />
-    <link href="/resources/css/main.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/document.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" />
     <!-- Bootstrap -->
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -113,9 +113,9 @@
     </div>
     
     <!--js-->
-    <script type="text/javascript" src="/resources/js/include.js"></script>
-    <script type="text/javascript" src="/resources/js/main.js"></script>
-    <script type="text/javascript" src="/resources/js/document-page.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/include.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/document-page.js"></script>
 	
 </body>
 </html>

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="/resources/css/pwdfind.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/pwdfind.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>비밀번호 찾기</title>
 </head>
@@ -53,7 +53,7 @@
     
 </div>
 
-<script type="text/javascript" src="/resources/js/pwdFind.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/pwdFind.js"></script>
 
 </body>
 </html>

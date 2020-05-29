@@ -3,7 +3,7 @@ package com.geist.project.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.geist.project.domain.ProjectCriVO;
+import com.geist.main.domain.Criteria;
 import com.geist.project.domain.ProjectDTO;
 import com.geist.project.domain.ProjectVO;
 import com.geist.project.mapper.ProjectMapper;
@@ -23,9 +23,9 @@ public class ProjectServiceImpl implements ProjectService {
 	private ProjectMapper mapper;
 	
 	@Override
-	public ProjectDTO projectList(ProjectCriVO vo){
+	public ProjectDTO projectList(Criteria cri, int dept_no){
 		// TODO Auto-generated method stub
-		return new ProjectDTO(mapper.projectCount(), mapper.projectList(vo));
+		return new ProjectDTO(mapper.projectCount(dept_no), mapper.projectList(cri, dept_no));
 	}
 
 	@Override
@@ -69,4 +69,9 @@ public class ProjectServiceImpl implements ProjectService {
 		return mapper.projectDept(emp_no);
 	}
 
+	@Override
+	public int projectCount(int dept_no) {
+		log.info("ProjectService project Count()");
+		return mapper.projectCount(dept_no);	
+	}
 }

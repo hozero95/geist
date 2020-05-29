@@ -11,8 +11,8 @@
 <head>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<link href="/resources/css/main.css" rel="stylesheet" />
-	<link rel="stylesheet" href="/resources/css/pwdfind.css">
+	<link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/pwdfind.css">
 	<meta charset="UTF-8">
 	<title>사원 상세 조회</title>
 	<style>
@@ -112,7 +112,7 @@
 	</div>
 	
 	<!-- js -->
-	<script type="text/javascript" src="/resources/js/empManageDetail.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/empManageDetail.js"></script>
 	
 </body>
 </html>

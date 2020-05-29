@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Geist</title>
-<link href="/resources/css/main.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" />
 <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
 <script src="http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" ></script>
 <style>
@@ -84,6 +84,6 @@
         </div>
     </div>
     
-    <script type="text/javascript" src="/resources/js/projectUpdate.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/projectUpdate.js"></script>
 </body>
 </html>

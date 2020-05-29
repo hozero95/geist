@@ -17,9 +17,9 @@
 	
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl"></property>
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@geist.cwupy7hkb7e4.ap-northeast-2.rds.amazonaws.com:1521:ORCL"></property>
 		<property name="username" value="geist"></property>
-		<property name="password" value="geist"></property>
+		<property name="password" value="geist123"></property>
 	</bean>
 	
 	<!-- HikariCP configuration -->

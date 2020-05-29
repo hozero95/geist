@@ -1,7 +1,5 @@
 package com.geist.project.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -18,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.geist.login.domain.LoginVO;
-import com.geist.project.domain.ProjectCriVO;
+import com.geist.main.domain.Criteria;
 import com.geist.project.domain.ProjectDTO;
 import com.geist.project.domain.ProjectVO;
 import com.geist.project.service.ProjectService;
@@ -52,9 +50,11 @@ public class ProjectController {
 			//session에서 가져온 emp_no가 mapper을 한번더 거쳐 dept_no 꺼냄
 			int dept_no = service.projectDept(emp_no);
 			
-			ProjectCriVO vo = new ProjectCriVO(page, 10, dept_no);
+//			ProjectCriVO vo = new ProjectCriVO(page, 10, dept_no);
 			
-			return new ResponseEntity<ProjectDTO>(service.projectList(vo), HttpStatus.OK);
+			Criteria cri = new Criteria(page, 10);
+			
+			return new ResponseEntity<ProjectDTO>(service.projectList(cri, dept_no), HttpStatus.OK);
 		}
 		
 		//프로젝트를 작성하는 부분
