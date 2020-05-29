@@ -26,7 +26,7 @@
 		}
 	})();
 	
-	$(documnet).ready(function() {
+	$(document).ready(function() {
 		var searchForm = $("#pwdfind");
 		var pwSearchBtn = $("#btn-find");
 		
