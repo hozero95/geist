@@ -34,25 +34,27 @@ $(function() {
    	   		var proj_agency = $("#proj_agency").val();
    	   		var proj_start = $("#proj_start").val();
    	   		var proj_end = $("#proj_end").val();
-   			
-   	   		console.log("작성버튼 클릭시 호출!");
-   	   		console.log(dept_no);
-   	   		console.log(proj_name);
-   	   		console.log(proj_agency);
-   	   		console.log(proj_start);
-   	   		console.log(proj_end);
-   			
-   	   		projectWrite({
-   				"dept_no" : dept_no,
-   				"proj_name" : proj_name,
-   				"proj_agency" : proj_agency,
-   				"proj_start" : proj_start,
-   				"proj_end" : proj_end 				
-   			}, function(e) {
-   				console.log("콜백함수 호출됨 !");
-   				window.close();
-   	    		window.opener.location.reload();
-   			})
+   	   		
+   	   		if(dept_no == "" || proj_name == "" || proj_agency == "" || proj_start == "" || proj_end == "") {
+   	   			$(".app-main_inner").attr("style", "display : none");
+   	   			$("#modal").attr("style", "display : block");
+   	   			$("#modal_close_btn").click(function() {
+   	   				$(".app-main_inner").attr("style", "display : block");
+   	   				$("#modal").attr("style", "display : none");
+   	   			})
+   	   		} else {
+	   	   		projectWrite({
+	   				"dept_no" : dept_no,
+	   				"proj_name" : proj_name,
+	   				"proj_agency" : proj_agency,
+	   				"proj_start" : proj_start,
+	   				"proj_end" : proj_end 				
+	   			}, function(e) {
+	   				console.log("콜백함수 호출됨 !");
+	   				window.close();
+	   	    		window.opener.location.reload();
+	   			})
+   	   		}
    		});
     });
  	

@@ -14,14 +14,57 @@
 		width : 100%;
 		height : 30px;
 	}
+	#modal {
+		display : none;
+		position : relative;
+		width : 100%;
+		height : 100%;
+		z-index : 1;
+	}
+	#modal button {
+		display : inline-block;
+		width : 50px;
+		height : 30px;
+		margin-left : calc(100% - 55px);
+		border : none;
+		border-radius : 5px;
+		color : white;
+		background-color : #2ac1bc;
+		box-shadow : 3px 3px 2px #aaaaaa;
+	}
+	#modal .modal_content {
+		width : 260px;
+		margin : 100px auto;
+		padding : 20px 10px;
+		background : #fff;
+		border : 1px solid #666;
+	}
+	#modal .modal_layer {
+		position : fixed;
+		top : 0;
+		left : 0;
+		width : 100%;
+		height : 100%;
+		background : rgba(0, 0, 0, 0.5);
+		z-index : -1;
+	}
 </style>
 </head>
 <body>
-<div class="app-container fixed-sidebar fixed-header closed-sidebar">
+	
+	<div class="app-container fixed-sidebar fixed-header closed-sidebar">
         <div class="app-main">
             <!-- Main page -->
             <div class="app-main-outer">
                 <!-- Main button page -->
+                <div id="modal">
+					<div class="modal_content">
+						<h5>내용을 모두 작성해주세요!</h5>
+						<br />
+						<button type="button" id="modal_close_btn">닫기</button>
+					</div>
+					<div class="modal_layer"></div>
+				</div>
                 <div class="app-main_inner">
                     <div class="container-fluid">
                         <div class="container">
@@ -30,16 +73,16 @@
                                 <div class="page-title-heading">
                                     <i class="pe-7s-project-inverse"></i>
                                     <h2>프로젝트 </h2>
-                                    <p>
+                                    <p />
                                 </div>
-                                <hr class="Geist-board-hr">
+                                <hr class="Geist-board-hr" />
                             </div>
                             <!-- Write -->
-                            <form name="projectWrite">
+                            <div name="projectWrite">
                                 <div class="container" role="main">
                                     <h4 class="m-0 p-2">프로젝트 작성 </h4>
                                     <div class="rounded">
-
+									
                                         <table class="type09">
                                             <thead>
                                                 <th scope="row">부서번호</th>
@@ -71,14 +114,11 @@
                                             </tbody>
                                         </table>
                                         <div class="pt-2" style="float: right;">
-                                            <button type="button" class="btn btn-sm dt-button" id="proWrite" name="proWrite">작성</button>
+                                            <button type="button" class="btn btn-sm dt-button" id="proWrite" name="proWrite" style="box-shadow : 3px 3px 2px #aaaaaa">작성</button>
                                         </div>
                                     </div>
-
-                                    
                                 </div>
-                            </form>
-
+                            </div>
                         </div>
                     </div>
                 </div>

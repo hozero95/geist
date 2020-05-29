@@ -94,7 +94,7 @@
 														<th class="" tabindex="0" aria-controls="foo-table"
 															rowspan="1" colspan="1"
 															aria-label="제목: activate to sort column ascending"
-															style="width: 400px;">프로젝트 번호</th>
+															style="width: 1200px;">프로젝트 번호</th>
 														<th class="" tabindex="0" aria-controls="foo-table"
 															rowspan="1" colspan="1"
 															aria-label="제목: activate to sort column ascending"
