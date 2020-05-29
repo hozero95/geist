@@ -10,7 +10,7 @@
 <link href="${pageContext.request.contextPath}/resources/css/document.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" />
 <!-- 기안일을 위해 필요한 스크립트 -->
-<script type="text/javascript" src="/resources/js/date.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/date.js"></script>
 </head>
 <body>
 	<input type="hidden" name="login_no" value="${member.emp_no}">
@@ -19,7 +19,7 @@
         <div class="app-main">
             <!-- Main page -->
             <div class="app-main-outer">
-                <!-- Main button page -->e
+                <!-- Main button page -->
                 <div class="app-main_inner">
                     <div class="container-fluid">
                         <div class="container">
