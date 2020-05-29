@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Geist</title>
 <!-- main Css-->
-<link href="../resources/css/document.css" rel="stylesheet" />
-<link href="../resources/css/main.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/css/document.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" />
 <!-- Bootstrap -->
 <script
 	src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>

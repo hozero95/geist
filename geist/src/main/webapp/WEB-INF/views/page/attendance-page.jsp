@@ -6,8 +6,8 @@
 <head>
 	<title>Geist</title>
 	<!-- main Css-->
-    <link href="../resources/css/document.css" rel="stylesheet" />
-    <link href="../resources/css/main.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/document.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" />
     <!-- Data table-->
     <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" ></script>
     <!-- Bootstrap -->
@@ -149,9 +149,9 @@
     </div>
     
     <!--js-->
-    <script type="text/javascript" src="../resources/js/include.js"></script>
-    <script type="text/javascript" src="../resources/js/main.js"></script>
-    <script type="text/javascript" src="../resources/js/attendance-page.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/include.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/attendance-page.js"></script>
     <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" ></script>
     <!--js-->
     <script>

@@ -14,7 +14,7 @@
 	<div class="fixed-header">
 		<div class="app-header header-shadow">
 	        <div class="app-header-logo">
-	            <a href="/main"><img src="../resources/img/logo.png"></a>
+	            <a href="/main"><img src="${pageContext.request.contextPath}/resources/img/logo.png"></a>
 	        </div>
 	        <div class="app-header-content">
 	            <div class="app-header-right">

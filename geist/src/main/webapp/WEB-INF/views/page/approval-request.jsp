@@ -8,8 +8,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Geist</title>
 	<!-- main Css-->
-    <link href="../resources/css/document.css" rel="stylesheet" />
-    <link href="../resources/css/main.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/document.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Data table-->
     <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" ></script>
@@ -84,21 +84,21 @@
                                                     <tr role="row" class="odd">
                                                         <td class="sorting_1">
                                                             <a href="javascript:void(0);" onclick="ChangeMpage(12)">
-                                                                <img class="img-doc" src="../resources/img/ui2/document.png" style="width:19px"> 주간업무 보고서
+                                                                <img class="img-doc" src="${pageContext.request.contextPath}/resources/img/ui2/document.png" style="width:19px"> 주간업무 보고서
                                                             </a>
                                                         </td>
                                                     </tr>
                                                     <tr role="row" class="even">
                                                         <td class="sorting_1">
                                                             <a href="javascript:void(0);" onclick="ChangeMpage(13)">
-                                                                <img class="img-doc" src="../resources/img/ui2/document.png" style="width:19px"> 휴가 신청서
+                                                                <img class="img-doc" src="${pageContext.request.contextPath}/resources/img/ui2/document.png" style="width:19px"> 휴가 신청서
                                                             </a>
                                                         </td>
                                                     </tr>
                                                     <tr role="row" class="odd">
                                                         <td class="sorting_1">
                                                             <a href="javascript:void(0);" onclick="ChangeMpage(14)">
-                                                                <img class="img-doc" src="../resources/img/ui2/document.png" style="width:19px"> 사직 신청서
+                                                                <img class="img-doc" src="${pageContext.request.contextPath}/resources/img/ui2/document.png" style="width:19px"> 사직 신청서
                                                             </a>
                                                         </td>
                                                     </tr>
@@ -120,8 +120,8 @@
     </div>
     
     <!--js-->
-    <script type="text/javascript" src="../resources/js/include.js"></script>
-    <script type="text/javascript" src="../resources/js/main.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/include.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js"></script>
     
     <!--js-->
     <script>
