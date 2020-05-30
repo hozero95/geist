@@ -13,7 +13,7 @@
     <div id="header">
         <div class="top">
             <h1>
-                <a href="javascript:void(0)" class="logo"><span class="logo">GEIST</span></a>
+                <a href="javascript:void(0)" class="logo btn-login"><span>GEIST</span></a>
             </h1>
         </div>
         <div class="menu">
@@ -45,7 +45,10 @@
                     <input type="text" id="email" name="email" maxlength="20" placeholder="이메일을 입력하세요"> 
                 </span>
                 <div class="btn-row">
-                    <input type="button" id="btn-find" value="찾 기">
+                    <input type="button" class="btn-find" value="찾 기">
+                </div>
+                <div class="btn-row">
+                    <input type="button" class="btn-login btn-find" value="로그인 하러가기">
                 </div>
             </form>
         </div>

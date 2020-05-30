@@ -68,6 +68,7 @@
     					location.href = "/main";
     				}
     				else{
+    					console.log("로그인 실패")
     					alert("아이디 또는 비밀번호가 잘못되었습니다.");
     				}
     			});

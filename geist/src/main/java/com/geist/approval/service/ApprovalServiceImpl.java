@@ -11,11 +11,12 @@ import com.geist.approval.domain.ApprovalAgrDTO;
 import com.geist.approval.domain.ApprovalAgrDetailDTO;
 import com.geist.approval.domain.ApprovalAgrDetailPositionDTO;
 import com.geist.approval.domain.ApprovalAgrVO;
+import com.geist.approval.domain.ApprovalCreateDTO;
 import com.geist.approval.domain.ApprovalReqDTO;
+import com.geist.approval.domain.ApprovalReqDetailDTO;
 import com.geist.approval.domain.ApprovalReqVO;
 import com.geist.approval.domain.ApprovalVO;
 import com.geist.approval.domain.ApprovalWriterDTO;
-import com.geist.approval.domain.ApprovalCreateDTO;
 import com.geist.approval.mapper.ApprovalMapper;
 import com.geist.main.domain.Criteria;
 
@@ -112,7 +113,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 	}
 
 	@Override
-	public ApprovalReqDTO reqDetail(Long app_no, Long emp_no) {
+	public ApprovalReqDetailDTO reqDetail(Long app_no, Long emp_no) {
 		return mapper.reqDetail(app_no, emp_no);	
 	}
 

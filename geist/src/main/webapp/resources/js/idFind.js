@@ -28,6 +28,7 @@
 	$(document).ready(function() {
 		var searchForm = $("#idfind");
 		var idSearchBtn = $("#btn-find");
+        var loginHome = $(".btn-login");
 		
 		idSearchBtn.on("click", function() {
 			if(searchForm.find("input[name='emp_name']").val() === null) {
@@ -60,6 +61,9 @@
 			});
 		});
 		
+		loginHome.on("click", function(){
+        	location.href = "/login";
+        })
 	});
 	
 	
