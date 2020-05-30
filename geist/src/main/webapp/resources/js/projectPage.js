@@ -20,7 +20,7 @@
 		// 프로젝트 리스트 받아오기
 		function projectList(param, callback) {
 			var page = param.page;
-			$.getJSON("/project/projectList/" + page, function(data) {				
+			$.getJSON("/project/projectList" + page, function(data) {				
 				if(callback) {
 					callback(data.count, data.list);
 				}

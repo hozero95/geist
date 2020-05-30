@@ -27,7 +27,7 @@
                           </a>
                       </li>
                       <li>
-                          <a href="javascript:void(0);" onclick="ChangeMpage(3)">
+                          <a href="/project">
                               <i class="metismenu-icon pe-7s-project"></i>
                               프로젝트
                           </a>
@@ -40,30 +40,30 @@
                           </a>
                           <ul>
                               <li>
-                                  <a href="javascript:void(0);" onclick="ChangeMpage(4)">결재요청</a>  
+                                  <a href="/approvalRequest">결재요청</a>  
                               </li>
                               <li>
-                                  <a href="javascript:void(0);" onclick="ChangeMpage(5)">결재조회</a>
+                                  <a href="/approvalSearch">결재조회</a>
                               </li>
                               <li>
-                                  <a href="javascript:void(0);" onclick="ChangeMpage(6)">결재승인</a>
+                                  <a href="/approvalAdmit">결재승인</a>
                               </li>
                           </ul>
                       </li>
                       <li>
-                          <a href="javascript:void(0);" onclick="ChangeMpage(7)">
+                          <a href="/address">
                               <i class="metismenu-icon pe-7s-card"></i>
                               인사근태
                           </a>
                       </li>
                       <li>
-                          <a href="javascript:void(0);" onclick="ChangeMpage(8)">
+                          <a href="/address">
                               <i class="metismenu-icon pe-7s-book"></i>
                               주소록
                           </a>
                       </li>
                       <li>
-                          <a href="javascript:void(0);" onclick="ChangeMpage(9)">
+                          <a href="/myPage">
                               <i class="metismenu-icon pe-7s-user"></i>
                               마이페이지
                           </a>

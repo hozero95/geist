@@ -38,7 +38,7 @@ public class ProjectController {
 		private ProjectService service;
 		
 		//프로젝트의 목록을 보여주는 부분
-		@GetMapping(value = "/projectList/{page}",
+		@RequestMapping(value = "/projectList/{page}", method = {RequestMethod.GET},
 				produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 		public ResponseEntity<ProjectDTO> projectList(@PathVariable("page") int page, HttpServletRequest req){
 			HttpSession session = req.getSession();
