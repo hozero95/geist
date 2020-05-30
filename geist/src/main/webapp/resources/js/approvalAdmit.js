@@ -138,13 +138,5 @@ $(document).ready(function() {
 		}else if(app_class === "3"){
 			location.href = "/approval/detail/3?app_no=" + app_no + "&emp_no=" + emp_no;
 		}
-		
-//		if(app_class === "1"){			
-//			location.href = "/approval/detail/1?app_no=" + app_no + "&emp_no=" + emp_no;
-//		}else if(app_class === "2"){
-//			location.href = "/approval/detail/2?app_no=" + app_no + "&emp_no=" + emp_no;
-//		}else if(app_class === "3"){
-//			location.href = "/approval/detail/3?app_no=" + app_no + "&emp_no=" + emp_no;
-//		}
 	});
 });

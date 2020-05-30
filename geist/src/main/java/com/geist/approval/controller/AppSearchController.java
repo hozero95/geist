@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.geist.approval.domain.ApprovalReqDTO;
+import com.geist.approval.domain.ApprovalReqDetailDTO;
 import com.geist.approval.service.ApprovalService;
 import com.geist.main.domain.Criteria;
 
@@ -36,8 +37,8 @@ public class AppSearchController {
 	}
 	
 	// 결재 요청 상세 조회
-	@GetMapping(value = "/detail//{appNo}/{empNo}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity <ApprovalReqDTO> reqDetail(@PathVariable("appNo") Long app_no, @PathVariable("empNo") Long emp_no) {
-		return new ResponseEntity<ApprovalReqDTO>(service.reqDetail(app_no, emp_no), HttpStatus.OK);
+	@GetMapping(value = "/detail/{appNo}/{empNo}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity <ApprovalReqDetailDTO> reqDetail(@PathVariable("appNo") Long app_no, @PathVariable("empNo") Long emp_no) {
+		return new ResponseEntity<ApprovalReqDetailDTO>(service.reqDetail(app_no, emp_no), HttpStatus.OK);
 	}
 }

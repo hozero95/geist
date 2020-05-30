@@ -3,9 +3,25 @@
  */
 
 console.log("approvalAdmitDetail.js");
-console.log("3333")
+console.log("33331")
 
-var approvalAdmitDetailService = (function(){
+var approvalDetailService = (function(){
+	//결재 상세 조회일 경우
+	function searchDetail(param, callback, error){
+		var app_no = param.app_no;
+		var emp_no = param.emp_no;
+		$.getJSON("/approvalSearch/detail/" + app_no + "/" + emp_no + ".json", function(data){
+			if(callback){
+				callback(data);
+			}
+		}).fail(function(xhr, status, err){
+			if(error){
+				error();
+			}
+		});
+	}
+	
+	//결재 승인 상세 조회일 경우
 	function detail(param, callback, error){
 		var app_no = param.app_no;
 		var emp_no = param.emp_no;
@@ -52,6 +68,7 @@ var approvalAdmitDetailService = (function(){
 	}
 	
 	return {
+		searchDetail : searchDetail,
 		detail : detail,
 		approvers : approvers,
 		admit : admit
@@ -84,81 +101,122 @@ $(document).ready(function(){
 	console.log(emp_no)
 	console.log(search)
 	
-	if(search === "search"){
-		$(".pt-2 button").attr('disabled', true);
-		$(".btn").css('color', 'white');
-	}
-	
 	var deptName = $(".dept-name");
 	var empPosition = $(".emp-position");
 	var empName = $(".emp-name");
 	var appDate = $(".app-date");
-
-	detailView(app_no, emp_no);	
 	
-	function detailView(app_no, emp_no){
-		approvalAdmitDetailService.detail({
-			app_no : app_no,
-			emp_no : emp_no
-		},function(data){				
-			console.log(data)
-			deptName.text(data.dept_name);
-			empPosition.text(data.emp_position);
-			empName.text(data.emp_name);
-			appDate.text(data.app_date);
-		});
-	}
-	
-	detailApprovers(app_no)
-	
-	function detailApprovers(app_no){
-		approvalAdmitDetailService.approvers(app_no, function(data){				
-			console.log(data);
-			for(var i = 0; i < data.approvers.length; i++){
-				var position = data.approvers[i].emp_position;
+	// whoRu = search 일 경우, 결재 상세 조회 실행
+	if(search === "search"){
+		console.log("search === search")
+		$(".pt-2 button").attr('disabled', true);
+		$(".btn").css('color', 'white');
 		
-				if(position === "대리"){
-					$('input:checkbox[id="assistant"]').prop("checked", true)
-				}if(position === "과장"){
-					$('input:checkbox[id="manager"]').prop("checked", true)
-				}if(position === "차장"){
-					$('input:checkbox[id="deputy"]').prop("checked", true)
-				}if(position === "부장"){
-					$('input:checkbox[id="general"]').prop("checked", true)
+		searchDetailView(app_no, emp_no);	
+		
+		function searchDetailView(app_no, emp_no){
+			approvalDetailService.searchDetail({
+				app_no : app_no,
+				emp_no : emp_no
+			},function(data){				
+				console.log(data)
+				deptName.text(data.dept_name);
+				empPosition.text(data.emp_position);
+				empName.text(data.emp_name);
+				appDate.text(data.app_date);
+			});
+		}
+		
+		detailApprovers(app_no)
+		
+		function detailApprovers(app_no){
+			approvalDetailService.approvers(app_no, function(data){				
+				console.log(data);
+				for(var i = 0; i < data.approvers.length; i++){
+					var position = data.approvers[i].emp_position;
+			
+					if(position === "대리"){
+						$('input:checkbox[id="assistant"]').prop("checked", true)
+					}if(position === "과장"){
+						$('input:checkbox[id="manager"]').prop("checked", true)
+					}if(position === "차장"){
+						$('input:checkbox[id="deputy"]').prop("checked", true)
+					}if(position === "부장"){
+						$('input:checkbox[id="general"]').prop("checked", true)
+					}
 				}
-			}
+			});
+		}
+		
+	}else{	// whoRu !== search 일 경우, 결재 상세 조회 실행
+		console.log("search !== search")
+		detailView(app_no, emp_no);	
+		
+		function detailView(app_no, emp_no){
+			approvalDetailService.detail({
+				app_no : app_no,
+				emp_no : emp_no
+			},function(data){				
+				console.log(data)
+				deptName.text(data.dept_name);
+				empPosition.text(data.emp_position);
+				empName.text(data.emp_name);
+				appDate.text(data.app_date);
+			});
+		}
+		
+		detailApprovers(app_no)
+		
+		function detailApprovers(app_no){
+			approvalDetailService.approvers(app_no, function(data){				
+				console.log(data);
+				for(var i = 0; i < data.approvers.length; i++){
+					var position = data.approvers[i].emp_position;
+			
+					if(position === "대리"){
+						$('input:checkbox[id="assistant"]').prop("checked", true)
+					}if(position === "과장"){
+						$('input:checkbox[id="manager"]').prop("checked", true)
+					}if(position === "차장"){
+						$('input:checkbox[id="deputy"]').prop("checked", true)
+					}if(position === "부장"){
+						$('input:checkbox[id="general"]').prop("checked", true)
+					}
+				}
+			});
+		}
+		
+		var admit = $("#approve");
+		var reject = $("#return");
+		
+		admit.click(function(){
+			approvalDetailService.admit({
+				app_no : app_no,
+				emp_no : emp_no,
+				agr_status : 2			
+			}, function(result){
+				if(result == 'success') {
+	                location.href = "/approvalAdmit";
+	            } else {
+	                console.log("승인 실패....");
+	            }
+			})
 		});
-	}
-	
-	var admit = $("#approve");
-	var reject = $("#return");
-	
-	admit.click(function(){
-		approvalAdmitDetailService.admit({
-			app_no : app_no,
-			emp_no : emp_no,
-			agr_status : 2			
-		}, function(result){
-			if(result == 'success') {
-                location.href = "/approvalAdmit";
-            } else {
-                console.log("승인 실패....");
-            }
-		})
-	});
-	
-	reject.click(function(){
-		approvalAdmitDetailService.admit({
-			app_no : app_no,
-			emp_no : emp_no,
-			agr_status : 3			
-		}, function(result){
-			if(result == 'success') {
-                location.href = "/approvalAdmit";
-            } else {
-                console.log("거부 실패....");
-            }
-		})
-	});
+		
+		reject.click(function(){
+			approvalDetailService.admit({
+				app_no : app_no,
+				emp_no : emp_no,
+				agr_status : 3			
+			}, function(result){
+				if(result == 'success') {
+	                location.href = "/approvalAdmit";
+	            } else {
+	                console.log("거부 실패....");
+	            }
+			})
+		});
+	}	// End: else
 });
+
 

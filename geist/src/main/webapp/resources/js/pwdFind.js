@@ -29,6 +29,7 @@
 	$(document).ready(function() {
 		var searchForm = $("#pwdfind");
 		var pwSearchBtn = $("#btn-find");
+		var loginHome = $(".btn-login");
 		
 		pwSearchBtn.on("click", function() {
 			if(searchForm.find("input[name='userid']").val() === null) {
@@ -65,10 +66,12 @@
 				else{
 					alert("회원님의 비밀번호는 " + result + " 입니다.");
 				}
-			});
-			
+			});			
 		});
 		
+		loginHome.on("click", function(){
+        	location.href = "/login";
+        })
 	});
 	
 	

@@ -43,24 +43,25 @@ public class LoginController {
 		if(login == null) {
 			session.setAttribute("member", null);
 			result = "fail";
-		}
-		
-		position = login.getEmp_position();
-			
-		if(login.getEmp_no() == 100) {
-			sys = "sys";
-			result = "success";
-			session.setAttribute("sys", sys);
-			session.setAttribute("member", login);
-		}else if(position.equals("부장")) {
-			result = "success";				
-			session.setAttribute("empPosition", login.getEmp_position());
-			session.setAttribute("member", login);
 		}else {
-			result = "success";				
-			session.setAttribute("empPosition", login.getEmp_position());
-			session.setAttribute("member", login);
+			position = login.getEmp_position();
+			
+			if(login.getEmp_no() == 100) {
+				sys = "sys";
+				result = "success";
+				session.setAttribute("sys", sys);
+				session.setAttribute("member", login);
+			}else if(position.equals("부장")) {
+				result = "success";				
+				session.setAttribute("empPosition", login.getEmp_position());
+				session.setAttribute("member", login);
+			}else {
+				result = "success";				
+				session.setAttribute("empPosition", login.getEmp_position());
+				session.setAttribute("member", login);
+			}
 		}
+				
 		log.info("session : " + session);
 		
 		return new ResponseEntity<String>(result, HttpStatus.OK);
