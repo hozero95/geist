@@ -24,6 +24,16 @@
 	
 	<context:component-scan base-package="com.geist.*.controller" />
 	
-	
+	<!-- interceptor : 인증되지 않은 사용자의 매핑된 url 접근을 막기 위한 기능  -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/*" />
+			<exclude-mapping path="/login/**" />
+			<exclude-mapping path="/idSearch" />
+			<exclude-mapping path="/pwSearch" />
+			<exclude-mapping path="/register/**" />
+			<beans:bean class="com.geist.login.controller.LoginInterceptor" />
+		</interceptor>
+	</interceptors>	
 	
 </beans:beans>
