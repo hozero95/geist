@@ -51,8 +51,10 @@ public interface ApprovalMapper {
 	public List<ApprovalAgrDetailPositionVO> approvers(Long app_no);
 	
 	
-	// 결재 개수 조회
-	public int getCount(Long emp_no);
+	// 결재 요청 개수 조회
+	public int reqGetCount(Long emp_no);
+	// 결재 요청 개수 조회
+	public int argGetCount(Long emp_no);
 	
 	
 	// 결재 승인 or 반려

@@ -153,10 +153,10 @@
 	</select>
 	
 	
-	<!-- 결재 개수 조회 -->
-	<select id="getCount" resultType="int">
+	<!-- 결재 요청 개수 조회 -->
+	<select id="reqGetCount" resultType="int">
 		SELECT 
-			count(*) 
+			count(*)
 		FROM 
 			approval a, employee e, app_request arq
  		WHERE
@@ -165,6 +165,19 @@
  			and arq.emp_no = #{emp_no}		
 	</select>
 	
+	<!-- 요청받은 결재 개수 조회 -->
+	<select id="argGetCount" resultType="int">
+		SELECT 
+			count(*)
+		FROM 
+			approval a, employee e, app_request arq, app_agree agr, department d
+ 		WHERE
+ 			e.emp_no = agr.emp_no 
+		    and e.dept_no = d.dept_no
+		    and agr.app_no = arq.app_no   
+		    and agr.app_no = a.app_no 
+ 			and agr.emp_no = #{emp_no}		
+	</select>
 	
 	<!-- 결재 승인 or 반려_수정전 -->
 	<update id="appAdmit">
