@@ -9,10 +9,10 @@ import lombok.Data;
 
 @Data
 public class AddressVO {
-	private String emp_name;		//이름
-	private String emp_email;		//이메일
-	private String emp_phone;		//개인 연락처
-	private String emp_tel;			//사내 연락처
-	private String emp_position;	//직책
-	private String dept_name;			//부서명
+	private String emp_name;		
+	private String emp_email;		
+	private String emp_phone;		
+	private String emp_tel;			
+	private String emp_position;	
+	private String dept_name;			
 }

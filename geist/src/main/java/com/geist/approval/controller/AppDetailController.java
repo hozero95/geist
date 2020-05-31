@@ -20,19 +20,16 @@ public class AppDetailController {
 		log.info("결재 문서 생성 : 주간업무 보고서 페이지 이동");
 		return "page/weekly-doc";
 	}
-	
 	@RequestMapping("/approval/detail/new/2")
 	public String approvalRequestClass2() {
 		log.info("결재 문서 생성 : 휴가 신청서 페이지 이동");
 		return "page/leave-doc";
 	}
-	
 	@RequestMapping("/approval/detail/new/3")
 	public String approvalRequestClass3() {
 		log.info("결재 문서 생성 : 사직 신청서 페이지 이동");
 		return "page/resignation-doc";
 	}
-
 	@RequestMapping("/approval/detail/1")
 	public String approvalAppClass1() {
 		log.info("결재 문서 뷰어 : 주간업무 보고서 페이지 이동");

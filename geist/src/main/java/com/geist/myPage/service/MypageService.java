@@ -8,8 +8,7 @@ import com.geist.myPage.domain.MypageDTO;
  */
 
 public interface MypageService {
-
-	public MypageDTO get(Long emp_no);
+	public MypageDTO read(Long emp_no);
 	
 	public int modify(MypageDTO user);
 }

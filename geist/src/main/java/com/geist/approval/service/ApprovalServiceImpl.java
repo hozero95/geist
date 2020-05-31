@@ -52,7 +52,6 @@ public class ApprovalServiceImpl implements ApprovalService {
 		
 		return mapper.appCreate(avo);
 	}
-
 	// 결재 요청자 insert
 	@Override
 	public int appReqCreate(ApprovalCreateDTO dto) {
@@ -66,7 +65,6 @@ public class ApprovalServiceImpl implements ApprovalService {
 		
 		return mapper.appReqCreate(reqVo);
 	}
-
 	// 결재승인자들 insert
 	@Override
 	public void appAgrCreate(ApprovalCreateDTO dto) {	
@@ -87,31 +85,18 @@ public class ApprovalServiceImpl implements ApprovalService {
 			mapper.appAgrCreate(agrVo, dto.getEmp_no());
 		}
 	}
-	
 	//결재 문서 생성할 작성자 정보 조회 
 	@Override
 	public ApprovalWriterDTO appWriter(Long emp_no) {
 		return mapper.appWriter(emp_no);
 	}
 	
-	// 결재 문서 승인 or 반려
+	// 결재 요청 조회
 	@Override
-	public void appAdmit(ApprovalAgrVO agrVo) {
-		mapper.appAdmit(agrVo);
-	}
-	
-	// 최종 승인 상태 update
-	@Override
-	public void finalState(Long app_no) {
-		mapper.finalState(app_no);
-	}
-
-	// 결재 조회
-	@Override
-	public ApprovalReqDTO reqListWithPaging(Criteria cri, Long emp_no) {
+	public ApprovalReqDTO reqGetList(Criteria cri, Long emp_no) {
 		return new ApprovalReqDTO(mapper.getCount(emp_no), mapper.reqListWithPaging(cri, emp_no));
 	}
-
+	// 결재 요청 상제 조회
 	@Override
 	public ApprovalReqDetailDTO reqDetail(Long app_no, Long emp_no) {
 		return mapper.reqDetail(app_no, emp_no);	
@@ -119,21 +104,30 @@ public class ApprovalServiceImpl implements ApprovalService {
 
 	// 결재 승인 조회
 	@Override
-	public ApprovalAgrDTO admitListWithPaging(Criteria cri, Long emp_no) {
+	public ApprovalAgrDTO admitGetList(Criteria cri, Long emp_no) {
 		return new ApprovalAgrDTO(mapper.getCount(emp_no), mapper.admitListWithPaging(cri, emp_no));	
 	}
-	
 	// 결재 승인 상세 조회
 	@Override
 	public ApprovalAgrDetailDTO admitDetail(Long app_no, Long emp_no) {
 		return mapper.admitDetail(app_no, emp_no);	
 	}
-
 	// 결재 승인자들 조회
 	@Override
 	public ApprovalAgrDetailPositionDTO approvers(Long app_no) {
-//		return mapper.approvers(app_no);
 		return new ApprovalAgrDetailPositionDTO(mapper.approvers(app_no));
 	}	
 
+	
+	// 결재 문서 승인 or 반려
+	@Override
+	public void appAdmit(ApprovalAgrVO agrVo) {
+		mapper.appAdmit(agrVo);
+	}
+	// 최종 승인 상태 update
+	@Override
+	public void finalState(Long app_no) {
+		mapper.finalState(app_no);
+	}
 }
+

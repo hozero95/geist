@@ -27,7 +27,7 @@
 		]]>
 	</select>
 	
-	<update id="update">
+	<update id="modify">
 		UPDATE 
 			employee 
 		SET 

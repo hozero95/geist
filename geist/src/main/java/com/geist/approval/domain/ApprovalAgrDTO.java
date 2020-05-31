@@ -7,6 +7,8 @@ import lombok.Data;
 
 @Data
 public class ApprovalAgrDTO {	
+	// 결재 승인 조회 -> admitGetList()
+	
 	private int count;
 	private List<ApprovalAgrVO> list;
 

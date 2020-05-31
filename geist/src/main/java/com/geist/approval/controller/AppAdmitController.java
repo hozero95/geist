@@ -39,9 +39,8 @@ public class AppAdmitController {
 	@GetMapping(value = "/{page}/{empNo}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity <ApprovalAgrDTO> admitList(@PathVariable("page") int page, @PathVariable("empNo") Long emp_no) {
 		Criteria cri = new Criteria(page, 10);
-		return new ResponseEntity<ApprovalAgrDTO>(service.admitListWithPaging(cri, emp_no), HttpStatus.OK);
+		return new ResponseEntity<ApprovalAgrDTO>(service.admitGetList(cri, emp_no), HttpStatus.OK);
 	}
-
 	// 결재 승인 상세 조회
 	@GetMapping(value = "/detail/{appNo}/{empNo}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity <ApprovalAgrDetailDTO> admitDetail(@PathVariable("appNo") Long app_no, @PathVariable("empNo") Long emp_no) {
@@ -49,7 +48,6 @@ public class AppAdmitController {
 		
 		return new ResponseEntity<ApprovalAgrDetailDTO>(service.admitDetail(app_no, emp_no), HttpStatus.OK);
 	}
-	
 	// 결재 승인자들 조회
 	@GetMapping(value = "/detailApprovers/{appNo}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity <ApprovalAgrDetailPositionDTO> approvers(@PathVariable("appNo") Long app_no) {
@@ -57,7 +55,6 @@ public class AppAdmitController {
 		
 		return new ResponseEntity<ApprovalAgrDetailPositionDTO>(service.approvers(app_no), HttpStatus.OK);
 	}
-	
 	// 결재 승인 or 반려
 	@PostMapping(value = "/admit", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> appAdmit(@RequestBody ApprovalAgrVO agrVo) {
