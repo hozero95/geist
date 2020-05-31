@@ -93,7 +93,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 	// 결재 요청 조회
 	@Override
 	public ApprovalReqDTO reqGetList(Criteria cri, Long emp_no) {
-		return new ApprovalReqDTO(mapper.getCount(emp_no), mapper.reqListWithPaging(cri, emp_no));
+		return new ApprovalReqDTO(mapper.reqGetCount(emp_no), mapper.reqListWithPaging(cri, emp_no));
 	}
 	// 결재 요청 상제 조회
 	@Override
@@ -105,7 +105,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 	// 결재 승인 조회
 	@Override
 	public ApprovalAgrDTO admitGetList(Criteria cri, Long emp_no) {
-		return new ApprovalAgrDTO(mapper.getCount(emp_no), mapper.admitListWithPaging(cri, emp_no));	
+		return new ApprovalAgrDTO(mapper.argGetCount(emp_no), mapper.admitListWithPaging(cri, emp_no));	
 	}
 	// 결재 승인 상세 조회
 	@Override
