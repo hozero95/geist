@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.geist.approval.domain.ApprovalAgrVO;
 import com.geist.approval.domain.ApprovalReqVO;
-import com.geist.approval.domain.ApprovalVO;
+import com.geist.approval.domain.ApprovalDTO;
 import com.geist.approval.domain.ApprovalCreateDTO;
 import com.geist.approval.mapper.ApprovalMapper;
 import com.geist.main.domain.Criteria;
@@ -44,7 +44,7 @@ public class ApprovalMapperTests {
 
 //	@Test
 	public void create() {
-		ApprovalVO avo = new ApprovalVO();
+		ApprovalDTO avo = new ApprovalDTO();
 		
 		avo.setApp_no(2005071061L);
 		avo.setApp_class(1L);
@@ -85,7 +85,7 @@ public class ApprovalMapperTests {
 	public void finalState() {
 		Long appNo = 100L;
 		
-		mapper.finalState(appNo);
+//		mapper.finalState(appNo);
 	}
 	
 	

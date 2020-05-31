@@ -33,9 +33,8 @@ public class AppSearchController {
 	public ResponseEntity <ApprovalReqDTO> reqList(@PathVariable("page") int page, @PathVariable("empNo") Long emp_no) {
 		Criteria cri = new Criteria(page, 10);
 		log.info("page === " + page);
-		return new ResponseEntity<ApprovalReqDTO>(service.reqListWithPaging(cri, emp_no), HttpStatus.OK);
+		return new ResponseEntity<ApprovalReqDTO>(service.reqGetList(cri, emp_no), HttpStatus.OK);
 	}
-	
 	// 결재 요청 상세 조회
 	@GetMapping(value = "/detail/{appNo}/{empNo}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity <ApprovalReqDetailDTO> reqDetail(@PathVariable("appNo") Long app_no, @PathVariable("empNo") Long emp_no) {

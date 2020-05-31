@@ -92,7 +92,7 @@
                                     </div>
 
                                     <div class="btn-row">
-                                        <input type="button" class="btn-write" value="작성" onclick="alert('작성 되었습니다')">
+                                        <input type="button" class="btn-write" value="작성" onclick="alert('작성 되었습니다.')">
                                     </div>
                                     
                                 </form>

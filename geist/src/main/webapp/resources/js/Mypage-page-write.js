@@ -1,4 +1,4 @@
-
+console.log("mypage-modify")
 
 var MypageService = (function(){
 		function detailView(param, callback, error){
@@ -91,10 +91,10 @@ $(document).ready(function(){
 				emp_phone : emp_phone,
 				emp_address : emp_address
 			}, function(result){
-				alert(result);
-				location.href = "/myPage";
+				if(result == 'success') {
+					location.href = "/myPage";
+				}
 			});
 		});
-		
 	}
 });

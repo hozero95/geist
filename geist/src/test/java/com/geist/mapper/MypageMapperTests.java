@@ -40,7 +40,7 @@ public class MypageMapperTests {
 		dto.setEmp_tel("02-321-1002");
 		dto.setEmp_address("부천시 원미구");
 		
-		int count = mapper.update(dto);
+		int count = mapper.modify(dto);
 		log.info("업데이트 :  " + count);
 	}
 }

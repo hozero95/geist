@@ -12,16 +12,12 @@ import lombok.Data;
  */
 
 @Data
-public class ApprovalVO {
-
-	//approval(결재) 
+public class ApprovalDTO {
+	// 결재 문서 생성 insert -> appCreate()
 	private Long app_no;
 	private Long app_class;
 	private String app_title;
 	private String app_date;
 	private Long app_status;	
-	
-	//문서 작성자
-	private String emp_name;
-	
+	private String emp_name;	//결재 문서 작성자의 emp_name
 }

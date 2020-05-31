@@ -24,20 +24,16 @@ import lombok.extern.log4j.Log4j;
 @RestController
 @RequestMapping("/mypage")
 @AllArgsConstructor
-@Log4j
 public class MypageController {
 	private MypageService service;
 
 	@GetMapping(value = "/{emp_no}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<MypageDTO> get(@PathVariable("emp_no") Long emp_no) {
-		return new ResponseEntity<>(service.get(emp_no), HttpStatus.OK);
+	public ResponseEntity<MypageDTO> read(@PathVariable("emp_no") Long emp_no) {
+		return new ResponseEntity<>(service.read(emp_no), HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH},
 			value = "/detail/{emp_no}", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
-	/* consumes = "application/json"
-		: client가 보내는 content-type이 'consumes'에서 명시한 media-type과 동일해야 한다
-	 */
 	public ResponseEntity<String> modify(@RequestBody MypageDTO dto, @PathVariable("emp_no") Long emp_no){
 		dto.setEmp_no(emp_no);
 		
@@ -45,5 +41,4 @@ public class MypageController {
 				? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	};	
-
 }

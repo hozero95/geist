@@ -8,8 +8,7 @@ import com.geist.myPage.domain.MypageDTO;
  */
 
 public interface MypageMapper {
-
 	public MypageDTO read(Long emp_no);
 	
-	public int update(MypageDTO dto);
+	public int modify(MypageDTO dto);
 }
