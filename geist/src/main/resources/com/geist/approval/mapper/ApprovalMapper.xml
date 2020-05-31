@@ -59,7 +59,7 @@
 	</select>
 	
 	<!-- 결재 요청 조회 -->	
-	<select id="reqListWithPaging" resultType="com.geist.approval.domain.ApprovalVO">
+	<select id="reqListWithPaging" resultType="com.geist.approval.domain.ApprovalDTO">
 		<![CDATA[
 			SELECT
 				app_no, app_class, app_date, app_title, emp_name, app_status
@@ -95,6 +95,7 @@
 				and arq.emp_no = #{emp_no}
 				and arq.app_no = #{app_no}
 	</select>
+	
 	
 	<!-- 결재 승인 조회 -->
 	<select id="admitListWithPaging" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
@@ -152,26 +153,6 @@
 	</select>
 	
 	
-	<!-- 결재 승인 or 반려 -->
-	<update id="appAdmit">
-		UPDATE 
-			app_agree 
-		SET 
-			agr_status = #{agr_status} 
-		WHERE 
-			emp_no = #{emp_no} 
-			and app_no = #{app_no}
-	</update>
-	<!-- 최종 승인 상태 update -->
-	<update id="finalState">
-		UPDATE approval SET app_status = 2 WHERE app_no = (
-			SELECT DISTINCT app_no FROM app_agree 
-			WHERE
-			(SELECT count(*) FROM app_agree WHERE agr_status in (2) and app_no = #{app_no})
-			= (select count(*) FROM app_agree WHERE app_no = #{app_no})
-			and app_no = #{app_no}
-		)
-	</update>
 	<!-- 결재 개수 조회 -->
 	<select id="getCount" resultType="int">
 		SELECT 
@@ -183,4 +164,34 @@
  			and arq.app_no = a.app_no 
  			and arq.emp_no = #{emp_no}		
 	</select>
+	
+	
+	<!-- 결재 승인 or 반려_수정전 -->
+	<update id="appAdmit">
+		UPDATE 
+			app_agree 
+		SET 
+			agr_status = #{agr_status} 
+		WHERE 
+			emp_no = #{emp_no} 
+			and app_no = #{app_no}
+	</update>
+	<!-- 결재자들의 결재 여부 확인 -->
+	<select id="appAdmitChk" resultType="long">
+		<![CDATA[
+			SELECT DISTINCT app_no FROM app_agree 
+			WHERE app_no = #{app_no} and
+				(SELECT count(*) FROM app_agree WHERE app_no = #{app_no})
+				= (SELECT count(*) FROM app_agree WHERE agr_status NOT IN (1) and app_no = #{app_no})
+		]]>
+	</select>
+	<!-- 결재자들의 반려 개수 체크 -->
+	<select id="appRejectChk" resultType="int">
+		SELECT count(*) as count FROM app_agree WHERE agr_status IN (3) and app_no = #{app_no}
+	</select>
+	<!-- 최종 승인 상태 update -->
+	<update id="finalState">
+		UPDATE approval SET app_status = #{count} WHERE app_no = #{app_no}
+	</update>
+
 </mapper>

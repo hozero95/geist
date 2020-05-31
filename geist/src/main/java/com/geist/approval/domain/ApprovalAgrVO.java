@@ -10,4 +10,5 @@ public class ApprovalAgrVO {
 	private Long agr_status;	//app_agree 결제 승인
 	
 	private String emp_position;
+	private int count;
 }

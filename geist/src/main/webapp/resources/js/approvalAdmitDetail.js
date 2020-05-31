@@ -3,7 +3,7 @@
  */
 
 console.log("approvalAdmitDetail.js");
-console.log("33331")
+console.log("3333123")
 
 var approvalDetailService = (function(){
 	//결재 상세 조회일 경우
@@ -105,12 +105,19 @@ $(document).ready(function(){
 	var empPosition = $(".emp-position");
 	var empName = $(".emp-name");
 	var appDate = $(".app-date");
+	var appSearchBtn = $("#appSearchBtn");
 	
 	// whoRu = search 일 경우, 결재 상세 조회 실행
 	if(search === "search"){
 		console.log("search === search")
 		$(".pt-2 button").attr('disabled', true);
 		$(".btn").css('color', 'white');
+		appSearchBtn.css({
+			display : "block",
+			color : "white"				
+		});
+		appSearchBtn.attr('disabled', false);
+		appSearchBtn.attr('onclick', "location.replace('/approvalSearch');");
 		
 		searchDetailView(app_no, emp_no);	
 		
@@ -150,6 +157,9 @@ $(document).ready(function(){
 		
 	}else{	// whoRu !== search 일 경우, 결재 상세 조회 실행
 		console.log("search !== search")
+		
+		appSearchBtn.attr('onclick', "location.replace('/approvalAdmit');");
+		
 		detailView(app_no, emp_no);	
 		
 		function detailView(app_no, emp_no){

@@ -15,7 +15,7 @@ import com.geist.approval.domain.ApprovalCreateDTO;
 import com.geist.approval.domain.ApprovalReqDTO;
 import com.geist.approval.domain.ApprovalReqDetailDTO;
 import com.geist.approval.domain.ApprovalReqVO;
-import com.geist.approval.domain.ApprovalVO;
+import com.geist.approval.domain.ApprovalDTO;
 import com.geist.approval.domain.ApprovalWriterDTO;
 import com.geist.approval.mapper.ApprovalMapper;
 import com.geist.main.domain.Criteria;
@@ -38,7 +38,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 	@Override
 	public int appCreate(ApprovalCreateDTO dto) {
 		log.info("결재 문서 생성 메서드 실행");
-		ApprovalVO avo = new ApprovalVO();
+		ApprovalDTO appDto = new ApprovalDTO();
 		
 		long time = System.currentTimeMillis();
 		SimpleDateFormat dayTime = new SimpleDateFormat("yyMMddhhmmss");
@@ -46,19 +46,17 @@ public class ApprovalServiceImpl implements ApprovalService {
 		
 		dto.setApp_no(appNo);
 	
-		avo.setApp_no(dto.getApp_no());
-		avo.setApp_class(dto.getApp_class());
-		avo.setApp_title(dto.getApp_title());
+		appDto.setApp_no(dto.getApp_no());
+		appDto.setApp_class(dto.getApp_class());
+		appDto.setApp_title(dto.getApp_title());
 		
-		return mapper.appCreate(avo);
+		return mapper.appCreate(appDto);
 	}
 	// 결재 요청자 insert
 	@Override
 	public int appReqCreate(ApprovalCreateDTO dto) {
 		log.info("결재 요청 메서드 실행");
 		ApprovalReqVO reqVo = new ApprovalReqVO();
-		
-//		log.info("vo.getApp_no() = " + vo.getApp_no());
 		
 		reqVo.setApp_no(dto.getApp_no());
 		reqVo.setEmp_no(dto.getEmp_no());
@@ -91,6 +89,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 		return mapper.appWriter(emp_no);
 	}
 	
+	
 	// 결재 요청 조회
 	@Override
 	public ApprovalReqDTO reqGetList(Criteria cri, Long emp_no) {
@@ -102,6 +101,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 		return mapper.reqDetail(app_no, emp_no);	
 	}
 
+	
 	// 결재 승인 조회
 	@Override
 	public ApprovalAgrDTO admitGetList(Criteria cri, Long emp_no) {
@@ -124,10 +124,20 @@ public class ApprovalServiceImpl implements ApprovalService {
 	public void appAdmit(ApprovalAgrVO agrVo) {
 		mapper.appAdmit(agrVo);
 	}
+	// 결재자들의 결재 여부 
+	@Override
+	public Long appAdmitChk(Long app_no) {
+		return mapper.appAdmitChk(app_no);
+	}
+	// 결재자들의 반려 개수 체크
+	@Override
+	public int appRejectChk(Long app_no) {
+		return mapper.appRejectChk(app_no);
+	}
 	// 최종 승인 상태 update
 	@Override
-	public void finalState(Long app_no) {
-		mapper.finalState(app_no);
+	public void finalState(Long app_no, int count) {
+		mapper.finalState(app_no, count);
 	}
 }
 

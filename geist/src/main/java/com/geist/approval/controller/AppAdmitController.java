@@ -1,7 +1,5 @@
 package com.geist.approval.controller;
 
-import java.awt.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -58,8 +56,23 @@ public class AppAdmitController {
 	// 결재 승인 or 반려
 	@PostMapping(value = "/admit", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> appAdmit(@RequestBody ApprovalAgrVO agrVo) {
+		// 승인 or 반려 
 		service.appAdmit(agrVo);
-		service.finalState(agrVo.getApp_no());
+		
+		// 모든 결재자들이 승인 or 반려를 했다면 문서 번호 리턴
+		Long app_no = service.appAdmitChk(agrVo.getApp_no());
+		log.info("모든 결재자들이 승인한 문서? === " + app_no);
+		
+		if(app_no != null) {
+			log.info("모든 결재자들이 승인한 문서!!! === " + app_no);
+			
+			// 결재자 중 반려를 체크해서 반려 개수 반환
+			int count = service.appRejectChk(agrVo.getApp_no()) == 0 ? 2 : 3;
+			agrVo.setCount(count);
+			
+			// 반려 숫자 개수가 0이면 최종상태를 2로, 1개 이상이라면 최종상태를 3으로 업데이트 
+			service.finalState(agrVo.getApp_no(), agrVo.getCount());			
+		}
 		
 		return new ResponseEntity<>("success", HttpStatus.OK);
 	}		

@@ -42,6 +42,10 @@ public interface ApprovalService {
 	
 	// 결재 승인 or 반려
 	public void appAdmit(ApprovalAgrVO agrVo);
+	// 결재자들의 결재 여부 확인
+	public Long appAdmitChk(Long app_no);
+	// 결재자들의 반려 개수 체크
+	public int appRejectChk(Long app_no);
 	// 최종 승인 상태 update
-	public void finalState(Long app_no);
+	public void finalState(Long app_no, int count);
 }
