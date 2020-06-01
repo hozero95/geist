@@ -1,8 +1,6 @@
 var NoticeService = (function(){
 	function detailView(param, callback, error){
-			var noti_no = param.noti_no;
-			console.log("NoticeService.getList()noti_no === " + noti_no);
-				
+			var noti_no = param.noti_no;				
 			$.getJSON("/notice/noticeRead/" + noti_no + ".json", function(data){
 				if(callback){
 					callback(data);

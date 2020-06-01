@@ -1,8 +1,6 @@
 var NoticeService = (function(){
 	function getList(param, callback, error){
 			var page = param.page;
-			console.log("NoticeService.getList()page === " + page);
-				
 			$.getJSON("/notice/noticeList/" + page + ".json", function(data){
 				if(callback){
 					callback(data.count, data.list);

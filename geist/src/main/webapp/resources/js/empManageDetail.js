@@ -113,8 +113,10 @@
 				emp_sal : emp_sal,
 				dept_name : dept_name
 			}, function(result){
-				alert(result);
-				self.close();
+				if(result == 'success') {
+					alert("회원정보가 수정되었습니다.");
+					self.close();
+				}
 			});
 		});
 		
