@@ -134,6 +134,6 @@
             </div>
         </div>
     </div>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/approvalAdmitDetail.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/approval-agree-detail.js"></script>
 </body>
 </html>

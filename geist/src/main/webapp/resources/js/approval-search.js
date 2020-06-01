@@ -4,7 +4,6 @@
  */
 
 console.log("approvalSearch.js")
-console.log("111")
 
 var approvalSearchService = (function(){
 	function getList(param, callback, error){
@@ -73,7 +72,7 @@ $(document).ready(function() {
 				+ "<input type='hidden' name='app_no' value='" + list[i].app_no + "'>" 
 				+ "<input type='hidden' name='app_class' value='" + list[i].app_class + "'></a></td>";
 				str += "<td>" + list[i].emp_name + "</td>";
-				str += "<td>" + status + "</td>";
+				str += "<td style='background-color:#F5F9FC;'>" + status + "</td>";
 				str += "</tr>";
 			}
 			tbody.html(str);

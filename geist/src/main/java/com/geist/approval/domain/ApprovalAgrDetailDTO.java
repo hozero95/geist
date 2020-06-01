@@ -14,5 +14,6 @@ public class ApprovalAgrDetailDTO {
 	private Long app_no;
 	private Long app_class;
 	private Long agr_status;
+	private Long app_status;	// 최종상태
 }
 

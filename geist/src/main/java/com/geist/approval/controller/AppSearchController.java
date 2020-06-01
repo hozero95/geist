@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 /* *
- * 결재 페이지
+ * 결재 발신함 페이지
  * 담당 : 김현선
  */
 

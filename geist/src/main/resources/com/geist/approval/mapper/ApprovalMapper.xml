@@ -98,16 +98,16 @@
 	
 	
 	<!-- 결재 승인 조회 -->
-	<select id="admitListWithPaging" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
+	<select id="agrListWithPaging" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
 		<![CDATA[
 			SELECT
-			    app_no, app_class, app_date, app_title, emp_name, agr_status
+			    app_no, app_class, app_date, app_title, emp_name, agr_status, app_status
 			FROM
 			    (
 				SELECT /*+ INDEX_DESC(app_agree pk_app_agree) */
 			        appAdmit.*, rownum rn
 			    FROM (
-			        SELECT arq.app_no, a.app_class, to_char(app_date, 'YYYY-MM-DD') app_date, a.app_title, e.emp_name, agr.agr_status
+			        SELECT arq.app_no, a.app_class, to_char(app_date, 'YYYY-MM-DD') app_date, a.app_title, e.emp_name, agr.agr_status, a.app_status
 			        FROM approval a, employee e, app_request arq, app_agree agr
 			        WHERE 
 			            e.emp_no = arq.emp_no  
@@ -123,7 +123,7 @@
 		]]>
 	</select>	
 	<!-- 결재 승인 상세 조회 -->
-	<select id="admitDetail" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
+	<select id="agrDetail" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
 		<![CDATA[
 			SELECT 
 				dept_name, emp_position, emp_name, app_title, app_date
@@ -180,7 +180,7 @@
 	</select>
 	
 	<!-- 결재 승인 or 반려_수정전 -->
-	<update id="appAdmit">
+	<update id="appAgree">
 		UPDATE 
 			app_agree 
 		SET 
@@ -190,7 +190,7 @@
 			and app_no = #{app_no}
 	</update>
 	<!-- 결재자들의 결재 여부 확인 -->
-	<select id="appAdmitChk" resultType="long">
+	<select id="appAgreeChk" resultType="long">
 		<![CDATA[
 			SELECT DISTINCT app_no FROM app_agree 
 			WHERE app_no = #{app_no} and

@@ -40,11 +40,11 @@ public interface ApprovalMapper {
 	
 	
 	// 결재 승인 조회
-	public List<ApprovalAgrVO> admitListWithPaging(
+	public List<ApprovalAgrVO> agrListWithPaging(
 			@Param("cri") Criteria cri, 
 			@Param("emp_no") Long emp_no);	
 	// 결재 승인 상세 조회
-	public ApprovalAgrDetailDTO admitDetail(
+	public ApprovalAgrDetailDTO agrDetail(
 			@Param("app_no") Long app_no, 
 			@Param("emp_no") Long emp_no);
 	// 결재 승인자들 조회
@@ -58,9 +58,9 @@ public interface ApprovalMapper {
 	
 	
 	// 결재 승인 or 반려
-	public void appAdmit(ApprovalAgrVO agrVo);
+	public void appAgree(ApprovalAgrVO agrVo);
 	// 결재자들의 결재 여부 확인 
-	public Long appAdmitChk(Long app_no);
+	public Long appAgreeChk(Long app_no);
 	// 결재자들의 반려 개수 체크
 	public int appRejectChk(Long app_no);
 	// 최종 승인 상태 update

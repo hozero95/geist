@@ -26,7 +26,7 @@ function ChangeMpage(value){
     }
     else if(value == "6") // nav 버튼 클릭시 전자결제승인 조회 화면이동
     {
-        location.href="approvalAdmit";
+        location.href="approvalAgree";
     }
     else if(value == "7") // nav 버튼 클릭시 인사근태 화면이동
     {

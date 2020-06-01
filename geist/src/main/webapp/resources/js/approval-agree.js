@@ -3,15 +3,14 @@
  * 담당 : 김현선
  */
 
-console.log("approvalAdmit.js")
-console.log("2")
+console.log("approvalAgree.js")
 
 var approvalAdmitService = (function(){
 	function getList(param, callback, error){
 		var page = param.page;
 		var emp_no = param.emp_no;
 		
-		$.getJSON("/approvalAdmit/" + page + "/" + emp_no + ".json", function(data){
+		$.getJSON("/approvalAgree/" + page + "/" + emp_no + ".json", function(data){
 			if(callback){
 				callback(data.count, data.list);
 			}
@@ -70,6 +69,21 @@ $(document).ready(function() {
 					status = "알 수 없음";
 				}
 				
+				var finalStatus = "";
+				switch(list[i].app_status){
+				case 1:
+					finalStatus = "처리중";
+					break;
+				case 2:
+					finalStatus = "승인";
+					break;
+				case 3:
+					finalStatus = "반려";
+					break;
+				default:
+					finalStatus = "알 수 없음";
+				}
+				
 				str += "<tr>";
 				str += "<td>" + list[i].app_date + "</td>";
 				str += "<td><a href='#'>" + list[i].app_title 
@@ -77,6 +91,7 @@ $(document).ready(function() {
 					+ "<input type='hidden' name='app_class' value='" + list[i].app_class + "'></a></td>";
 				str += "<td>" + list[i].emp_name + "</td>";
 				str += "<td>" + status + "</td>";
+				str += "<td style='background-color:#F5F9FC'>" + finalStatus + "</td>";
 				str += "</tr>";
 			}
 			tbody.html(str);

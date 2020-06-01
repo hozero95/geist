@@ -105,10 +105,10 @@ public class MainController {
 		return "/page/approval-search";
 	}
 	
-	@RequestMapping("/approvalAdmit")
-	public String approvalAdmit() {
+	@RequestMapping("/approvalAgree")
+	public String approvalAgree() {
 		log.info("결재 승인 페이지 이동");
-		return "/page/approval-admit";
+		return "/page/approval-agree";
 	}
 	
 	@RequestMapping("/address")
