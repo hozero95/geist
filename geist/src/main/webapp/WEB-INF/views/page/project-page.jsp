@@ -51,6 +51,9 @@
 	<div id="side">
 		<jsp:include page="<%=admin_nav%>" />
 	</div>
+	
+	<input type="hidden" name="login_sys" value="${admin_nav}">
+	
 	<div class="app-container fixed-sidebar fixed-header closed-sidebar">
 		<div class="app-main">
 			<!-- Side navbar -->

@@ -26,6 +26,26 @@ constraint fk_proj_management_dept_no foreign key(dept_no) references department
 			 
 <mapper namespace = "com.geist.project.mapper.ProjectMapper">
 
+<select id="projectAllList" resultType="com.geist.project.domain.ProjectVO">
+	<![CDATA[ 
+		SELECT 
+		    proj_no, proj_name, proj_agency, proj_start, proj_end
+		FROM(
+		    SELECT /*+INDEX_DESC(notice pk_project) */
+		        projectAll.*, rownum rn
+		    FROM (
+		        SELECT proj_no, proj_name, proj_agency, to_char(proj_start, 'YYYY-MM-DD') proj_start, to_char(proj_end, 'YYYY-MM-DD') proj_end
+		        FROM project
+		        ORDER BY proj_no DESC
+		    ) projectAll
+		    WHERE
+		        rownum <= #{pageNum} * #{amount}  
+		    )
+		WHERE 
+		    rn > (#{pageNum} -1) * #{amount} 
+	]]>
+</select>
+
 <select id = "projectList" resultType = "com.geist.project.domain.ProjectVO">
 	<![CDATA[ 
 		SELECT 
@@ -63,8 +83,12 @@ constraint fk_proj_management_dept_no foreign key(dept_no) references department
 	</select>
 	
 	<select id="projectCount" resultType="int">
-			SELECT count(*) FROM proj_management where dept_no = #{dept_no}
+			SELECT count(*) FROM project
 	</select>
+	
+<select id="projectAllCount" resultType="int">
+	SELECT count(*) FROM proj_management where
+</select>
 	
 <insert id = "projectWrite">
 	insert into project

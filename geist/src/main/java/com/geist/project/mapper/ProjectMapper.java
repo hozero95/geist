@@ -31,6 +31,8 @@ constraint fk_proj_management_dept_no foreign key(dept_no) references department
 
 public interface ProjectMapper {
 	
+	public List<ProjectVO> projectAllList(Criteria cri);
+	
 	public List<ProjectVO> projectList(@Param("cri") Criteria cri,@Param("dept_no") int dept_no);
 	
 	public ProjectVO projectRead(int proj_no);
@@ -47,4 +49,5 @@ public interface ProjectMapper {
 	
 	public int projectCount(int dept_no);
 	
+	public int projectAllCount();
 }

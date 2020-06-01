@@ -3,7 +3,9 @@
  */
 	
 	$(function() {
+		console.log("projectPage.js");
 
+		var login_sys = ($("input[name='login_sys']").val());
 		var proWrite = $("#proWrite");
 		var proUpdate = $("#proUpdate");
 		var proDelete = $("#proDelete");
@@ -16,6 +18,20 @@
 		var proj_start;
 		var proj_end;
 		var pageNum = 1;
+		
+		console.log("현재 로그인 된 계정은 " + login_sys + "관리자!!!!")
+		
+		// sys 계정의 모든 프로젝트 리스트 출력
+		function projecAlltList(param, callback) {
+			var page = param.page;
+			$.getJSON("/project/projectAllList/" + page, function(data) {				
+				if(callback) {
+					callback(data.count, data.list);
+				}
+			}).error(function() {
+				console.log("projectAllList 실패");
+			})
+		}
 		
 		// 프로젝트 리스트 받아오기
 		function projectList(param, callback) {
@@ -58,6 +74,38 @@
 				error : function() {
 					console.log("proj_no 전달 실패 : ");
 				}
+			});
+		}
+		
+		// sys 계정의 모든 프로젝트 리스트 출력
+		function showAllList(page) { 
+			projecAlltList({
+				page : page || 1
+			}, function(count, list){
+				if(page == -1) {
+					pageNum = Math.ceil(count / 10.0);
+					showList(pageNum);
+					console.log("pageNum : ", pageNum);
+					return;
+				}
+				var str = "";
+				if(list == null || list.length == 0) {
+					return;
+				}
+				console.log(list);
+				console.log(count);
+				for(var i = 0; i < list.length; i++) {
+					str += "<tr onmouseover='this.style.backgroundColor=\"#dadada\"' onmouseout='this.style.backgroundColor=\"\"'>";
+					str += "<td id='ch-row'><input type='radio' class='radioBtn' name='selected'></td>";
+					str += "<td>" + list[i].proj_no + "</td>";
+					str += "<td>" + list[i].proj_name + "</td>";
+					str += "<td>" + list[i].proj_agency + "</td>";
+					str += "<td>" + list[i].proj_start + "</td>";
+					str += "<td>" + list[i].proj_end + "</td>";
+					str += "</tr>";
+				}
+				tbody.html(str);
+				showListPage(count);
 			});
 		}
 		
@@ -185,8 +233,12 @@
 			}
 	  	});
 		
-		showList(1);
-			
+
+		if(login_sys === "sys"){
+			showAllList(1)
+		}else{
+			showList(1);
+		}			
 	});
 	
 	// 팝업창에서 호출 할 함수
