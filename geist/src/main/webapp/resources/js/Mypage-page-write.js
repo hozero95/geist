@@ -92,6 +92,7 @@ $(document).ready(function(){
 				emp_address : emp_address
 			}, function(result){
 				if(result == 'success') {
+					alert("회원정보가 수정되었습니다.")
 					location.href = "/myPage";
 				}
 			});
