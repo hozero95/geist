@@ -36,6 +36,7 @@
 	        contentPage="main.jsp";
 	    
 	    String admin_nav = (String)session.getAttribute("sys");
+	    String admin_sys = admin_nav;
 	    
 	  	if(admin_nav == "sys") {
 	  		admin_nav="admin-nav.jsp";
@@ -52,7 +53,7 @@
 		<jsp:include page="<%=admin_nav%>" />
 	</div>
 	
-	<input type="hidden" name="login_sys" value="${admin_nav}">
+	<input type="hidden" name="admin_sys" value="<%=admin_sys%>">
 	
 	<div class="app-container fixed-sidebar fixed-header closed-sidebar">
 		<div class="app-main">
@@ -82,7 +83,7 @@
 									<%
 										String empPosition = (String)session.getAttribute("empPosition");
 										System.out.println("empPosition === " + empPosition);
-                                        if(empPosition.equals("부장")) { %>
+                                        if(empPosition.equals("부장") || admin_sys.equals("sys")) { %>
 											<div class="col-sm-12">
 												<button type="button" class="btn float-right btn-sm dt-button" id="proWrite" onclick="showPopupWrite();">작성</button>
 												<button type="button" class="btn float-right btn-sm dt-button" id="proUpdate">수정</button>

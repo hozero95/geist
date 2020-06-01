@@ -31,6 +31,7 @@
 	        contentPage="main.jsp";
 	    
 	    String admin_nav = (String)session.getAttribute("sys");
+	    String admin_sys = admin_nav;
 	    
 	  	if(admin_nav == "sys") {
 	  		admin_nav="admin-nav.jsp";
@@ -47,6 +48,7 @@
     </div>
     
     <input type="hidden" name="login_no" value="${member.emp_no}">
+    <input type="hidden" name="admin_sys" value="<%=admin_sys%>">
     
 	<div class="app-container fixed-sidebar fixed-header closed-sidebar">
         <div class="app-main">

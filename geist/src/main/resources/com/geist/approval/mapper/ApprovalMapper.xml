@@ -58,6 +58,30 @@
 			and e.dept_no = d.dept_no
 	</select>
 	
+	<!-- sys 계정의 모든 결재 요청 조회 -->	
+	<select id="reqAllListWithPaging" resultType="com.geist.approval.domain.ApprovalDTO">
+		<![CDATA[
+			SELECT
+				app_no, app_class, app_date, app_title, emp_name, app_status
+			FROM
+				(
+				SELECT /*+ INDEX_DESC(app_agree pk_app_agree) */
+			        appAgree.*, rownum rn
+			    FROM (
+			        SELECT arq.app_no, a.app_class, to_char(app_date, 'YYYY-MM-DD') app_date, a.app_title, e.emp_name, a.app_status
+			        FROM approval a, employee e, app_request arq, app_agree agr
+			        WHERE 
+			            e.emp_no = arq.emp_no
+                        and agr.app_no = arq.app_no
+                        and agr.app_no = a.app_no   
+			        ORDER BY app_no DESC
+			        ) appAgree
+			    WHERE        
+					rownum <= #{pageNum} * #{amount}
+			    )
+			WHERE rn >  (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
 	<!-- 결재 요청 조회 -->	
 	<select id="reqListWithPaging" resultType="com.geist.approval.domain.ApprovalDTO">
 		<![CDATA[
@@ -97,6 +121,30 @@
 	</select>
 	
 	
+	<!-- sys 계정의 모든 결재 승인 조회 -->
+	<select id="agrAllListWithPaging" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
+		<![CDATA[
+			SELECT
+			    app_no, app_class, app_date, app_title, emp_name, agr_status, app_status
+			FROM
+			    (
+				SELECT /*+ INDEX_DESC(app_agree pk_app_agree) */
+			        appAgree.*, rownum rn
+			    FROM (
+			        SELECT DISTINCT arq.app_no, a.app_class, to_char(app_date, 'YYYY-MM-DD') app_date, a.app_title, e.emp_name, agr.agr_status, a.app_status
+			        FROM approval a, employee e, app_request arq, app_agree agr
+			        WHERE 
+			            e.emp_no = arq.emp_no
+                        and agr.app_no = arq.app_no
+                        and agr.app_no = a.app_no   
+			        ORDER BY app_no DESC
+			        ) appAgree
+			    WHERE        
+					rownum <= #{pageNum} * #{amount}
+			    )
+			WHERE rn > (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>	
 	<!-- 결재 승인 조회 -->
 	<select id="agrListWithPaging" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
 		<![CDATA[
@@ -105,7 +153,7 @@
 			FROM
 			    (
 				SELECT /*+ INDEX_DESC(app_agree pk_app_agree) */
-			        appAdmit.*, rownum rn
+			        appAgree.*, rownum rn
 			    FROM (
 			        SELECT arq.app_no, a.app_class, to_char(app_date, 'YYYY-MM-DD') app_date, a.app_title, e.emp_name, agr.agr_status, a.app_status
 			        FROM approval a, employee e, app_request arq, app_agree agr
@@ -115,7 +163,7 @@
 						and agr.app_no = a.app_no  
 						and agr.emp_no = #{emp_no}
 			        ORDER BY app_no DESC
-			        ) appAdmit
+			        ) appAgree
 			    WHERE        
 					rownum <= #{cri.pageNum} * #{cri.amount}
 			    )
@@ -152,9 +200,16 @@
 		]]>
 	</select>
 	
-	
+	<!-- sys 계정의 모든 결재 요청 개수 조회 -->
+	<select id="reqAllCount" resultType="int">
+		SELECT count(*) FROM app_request		
+	</select>	
+	<!-- sys 계정의 모든 결재 승인 개수 조회 -->
+	<select id="agrAllCount" resultType="int">
+		SELECT count(*) FROM app_agree		
+	</select>	
 	<!-- 결재 요청 개수 조회 -->
-	<select id="reqGetCount" resultType="int">
+	<select id="reqCount" resultType="int">
 		SELECT 
 			count(*)
 		FROM 
@@ -163,10 +218,9 @@
  			e.emp_no = arq.emp_no 
  			and arq.app_no = a.app_no 
  			and arq.emp_no = #{emp_no}		
-	</select>
-	
-	<!-- 요청받은 결재 개수 조회 -->
-	<select id="argGetCount" resultType="int">
+	</select>	
+	<!-- 결재 승인 개수 조회 -->
+	<select id="argCount" resultType="int">
 		SELECT 
 			count(*)
 		FROM 

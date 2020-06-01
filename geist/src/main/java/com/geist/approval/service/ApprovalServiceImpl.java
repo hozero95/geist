@@ -90,10 +90,15 @@ public class ApprovalServiceImpl implements ApprovalService {
 	}
 	
 	
+	// sys 계정의 모든 결재 요청 조회
+	@Override
+	public ApprovalReqDTO reqAllList(Criteria cri) {
+		return new ApprovalReqDTO(mapper.reqAllCount(), mapper.reqAllListWithPaging(cri));
+	}
 	// 결재 요청 조회
 	@Override
-	public ApprovalReqDTO reqGetList(Criteria cri, Long emp_no) {
-		return new ApprovalReqDTO(mapper.reqGetCount(emp_no), mapper.reqListWithPaging(cri, emp_no));
+	public ApprovalReqDTO reqList(Criteria cri, Long emp_no) {
+		return new ApprovalReqDTO(mapper.reqCount(emp_no), mapper.reqListWithPaging(cri, emp_no));
 	}
 	// 결재 요청 상제 조회
 	@Override
@@ -102,10 +107,15 @@ public class ApprovalServiceImpl implements ApprovalService {
 	}
 
 	
+	// sys 계정의 모든 결재 승인 조회
+	@Override
+	public ApprovalAgrDTO agrAllList(Criteria cri) {
+		 return new ApprovalAgrDTO(mapper.agrAllCount(), mapper.agrAllListWithPaging(cri));	
+	}
 	// 결재 승인 조회
 	@Override
-	public ApprovalAgrDTO agrGetList(Criteria cri, Long emp_no) {
-		return new ApprovalAgrDTO(mapper.argGetCount(emp_no), mapper.agrListWithPaging(cri, emp_no));	
+	public ApprovalAgrDTO agrList(Criteria cri, Long emp_no) {
+		return new ApprovalAgrDTO(mapper.argCount(emp_no), mapper.agrListWithPaging(cri, emp_no));	
 	}
 	// 결재 승인 상세 조회
 	@Override
@@ -138,6 +148,6 @@ public class ApprovalServiceImpl implements ApprovalService {
 	@Override
 	public void finalState(Long app_no, int count) {
 		mapper.finalState(app_no, count);
-	}
+	}	
 }
 

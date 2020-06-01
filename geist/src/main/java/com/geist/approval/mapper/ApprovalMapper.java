@@ -28,7 +28,8 @@ public interface ApprovalMapper {
 	//결재 문서 생성할 작성자 정보 조회 
 	public ApprovalWriterDTO appWriter(Long emp_no);
 	
-	
+	// sys 계정의 모든 결재 요청 조회
+	public List<ApprovalReqVO> reqAllListWithPaging(Criteria cri);
 	// 결재 요청 조회
 	public List<ApprovalReqVO> reqListWithPaging(
 			@Param("cri") Criteria cri, 
@@ -39,6 +40,8 @@ public interface ApprovalMapper {
 			@Param("emp_no") Long emp_no);
 	
 	
+	// sys 계정의 모든 결재 승인 조회
+	public List<ApprovalAgrVO> agrAllListWithPaging(Criteria cri);
 	// 결재 승인 조회
 	public List<ApprovalAgrVO> agrListWithPaging(
 			@Param("cri") Criteria cri, 
@@ -51,10 +54,14 @@ public interface ApprovalMapper {
 	public List<ApprovalAgrDetailPositionVO> approvers(Long app_no);
 	
 	
+	// sys 계정의 모든 결재 개수 조회
+	public int reqAllCount();
+	// sys 계정의 모든 결재 승인 개수 조회
+	public int agrAllCount();
 	// 결재 요청 개수 조회
-	public int reqGetCount(Long emp_no);
-	// 결재 요청 개수 조회
-	public int argGetCount(Long emp_no);
+	public int reqCount(Long emp_no);
+	// 결재 승인 개수 조회
+	public int argCount(Long emp_no);
 	
 	
 	// 결재 승인 or 반려

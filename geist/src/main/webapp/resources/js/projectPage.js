@@ -5,7 +5,7 @@
 	$(function() {
 		console.log("projectPage.js");
 
-		var login_sys = ($("input[name='login_sys']").val());
+		var admin_sys = ($("input[name='admin_sys']").val());
 		var proWrite = $("#proWrite");
 		var proUpdate = $("#proUpdate");
 		var proDelete = $("#proDelete");
@@ -19,7 +19,7 @@
 		var proj_end;
 		var pageNum = 1;
 		
-		console.log("현재 로그인 된 계정은 " + login_sys + "관리자!!!!")
+		console.log("현재 로그인 된 계정은 " + admin_sys + "관리자!!!!")
 		
 		// sys 계정의 모든 프로젝트 리스트 출력
 		function projecAlltList(param, callback) {
@@ -202,6 +202,7 @@
 			})
 			projectDelete(proj_no, function(result){
 				console.log('projectDelete() 호출!' + proj_no);
+				alert("삭제 되었습니다.")
 				location.reload();
 			});
 		})
@@ -234,9 +235,11 @@
 	  	});
 		
 
-		if(login_sys === "sys"){
+		if(admin_sys === "sys"){
+			console.log("login_sys === " + admin_sys);
 			showAllList(1)
 		}else{
+			console.log("로그인 정보 안 넘어옴")
 			showList(1);
 		}			
 	});

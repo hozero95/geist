@@ -21,12 +21,28 @@ var approvalSearchService = (function(){
 		});
 	}
 	
+	function getAllList(param, callback, error){
+		var page = param.page;
+		
+		$.getJSON("/approvalSearch/allList/" + page + ".json", function(data){
+			if(callback){
+				callback(data.count, data.list);
+			}
+		}).fail(function(xhr, status, err){
+			if(error){
+				error();
+			}
+		});
+	}
+	
 	return{
-		getList : getList
+		getList : getList,
+		getAllList : getAllList
 	};
 })();
 
 $(document).ready(function() {
+	var admin_sys = ($("input[name='admin_sys']").val());
 	var emp_no = ($("input[name='login_no']").val());
 	var tbody = $(".table-body");
 	var tpage = $(".table-page");
@@ -34,8 +50,50 @@ $(document).ready(function() {
 	
 	if(typeof emp_no === 'string'){
 		emp_no = parseInt(emp_no);
+		console.log("emp_no === " + emp_no);
 	}
-	showList(1, emp_no);
+	
+	function showAllList(page){
+		approvalSearchService.getAllList({
+			page : page || 1
+		}, function(count, list){
+			if (page == -1) {
+				pageNum = Math.ceil(count / 10.0);
+				showList(pageNum);
+				return;
+			}
+			var str = "";
+			if(list == null || list.length == 0){
+				return;
+			}
+			for(var i = 0, len = list.length || 0; i < len; i++){
+				var status = "";
+				switch(list[i].app_status){
+				case 1:
+					status = "처리중";
+					break;
+				case 2:
+					status = "승인";
+					break;
+				case 3:
+					status = "반려";
+					break;
+				default:
+					status = "알 수 없음";
+				}
+				str += "<tr>";
+				str += "<td>" + list[i].app_date + "</td>";
+				str += "<td><a href='#'>" + list[i].app_title 
+				+ "<input type='hidden' name='app_no' value='" + list[i].app_no + "'>" 
+				+ "<input type='hidden' name='app_class' value='" + list[i].app_class + "'></a></td>";
+				str += "<td>" + list[i].emp_name + "</td>";
+				str += "<td style='background-color:#F5F9FC;'>" + status + "</td>";
+				str += "</tr>";
+			}
+			tbody.html(str);
+			showListPage(count);
+		});
+	}
 	
 	function showList(page, emp_no){
 		approvalSearchService.getList({
@@ -112,13 +170,27 @@ $(document).ready(function() {
 	    tpage.html(str);
 	}
 	
+	if(admin_sys === "sys"){
+		console.log("login_sys === " + admin_sys);
+		showAllList(1)
+	}else{
+		console.log("로그인 정보 안 넘어옴")
+		showList(1, emp_no);
+	}	
+	
 	tpage.on("click", "li a", function(e) {
 		e.preventDefault();
 
 		var targetPageNum = $(this).attr("href");
 		pageNum = targetPageNum;
 
-		showList(pageNum, emp_no);
+		if(admin_sys === "sys"){
+			console.log("login_sys === " + admin_sys);
+			showAllList(pageNum)
+		}else{
+			console.log("로그인 정보 안 넘어옴")
+			showList(pageNum, emp_no);
+		}		
 	});
 	
 	tbody.on("click", "tr td a", function(e){
