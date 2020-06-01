@@ -8,8 +8,8 @@
 				if (callback) {
 					callback(data); // 회원가입을 요청했을때 결과를 리턴받음
 				}
-			}), fail(function(xhr, status, err) {
-				if (error) {
+			}).fail(function(xhr, status, err) {
+				if(error) {
 					error();
 				}
 			});
@@ -33,23 +33,39 @@
 				}
 			});
 		}
-	
 		return {
 			checkId : checkId,
 			joinRequest : joinRequest
 		}
 	})();
 	
-	$(document).ready(function() {
-		var registerForm = $("#join-form");
+	$(function() {
 		var registerBtn = $("#btn-join");
 		var inputId = $("#id");
-		var idCheck = true;
-	
+		var inputPwd1 = $("#pwd1");
+		var inputPwd2 = $("#pwd2");
+		var inputName = $("#name");
+		var inputEmail = $("#email");
+		var inputYear = $("#year");
+		var inputMm = $("#mm");
+		var inputDd = $("#dd");
+		var inputPhone = $("#phone");
+		var inputAddr1 = $("#addr1");
+		var inputAddr3 = $("#addr-etc");
+		
+		$("#id-error").hide();
+		$("#pwd-error1").hide();
+		$("#pwd-error2").hide();
+		$("#name-error").hide();
+		$("#email-error").hide();
+		$("#birth-error").hide();
+		$("#phone-error").hide();
+		$("#addr-error").hide();
+		
+		// 중복아이디 체크 및 미입력시 에러메세지 출력
 		inputId.blur(function() {
-	
-			if (!registerForm.find("input[name='id']").val()) {
-				$("#id-error").show();
+			if(inputId.val().length < 4) {
+				$("#id-error").text("아이디는 4글자 이상 입력하세요.").show();
 				$("#id").focus();
 				return false;
 			} else {
@@ -57,29 +73,113 @@
 			}
 	
 			var req_id = $("input[name='id']").val();
-	
 			registerService.checkId({
 				req_id : req_id
 			}, function(data) {
 				if (data) { // 사용가능한 아이디 일때
-					idCheck = false;
 					$("#id-error").text('사용가능한 아이디 입니다.').addClass("msgOk").show();
-	
 				} else { // 사용중인 아이디 일때
-					$("#id-error").text('이미 사용 중인 아이디 입니다.').show();
+					$("#id-error").text('이미 사용 중인 아이디 입니다.').removeClass("msgOk").show();
 					return false;
 				}
-	
-				$("#id-error").removeClass("msgOk").text("아이디는 반드시 입력하세요.").hide();
-			})
+			});
 		});
-	
-		registerBtn.on("click", function() {
+		
+		inputPwd1.blur(function() {
+			if(!inputPwd1.val()) {
+				$("#pwd-error1").show();
+				inputPwd1.focus();
+			} else {
+				$("#pwd-error1").hide();
+			}
+		});
+		
+		inputPwd2.blur(function() {
+			if(inputPwd1.val() != inputPwd2.val()) {
+				$("#pwd-error2").show();
+			} else {
+				$("#pwd-error2").hide();
+			}
+		});
+		
+		inputName.blur(function() {
+			if(!inputName.val()) {
+				$("#name-error").show();
+				inputName.focus();
+			} else {
+				$("#name-error").hide();
+			}
+		});
+		
+		inputEmail.blur(function() {
+			if(!inputEmail.val().match("@") || !inputEmail.val().match(".com") && !inputEmail.val().match(".net")) {
+				$("#email-error").show();
+				inputEmail.focus();
+			} else {
+				$("#email-error").hide();
+			}
+		});
+		
+		inputYear.blur(function() {
+			if(!inputYear.val()) {
+				$("#birth-error").show();
+				inputYear.focus();
+			} else {
+				$("#birth-error").hide();
+			}
+		});
+		
+		inputMm.blur(function() {
+			if(inputMm.val() == "월") {
+				$("#birth-error").show();
+				inputMm.focus();
+			} else {
+				$("#birth-error").hide();
+			}
+		});
+		
+		inputDd.blur(function() {
+			if(!inputDd.val()) {
+				$("#birth-error").show();
+				inputDd.focus();
+			} else {
+				$("#birth-error").hide();
+			}
+		});
+		
+		inputPhone.blur(function() {
+			if(inputPhone.val().length < 11) {
+				$("#phone-error").show();
+				inputPhone.focus();
+			} else {
+				$("#phone-error").hide();
+			}
+		});
+		
+		inputAddr1.blur(function() {
+			if(!inputAddr1.val()) {
+				$("#addr-error").show();
+			} else {
+				$("#addr-error").hide();
+			}
+		});
+		
+		inputAddr3.blur(function() {
+			if(!inputAddr3.val()) {
+				$("#addr-error").show();
+				inputAddr3.focus();
+			} else {
+				$("#addr-error").hide();
+			}
+		});
+		
+		
+		// 가입요청 버튼 클릭 시 입력값 전달
+		registerBtn.click(function() {
 			var req_id = $("input[name='id']").val();
 			var req_pw = $("input[name='pwd2']").val();
 			var req_name = $("input[name='name']").val();
 			var req_email = $("input[name='email']").val();
-	
 			var req_year = $("input[name='year']").val();
 			var req_month = $("select").val();
 			var req_day = $("input[name='day']").val();
@@ -90,12 +190,11 @@
 			}
 	
 			var req_birth = req_year.concat("-", req_month, "-", req_day);
-	
 			var req_phone = $("input[name='phone']").val();
 			var req_address = $("input[name='addr1']").val();
 			req_address += $("input[name='addr2']").val();
 			req_address += $("input[name='addr-etc']").val();
-	
+			
 			registerService.joinRequest({
 				req_id : req_id,
 				req_pw : req_pw,
@@ -111,6 +210,8 @@
 		});
 	});
 	
+	
+	// 우편번호 검색 API
 	function sample6_execDaumPostcode() {
 		new daum.Postcode({
 			oncomplete : function(data) {
@@ -160,110 +261,6 @@
 			},
 		}).open();
 	}
-	
-	// 미입력	시 경고문구 처리
-	$(function() {
-		$("#id-error").hide();
-		$("#pwd-error1").hide();
-		$("#pwd-error2").hide();
-		$("#name-error").hide();
-		$("#email-error").hide();
-		$("#birth-error").hide();
-		$("#phone-error").hide();
-		$("#addr-error").hide();
-	
-		$("#btn-join").click(function() {
-			var id = $("#id").val();
-			if (id.length < 1) {
-				$("#id-error").show();
-				$("#id").focus();
-				return false;
-			} else {
-				$("#id-error").hide();
-			}
-	
-			var pwd1 = $("#pwd1").val();
-			if (pwd1.length < 1) {
-				$("#pwd-error1").show();
-				$("#pwd1").focus();
-				return false;
-			} else {
-				$("#pwd-error1").hide();
-			}
-	
-			var pwd2 = $("#pwd2").val();
-			if (pwd1 != pwd2) {
-				$("#pwd-error2").show();
-				$("#pwd2").focus();
-				return false;
-			} else {
-				$("#pwd-error2").hide();
-			}
-	
-			var name = $("#name").val();
-			if (name.length < 1) {
-				$("#name-error").show();
-				$("#name").focus();
-				return false;
-			} else {
-				$("#name-error").hide();
-			}
-	
-			var email = $("#email").val();
-			// if (!email.match("@")) {
-			if (email.length < 1) {
-				$("#email-error").show();
-				$("#email").focus();
-				return false;
-			} else {
-				$("#email-error").hide();
-			}
-	
-			var year = $("#year").val();
-			var mm = $("#mm").val();
-			var dd = $("#dd").val();
-			if (year == null) {
-				$("#birth-error").show();
-				$("#year").focus();
-				return false;
-			} else {
-				$("#birth-error").hide();
-			}
-			if (mm == "월") {
-				$("#birth-error").show();
-				$("#mm").focus();
-				return false;
-			} else {
-				$("#birth-error").hide();
-			}
-			if (dd == null) {
-				$("#birth-error").show();
-				$("#dd").focus();
-				return false;
-			} else {
-				$("#birth-error").hide();
-			}
-	
-			var phone = $("#phone").val();
-			if (phone.length < 13 || phone.length > 17) {
-				$("#phone-error").show();
-				$("#phone").focus();
-				return false;
-			} else {
-				$("#phone-error").hide();
-			}
-	
-			var postcode = $("#postcode").val();
-			var addr3 = $("#addr-etc").val();
-			if (postcode.length < 1 || addr3.length < 1) {
-				$("#addr-error").show();
-				$("#addr-etc").focus();
-				return false;
-			} else {
-				$("#addr-error").hide();
-			}
-		});
-	});
 	
 	// input#input-number : 한글 입력 불가능
 	function noKorean(obj) {
