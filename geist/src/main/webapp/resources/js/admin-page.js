@@ -8,7 +8,6 @@ var empManageService = (function(){
 			var page = param.page;
 			$.getJSON("/empManage/" + page + ".json", function(data){
 				if(callback){
-					console.log("data.count === " + data.count)
 					callback(data.count, data.list);
 				}
 			}).fail(function(xhr, status, err){
