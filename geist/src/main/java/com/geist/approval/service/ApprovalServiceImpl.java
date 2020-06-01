@@ -104,13 +104,13 @@ public class ApprovalServiceImpl implements ApprovalService {
 	
 	// 결재 승인 조회
 	@Override
-	public ApprovalAgrDTO admitGetList(Criteria cri, Long emp_no) {
-		return new ApprovalAgrDTO(mapper.argGetCount(emp_no), mapper.admitListWithPaging(cri, emp_no));	
+	public ApprovalAgrDTO agrGetList(Criteria cri, Long emp_no) {
+		return new ApprovalAgrDTO(mapper.argGetCount(emp_no), mapper.agrListWithPaging(cri, emp_no));	
 	}
 	// 결재 승인 상세 조회
 	@Override
-	public ApprovalAgrDetailDTO admitDetail(Long app_no, Long emp_no) {
-		return mapper.admitDetail(app_no, emp_no);	
+	public ApprovalAgrDetailDTO agrDetail(Long app_no, Long emp_no) {
+		return mapper.agrDetail(app_no, emp_no);	
 	}
 	// 결재 승인자들 조회
 	@Override
@@ -121,13 +121,13 @@ public class ApprovalServiceImpl implements ApprovalService {
 	
 	// 결재 문서 승인 or 반려
 	@Override
-	public void appAdmit(ApprovalAgrVO agrVo) {
-		mapper.appAdmit(agrVo);
+	public void appAgree(ApprovalAgrVO agrVo) {
+		mapper.appAgree(agrVo);
 	}
 	// 결재자들의 결재 여부 
 	@Override
-	public Long appAdmitChk(Long app_no) {
-		return mapper.appAdmitChk(app_no);
+	public Long appAgreeChk(Long app_no) {
+		return mapper.appAgreeChk(app_no);
 	}
 	// 결재자들의 반려 개수 체크
 	@Override

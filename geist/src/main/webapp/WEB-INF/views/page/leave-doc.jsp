@@ -177,6 +177,6 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/approvalRequest.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/approval-request.js"></script>
 </body>
 </html>

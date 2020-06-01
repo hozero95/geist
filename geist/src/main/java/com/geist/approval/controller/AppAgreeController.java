@@ -21,30 +21,30 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 /* *
- * 결재 페이지
+ * 결재 수신함 페이지
  * 담당 : 김현선
  */
 
 @RestController
-@RequestMapping("/approvalAdmit/*")
+@RequestMapping("/approvalAgree/*")
 @AllArgsConstructor
 @Log4j
-public class AppAdmitController {
+public class AppAgreeController {
 
 	private ApprovalService service;
 	
 	// 결재 승인 조회	
 	@GetMapping(value = "/{page}/{empNo}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity <ApprovalAgrDTO> admitList(@PathVariable("page") int page, @PathVariable("empNo") Long emp_no) {
+	public ResponseEntity <ApprovalAgrDTO> agrList(@PathVariable("page") int page, @PathVariable("empNo") Long emp_no) {
 		Criteria cri = new Criteria(page, 10);
-		return new ResponseEntity<ApprovalAgrDTO>(service.admitGetList(cri, emp_no), HttpStatus.OK);
+		return new ResponseEntity<ApprovalAgrDTO>(service.agrGetList(cri, emp_no), HttpStatus.OK);
 	}
 	// 결재 승인 상세 조회
 	@GetMapping(value = "/detail/{appNo}/{empNo}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity <ApprovalAgrDetailDTO> admitDetail(@PathVariable("appNo") Long app_no, @PathVariable("empNo") Long emp_no) {
+	public ResponseEntity <ApprovalAgrDetailDTO> agrDetail(@PathVariable("appNo") Long app_no, @PathVariable("empNo") Long emp_no) {
 		log.info("결재 상세보기");
 		
-		return new ResponseEntity<ApprovalAgrDetailDTO>(service.admitDetail(app_no, emp_no), HttpStatus.OK);
+		return new ResponseEntity<ApprovalAgrDetailDTO>(service.agrDetail(app_no, emp_no), HttpStatus.OK);
 	}
 	// 결재 승인자들 조회
 	@GetMapping(value = "/detailApprovers/{appNo}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
@@ -54,13 +54,13 @@ public class AppAdmitController {
 		return new ResponseEntity<ApprovalAgrDetailPositionDTO>(service.approvers(app_no), HttpStatus.OK);
 	}
 	// 결재 승인 or 반려
-	@PostMapping(value = "/admit", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> appAdmit(@RequestBody ApprovalAgrVO agrVo) {
+	@PostMapping(value = "/agree", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> appAgree(@RequestBody ApprovalAgrVO agrVo) {
 		// 승인 or 반려 
-		service.appAdmit(agrVo);
+		service.appAgree(agrVo);
 		
 		// 모든 결재자들이 승인 or 반려를 했다면 문서 번호 리턴
-		Long app_no = service.appAdmitChk(agrVo.getApp_no());
+		Long app_no = service.appAgreeChk(agrVo.getApp_no());
 		log.info("모든 결재자들이 승인한 문서? === " + app_no);
 		
 		if(app_no != null) {

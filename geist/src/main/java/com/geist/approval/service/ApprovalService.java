@@ -33,17 +33,17 @@ public interface ApprovalService {
 
 	
 	// 결재 승인 조회
-	public ApprovalAgrDTO admitGetList(Criteria cri, Long emp_no);
+	public ApprovalAgrDTO agrGetList(Criteria cri, Long emp_no);
 	// 결재 승인 상세 조회
-	public ApprovalAgrDetailDTO admitDetail(Long app_no, Long emp_no);
+	public ApprovalAgrDetailDTO agrDetail(Long app_no, Long emp_no);
 	// 결재 승인자들 조회
 	public ApprovalAgrDetailPositionDTO approvers(Long app_no);
 	
 	
 	// 결재 승인 or 반려
-	public void appAdmit(ApprovalAgrVO agrVo);
+	public void appAgree(ApprovalAgrVO agrVo);
 	// 결재자들의 결재 여부 확인
-	public Long appAdmitChk(Long app_no);
+	public Long appAgreeChk(Long app_no);
 	// 결재자들의 반려 개수 체크
 	public int appRejectChk(Long app_no);
 	// 최종 승인 상태 update

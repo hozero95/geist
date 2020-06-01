@@ -40,13 +40,13 @@
                           </a>
                           <ul>
                               <li>
-                                  <a href="/approvalRequest">결재요청</a>  
+                                  <a href="/approvalRequest">기안함</a>  
                               </li>
                               <li>
-                                  <a href="/approvalSearch">결재조회</a>
+                                  <a href="/approvalSearch">발신함</a>
                               </li>
                               <li>
-                                  <a href="/approvalAdmit">결재승인</a>
+                                  <a href="/approvalAgree">수신함</a>
                               </li>
                           </ul>
                       </li>

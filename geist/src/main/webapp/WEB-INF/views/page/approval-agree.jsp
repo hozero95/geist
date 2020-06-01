@@ -79,7 +79,7 @@
                                                         <th class="sorting" tabindex="0" aria-controls="foo-table"
                                                             rowspan="1" colspan="1"
                                                             aria-label="제목: activate to sort column ascending"
-                                                            style="width: 200px;">결재제목</th>
+                                                            style="width: 300px;">결재제목</th>
                                                         <th class="sorting" tabindex="0" aria-controls="foo-table"
                                                             rowspan="1" colspan="1"
                                                             aria-label="작성날짜: activate to sort column ascending"
@@ -87,7 +87,11 @@
                                                         <th class="sorting" tabindex="0" aria-controls="foo-table"
                                                             rowspan="1" colspan="1"
                                                             aria-label="작성날짜: activate to sort column ascending"
-                                                            style="width: 200px;">상태</th>
+                                                            style="width: 100px;">상태</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="foo-table"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="작성날짜: activate to sort column ascending"
+                                                            style="width: 100px; background-color: #F5F9FC">최종상태</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="table-body">
@@ -113,7 +117,7 @@
     <!--js-->
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/include.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js"></script>   
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/approvalAdmit.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/approval-agree.js"></script>
     
     <script>
 		$(document).ready(function() {

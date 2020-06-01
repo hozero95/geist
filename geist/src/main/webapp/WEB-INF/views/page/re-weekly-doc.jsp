@@ -89,7 +89,7 @@
                                     </div>
 
                                     <div class="pt-2" style="float: right;">
-                                    		<button type="button" class="btn btn-sm dt-button" id="appSearchBtn" onclick="location.replace('/approvalSearch');" style="display='none'">목록</button>
+                                    		<button type="button" class="btn btn-sm dt-button" id="appSearchBtn" onclick="" style="display='none'">목록</button>
                                            	<button type="button" class="btn btn-sm dt-button" id="approve" onclick="alert('승인 되었습니다.')">승인</button>
                                            	<button type="button" class="btn btn-sm dt-button" id="return" onclick="alert('반려 되었습니다.')">반려</button>
                                     </div>
@@ -101,6 +101,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/approvalAdmitDetail.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/approval-agree-detail.js"></script>
 </body>
 </html>
