@@ -50,6 +50,7 @@ public class LoginController {
 				sys = "sys";
 				result = "success";
 				session.setAttribute("sys", sys);
+				session.setAttribute("empPosition", login.getEmp_position());
 				session.setAttribute("member", login);
 			}else if(position.equals("부장")) {
 				result = "success";				
