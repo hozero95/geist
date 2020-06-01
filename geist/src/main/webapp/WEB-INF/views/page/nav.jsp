@@ -51,7 +51,7 @@
                           </ul>
                       </li>
                       <li>
-                          <a href="/address">
+                          <a href="/attendance">
                               <i class="metismenu-icon pe-7s-card"></i>
                               인사근태
                           </a>
