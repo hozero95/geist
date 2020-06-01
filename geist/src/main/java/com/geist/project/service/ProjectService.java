@@ -10,6 +10,8 @@ import com.geist.project.domain.ProjectVO;
  * */
 
 public interface ProjectService {
+	
+	public ProjectDTO projectAllList(Criteria cri);
 
 	public ProjectDTO projectList(Criteria cri, int dept_no);
 	

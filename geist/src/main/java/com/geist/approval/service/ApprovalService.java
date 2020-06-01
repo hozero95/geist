@@ -26,14 +26,18 @@ public interface ApprovalService {
 	public ApprovalWriterDTO appWriter(Long emp_no);
 	
 	
+	// sys 계정의 모든 결재 요청 조회
+	public ApprovalReqDTO reqAllList(Criteria cri);
 	// 결재 요청 조회
-	public ApprovalReqDTO reqGetList(Criteria cri, Long emp_no);
+	public ApprovalReqDTO reqList(Criteria cri, Long emp_no);
 	// 결재 요청 상세 조회
 	public ApprovalReqDetailDTO reqDetail(Long app_no, Long emp_no);
 
 	
+	// sys 계정의 모든 결재 승인 조회
+	public ApprovalAgrDTO agrAllList(Criteria cri);
 	// 결재 승인 조회
-	public ApprovalAgrDTO agrGetList(Criteria cri, Long emp_no);
+	public ApprovalAgrDTO agrList(Criteria cri, Long emp_no);
 	// 결재 승인 상세 조회
 	public ApprovalAgrDetailDTO agrDetail(Long app_no, Long emp_no);
 	// 결재 승인자들 조회

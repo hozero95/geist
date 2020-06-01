@@ -14,6 +14,7 @@ import com.geist.approval.domain.ApprovalAgrDTO;
 import com.geist.approval.domain.ApprovalAgrDetailDTO;
 import com.geist.approval.domain.ApprovalAgrDetailPositionDTO;
 import com.geist.approval.domain.ApprovalAgrVO;
+import com.geist.approval.domain.ApprovalReqDTO;
 import com.geist.approval.service.ApprovalService;
 import com.geist.main.domain.Criteria;
 
@@ -33,11 +34,19 @@ public class AppAgreeController {
 
 	private ApprovalService service;
 	
+	// sys 계정의 모든 결재 승인 조회
+	@GetMapping(value = "/allList/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity <ApprovalAgrDTO> agrAllList(@PathVariable("page") int page) {
+		Criteria cri = new Criteria(page, 10);
+		log.info("page === " + page);
+		return new ResponseEntity<ApprovalAgrDTO>(service.agrAllList(cri), HttpStatus.OK);
+	}
+	
 	// 결재 승인 조회	
 	@GetMapping(value = "/{page}/{empNo}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity <ApprovalAgrDTO> agrList(@PathVariable("page") int page, @PathVariable("empNo") Long emp_no) {
 		Criteria cri = new Criteria(page, 10);
-		return new ResponseEntity<ApprovalAgrDTO>(service.agrGetList(cri, emp_no), HttpStatus.OK);
+		return new ResponseEntity<ApprovalAgrDTO>(service.agrList(cri, emp_no), HttpStatus.OK);
 	}
 	// 결재 승인 상세 조회
 	@GetMapping(value = "/detail/{appNo}/{empNo}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
