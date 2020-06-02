@@ -14,8 +14,7 @@ import com.geist.approval.domain.ApprovalAgrDTO;
 import com.geist.approval.domain.ApprovalAgrDetailDTO;
 import com.geist.approval.domain.ApprovalAgrDetailPositionDTO;
 import com.geist.approval.domain.ApprovalAgrVO;
-import com.geist.approval.domain.ApprovalReqDTO;
-import com.geist.approval.service.ApprovalService;
+import com.geist.approval.service.AppAgreeService;
 import com.geist.main.domain.Criteria;
 
 import lombok.AllArgsConstructor;
@@ -31,8 +30,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @Log4j
 public class AppAgreeController {
-
-	private ApprovalService service;
+	private AppAgreeService service;
 	
 	// sys 계정의 모든 결재 승인 조회
 	@GetMapping(value = "/allList/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
@@ -48,6 +46,7 @@ public class AppAgreeController {
 		Criteria cri = new Criteria(page, 10);
 		return new ResponseEntity<ApprovalAgrDTO>(service.agrList(cri, emp_no), HttpStatus.OK);
 	}
+	
 	// 결재 승인 상세 조회
 	@GetMapping(value = "/detail/{appNo}/{empNo}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity <ApprovalAgrDetailDTO> agrDetail(@PathVariable("appNo") Long app_no, @PathVariable("empNo") Long emp_no) {
@@ -55,6 +54,7 @@ public class AppAgreeController {
 		
 		return new ResponseEntity<ApprovalAgrDetailDTO>(service.agrDetail(app_no, emp_no), HttpStatus.OK);
 	}
+	
 	// 결재 승인자들 조회
 	@GetMapping(value = "/detailApprovers/{appNo}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity <ApprovalAgrDetailPositionDTO> approvers(@PathVariable("appNo") Long app_no) {
@@ -62,6 +62,7 @@ public class AppAgreeController {
 		
 		return new ResponseEntity<ApprovalAgrDetailPositionDTO>(service.approvers(app_no), HttpStatus.OK);
 	}
+	
 	// 결재 승인 or 반려
 	@PostMapping(value = "/agree", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> appAgree(@RequestBody ApprovalAgrVO agrVo) {

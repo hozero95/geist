@@ -15,7 +15,7 @@ import com.geist.approval.domain.ApprovalAgrVO;
 import com.geist.approval.domain.ApprovalReqVO;
 import com.geist.approval.domain.ApprovalDTO;
 import com.geist.approval.domain.ApprovalCreateDTO;
-import com.geist.approval.mapper.ApprovalMapper;
+import com.geist.approval.mapper.AppRequestMapper;
 import com.geist.main.domain.Criteria;
 
 import lombok.Setter;
@@ -31,7 +31,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class ApprovalMapperTests {
 	@Setter(onMethod_ = @Autowired)
-	private ApprovalMapper mapper;
+	private AppRequestMapper mapper;
 	
 //	@Test
 	public void date() {
