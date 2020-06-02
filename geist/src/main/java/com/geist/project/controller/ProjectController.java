@@ -50,8 +50,6 @@ public class ProjectController {
 			//session에서 가져온 emp_no가 mapper을 한번더 거쳐 dept_no 꺼냄
 			int dept_no = service.projectDept(emp_no);
 			
-//			ProjectCriVO vo = new ProjectCriVO(page, 10, dept_no);
-			
 			Criteria cri = new Criteria(page, 10);
 			
 			return new ResponseEntity<ProjectDTO>(service.projectList(cri, dept_no), HttpStatus.OK);
