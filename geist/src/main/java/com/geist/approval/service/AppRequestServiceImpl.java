@@ -17,7 +17,7 @@ import com.geist.approval.domain.ApprovalReqDetailDTO;
 import com.geist.approval.domain.ApprovalReqVO;
 import com.geist.approval.domain.ApprovalDTO;
 import com.geist.approval.domain.ApprovalWriterDTO;
-import com.geist.approval.mapper.ApprovalMapper;
+import com.geist.approval.mapper.AppRequestMapper;
 import com.geist.main.domain.Criteria;
 
 import lombok.Setter;
@@ -30,9 +30,9 @@ import lombok.extern.log4j.Log4j;
 
 @Service
 @Log4j
-public class ApprovalServiceImpl implements ApprovalService {
+public class AppRequestServiceImpl implements AppRequestService {
 	@Setter(onMethod_ = @Autowired)
-	private ApprovalMapper mapper;
+	private AppRequestMapper mapper;
 	
 	// 결재 문서 생성 insert
 	@Override
@@ -52,6 +52,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 		
 		return mapper.appCreate(appDto);
 	}
+	
 	// 결재 요청자 insert
 	@Override
 	public int appReqCreate(ApprovalCreateDTO dto) {
@@ -63,6 +64,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 		
 		return mapper.appReqCreate(reqVo);
 	}
+	
 	// 결재승인자들 insert
 	@Override
 	public void appAgrCreate(ApprovalCreateDTO dto) {	
@@ -83,71 +85,11 @@ public class ApprovalServiceImpl implements ApprovalService {
 			mapper.appAgrCreate(agrVo, dto.getEmp_no());
 		}
 	}
+	
 	//결재 문서 생성할 작성자 정보 조회 
 	@Override
 	public ApprovalWriterDTO appWriter(Long emp_no) {
 		return mapper.appWriter(emp_no);
 	}
-	
-	
-	// sys 계정의 모든 결재 요청 조회
-	@Override
-	public ApprovalReqDTO reqAllList(Criteria cri) {
-		return new ApprovalReqDTO(mapper.reqAllCount(), mapper.reqAllListWithPaging(cri));
-	}
-	// 결재 요청 조회
-	@Override
-	public ApprovalReqDTO reqList(Criteria cri, Long emp_no) {
-		return new ApprovalReqDTO(mapper.reqCount(emp_no), mapper.reqListWithPaging(cri, emp_no));
-	}
-	// 결재 요청 상제 조회
-	@Override
-	public ApprovalReqDetailDTO reqDetail(Long app_no, Long emp_no) {
-		return mapper.reqDetail(app_no, emp_no);	
-	}
-
-	
-	// sys 계정의 모든 결재 승인 조회
-	@Override
-	public ApprovalAgrDTO agrAllList(Criteria cri) {
-		 return new ApprovalAgrDTO(mapper.agrAllCount(), mapper.agrAllListWithPaging(cri));	
-	}
-	// 결재 승인 조회
-	@Override
-	public ApprovalAgrDTO agrList(Criteria cri, Long emp_no) {
-		return new ApprovalAgrDTO(mapper.argCount(emp_no), mapper.agrListWithPaging(cri, emp_no));	
-	}
-	// 결재 승인 상세 조회
-	@Override
-	public ApprovalAgrDetailDTO agrDetail(Long app_no, Long emp_no) {
-		return mapper.agrDetail(app_no, emp_no);	
-	}
-	// 결재 승인자들 조회
-	@Override
-	public ApprovalAgrDetailPositionDTO approvers(Long app_no) {
-		return new ApprovalAgrDetailPositionDTO(mapper.approvers(app_no));
-	}	
-
-	
-	// 결재 문서 승인 or 반려
-	@Override
-	public void appAgree(ApprovalAgrVO agrVo) {
-		mapper.appAgree(agrVo);
-	}
-	// 결재자들의 결재 여부 
-	@Override
-	public Long appAgreeChk(Long app_no) {
-		return mapper.appAgreeChk(app_no);
-	}
-	// 결재자들의 반려 개수 체크
-	@Override
-	public int appRejectChk(Long app_no) {
-		return mapper.appRejectChk(app_no);
-	}
-	// 최종 승인 상태 update
-	@Override
-	public void finalState(Long app_no, int count) {
-		mapper.finalState(app_no, count);
-	}	
 }
 

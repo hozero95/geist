@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.geist.approval.domain.ApprovalReqDTO;
 import com.geist.approval.domain.ApprovalReqDetailDTO;
-import com.geist.approval.service.ApprovalService;
+import com.geist.approval.service.AppSearchService;
 import com.geist.main.domain.Criteria;
 
 import lombok.AllArgsConstructor;
@@ -26,7 +26,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @Log4j
 public class AppSearchController {
-	private ApprovalService service;
+	private AppSearchService service;
 	
 	// sys 계정의 모든 결재 요청 조회
 	@GetMapping(value = "/allList/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
@@ -43,6 +43,7 @@ public class AppSearchController {
 		log.info("page === " + page);
 		return new ResponseEntity<ApprovalReqDTO>(service.reqList(cri, emp_no), HttpStatus.OK);
 	}
+	
 	// 결재 요청 상세 조회
 	@GetMapping(value = "/detail/{appNo}/{empNo}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity <ApprovalReqDetailDTO> reqDetail(@PathVariable("appNo") Long app_no, @PathVariable("empNo") Long emp_no) {
