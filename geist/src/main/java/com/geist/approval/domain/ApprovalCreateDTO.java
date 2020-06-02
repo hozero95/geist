@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class ApprovalCreateDTO {
+	// 결재 문서 생성 -> appCreate(), appReqCreate(), appAgrCreate()
 	private Long emp_no; 
-	
 	private Long app_no;
 	private Long app_class;
 	private String app_title;
@@ -19,5 +19,5 @@ public class ApprovalCreateDTO {
 	private Long app_status;
 	
 	private Long agr_status;
-	private List<ApprovalAgrVO> manager_no; // app_agree 사원번호
+	private List<ApprovalAgrVO> manager_no; // 승인자 할 상사들의 사원번호
 }

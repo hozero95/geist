@@ -15,5 +15,4 @@ public interface AddressMapper {
 	
 	public List<AddressVO> getListWithPaging(Criteria cri);
 	
-	
 }

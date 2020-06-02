@@ -15,20 +15,18 @@ import lombok.extern.log4j.Log4j;
  */
 
 @Service
-@Log4j
 public class MypageServiceImpl implements MypageService {
 
 	@Setter(onMethod_ = @Autowired)
 	private MypageMapper mapper;
 
 	@Override
-	public MypageDTO get(Long emp_no) {
+	public MypageDTO read(Long emp_no) {
 		return mapper.read(emp_no);
 	}
 
 	@Override
 	public int modify(MypageDTO dto) {
-		return mapper.update(dto);
+		return mapper.modify(dto);
 	}
-	
 }

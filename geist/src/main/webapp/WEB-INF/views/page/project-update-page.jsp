@@ -69,7 +69,7 @@
                                             </tbody>
                                         </table>
                                         <div class="pt-2" style="float: right;">
-                                            <button type="button" class="btn btn-sm dt-button" id="proUpdate" style="box-shadow : 3px 3px 2px #aaaaaa">저장</button>
+                                            <button type="button" class="btn btn-sm dt-button" id="proUpdate" style="box-shadow : 3px 3px 2px #aaaaaa" onclick="alert('수정 되었습니다.')">저장</button>
                                         </div>
                                     </div>
 

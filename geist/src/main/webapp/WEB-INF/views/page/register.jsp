@@ -24,7 +24,7 @@
           <span class="ps-box">
             <input type="text" id="id" class="int" name="id" maxlength="20" />
           </span>
-          <span class="msg" id="id-error">아이디는 반드시 입력하세요.</span>
+          <span class="msg" id="id-error"></span>
         </div>
         <div id="pwd-row">
           <h3>
@@ -106,7 +106,7 @@
             <input type="text" id="phone" class="int" name="phone" placeholder="전화번호 입력" oninput="noKorean(this);"
               onkeyup="inputPhoneNumber(this);" maxlength="13" />
           </span>
-          <span class="msg" id="phone-error">입력하신 전화번호는 잘못된 정보입니다</span>
+          <span class="msg" id="phone-error">입력하신 번호는 잘못된 정보입니다.</span>
         </div>
         <div id="addr-row">
           <h3>

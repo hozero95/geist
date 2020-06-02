@@ -1,4 +1,4 @@
-
+console.log("mypage-modify")
 
 var MypageService = (function(){
 		function detailView(param, callback, error){
@@ -91,10 +91,11 @@ $(document).ready(function(){
 				emp_phone : emp_phone,
 				emp_address : emp_address
 			}, function(result){
-				alert(result);
-				location.href = "/myPage";
+				if(result == 'success') {
+					alert("회원정보가 수정되었습니다.")
+					location.href = "/myPage";
+				}
 			});
 		});
-		
 	}
 });

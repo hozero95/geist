@@ -15,6 +15,7 @@
 		INSERT INTO approval 
 		VALUES (#{app_no}, #{app_class}, #{app_title}, sysdate, 1)
 	</insert>	
+	<!-- 결재 요청자 insert -->
 	<insert id="appReqCreate" >
 		INSERT INTO 
 			app_request (app_no, emp_no) (
@@ -27,6 +28,7 @@
 				and e.emp_no = #{emp_no}
 			)
 	</insert>	
+	<!-- 결재 승인자들 insert -->
 	<insert id="appAgrCreate">
 		INSERT INTO
 		    app_agree (app_no, emp_no, agr_status) (
@@ -45,7 +47,7 @@
 		        )
 		    )
 	</insert>
-	
+	<!-- 결재 문서 생성할 작성자 정보 조회  -->
 	<select id="appWriter" resultType="com.geist.approval.domain.ApprovalWriterDTO">
 		SELECT 
 		    d.dept_name, e.emp_name, e.emp_position
@@ -56,8 +58,32 @@
 			and e.dept_no = d.dept_no
 	</select>
 	
+	<!-- sys 계정의 모든 결재 요청 조회 -->	
+	<select id="reqAllListWithPaging" resultType="com.geist.approval.domain.ApprovalDTO">
+		<![CDATA[
+			SELECT
+				app_no, app_class, app_date, app_title, emp_name, app_status
+			FROM
+				(
+				SELECT /*+ INDEX_DESC(app_agree pk_app_agree) */
+			        appAgree.*, rownum rn
+			    FROM (
+			        SELECT arq.app_no, a.app_class, to_char(app_date, 'YYYY-MM-DD') app_date, a.app_title, e.emp_name, a.app_status
+			        FROM approval a, employee e, app_request arq, app_agree agr
+			        WHERE 
+			            e.emp_no = arq.emp_no
+                        and agr.app_no = arq.app_no
+                        and agr.app_no = a.app_no   
+			        ORDER BY app_no DESC
+			        ) appAgree
+			    WHERE        
+					rownum <= #{pageNum} * #{amount}
+			    )
+			WHERE rn >  (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
 	<!-- 결재 요청 조회 -->	
-	<select id="reqListWithPaging" resultType="com.geist.approval.domain.ApprovalVO">
+	<select id="reqListWithPaging" resultType="com.geist.approval.domain.ApprovalDTO">
 		<![CDATA[
 			SELECT
 				app_no, app_class, app_date, app_title, emp_name, app_status
@@ -95,17 +121,41 @@
 	</select>
 	
 	
-	<!-- 결재 승인 조회 -->
-	<select id="admitListWithPaging" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
+	<!-- sys 계정의 모든 결재 승인 조회 -->
+	<select id="agrAllListWithPaging" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
 		<![CDATA[
 			SELECT
-			    app_no, app_class, app_date, app_title, emp_name, agr_status
+			    app_no, app_class, app_date, app_title, emp_name, agr_status, app_status
 			FROM
 			    (
 				SELECT /*+ INDEX_DESC(app_agree pk_app_agree) */
-			        appAdmit.*, rownum rn
+			        appAgree.*, rownum rn
 			    FROM (
-			        SELECT arq.app_no, a.app_class, to_char(app_date, 'YYYY-MM-DD') app_date, a.app_title, e.emp_name, agr.agr_status
+			        SELECT DISTINCT arq.app_no, a.app_class, to_char(app_date, 'YYYY-MM-DD') app_date, a.app_title, e.emp_name, agr.agr_status, a.app_status
+			        FROM approval a, employee e, app_request arq, app_agree agr
+			        WHERE 
+			            e.emp_no = arq.emp_no
+                        and agr.app_no = arq.app_no
+                        and agr.app_no = a.app_no   
+			        ORDER BY app_no DESC
+			        ) appAgree
+			    WHERE        
+					rownum <= #{pageNum} * #{amount}
+			    )
+			WHERE rn > (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>	
+	<!-- 결재 승인 조회 -->
+	<select id="agrListWithPaging" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
+		<![CDATA[
+			SELECT
+			    app_no, app_class, app_date, app_title, emp_name, agr_status, app_status
+			FROM
+			    (
+				SELECT /*+ INDEX_DESC(app_agree pk_app_agree) */
+			        appAgree.*, rownum rn
+			    FROM (
+			        SELECT arq.app_no, a.app_class, to_char(app_date, 'YYYY-MM-DD') app_date, a.app_title, e.emp_name, agr.agr_status, a.app_status
 			        FROM approval a, employee e, app_request arq, app_agree agr
 			        WHERE 
 			            e.emp_no = arq.emp_no  
@@ -113,7 +163,7 @@
 						and agr.app_no = a.app_no  
 						and agr.emp_no = #{emp_no}
 			        ORDER BY app_no DESC
-			        ) appAdmit
+			        ) appAgree
 			    WHERE        
 					rownum <= #{cri.pageNum} * #{cri.amount}
 			    )
@@ -121,7 +171,7 @@
 		]]>
 	</select>	
 	<!-- 결재 승인 상세 조회 -->
-	<select id="admitDetail" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
+	<select id="agrDetail" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
 		<![CDATA[
 			SELECT 
 				dept_name, emp_position, emp_name, app_title, app_date
@@ -150,9 +200,41 @@
 		]]>
 	</select>
 	
+	<!-- sys 계정의 모든 결재 요청 개수 조회 -->
+	<select id="reqAllCount" resultType="int">
+		SELECT count(*) FROM app_request		
+	</select>	
+	<!-- sys 계정의 모든 결재 승인 개수 조회 -->
+	<select id="agrAllCount" resultType="int">
+		SELECT count(*) FROM app_agree		
+	</select>	
+	<!-- 결재 요청 개수 조회 -->
+	<select id="reqCount" resultType="int">
+		SELECT 
+			count(*)
+		FROM 
+			approval a, employee e, app_request arq
+ 		WHERE
+ 			e.emp_no = arq.emp_no 
+ 			and arq.app_no = a.app_no 
+ 			and arq.emp_no = #{emp_no}		
+	</select>	
+	<!-- 결재 승인 개수 조회 -->
+	<select id="argCount" resultType="int">
+		SELECT 
+			count(*)
+		FROM 
+			approval a, employee e, app_request arq, app_agree agr, department d
+ 		WHERE
+ 			e.emp_no = agr.emp_no 
+		    and e.dept_no = d.dept_no
+		    and agr.app_no = arq.app_no   
+		    and agr.app_no = a.app_no 
+ 			and agr.emp_no = #{emp_no}		
+	</select>
 	
-	<!-- 결재 승인 or 반려 -->
-	<update id="appAdmit">
+	<!-- 결재 승인 or 반려_수정전 -->
+	<update id="appAgree">
 		UPDATE 
 			app_agree 
 		SET 
@@ -161,26 +243,22 @@
 			emp_no = #{emp_no} 
 			and app_no = #{app_no}
 	</update>
-	
+	<!-- 결재자들의 결재 여부 확인 -->
+	<select id="appAgreeChk" resultType="long">
+		<![CDATA[
+			SELECT DISTINCT app_no FROM app_agree 
+			WHERE app_no = #{app_no} and
+				(SELECT count(*) FROM app_agree WHERE app_no = #{app_no})
+				= (SELECT count(*) FROM app_agree WHERE agr_status NOT IN (1) and app_no = #{app_no})
+		]]>
+	</select>
+	<!-- 결재자들의 반려 개수 체크 -->
+	<select id="appRejectChk" resultType="int">
+		SELECT count(*) as count FROM app_agree WHERE agr_status IN (3) and app_no = #{app_no}
+	</select>
 	<!-- 최종 승인 상태 update -->
 	<update id="finalState">
-		UPDATE approval SET app_status = 2 WHERE app_no = (
-			SELECT DISTINCT app_no FROM app_agree 
-			WHERE
-			(SELECT count(*) FROM app_agree WHERE agr_status in (2) and app_no = #{app_no})
-			= (select count(*) FROM app_agree WHERE app_no = #{app_no})
-			and app_no = #{app_no}
-		)
+		UPDATE approval SET app_status = #{count} WHERE app_no = #{app_no}
 	</update>
-	
-	<select id="getCount" resultType="int">
-		SELECT 
-			count(*) 
-		FROM 
-			approval a, employee e, app_request arq
- 		WHERE
- 			e.emp_no = arq.emp_no 
- 			and arq.app_no = a.app_no 
- 			and arq.emp_no = #{emp_no}		
-	</select>
+
 </mapper>

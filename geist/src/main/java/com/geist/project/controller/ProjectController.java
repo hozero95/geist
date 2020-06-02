@@ -37,6 +37,15 @@ public class ProjectController {
 
 		private ProjectService service;
 		
+		//sys 계정의 모든 프로젝트 리스트 출력
+		@RequestMapping(value = "/projectAllList/{page}", method = {RequestMethod.GET},
+				produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+		public ResponseEntity<ProjectDTO> projectAllList(@PathVariable("page") int page, HttpServletRequest req){					
+			Criteria cri = new Criteria(page, 10);
+					
+			return new ResponseEntity<ProjectDTO>(service.projectAllList(cri), HttpStatus.OK);
+		}
+		
 		//프로젝트의 목록을 보여주는 부분
 		@RequestMapping(value = "/projectList/{page}", method = {RequestMethod.GET},
 				produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})

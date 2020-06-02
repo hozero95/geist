@@ -3,7 +3,7 @@
  */
 
 console.log("approvalAdmitDetail.js");
-console.log("33331")
+console.log("3333123")
 
 var approvalDetailService = (function(){
 	//결재 상세 조회일 경우
@@ -25,7 +25,7 @@ var approvalDetailService = (function(){
 	function detail(param, callback, error){
 		var app_no = param.app_no;
 		var emp_no = param.emp_no;
-		$.getJSON("/approvalAdmit/detail/" + app_no + "/" + emp_no + ".json", function(data){
+		$.getJSON("/approvalAgree/detail/" + app_no + "/" + emp_no + ".json", function(data){
 			if(callback){
 				callback(data);
 			}
@@ -37,7 +37,7 @@ var approvalDetailService = (function(){
 	}
 	
 	function approvers(app_no, callback, error){
-		$.getJSON("/approvalAdmit/detailApprovers/" + app_no + ".json", function(data){
+		$.getJSON("/approvalAgree/detailApprovers/" + app_no + ".json", function(data){
 			if(callback){
 				callback(data);
 			}
@@ -51,7 +51,7 @@ var approvalDetailService = (function(){
 	function admit(param, callback, error){
 		$.ajax({
             type : 'post',
-            url : '/approvalAdmit/admit',
+            url : '/approvalAgree/agree',
             data : JSON.stringify(param),
             contentType : "application/json; charset=utf-8",
             success : function(result, status, xhr) {
@@ -105,12 +105,19 @@ $(document).ready(function(){
 	var empPosition = $(".emp-position");
 	var empName = $(".emp-name");
 	var appDate = $(".app-date");
+	var appSearchBtn = $("#appSearchBtn");
 	
 	// whoRu = search 일 경우, 결재 상세 조회 실행
 	if(search === "search"){
 		console.log("search === search")
 		$(".pt-2 button").attr('disabled', true);
 		$(".btn").css('color', 'white');
+		appSearchBtn.css({
+			display : "block",
+			color : "white"				
+		});
+		appSearchBtn.attr('disabled', false);
+		appSearchBtn.attr('onclick', "location.replace('/approvalSearch');");
 		
 		searchDetailView(app_no, emp_no);	
 		
@@ -150,6 +157,9 @@ $(document).ready(function(){
 		
 	}else{	// whoRu !== search 일 경우, 결재 상세 조회 실행
 		console.log("search !== search")
+		
+		appSearchBtn.attr('onclick', "location.replace('/approvalAgree');");
+		
 		detailView(app_no, emp_no);	
 		
 		function detailView(app_no, emp_no){
@@ -196,7 +206,7 @@ $(document).ready(function(){
 				agr_status : 2			
 			}, function(result){
 				if(result == 'success') {
-	                location.href = "/approvalAdmit";
+	                location.href = "/approvalAgree";
 	            } else {
 	                console.log("승인 실패....");
 	            }
@@ -210,7 +220,7 @@ $(document).ready(function(){
 				agr_status : 3			
 			}, function(result){
 				if(result == 'success') {
-	                location.href = "/approvalAdmit";
+	                location.href = "/approvalAgree";
 	            } else {
 	                console.log("거부 실패....");
 	            }

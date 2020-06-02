@@ -21,7 +21,11 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Setter(onMethod_ = @Autowired)
 	private ProjectMapper mapper;
-	
+
+	@Override
+	public ProjectDTO projectAllList(Criteria cri) {
+		return new ProjectDTO(mapper.projectAllCount(), mapper.projectAllList(cri));
+	}
 	@Override
 	public ProjectDTO projectList(Criteria cri, int dept_no){
 		// TODO Auto-generated method stub
@@ -74,4 +78,5 @@ public class ProjectServiceImpl implements ProjectService {
 		log.info("ProjectService project Count()");
 		return mapper.projectCount(dept_no);	
 	}
+
 }

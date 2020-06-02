@@ -165,7 +165,7 @@
 									</div>
 
 									<div class="btn-row">
-										<input type="button" class="btn-write" value="작성" onclick="alert('작성 되었습니다')">
+										<input type="button" class="btn-write" value="작성" onclick="alert('작성 되었습니다.')">
 									</div>
 
 								</form>
@@ -177,6 +177,6 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/approvalRequest.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/approval-request.js"></script>
 </body>
 </html>
