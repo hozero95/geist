@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.geist.approval.domain.ApprovalCreateDTO;
 import com.geist.approval.domain.ApprovalWriterDTO;
-import com.geist.approval.service.ApprovalService;
+import com.geist.approval.service.AppRequestService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -27,7 +27,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @Log4j
 public class AppRequestController {
-   private ApprovalService service;
+   private AppRequestService service;
    
    // 결재 문서 생성
    @PostMapping(value = "/new", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})

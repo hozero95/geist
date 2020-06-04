@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	결재 페이지
+	담당 : 김현선
+ -->
+
+<mapper namespace="com.geist.approval.mapper.AppSearchMapper">
+
+	<!-- sys 계정의 모든 결재 요청 조회 -->	
+	<select id="reqAllListWithPaging" resultType="com.geist.approval.domain.ApprovalDTO">
+		<![CDATA[
+			SELECT
+				app_no, app_class, app_date, app_title, emp_name, app_status
+			FROM
+				(
+				SELECT /*+ INDEX_DESC(app_agree pk_app_agree) */
+			        appAgree.*, rownum rn
+			    FROM (
+			        SELECT arq.app_no, a.app_class, to_char(app_date, 'YYYY-MM-DD') app_date, a.app_title, e.emp_name, a.app_status
+			        FROM approval a, employee e, app_request arq, app_agree agr
+			        WHERE 
+			            e.emp_no = arq.emp_no
+                        and agr.app_no = arq.app_no
+                        and agr.app_no = a.app_no   
+			        ORDER BY app_no DESC
+			        ) appAgree
+			    WHERE        
+					rownum <= #{pageNum} * #{amount}
+			    )
+			WHERE rn >  (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
+	
+	<!-- 결재 요청 조회 -->	
+	<select id="reqListWithPaging" resultType="com.geist.approval.domain.ApprovalDTO">
+		<![CDATA[
+			SELECT
+				app_no, app_class, app_date, app_title, emp_name, app_status
+			FROM
+				(
+				SELECT /*+ INDEX_DESC(app_request pk_app_request) */
+			        appSearch.*, rownum rn
+			    FROM (
+			        SELECT arq.app_no, a.app_class, to_char(app_date, 'YYYY-MM-DD') app_date, a.app_title, e.emp_name, a.app_status
+			        FROM approval a, employee e, app_request arq
+			        WHERE 
+			            e.emp_no = arq.emp_no   
+			            and arq.app_no = a.app_no  
+			            and arq.emp_no = #{emp_no}
+			        ORDER BY app_no DESC
+			        ) appSearch
+			    WHERE        
+					rownum <= #{cri.pageNum} * #{cri.amount}
+			    )
+			WHERE rn >  (#{cri.pageNum} - 1) * #{cri.amount}
+		]]>
+	</select>	
+	
+	<!-- 결재 요청 상세 조회 -->
+	<select id="reqDetail" resultType="com.geist.approval.domain.ApprovalReqDetailDTO">
+			SELECT 
+				d.dept_name, e.emp_position, e.emp_name, to_char(app_date, 'YYYY-MM-DD') app_date
+			FROM 
+				approval a, employee e, app_request arq, department d
+			WHERE 
+				e.emp_no = arq.emp_no 
+				and e.dept_no = d.dept_no
+				and arq.app_no = a.app_no
+				and arq.emp_no = #{emp_no}
+				and arq.app_no = #{app_no}
+	</select>
+	
+	<!-- sys 계정의 모든 결재 요청 개수 조회 -->
+	<select id="reqAllCount" resultType="int">
+		SELECT count(*) FROM app_request		
+	</select>	
+	
+	<!-- 결재 요청 개수 조회 -->
+	<select id="reqCount" resultType="int">
+		SELECT 
+			count(*)
+		FROM 
+			approval a, employee e, app_request arq
+ 		WHERE
+ 			e.emp_no = arq.emp_no 
+ 			and arq.app_no = a.app_no 
+ 			and arq.emp_no = #{emp_no}		
+	</select>	
+	
+</mapper>

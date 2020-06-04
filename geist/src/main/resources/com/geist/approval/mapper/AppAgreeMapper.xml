@@ -8,119 +8,8 @@
 	담당 : 김현선
  -->
 
-<mapper namespace="com.geist.approval.mapper.ApprovalMapper">
-	
-	<!-- 결재 문서 생성 insert -->
-	<insert id="appCreate">
-		INSERT INTO approval 
-		VALUES (#{app_no}, #{app_class}, #{app_title}, sysdate, 1)
-	</insert>	
-	<!-- 결재 요청자 insert -->
-	<insert id="appReqCreate" >
-		INSERT INTO 
-			app_request (app_no, emp_no) (
-			SELECT 
-				a.app_no, e.emp_no 
-			FROM 
-				approval a, employee e 
-			WHERE 
-				a.app_no = #{app_no}
-				and e.emp_no = #{emp_no}
-			)
-	</insert>	
-	<!-- 결재 승인자들 insert -->
-	<insert id="appAgrCreate">
-		INSERT INTO
-		    app_agree (app_no, emp_no, agr_status) (
-		    SELECT 
-		        a.app_no, e.emp_no, a.app_status 
-		    FROM 
-		        approval a, employee e 
-		    WHERE 
-		        a.app_no = #{agrVo.app_no}
-		        and e.emp_no = (
-		            SELECT emp_no FROM employee 
-		            WHERE dept_no = (
-		                SELECT dept_no FROM employee WHERE emp_no = #{emp_no}
-		            ) 
-		            AND emp_position LIKE '%'||#{agrVo.emp_position}||'%'
-		        )
-		    )
-	</insert>
-	<!-- 결재 문서 생성할 작성자 정보 조회  -->
-	<select id="appWriter" resultType="com.geist.approval.domain.ApprovalWriterDTO">
-		SELECT 
-		    d.dept_name, e.emp_name, e.emp_position
-		FROM
-		    employee e, department d
-		WHERE
-		    e.emp_no = #{emp_no}
-			and e.dept_no = d.dept_no
-	</select>
-	
-	<!-- sys 계정의 모든 결재 요청 조회 -->	
-	<select id="reqAllListWithPaging" resultType="com.geist.approval.domain.ApprovalDTO">
-		<![CDATA[
-			SELECT
-				app_no, app_class, app_date, app_title, emp_name, app_status
-			FROM
-				(
-				SELECT /*+ INDEX_DESC(app_agree pk_app_agree) */
-			        appAgree.*, rownum rn
-			    FROM (
-			        SELECT arq.app_no, a.app_class, to_char(app_date, 'YYYY-MM-DD') app_date, a.app_title, e.emp_name, a.app_status
-			        FROM approval a, employee e, app_request arq, app_agree agr
-			        WHERE 
-			            e.emp_no = arq.emp_no
-                        and agr.app_no = arq.app_no
-                        and agr.app_no = a.app_no   
-			        ORDER BY app_no DESC
-			        ) appAgree
-			    WHERE        
-					rownum <= #{pageNum} * #{amount}
-			    )
-			WHERE rn >  (#{pageNum} - 1) * #{amount}
-		]]>
-	</select>
-	<!-- 결재 요청 조회 -->	
-	<select id="reqListWithPaging" resultType="com.geist.approval.domain.ApprovalDTO">
-		<![CDATA[
-			SELECT
-				app_no, app_class, app_date, app_title, emp_name, app_status
-			FROM
-				(
-				SELECT /*+ INDEX_DESC(app_request pk_app_request) */
-			        appSearch.*, rownum rn
-			    FROM (
-			        SELECT arq.app_no, a.app_class, to_char(app_date, 'YYYY-MM-DD') app_date, a.app_title, e.emp_name, a.app_status
-			        FROM approval a, employee e, app_request arq
-			        WHERE 
-			            e.emp_no = arq.emp_no   
-			            and arq.app_no = a.app_no  
-			            and arq.emp_no = #{emp_no}
-			        ORDER BY app_no DESC
-			        ) appSearch
-			    WHERE        
-					rownum <= #{cri.pageNum} * #{cri.amount}
-			    )
-			WHERE rn >  (#{cri.pageNum} - 1) * #{cri.amount}
-		]]>
-	</select>	
-	<!-- 결재 요청 상세 조회 -->
-	<select id="reqDetail" resultType="com.geist.approval.domain.ApprovalReqDetailDTO">
-			SELECT 
-				d.dept_name, e.emp_position, e.emp_name, to_char(app_date, 'YYYY-MM-DD') app_date
-			FROM 
-				approval a, employee e, app_request arq, department d
-			WHERE 
-				e.emp_no = arq.emp_no 
-				and e.dept_no = d.dept_no
-				and arq.app_no = a.app_no
-				and arq.emp_no = #{emp_no}
-				and arq.app_no = #{app_no}
-	</select>
-	
-	
+<mapper namespace="com.geist.approval.mapper.AppAgreeMapper">
+
 	<!-- sys 계정의 모든 결재 승인 조회 -->
 	<select id="agrAllListWithPaging" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
 		<![CDATA[
@@ -145,6 +34,7 @@
 			WHERE rn > (#{pageNum} - 1) * #{amount}
 		]]>
 	</select>	
+	
 	<!-- 결재 승인 조회 -->
 	<select id="agrListWithPaging" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
 		<![CDATA[
@@ -170,6 +60,7 @@
 			WHERE rn > (#{cri.pageNum} - 1) * #{cri.amount}
 		]]>
 	</select>	
+	
 	<!-- 결재 승인 상세 조회 -->
 	<select id="agrDetail" resultType="com.geist.approval.domain.ApprovalAgrDetailDTO">
 		<![CDATA[
@@ -190,6 +81,7 @@
 			)
 		]]>
 	</select>
+	
 	<!-- 결재 승인자들 조회 -->
 	<select id="approvers" resultType="com.geist.approval.domain.ApprovalAgrDetailPositionVO">
 		<![CDATA[
@@ -200,25 +92,11 @@
 		]]>
 	</select>
 	
-	<!-- sys 계정의 모든 결재 요청 개수 조회 -->
-	<select id="reqAllCount" resultType="int">
-		SELECT count(*) FROM app_request		
-	</select>	
 	<!-- sys 계정의 모든 결재 승인 개수 조회 -->
 	<select id="agrAllCount" resultType="int">
 		SELECT count(*) FROM app_agree		
 	</select>	
-	<!-- 결재 요청 개수 조회 -->
-	<select id="reqCount" resultType="int">
-		SELECT 
-			count(*)
-		FROM 
-			approval a, employee e, app_request arq
- 		WHERE
- 			e.emp_no = arq.emp_no 
- 			and arq.app_no = a.app_no 
- 			and arq.emp_no = #{emp_no}		
-	</select>	
+	
 	<!-- 결재 승인 개수 조회 -->
 	<select id="argCount" resultType="int">
 		SELECT 
@@ -243,6 +121,7 @@
 			emp_no = #{emp_no} 
 			and app_no = #{app_no}
 	</update>
+	
 	<!-- 결재자들의 결재 여부 확인 -->
 	<select id="appAgreeChk" resultType="long">
 		<![CDATA[
@@ -252,13 +131,15 @@
 				= (SELECT count(*) FROM app_agree WHERE agr_status NOT IN (1) and app_no = #{app_no})
 		]]>
 	</select>
+	
 	<!-- 결재자들의 반려 개수 체크 -->
 	<select id="appRejectChk" resultType="int">
 		SELECT count(*) as count FROM app_agree WHERE agr_status IN (3) and app_no = #{app_no}
 	</select>
+	
 	<!-- 최종 승인 상태 update -->
 	<update id="finalState">
 		UPDATE approval SET app_status = #{count} WHERE app_no = #{app_no}
 	</update>
-
+	
 </mapper>
