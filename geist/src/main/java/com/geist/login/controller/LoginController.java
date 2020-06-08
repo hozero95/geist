@@ -30,41 +30,38 @@ import lombok.extern.log4j.Log4j;
 public class LoginController {
 	private LoginService service;
 	
+	//로그인 정보를 전송시켜주는 컨트롤러
 	@PostMapping(value = "/login", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> login(@RequestBody LoginVO vo, HttpServletRequest req){
-		log.info("vo : " + vo);
-		
+		//로그인 정보를 session에 담아 유지시킴
 		HttpSession session = req.getSession();
 		LoginVO login = service.login(vo);
 		String result = "";
 		String sys = "";
-		String position = "";
+		//String position = "";
 
 		if(login == null) {
 			session.setAttribute("member", null);
 			result = "fail";
 		}else {
-			position = login.getEmp_position();
+			//사원번호를 통해 직급을 확인
+			//position = login.getEmp_position();
 			
+			//관리자(100)일 경우 관리자 계정으로 접속
 			if(login.getEmp_no() == 100) {
 				sys = "sys";
 				result = "success";
 				session.setAttribute("sys", sys);
 				session.setAttribute("empPosition", login.getEmp_position());
 				session.setAttribute("member", login);
-			}else if(position.equals("부장")) {
-				result = "success";				
-				session.setAttribute("empPosition", login.getEmp_position());
-				session.setAttribute("member", login);
+			//관리자가 아닐 경우
 			}else {
 				result = "success";				
 				session.setAttribute("empPosition", login.getEmp_position());
 				session.setAttribute("member", login);
 			}
 		}
-				
 		log.info("session : " + session);
-		
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
 	

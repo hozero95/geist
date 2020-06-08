@@ -38,25 +38,27 @@ public class ProjectController {
 		private ProjectService service;
 		
 		//sys 계정의 모든 프로젝트 리스트 출력
-		@RequestMapping(value = "/projectAllList/{page}", method = {RequestMethod.GET},
+		@GetMapping(value = "/projectAllList/{page}",
 				produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-		public ResponseEntity<ProjectDTO> projectAllList(@PathVariable("page") int page, HttpServletRequest req){					
+		public ResponseEntity<ProjectDTO> projectAllList(@PathVariable("page") int page, HttpServletRequest req){		
+			
+			//페이징처리
 			Criteria cri = new Criteria(page, 10);
 					
 			return new ResponseEntity<ProjectDTO>(service.projectAllList(cri), HttpStatus.OK);
 		}
 		
-		//프로젝트의 목록을 보여주는 부분
-		@RequestMapping(value = "/projectList/{page}", method = {RequestMethod.GET},
+		//부서별 해당하는 프로젝트 리스트 출력
+		@GetMapping(value = "/projectList/{page}",
 				produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 		public ResponseEntity<ProjectDTO> projectList(@PathVariable("page") int page, HttpServletRequest req){
 			HttpSession session = req.getSession();
 			
-			//session에 잇던거 가지고오기
+			//session처리한 사원번호로 부서 구분하기
 			LoginVO no = (LoginVO)session.getAttribute("member");
 			Long emp_no = no.getEmp_no();
 			
-			//session에서 가져온 emp_no가 mapper을 한번더 거쳐 dept_no 꺼냄
+			//emp_no를 통해 부서번호인 dept_no를 가져와 구분함
 			int dept_no = service.projectDept(emp_no);
 			
 			Criteria cri = new Criteria(page, 10);

@@ -21,7 +21,7 @@
                           </a>
                       </li>
                       <li>
-                          <a href="javascript:void(0);" onclick="ChangeMpage(2)">
+                          <a href="/notice">
                               <i class="metismenu-icon pe-7s-document"></i>
                               공지사항
                           </a>
